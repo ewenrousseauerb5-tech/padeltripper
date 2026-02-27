@@ -30,7 +30,10 @@ export default function Navbar() {
           <img
             src={showTransparent ? "/images/logos/logo-white-landscape.png" : "/images/logos/logo-landscape.png"}
             alt="Padel Tripper logo"
-            className="h-9 w-auto transition-opacity duration-500"
+            className={cn(
+              "w-auto transition-opacity duration-500",
+              showTransparent ? "h-10" : "h-8"
+            )}
           />
         </Link>
         <div className="hidden lg:flex items-center gap-10 text-[13px] font-semibold uppercase tracking-wider">
