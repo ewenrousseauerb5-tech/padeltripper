@@ -9,3 +9,5 @@ coverage/
 !.env.example
 Consolidated Quality Images/
 tsconfig.tsbuildinfo
+.open-next/
+.wrangler/
