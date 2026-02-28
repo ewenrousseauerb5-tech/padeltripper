@@ -345,19 +345,19 @@ export default function EventsPage() {
                 <div className="space-y-4">
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Tuesday — Arrival</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">Head straight to Hotel Alicante Golf and get settled in. If you arrive early enough there's usually time for a relaxed hit before the evening. We kick things off with welcome drinks at 7.30pm on the hotel Mirador — great views, great company.</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">Check in, dump your bags, and get into holiday mode. There's often time for an informal hit if you land early. The trip officially starts with welcome drinks at 7.30pm up on the hotel Mirador — a rooftop terrace with views over the golf course.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Wednesday</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">We head to Club Atlético Montemar for a 9.45am meet with the coaching team. First session runs 10am–12pm. In the afternoon we move over to Bela Padel Centre for a 3–5pm social game or mini tournament.</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">Meet the coaching team at Club Atlético Montemar at 9.45am. Morning coaching session 10am–12pm. After a break, we head to Bela Padel Centre for a 3–5pm afternoon social — expect competitive games and plenty of laughs.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Thursday</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">Another morning coaching session at Montemar (10am–12pm), followed by more competitive fun at Bela in the afternoon (3–5pm). In the evening we head into Alicante city — the Plaza del Ayuntamiento is a great spot for final night drinks.</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">Morning coaching at Montemar again (10am–12pm), then back to Bela for the afternoon session (3–5pm). Round the day off with a night out in the city — Plaza del Ayuntamiento is the go-to for a few well-earned drinks.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Friday — Departure</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">We finish with a final coaching block (10am–12pm) before saying goodbye. If your flight's in the evening, there's plenty of time to squeeze in a bit more court time.</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">Last coaching session of the trip (10am–12pm), then farewells at 12.15pm. Got an evening flight? The courts don't close at midday — feel free to keep playing.</p>
                   </div>
                   <p className="text-stone-300 text-xs italic">Afternoon sessions may run 90 minutes subject to court availability.</p>
                 </div>
