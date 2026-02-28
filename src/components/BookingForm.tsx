@@ -47,7 +47,6 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [accommodation, setAccommodation] = useState('');
-  const [dietary, setDietary] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
   const [participants, setParticipants] = useState<Participant[]>([emptyParticipant()]);
   const [numParticipants, setNumParticipants] = useState(1);
@@ -92,7 +91,6 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     setEmail('');
     setPhone('');
     setAccommodation('');
-    setDietary('');
     setSpecialRequests('');
     setParticipants([emptyParticipant()]);
     setNumParticipants(1);
@@ -118,7 +116,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
         phone: phone.trim(),
         num_participants: participants.length,
         accommodation_type: accommodation,
-        dietary_requirements: dietary.trim(),
+        dietary_requirements: '',
         special_requests: specialRequests.trim(),
         participants: participants.map(participant => ({
           full_name: participant.full_name.trim(),
@@ -201,16 +199,6 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
               </select>
               <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
             </div>
-          </div>
-          <div className="md:col-span-2">
-            <label className={labelClass}>Dietary Requirements</label>
-            <textarea
-              rows={3}
-              placeholder="Any dietary needs"
-              value={dietary}
-              onChange={e => setDietary(e.target.value)}
-              className={`${inputClass} resize-y`}
-            />
           </div>
           <div className="md:col-span-2">
             <label className={labelClass}>Special Requests</label>
