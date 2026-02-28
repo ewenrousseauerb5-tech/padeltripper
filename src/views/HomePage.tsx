@@ -58,7 +58,7 @@ export default function HomePage() {
           <h2 className="sr-only">Why Choose Our Padel Coaching Holidays in Spain</h2>
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { icon: Clock, title: '12 Hours Professional Coaching', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada. Suitable for beginners through advanced players.' },
+              { icon: Clock, title: '6 Hours Coaching + 4 Hours Social Play', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada, plus competitive social play each afternoon. Suitable for all levels.' },
               { icon: Users, title: 'Expert Coaching Ratio', desc: 'Maximum 4 players per coach for personalised attention. Perfect for solo travellers, couples, or group padel holidays.' },
               { icon: MapPin, title: 'Alicante, Costa Blanca', desc: "Play padel in one of Spain's sunniest cities with world-class facilities. Direct flights from the UK all year round." },
             ].map((item, idx) => (
@@ -116,7 +116,7 @@ export default function HomePage() {
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
             <h2 className="font-serif text-4xl font-black uppercase mb-5">Next Padel Camps</h2>
             <p className="text-stone-400 leading-relaxed">
-              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel, 12 hours of coaching and transport to the courts.
+              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel, 6 hours of coaching, 4 hours of social play and transport to the courts.
             </p>
           </div>
 
