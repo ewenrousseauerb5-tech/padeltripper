@@ -208,7 +208,7 @@ export default function EventsPage() {
       </section>
 
       {/* All Events Grid */}
-      <section className="py-24 px-6 bg-brand-dark" aria-label="All padel holiday dates and prices">
+      <section className="py-24 px-6" aria-label="All padel holiday dates and prices">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {ALL_EVENTS.map((event, idx) => (
@@ -218,7 +218,7 @@ export default function EventsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
-                className="relative bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/10 hover:-translate-y-1 transition-all duration-400 overflow-hidden group"
+                className="relative bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
                 {/* Red top accent */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-brand-red rounded-t-2xl" />
@@ -226,10 +226,10 @@ export default function EventsPage() {
                 <div className="flex justify-between items-start mb-5 pt-2">
                   <div className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-full ${
                     event.status === 'Filling Fast'
-                      ? 'bg-brand-red/20 text-brand-red'
+                      ? 'bg-brand-red/10 text-brand-red'
                       : event.status === 'Limited Spaces'
-                      ? 'bg-amber-500/20 text-amber-400'
-                      : 'bg-white/10 text-white/50'
+                      ? 'bg-amber-50 text-amber-600'
+                      : 'bg-stone-100 text-stone-400'
                   }`}>
                     {event.status}
                   </div>
@@ -241,17 +241,17 @@ export default function EventsPage() {
                 <div className="space-y-3 mb-7">
                   <div className="flex items-center gap-3">
                     <Calendar size={15} className="text-brand-red shrink-0" />
-                    <span className="font-bold text-white text-sm">{event.date}</span>
+                    <span className="font-bold text-brand-dark text-sm">{event.date}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-white/40">
+                  <div className="flex items-center gap-3 text-stone-400">
                     <Clock size={14} className="shrink-0" />
                     <span className="text-sm">{event.nights} nights / {event.nights + 1} days</span>
                   </div>
-                  <div className="flex items-center gap-3 text-white/40">
+                  <div className="flex items-center gap-3 text-stone-400">
                     <MapPin size={14} className="shrink-0" />
                     <span className="text-sm">{event.location}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-white/40">
+                  <div className="flex items-center gap-3 text-stone-400">
                     <Star size={14} className="shrink-0" />
                     <span className="text-sm">{event.hotel}</span>
                   </div>
@@ -260,7 +260,7 @@ export default function EventsPage() {
                 <a
                   href="#booking"
                   onClick={() => setFormData(prev => ({ ...prev, event: event.date }))}
-                  className="block w-full py-3.5 bg-brand-red text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-white hover:text-brand-dark transition-all duration-300"
+                  className="block w-full py-3.5 bg-brand-red text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-dark transition-all duration-300"
                 >
                   Book This Trip
                 </a>
