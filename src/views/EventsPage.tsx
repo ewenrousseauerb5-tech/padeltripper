@@ -22,9 +22,13 @@ import { ALL_EVENTS } from '../data/events';
 const CAROUSEL_PHOTOS = [
   { src: '/images/post-tournament-celebration.jpg', alt: 'Padel Tripper group celebrating after a tournament at Club Montemar, Alicante' },
   { src: '/images/sunset-group-hotel.jpg', alt: 'Padel holiday guests enjoying sunset drinks at Hotel Alicante Golf' },
+  { src: '/images/group-bela-court.jpg', alt: 'Padel Tripper players at Bela Padel Centre courts, Alicante' },
   { src: '/images/post-tournament-drinks.jpg', alt: 'Group padel holiday — post-tournament drinks in the sun' },
+  { src: '/images/padel-night-game.jpg', alt: 'Evening padel game under the lights in Alicante' },
   { src: '/images/group-bela-padel.jpg', alt: 'Padel Tripper players on court at Bela Padel Centre' },
+  { src: '/images/san-juan-beach-alicante.jpg', alt: 'Playa San Juan beach — just minutes from Hotel Alicante Golf' },
   { src: '/images/group-dinner-alicante.jpg', alt: 'Padel camp group dinner out in Alicante city centre' },
+  { src: '/images/alicante-castle-view.jpg', alt: 'View from Alicante castle overlooking the Costa Blanca coastline' },
   { src: '/images/players-enjoying-padel.jpg', alt: 'Players laughing during a padel coaching session in Alicante' },
   { src: '/images/group-social-evening.jpg', alt: 'Padel Tripper group social evening in Alicante' },
   { src: '/images/group-beers-montemar.jpg', alt: 'Group relaxing with beers after padel coaching at Club Montemar' },
@@ -337,8 +341,8 @@ export default function EventsPage() {
                 All the details about your padel holiday in Alicante — from coaching to accommodation.
               </p>
               <img
-                src="/images/padel-coaching-session.jpg"
-                alt="Professional padel coaching session in Alicante"
+                src="/images/pitu-losada-coach.jpg"
+                alt="Pitu Losada — 3x World Champion padel coach at Club Atlético Montemar, Alicante"
                 className="rounded-2xl w-full aspect-[4/3] object-cover shadow-lg hidden md:block"
               />
             </div>
