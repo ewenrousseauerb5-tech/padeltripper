@@ -135,7 +135,7 @@ export default function HomePage() {
                     <img
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full">
                       {event.status}
