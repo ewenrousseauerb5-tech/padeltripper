@@ -345,66 +345,66 @@ export default function EventsPage() {
                 <div className="space-y-4">
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Tuesday — Arrival</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">Check-in at Hotel Alicante Golf. Relaxed social game depending on arrival times. 7.30pm welcome drinks on the hotel Mirador overlooking the golf course.</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">Head straight to Hotel Alicante Golf and get settled in. If you arrive early enough there's usually time for a relaxed hit before the evening. We kick things off with welcome drinks at 7.30pm on the hotel Mirador — great views, great company.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Wednesday</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">9.45am introduction to Club Atl&eacute;tico Montemar and the coaching team. 10–12pm coaching session. 15–17pm informal game / mini tournament at Bela Padel Centre.</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">We head to Club Atlético Montemar for a 9.45am meet with the coaching team. First session runs 10am–12pm. In the afternoon we move over to Bela Padel Centre for a 3–5pm social game or mini tournament.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Thursday</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">10–12pm coaching session. 15–17pm informal game / mini tournament at Bela. 9pm final night drinks in Alicante's Plaza del Ayuntamiento.</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">Another morning coaching session at Montemar (10am–12pm), followed by more competitive fun at Bela in the afternoon (3–5pm). In the evening we head into Alicante city — the Plaza del Ayuntamiento is a great spot for final night drinks.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Friday — Departure</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">10–12pm final coaching session. 12.15 farewell from the team. More padel if you're flying late!</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">We finish with a final coaching block (10am–12pm) before saying goodbye. If your flight's in the evening, there's plenty of time to squeeze in a bit more court time.</p>
                   </div>
-                  <p className="text-stone-300 text-xs italic">Afternoon socials may be 90 minutes depending on court availability.</p>
+                  <p className="text-stone-300 text-xs italic">Afternoon sessions may run 90 minutes subject to court availability.</p>
                 </div>
               </AccordionItem>
 
-              <AccordionItem title="What about flights and insurance?">
+              <AccordionItem title="Do flights come with the package?">
                 <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>We do not provide flights as part of our event packages. If you need any help with flights feel free to get in touch.</p>
-                  <p>All participants are expected to provide suitable holiday insurance to cover the period of their stay and activities.</p>
-                  <p className="font-medium text-brand-dark">Please only book your flights once confirmation is received from us via email that your trip is confirmed.</p>
+                  <p>Flights aren't included — you'll book those independently. Alicante is well connected from most UK airports and flights are generally very reasonable.</p>
+                  <p>Make sure you have adequate travel insurance in place before you travel. This should cover the dates of your trip and any sporting activities.</p>
+                  <p className="font-medium text-brand-dark">Important: don't book your flights until you've received email confirmation from us that your trip is going ahead.</p>
                 </div>
               </AccordionItem>
 
               <AccordionItem title="How do I get from the airport to the hotel?">
                 <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>There is a very reliable taxi service from Alicante airport. It typically costs 35–40 euros and takes around 20 minutes.</p>
-                  <p>For groups arriving together, we may meet you at the airport or at the hotel. Instructions will be communicated prior to arrival.</p>
-                  <p>Check-in at Hotel Alicante Golf is from <strong className="text-brand-dark">4pm</strong>. Check-out by <strong className="text-brand-dark">12pm</strong>.</p>
+                  <p>Taxis from Alicante airport are easy to find and reliable — expect to pay around €35–40 and the journey takes roughly 20 minutes.</p>
+                  <p>If several of you are landing around the same time, we'll coordinate a group transfer where we can. Full arrival details are shared ahead of the trip.</p>
+                  <p>Hotel check-in is from <strong className="text-brand-dark">4pm</strong> and check-out is by <strong className="text-brand-dark">12pm</strong> on your departure day.</p>
                 </div>
               </AccordionItem>
 
               <AccordionItem title="What happens between coaching sessions?">
                 <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>During the day you are welcome to return to your hotel for some rest or relax at the venue where there is a restaurant and other sporting facilities.</p>
-                  <p>Your evenings are your own to explore Alicante and the surrounding areas. Our representatives may organise drinks or other gatherings depending on group requirements.</p>
+                  <p>Between sessions the time is yours. Head back to the hotel for a swim and some downtime, or stay at the club and make use of the bar and facilities on site.</p>
+                  <p>Evenings are unstructured — Alicante has a brilliant restaurant and bar scene. We'll share recommendations and often join the group for a drink or dinner.</p>
                 </div>
               </AccordionItem>
 
               <AccordionItem title="Where do we stay?">
                 <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>The Hotel Alicante Golf is a 4-star hotel close to Playa San Juan with everything you need to relax and enjoy the amazing Alicante weather.</p>
-                  <p>Only a short distance into the centre of Alicante and close to the beach via the tram outside your hotel or a 10 minute walk.</p>
-                  <p className="font-medium text-brand-dark">Note: the base price is based on 2 people sharing. Single room supplement of &pound;100.</p>
+                  <p>Everyone stays at the Hotel Alicante Golf — a comfortable 4-star hotel right next to Playa San Juan. Pool, sun terrace, good food, and an easy tram link into the city centre.</p>
+                  <p>The beach is a short walk away and the hotel has everything you need to recharge between sessions.</p>
+                  <p className="font-medium text-brand-dark">Pricing is based on two guests sharing a room. Solo travellers can add a single room supplement of &pound;100.</p>
                 </div>
               </AccordionItem>
 
-              <AccordionItem title="Do I need my own padel racquet?">
+              <AccordionItem title="Do I need to bring my own racquet?">
                 <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>No — padel racquet hire is included as part of the price if you don't have your own.</p>
-                  <p>Please bring appropriate clothing and footwear. As Alicante is usually sunny we also recommend sun screen and a cap!</p>
+                  <p>Not at all — racquet hire is included in the price, so don't worry if you don't have your own.</p>
+                  <p>Bring comfortable sports kit and proper court shoes. Alicante tends to be warm and sunny even in spring, so pack a cap and sunscreen too.</p>
                 </div>
               </AccordionItem>
 
-              <AccordionItem title="How will the group communicate?">
+              <AccordionItem title="How does the group stay in touch?">
                 <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>You will be given the telephone numbers of our on-the-ground representative(s) who will be available at all times.</p>
-                  <p>A WhatsApp group will be created for the entire group to allow communications between guests. This is entirely voluntary.</p>
+                  <p>Before the trip you'll have direct contact details for our team on the ground — someone will always be available if you need anything.</p>
+                  <p>We set up a WhatsApp group for each trip so everyone can connect ahead of time and during the week. It's optional but most people find it useful.</p>
                 </div>
               </AccordionItem>
             </div>
