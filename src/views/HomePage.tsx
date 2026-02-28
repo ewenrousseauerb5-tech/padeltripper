@@ -32,7 +32,7 @@ export default function HomePage() {
               <span className="text-brand-red">in Spain</span>
             </h1>
             <p className="text-lg text-white/70 mb-12 max-w-lg leading-relaxed font-light">
-              4-day padel retreats on the Costa Blanca with professional coaching, 4&#8209;star hotel and small groups. The ultimate padel camp experience.
+              4-day padel retreats on the Costa Blanca with professional coaching, 4&#8209;star hotel and a great group of players. The ultimate padel camp experience.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -59,7 +59,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-12">
             {[
               { icon: Clock, title: '12 Hours Professional Coaching', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada. Suitable for beginners through advanced players.' },
-              { icon: Users, title: 'Small Group Padel Retreats', desc: 'Maximum 4 players per coach for personalised attention. Perfect for solo travellers, couples, or group padel holidays.' },
+              { icon: Users, title: 'Expert Coaching Ratio', desc: 'Maximum 4 players per coach for personalised attention. Perfect for solo travellers, couples, or group padel holidays.' },
               { icon: MapPin, title: 'Alicante, Costa Blanca', desc: "Play padel in one of Spain's sunniest cities with world-class facilities. Direct flights from the UK all year round." },
             ].map((item, idx) => (
               <motion.article
