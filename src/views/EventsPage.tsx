@@ -21,13 +21,13 @@ import { ALL_EVENTS } from '../data/events';
 
 const CAROUSEL_PHOTOS = [
   { src: '/images/post-tournament-celebration.jpg', alt: 'Padel Tripper group celebrating after a tournament at Club Montemar, Alicante' },
-  { src: '/images/sunset-group-hotel.jpg', alt: 'Padel holiday guests enjoying sunset drinks at Hotel Alicante Golf' },
+  { src: '/images/alicante-castle-view.jpg', alt: 'View over Alicante from the castle — Costa Blanca' },
   { src: '/images/post-tournament-drinks.jpg', alt: 'Group padel holiday — post-tournament drinks in the sun' },
   { src: '/images/group-bela-padel.jpg', alt: 'Padel Tripper players on court at Bela Padel Centre' },
-  { src: '/images/group-dinner-alicante.jpg', alt: 'Padel camp group dinner out in Alicante city centre' },
+  { src: '/images/san-juan-beach-alicante.jpg', alt: 'Playa San Juan beach, Alicante — just minutes from Hotel Alicante Golf' },
   { src: '/images/players-enjoying-padel.jpg', alt: 'Players laughing during a padel coaching session in Alicante' },
   { src: '/images/group-social-evening.jpg', alt: 'Padel Tripper group social evening in Alicante' },
-  { src: '/images/group-beers-montemar.jpg', alt: 'Group relaxing with beers after padel coaching at Club Montemar' },
+  { src: '/images/padel-night-game.jpg', alt: 'Evening padel under the lights in Alicante' },
 ];
 
 function AccordionItem({ title, children, defaultOpen = false }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
@@ -184,8 +184,8 @@ export default function EventsPage() {
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/padel-group-holiday.jpg"
-            alt="Group padel holiday at Club Montemar, Alicante — Costa Blanca"
+            src="/images/group-bela-court.jpg"
+            alt="Padel Tripper players at Bela Padel Centre, Alicante — Costa Blanca"
             className="w-full h-full object-cover brightness-[0.3]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
@@ -430,7 +430,7 @@ export default function EventsPage() {
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div className="relative">
               <img
-                src="/images/group-dinner-alicante.jpg"
+                src="/images/padel-coaching-session.jpg"
                 alt="Custom padel group event in Alicante — tailored experiences"
                 className="rounded-2xl w-full aspect-[4/3] object-cover shadow-xl"
               />
