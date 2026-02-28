@@ -260,7 +260,7 @@ export default function EventsPage() {
                 <a
                   href="#booking"
                   onClick={() => setFormData(prev => ({ ...prev, event: event.date }))}
-                  className="block w-full py-3.5 bg-brand-red text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-dark transition-all duration-300"
+                  className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300"
                 >
                   Book This Trip
                 </a>
