@@ -25,7 +25,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
-    image: '/images/padel-coaching-alicante.jpg',
+    image: '/images/players-enjoying-padel.jpg',
   },
   {
     id: 73,
@@ -51,7 +51,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
-    image: '/images/post-tournament-drinks.jpg',
+    image: '/images/post-tournament-celebration.jpg',
   },
   {
     id: 69,
