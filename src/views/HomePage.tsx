@@ -161,13 +161,6 @@ export default function HomePage() {
                       <span className="text-sm">{event.hotel}</span>
                     </div>
                   </div>
-                  <div className="w-full bg-stone-100 rounded-full h-1 mb-2">
-                    <div
-                      className="bg-brand-red h-1 rounded-full transition-all"
-                      style={{ width: `${(event.filled / event.max) * 100}%` }}
-                    />
-                  </div>
-                  <p className="text-[11px] text-stone-400 mb-6">{event.max - event.filled} spots remaining</p>
                   <Link
                     href="/events#booking"
                     className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300"

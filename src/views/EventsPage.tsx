@@ -246,13 +246,6 @@ export default function EventsPage() {
                     <span className="text-sm">{event.hotel}</span>
                   </div>
                 </div>
-                <div className="w-full bg-stone-100 rounded-full h-1 mb-2">
-                  <div
-                    className="bg-brand-red h-1 rounded-full"
-                    style={{ width: `${(event.filled / event.max) * 100}%` }}
-                  />
-                </div>
-                <p className="text-[11px] text-stone-400 mb-5">{event.max - event.filled} of {event.max} spots remaining</p>
                 <a
                   href="#booking"
                   onClick={() => setFormData(prev => ({ ...prev, event: event.date }))}
