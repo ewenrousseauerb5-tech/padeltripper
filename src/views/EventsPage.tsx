@@ -22,13 +22,9 @@ import { ALL_EVENTS } from '../data/events';
 const CAROUSEL_PHOTOS = [
   { src: '/images/post-tournament-celebration.jpg', alt: 'Padel Tripper group celebrating after a tournament at Club Montemar, Alicante' },
   { src: '/images/sunset-group-hotel.jpg', alt: 'Padel holiday guests enjoying sunset drinks at Hotel Alicante Golf' },
-  { src: '/images/group-bela-court.jpg', alt: 'Padel Tripper players at Bela Padel Centre courts, Alicante' },
   { src: '/images/post-tournament-drinks.jpg', alt: 'Group padel holiday — post-tournament drinks in the sun' },
-  { src: '/images/padel-night-game.jpg', alt: 'Evening padel game under the lights in Alicante' },
   { src: '/images/group-bela-padel.jpg', alt: 'Padel Tripper players on court at Bela Padel Centre' },
-  { src: '/images/san-juan-beach-alicante.jpg', alt: 'Playa San Juan beach — just minutes from Hotel Alicante Golf' },
   { src: '/images/group-dinner-alicante.jpg', alt: 'Padel camp group dinner out in Alicante city centre' },
-  { src: '/images/alicante-castle-view.jpg', alt: 'View from Alicante castle overlooking the Costa Blanca coastline' },
   { src: '/images/players-enjoying-padel.jpg', alt: 'Players laughing during a padel coaching session in Alicante' },
   { src: '/images/group-social-evening.jpg', alt: 'Padel Tripper group social evening in Alicante' },
   { src: '/images/group-beers-montemar.jpg', alt: 'Group relaxing with beers after padel coaching at Club Montemar' },
@@ -643,8 +639,8 @@ export default function EventsPage() {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Call Us</p>
-                    <p className="text-white/80 font-medium text-sm">+44 7793 9870682</p>
+                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
+                    <a href="https://wa.me/4477939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">+44 7793 9870682</a>
                   </div>
                 </div>
               </div>
