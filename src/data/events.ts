@@ -10,6 +10,7 @@ export interface PadelEvent {
   location: string;
   hotel: string;
   image?: string;
+  imagePosition?: 'top' | 'center' | 'bottom';
   name?: string;
 }
 
@@ -26,6 +27,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
     image: '/images/players-enjoying-padel.jpg',
+    imagePosition: 'center',
   },
   {
     id: 73,

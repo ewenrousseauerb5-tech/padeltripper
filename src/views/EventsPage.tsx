@@ -23,7 +23,7 @@ const CAROUSEL_PHOTOS = [
   { src: '/images/post-tournament-celebration.jpg', alt: 'Padel Tripper group celebrating after a tournament at Club Montemar, Alicante' },
   { src: '/images/alicante-castle-view.jpg', alt: 'View over Alicante from the castle — Costa Blanca' },
   { src: '/images/post-tournament-drinks.jpg', alt: 'Group padel holiday — post-tournament drinks in the sun' },
-  { src: '/images/hotel-alicante-golf-sunset.jpg', alt: 'Sunset views from Hotel Alicante Golf terrace' },
+  { src: '/images/padel-coaching-alicante.jpg', alt: 'Padel coaching session at Club Atlético Montemar, Alicante' },
   { src: '/images/san-juan-beach-alicante.jpg', alt: 'Playa San Juan beach, Alicante — just minutes from Hotel Alicante Golf' },
   { src: '/images/players-enjoying-padel.jpg', alt: 'Players laughing during a padel coaching session in Alicante' },
   { src: '/images/group-social-evening.jpg', alt: 'Padel Tripper group social evening in Alicante' },
