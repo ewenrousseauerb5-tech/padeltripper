@@ -18,6 +18,7 @@ import {
   Building2,
 } from 'lucide-react';
 import { ALL_EVENTS } from '../data/events';
+import BookingForm from '../components/BookingForm';
 
 const CAROUSEL_PHOTOS = [
   { src: '/images/post-tournament-celebration.jpg', alt: 'Padel Tripper group celebrating after a tournament at Club Montemar, Alicante' },
@@ -66,15 +67,7 @@ function AccordionItem({ title, children, defaultOpen = false }: { title: string
 }
 
 export default function EventsPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    event: '',
-    message: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [tailorData, setTailorData] = useState({
@@ -112,37 +105,6 @@ export default function EventsPage() {
     const timer = setInterval(nextSlide, 4000);
     return () => clearInterval(timer);
   }, [nextSlide]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError(null);
-
-    try {
-      const response = await fetch('/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit booking enquiry.');
-      }
-
-      setFormData({
-        name: '',
-        email: '',
-        event: '',
-        message: '',
-      });
-      setIsSubmitted(true);
-      setTimeout(() => setIsSubmitted(false), 5000);
-    } catch {
-      setSubmitError('We could not send your enquiry right now. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const handleTailorSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -259,7 +221,7 @@ export default function EventsPage() {
 
                 <a
                   href="#booking"
-                  onClick={() => setFormData(prev => ({ ...prev, event: event.date }))}
+                  onClick={() => setSelectedEventId(event.id)}
                   className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300"
                 >
                   Book This Trip
@@ -619,123 +581,46 @@ export default function EventsPage() {
       </section>
 
       {/* Booking Form */}
-      <section id="booking" className="py-32 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
+      <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Header + contact */}
+          <div className="grid md:grid-cols-2 gap-12 items-start mb-12">
             <div>
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-8">Book Your <span className="text-brand-red">Trip</span></h2>
-              <p className="text-white/40 mb-12 leading-relaxed font-light">
-                Ready to book your padel holiday in Spain? Whether you're looking for a solo padel retreat, a couples getaway, or a corporate padel event in Alicante — we'll tailor the perfect experience.
+              <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-6">
+                Book Your <span className="text-brand-red">Trip</span>
+              </h2>
+              <p className="text-white/40 leading-relaxed font-light">
+                Fill in the form and we&apos;ll confirm your spot within 24 hours. Got a question first? Drop us a message on WhatsApp.
               </p>
-              <div className="space-y-6">
-                <div className="flex items-center gap-5">
-                  <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
-                    <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
-                  </div>
+            </div>
+            <div className="space-y-5 md:pt-16">
+              <div className="flex items-center gap-5">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+                  <Mail size={20} />
                 </div>
-                <div className="flex items-center gap-5">
-                  <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
-                    <Phone size={20} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
-                    <a href="https://wa.me/4477939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">+44 7793 9870682</a>
-                  </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
+                  <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-5">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
+                  <a href="https://wa.me/4477939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                    +44 7793 9870682
+                  </a>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="bg-white p-10 rounded-2xl shadow-2xl">
-              <AnimatePresence mode="wait">
-                {isSubmitted ? (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-12 flex flex-col items-center justify-center text-center space-y-4"
-                  >
-                    <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center">
-                      <CheckCircle2 size={32} />
-                    </div>
-                    <h3 className="font-serif text-2xl font-bold uppercase">Enquiry Sent!</h3>
-                    <p className="text-stone-400 text-sm">
-                      Thank you. We'll be in touch very soon.
-                    </p>
-                  </motion.div>
-                ) : (
-                  <motion.form
-                    key="form"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    onSubmit={handleSubmit}
-                    className="space-y-5"
-                  >
-                    <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Full Name</label>
-                      <input
-                        required
-                        type="text"
-                        className="w-full px-4 py-3.5 bg-stone-50 border border-stone-100 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
-                        placeholder="Your Name"
-                        value={formData.name}
-                        onChange={e => setFormData({...formData, name: e.target.value})}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Email Address</label>
-                      <input
-                        required
-                        type="email"
-                        className="w-full px-4 py-3.5 bg-stone-50 border border-stone-100 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
-                        placeholder="email@address.com"
-                        value={formData.email}
-                        onChange={e => setFormData({...formData, email: e.target.value})}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Select Event</label>
-                      <select
-                        required
-                        className="w-full px-4 py-3.5 bg-stone-50 border border-stone-100 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
-                        value={formData.event}
-                        onChange={e => setFormData({...formData, event: e.target.value})}
-                      >
-                        <option value="">Choose an event...</option>
-                        {ALL_EVENTS.map(e => (
-                          <option key={e.id} value={e.date}>{e.date} — {e.price}</option>
-                        ))}
-                        <option value="custom">Custom / Tailored Experience</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Message</label>
-                      <textarea
-                        className="w-full px-4 py-3.5 bg-stone-50 border border-stone-100 rounded-xl focus:border-brand-red focus:outline-none transition-colors resize-none text-sm"
-                        rows={3}
-                        placeholder="How can we help?"
-                        value={formData.message}
-                        onChange={e => setFormData({...formData, message: e.target.value})}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-4 bg-brand-red text-white font-semibold uppercase tracking-widest rounded-full hover:bg-brand-dark transition-all duration-300 text-sm disabled:opacity-50"
-                    >
-                      {isSubmitting ? 'Sending...' : 'Send Enquiry'}
-                    </button>
-                    {submitError && (
-                      <p className="text-sm text-brand-red text-center">{submitError}</p>
-                    )}
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </div>
+          {/* Form */}
+          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-2xl">
+            <BookingForm selectedEventId={selectedEventId} />
           </div>
         </div>
       </section>
