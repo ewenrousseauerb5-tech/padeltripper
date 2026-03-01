@@ -6,6 +6,7 @@ export interface BookingEnv {
   SUPABASE_SERVICE_ROLE_KEY?: string;
   RESEND_API_KEY?: string;
   CONTACT_EMAIL_TO?: string;
+  RESEND_FROM_EMAIL?: string;
 }
 
 interface ParticipantInput {
@@ -63,7 +64,7 @@ export const corsHeaders: Record<string, string> = {
 };
 
 const resendApiUrl = 'https://api.resend.com/emails';
-const fromEmail = 'Padel Tripper <[email protected]>';
+const fallbackFromEmail = 'Padel Tripper <[email protected]>';
 
 function jsonResponse(body: unknown, status = 200): Response {
   return Response.json(body, { status, headers: corsHeaders });
@@ -200,6 +201,7 @@ function buildCustomerHtml(quotationId: number, booking: NormalizedBooking): str
 
 async function sendResendEmail(
   resendApiKey: string,
+  fromEmail: string,
   payload: {
     to: string;
     subject: string;
@@ -249,7 +251,8 @@ async function handleLegacyEnquiry(rawBody: BookingPayload, env: BookingEnv): Pr
     return jsonResponse({ ok: false, error: 'Server is missing email configuration.' }, 500);
   }
 
-  await sendResendEmail(env.RESEND_API_KEY, {
+  const fromEmail = normalizeString(env.RESEND_FROM_EMAIL) || fallbackFromEmail;
+  await sendResendEmail(env.RESEND_API_KEY, fromEmail, {
     to: env.CONTACT_EMAIL_TO,
     reply_to: email,
     subject: `New enquiry - ${event} - ${name}`,
@@ -287,6 +290,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     if (!env.RESEND_API_KEY || !env.CONTACT_EMAIL_TO) {
       return jsonResponse({ ok: false, error: 'Server is missing email configuration.' }, 500);
     }
+    const fromEmail = normalizeString(env.RESEND_FROM_EMAIL) || fallbackFromEmail;
 
     const supabase = createClient(supabaseUrl, supabaseKey);
     const { data: eventRow, error: eventLookupError } = await supabase
@@ -343,19 +347,26 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     const customerHtml = buildCustomerHtml(quotation.id, booking);
     const eventLabel = booking.event_name || `Event #${booking.event_id}`;
 
-    await Promise.allSettled([
-      sendResendEmail(env.RESEND_API_KEY, {
+    const emailResults = await Promise.allSettled([
+      sendResendEmail(env.RESEND_API_KEY, fromEmail, {
         to: env.CONTACT_EMAIL_TO,
         reply_to: booking.email,
         subject: `New booking - ${eventLabel} - ${booking.full_name} (x${booking.num_participants})`,
         html: adminHtml,
       }),
-      sendResendEmail(env.RESEND_API_KEY, {
+      sendResendEmail(env.RESEND_API_KEY, fromEmail, {
         to: booking.email,
         subject: `Your Padel Tripper booking - ${eventLabel}`,
         html: customerHtml,
       }),
     ]);
+    const [adminEmailResult, customerEmailResult] = emailResults;
+    if (adminEmailResult.status === 'rejected') {
+      console.error('Booking email to admin failed:', adminEmailResult.reason);
+    }
+    if (customerEmailResult.status === 'rejected') {
+      console.error('Booking email to customer failed:', customerEmailResult.reason);
+    }
 
     return jsonResponse({ ok: true, quotation_id: quotation.id });
   } catch (error) {

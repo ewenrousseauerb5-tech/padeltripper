@@ -6,6 +6,7 @@ interface Env extends BookingEnv {
   SUPABASE_SERVICE_ROLE_KEY?: string;
   RESEND_API_KEY: string;
   CONTACT_EMAIL_TO: string;
+  RESEND_FROM_EMAIL?: string;
 }
 
 export async function onRequestOptions() {
