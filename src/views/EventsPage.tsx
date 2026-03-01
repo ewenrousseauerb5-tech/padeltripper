@@ -196,7 +196,7 @@ export default function EventsPage() {
                     {event.status}
                   </div>
                   <div className="text-2xl font-serif font-black text-brand-red">
-                    {event.price}
+                    From {event.price}
                   </div>
                 </div>
 

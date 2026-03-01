@@ -145,7 +145,7 @@ export default function HomePage() {
                 <div className="p-7">
                   <div className="flex justify-between items-center mb-5">
                     <span className="font-semibold text-sm text-brand-dark">{event.dateShort}</span>
-                    <span className="text-xl font-serif font-black text-brand-red">{event.price}</span>
+                    <span className="text-xl font-serif font-black text-brand-red">From {event.price}</span>
                   </div>
                   <div className="space-y-2.5 mb-5">
                     <div className="flex items-center gap-3 text-stone-400">

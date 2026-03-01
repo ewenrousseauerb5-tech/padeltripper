@@ -114,7 +114,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     try {
       const payload = {
         event_id: Number(eventId),
-        event_name: selectedEvent ? `${selectedEvent.date} - ${selectedEvent.price}` : undefined,
+        event_name: selectedEvent ? `${selectedEvent.date} - From ${selectedEvent.price}` : undefined,
         full_name: fullName.trim(),
         email: email.trim(),
         phone: phone.trim(),
@@ -171,7 +171,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
                 <option value="">Choose a date...</option>
                 {ALL_EVENTS.map(event => (
                   <option key={event.id} value={event.id}>
-                    {event.date} - {event.price}
+                    {event.date} - From {event.price}
                   </option>
                 ))}
               </select>
