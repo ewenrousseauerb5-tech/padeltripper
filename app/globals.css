@@ -18,3 +18,77 @@
 ::selection {
   background-color: #d9454540;
 }
+
+/* Cookiebot brand overrides */
+#CybotCookiebotDialog {
+  font-family: "Inter", sans-serif !important;
+  border-radius: 18px !important;
+  border: 1px solid #e7e2d9 !important;
+  box-shadow: 0 20px 45px rgba(17, 17, 17, 0.18) !important;
+}
+
+#CybotCookiebotDialog *,
+#CybotCookiebotDialogBody *,
+#CybotCookiebotDialogNav * {
+  font-family: "Inter", sans-serif !important;
+}
+
+#CybotCookiebotDialogHeader {
+  border-bottom: 1px solid #ece7df !important;
+}
+
+#CybotCookiebotDialogPoweredbyCybot,
+#CybotCookiebotDialogPoweredByText {
+  display: none !important;
+}
+
+#CybotCookiebotDialogBodyContentTitle,
+#CybotCookiebotDialogDetailBulkConsentList dt,
+#CybotCookiebotDialogDetailBodyContentCookieContainerTypes dt {
+  color: #111111 !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 800 !important;
+}
+
+#CybotCookiebotDialogNav .CybotCookiebotDialogNavItemLink {
+  color: #6b7280 !important;
+}
+
+#CybotCookiebotDialogNav .CybotCookiebotDialogActive {
+  color: #111111 !important;
+  border-bottom-color: #d94545 !important;
+}
+
+#CybotCookiebotDialog input:checked + .CybotCookiebotDialogBodyLevelButtonSlider {
+  background-color: #d94545 !important;
+}
+
+#CybotCookiebotDialogBodyButtonAccept,
+#CybotCookiebotDialogBodyLevelButtonAccept,
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll {
+  background-color: #d94545 !important;
+  border-color: #d94545 !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+}
+
+#CybotCookiebotDialogBodyButtonDecline,
+#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll,
+#CybotCookiebotDialogBodyButtonDetails {
+  border-radius: 999px !important;
+}
+
+#CybotCookiebotDialogBodyLevelButtonCustomize,
+#CybotCookiebotDialogBodyButtonDetails,
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection {
+  border-color: #d9d2c6 !important;
+  color: #111111 !important;
+}
+
+#CookiebotWidget {
+  background-color: #111111 !important;
+}
+
+#CookiebotWidget .CookiebotWidget-logo svg circle {
+  fill: #d94545 !important;
+}
