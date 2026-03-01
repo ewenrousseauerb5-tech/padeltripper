@@ -3,6 +3,7 @@ import { corsHeaders, type BookingEnv, handleBookingRequest } from '../../src/li
 interface Env extends BookingEnv {
   NEXT_PUBLIC_SUPABASE_URL: string;
   NEXT_PUBLIC_SUPABASE_ANON_KEY: string;
+  SUPABASE_SERVICE_ROLE_KEY?: string;
   RESEND_API_KEY: string;
   CONTACT_EMAIL_TO: string;
 }

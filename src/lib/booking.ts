@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 export interface BookingEnv {
   NEXT_PUBLIC_SUPABASE_URL?: string;
   NEXT_PUBLIC_SUPABASE_ANON_KEY?: string;
+  SUPABASE_SERVICE_ROLE_KEY?: string;
   RESEND_API_KEY?: string;
   CONTACT_EMAIL_TO?: string;
 }
@@ -277,14 +278,17 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       return jsonResponse({ ok: false, error: error || 'Invalid booking payload.' }, 400);
     }
 
-    if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    const supabaseUrl = env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY || env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
       return jsonResponse({ ok: false, error: 'Server is missing Supabase configuration.' }, 500);
     }
     if (!env.RESEND_API_KEY || !env.CONTACT_EMAIL_TO) {
       return jsonResponse({ ok: false, error: 'Server is missing email configuration.' }, 500);
     }
 
-    const supabase = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    const supabase = createClient(supabaseUrl, supabaseKey);
     const { data: eventRow, error: eventLookupError } = await supabase
       .from('events')
       .select('id')
