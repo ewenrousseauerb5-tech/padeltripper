@@ -182,18 +182,29 @@ function buildCustomerHtml(booking: NormalizedBooking): string {
   const eventLabel = booking.event_name || `Event #${booking.event_id}`;
 
   return `
-<div style="font-family:sans-serif;max-width:620px;margin:0 auto;">
-  <div style="background:#111;padding:24px 32px;">
-    <h1 style="color:#fff;font-size:18px;margin:0;font-weight:700;">Padel Tripper</h1>
-  </div>
-  <div style="padding:32px;background:#fff;border:1px solid #eee;">
-    <h2 style="font-size:22px;color:#111;margin-bottom:8px;">Thanks, ${escapeHtml(firstName)}!</h2>
-    <p style="color:#666;line-height:1.7;">We've received your quotation request for <strong>${escapeHtml(eventLabel)}</strong>. Our team will review availability and contact you shortly with the next steps.</p>
-    <div style="background:#f8f8f8;border-radius:8px;padding:20px 24px;margin:24px 0;">
-      <p style="margin:0;color:#666;line-height:1.7;">This is a request only. Your place is not confirmed until we email you with your quotation details and payment instructions.</p>
+<div style="font-family:Arial,Helvetica,sans-serif;background:#f4f1ec;padding:24px 12px;">
+  <div style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid #ece7df;">
+    <div style="background:#111111;padding:22px 28px;border-bottom:4px solid #d64242;">
+      <img
+        src="https://padeltripper.com/images/logos/logo-landscape.png"
+        alt="Padel Tripper"
+        width="190"
+        style="display:block;width:190px;max-width:100%;height:auto;"
+      />
     </div>
-    <p style="color:#666;line-height:1.7;">If you have any questions in the meantime, reach us on WhatsApp at <strong>+44 7793 9870682</strong> or email <strong>hello@padeltripper.com</strong>.</p>
-    <p style="color:#aaa;font-size:13px;margin-top:32px;">The Padel Tripper Team</p>
+    <div style="padding:32px 28px 26px;">
+      <p style="margin:0 0 8px;color:#d64242;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Quotation Request Received</p>
+      <h2 style="font-size:34px;line-height:1.15;color:#101218;margin:0 0 14px;font-weight:800;">Thanks, ${escapeHtml(firstName)}!</h2>
+      <p style="margin:0 0 20px;color:#4e535b;font-size:20px;line-height:1.55;">We've received your quotation request for <strong style="color:#101218;">${escapeHtml(eventLabel)}</strong>. Our team will review availability and contact you shortly with next steps.</p>
+      <div style="background:#f8f5f0;border:1px solid #eee6d9;border-radius:10px;padding:18px 18px;margin:0 0 22px;">
+        <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.6;">This is a request only. Your place is not confirmed until we email you with your quotation details and payment instructions.</p>
+      </div>
+      <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.7;">If you have any questions in the meantime, reach us on WhatsApp at <strong style="color:#101218;">+44 7793 9870682</strong> or email <strong style="color:#101218;">hello@padeltripper.com</strong>.</p>
+      <p style="margin:26px 0 0;color:#8a8f97;font-size:15px;">The Padel Tripper Team</p>
+    </div>
+    <div style="background:#faf7f2;border-top:1px solid #ece7df;padding:14px 28px;">
+      <p style="margin:0;color:#9aa0a8;font-size:12px;line-height:1.5;">Padel Tripper · Alicante, Spain</p>
+    </div>
   </div>
 </div>`;
 }
