@@ -52,13 +52,21 @@ export default function CookiePolicyPage() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">5. Managing Cookie Choices</h2>
             <p>
-              You can manage cookie preferences through our cookie banner/preferences tool (when enabled) and through
-              your browser settings. Disabling strictly necessary cookies may affect website functionality.
+              You can manage cookie choices through our website cookie banner at any time (Cookie settings button) and
+              through your browser settings. Disabling strictly necessary cookies may affect website functionality.
             </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">6. Changes to This Policy</h2>
+            <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">6. Consent Logging</h2>
+            <p>
+              To demonstrate compliance, we log cookie consent choices together with timestamp, policy version, and
+              limited technical metadata. These records are retained for up to 24 months.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">7. Changes to This Policy</h2>
             <p>
               We may update this policy to reflect legal, technical, or operational changes. Updates are posted on this
               page with a revised “Last updated” date.
@@ -66,7 +74,7 @@ export default function CookiePolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">7. Contact</h2>
+            <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">8. Contact</h2>
             <p>
               For cookie questions, contact{' '}
               <a className="text-brand-red hover:underline" href="mailto:hello@padeltripper.com">hello@padeltripper.com</a>.

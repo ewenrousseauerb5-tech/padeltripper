@@ -116,6 +116,10 @@ export default function PrivacyPolicyPage() {
               We use cookies and similar technologies as described in our{' '}
               <a className="text-brand-red hover:underline" href="/cookie-policy">Cookie Policy</a>.
             </p>
+            <p>
+              Where you make a cookie choice, we store a consent log (decision, timestamp, policy version, technical
+              identifiers such as client ID, user-agent, and IP address) to demonstrate compliance.
+            </p>
           </section>
 
           <section>
@@ -123,6 +127,14 @@ export default function PrivacyPolicyPage() {
             <p>
               We may update this policy periodically. Material changes will be reflected by updating the “Last updated”
               date above.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">12. Retention for Cookie Consent Logs</h2>
+            <p>
+              Cookie consent logs are retained for up to 24 months, after which they are deleted or anonymized unless a
+              longer period is required to meet legal obligations.
             </p>
           </section>
         </div>

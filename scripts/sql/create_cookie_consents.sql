@@ -9,6 +9,9 @@ create table if not exists public.cookie_consents (
   created_at timestamptz not null default now()
 );
 
+create index if not exists cookie_consents_created_at_idx
+  on public.cookie_consents (created_at);
+
 -- Restrict direct access from anon/authenticated clients.
 alter table public.cookie_consents enable row level security;
 
@@ -28,3 +31,7 @@ with check (false);
 
 -- Note:
 -- Inserts from the website backend use SUPABASE_SERVICE_ROLE_KEY and bypass RLS.
+
+-- Retention (24 months): run monthly
+-- delete from public.cookie_consents
+-- where created_at < now() - interval '24 months';
