@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | Padel Tripper',
+  title: 'Terms & Conditions',
   description: 'Terms and conditions for quotation requests and travel services.',
+  alternates: {
+    canonical: '/terms-and-conditions',
+  },
 };
 
 export default function TermsAndConditionsPage() {

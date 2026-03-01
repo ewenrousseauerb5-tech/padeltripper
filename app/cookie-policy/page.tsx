@@ -2,8 +2,11 @@ import type { Metadata } from 'next';
 import CookieSettingsControls from '@/src/components/CookieSettingsControls';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | Padel Tripper',
+  title: 'Cookie Policy',
   description: 'Information about how Padel Tripper uses cookies and similar technologies.',
+  alternates: {
+    canonical: '/cookie-policy',
+  },
 };
 
 export default function CookiePolicyPage() {
