@@ -177,7 +177,7 @@ function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string
 </div>`;
 }
 
-function buildCustomerHtml(quotationId: number, booking: NormalizedBooking): string {
+function buildCustomerHtml(booking: NormalizedBooking): string {
   const firstName = booking.full_name.split(' ')[0] || booking.full_name;
   const eventLabel = booking.event_name || `Event #${booking.event_id}`;
 
@@ -188,12 +188,11 @@ function buildCustomerHtml(quotationId: number, booking: NormalizedBooking): str
   </div>
   <div style="padding:32px;background:#fff;border:1px solid #eee;">
     <h2 style="font-size:22px;color:#111;margin-bottom:8px;">Thanks, ${escapeHtml(firstName)}!</h2>
-    <p style="color:#666;line-height:1.7;">We've received your booking request for <strong>${escapeHtml(eventLabel)}</strong>. We're reviewing it now and will be in touch shortly to confirm your spot and share next steps.</p>
+    <p style="color:#666;line-height:1.7;">We've received your quotation request for <strong>${escapeHtml(eventLabel)}</strong>. Our team will review availability and contact you shortly with the next steps.</p>
     <div style="background:#f8f8f8;border-radius:8px;padding:20px 24px;margin:24px 0;">
-      <p style="margin:0 0 6px;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Your Reference</p>
-      <p style="margin:0;font-size:24px;font-weight:700;color:#c0392b;">#${quotationId}</p>
+      <p style="margin:0;color:#666;line-height:1.7;">This is a request only. Your place is not confirmed until we email you with your quotation details and payment instructions.</p>
     </div>
-    <p style="color:#666;line-height:1.7;">Got a question in the meantime? Reach us on WhatsApp at <strong>+44 7793 9870682</strong> or email <strong>hello@padeltripper.com</strong>.</p>
+    <p style="color:#666;line-height:1.7;">If you have any questions in the meantime, reach us on WhatsApp at <strong>+44 7793 9870682</strong> or email <strong>hello@padeltripper.com</strong>.</p>
     <p style="color:#aaa;font-size:13px;margin-top:32px;">The Padel Tripper Team</p>
   </div>
 </div>`;
@@ -344,7 +343,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     }
 
     const adminHtml = buildAdminHtml(quotation.id, booking);
-    const customerHtml = buildCustomerHtml(quotation.id, booking);
+    const customerHtml = buildCustomerHtml(booking);
     const eventLabel = booking.event_name || `Event #${booking.event_id}`;
 
     const emailResults = await Promise.allSettled([
@@ -356,7 +355,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       }),
       sendResendEmail(env.RESEND_API_KEY, fromEmail, {
         to: booking.email,
-        subject: `Your Padel Tripper booking - ${eventLabel}`,
+        subject: `Your Padel Tripper quotation request - ${eventLabel}`,
         html: customerHtml,
       }),
     ]);
