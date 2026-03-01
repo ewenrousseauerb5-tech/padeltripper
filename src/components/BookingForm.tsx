@@ -48,6 +48,8 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   const [phone, setPhone] = useState('');
   const [accommodation, setAccommodation] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
+  const [acceptedPrivacyTerms, setAcceptedPrivacyTerms] = useState(false);
+  const [confirmedParticipantConsent, setConfirmedParticipantConsent] = useState(false);
   const [participants, setParticipants] = useState<Participant[]>([emptyParticipant()]);
   const [numParticipants, setNumParticipants] = useState(1);
 
@@ -92,6 +94,8 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     setPhone('');
     setAccommodation('');
     setSpecialRequests('');
+    setAcceptedPrivacyTerms(false);
+    setConfirmedParticipantConsent(false);
     setParticipants([emptyParticipant()]);
     setNumParticipants(1);
     if (!selectedEventId) {
@@ -118,6 +122,8 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
         accommodation_type: accommodation,
         dietary_requirements: '',
         special_requests: specialRequests.trim(),
+        accepted_privacy_terms: acceptedPrivacyTerms,
+        confirmed_participant_consent: confirmedParticipantConsent,
         participants: participants.map(participant => ({
           full_name: participant.full_name.trim(),
           email: participant.email.trim(),
@@ -357,6 +363,33 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="bg-stone-50 rounded-2xl border border-stone-100 p-5 space-y-4">
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            required
+            type="checkbox"
+            checked={acceptedPrivacyTerms}
+            onChange={e => setAcceptedPrivacyTerms(e.target.checked)}
+            className="mt-0.5 w-4 h-4 accent-brand-red rounded"
+          />
+          <span className="text-sm text-stone-600 leading-relaxed">
+            I confirm I have read and accept the Padel Tripper privacy policy and terms for this quotation request.
+          </span>
+        </label>
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={confirmedParticipantConsent}
+            onChange={e => setConfirmedParticipantConsent(e.target.checked)}
+            required={participants.length > 1}
+            className="mt-0.5 w-4 h-4 accent-brand-red rounded"
+          />
+          <span className="text-sm text-stone-600 leading-relaxed">
+            I confirm I have permission from all listed participants to share their personal data for this quotation request.
+          </span>
+        </label>
       </div>
 
       {status === 'success' && (

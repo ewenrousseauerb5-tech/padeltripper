@@ -28,6 +28,8 @@ interface BookingPayload {
   accommodation_type?: string;
   dietary_requirements?: string;
   special_requests?: string;
+  accepted_privacy_terms?: boolean;
+  confirmed_participant_consent?: boolean;
   participants?: ParticipantInput[];
   // Optional legacy enquiry shape to avoid breaking existing non-booking form.
   name?: string;
@@ -54,6 +56,8 @@ interface NormalizedBooking {
   accommodation_type: string;
   dietary_requirements: string;
   special_requests: string;
+  accepted_privacy_terms: boolean;
+  confirmed_participant_consent: boolean;
   participants: NormalizedParticipant[];
 }
 
@@ -103,6 +107,12 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
   if (!participants.length) {
     return { error: 'participants is required.' };
   }
+  if (raw.accepted_privacy_terms !== true) {
+    return { error: 'Privacy policy and terms must be accepted.' };
+  }
+  if (participants.length > 1 && raw.confirmed_participant_consent !== true) {
+    return { error: 'Participant data consent must be confirmed when adding multiple participants.' };
+  }
 
   return {
     booking: {
@@ -115,6 +125,8 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
       accommodation_type: normalizeString(raw.accommodation_type),
       dietary_requirements: normalizeString(raw.dietary_requirements),
       special_requests: normalizeString(raw.special_requests),
+      accepted_privacy_terms: raw.accepted_privacy_terms === true,
+      confirmed_participant_consent: raw.confirmed_participant_consent === true,
       participants,
     },
   };
@@ -160,6 +172,8 @@ function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string
       <tr><td style="padding:5px 0;color:#888;">Accommodation</td><td style="padding:5px 0;">${escapeHtml(booking.accommodation_type || '—')}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Dietary</td><td style="padding:5px 0;">${escapeHtml(booking.dietary_requirements || '—')}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Special Requests</td><td style="padding:5px 0;">${escapeHtml(booking.special_requests || '—')}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Accepted Privacy/Terms</td><td style="padding:5px 0;">${booking.accepted_privacy_terms ? 'Yes' : 'No'}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Confirmed Participant Consent</td><td style="padding:5px 0;">${booking.confirmed_participant_consent ? 'Yes' : 'No'}</td></tr>
     </table>
     <h2 style="color:#c0392b;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Participants</h2>
     <table style="width:100%;border-collapse:collapse;">
