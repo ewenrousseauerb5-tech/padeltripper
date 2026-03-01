@@ -78,8 +78,6 @@ export default function EventsPage() {
     eventType: '',
     groupSize: '',
     dates: '',
-    destination: '',
-    budgetRange: '',
     details: '',
     acceptedPrivacyTerms: false,
     confirmedGroupAuthority: false,
@@ -132,8 +130,6 @@ export default function EventsPage() {
           event_type: tailorData.eventType,
           group_size: tailorData.groupSize,
           preferred_dates: tailorData.dates,
-          destination: tailorData.destination,
-          budget_range: tailorData.budgetRange,
           message: tailorData.details,
           accepted_privacy_terms: tailorData.acceptedPrivacyTerms,
           confirmed_group_authority: tailorData.confirmedGroupAuthority,
@@ -542,12 +538,10 @@ export default function EventsPage() {
                           onChange={e => setTailorData({ ...tailorData, eventType: e.target.value })}
                         >
                           <option value="">Select type...</option>
-                          <option value="group">Group Trip</option>
+                          <option value="group-trip">Group Trip (friends/family)</option>
+                          <option value="club-trip">Club / Team Trip</option>
                           <option value="corporate">Corporate Event</option>
-                          <option value="stag-hen">Stag / Hen Do</option>
-                          <option value="birthday">Birthday / Celebration</option>
-                          <option value="club">Club / Association</option>
-                          <option value="other">Other</option>
+                          <option value="special-occasion">Special Occasion</option>
                         </select>
                       </div>
                       <div>
@@ -572,35 +566,13 @@ export default function EventsPage() {
                         onChange={e => setTailorData({ ...tailorData, dates: e.target.value })}
                       />
                     </div>
-                    <div className="grid md:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Destination</label>
-                        <input
-                          type="text"
-                          className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
-                          placeholder="e.g. Alicante, Malaga, flexible"
-                          value={tailorData.destination}
-                          onChange={e => setTailorData({ ...tailorData, destination: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Budget Range</label>
-                        <input
-                          type="text"
-                          className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
-                          placeholder="e.g. £600-£900 per person"
-                          value={tailorData.budgetRange}
-                          onChange={e => setTailorData({ ...tailorData, budgetRange: e.target.value })}
-                        />
-                      </div>
-                    </div>
                     <div>
                       <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Tell Us More</label>
                       <textarea
                         required
                         className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors resize-none text-sm"
                         rows={4}
-                        placeholder="What are you looking for? Any specific requirements, level of players, budget, etc."
+                        placeholder="What are you looking for? Any specific requirements, player levels, accommodation preferences, etc."
                         value={tailorData.details}
                         onChange={e => setTailorData({ ...tailorData, details: e.target.value })}
                       />

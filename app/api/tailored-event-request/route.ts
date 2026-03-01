@@ -9,8 +9,6 @@ interface TailoredEventPayload {
   event_type?: string;
   group_size?: string;
   preferred_dates?: string;
-  destination?: string;
-  budget_range?: string;
   message?: string;
   accepted_privacy_terms?: boolean;
   confirmed_group_authority?: boolean;
@@ -105,8 +103,7 @@ export async function POST(request: Request) {
     const groupSize = normalize(body.group_size);
     const phone = normalize(body.phone);
     const preferredDates = normalize(body.preferred_dates);
-    const destination = normalize(body.destination);
-    const budgetRange = normalize(body.budget_range);
+    const destination = 'Alicante';
     const message = normalize(body.message);
 
     if (!fullName || !email || !eventType || !groupSize) {
@@ -139,7 +136,7 @@ export async function POST(request: Request) {
         group_size: groupSize,
         preferred_dates: preferredDates,
         destination,
-        budget_range: budgetRange,
+        budget_range: null,
         message,
         status: 'SUBMITTED',
         source: 'website_tailored_form',
@@ -167,8 +164,7 @@ export async function POST(request: Request) {
       <tr><td style="padding:5px 0;color:#888;">Event Type</td><td style="padding:5px 0;">${escapeHtml(eventType)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Group Size</td><td style="padding:5px 0;">${escapeHtml(groupSize)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Preferred Dates</td><td style="padding:5px 0;">${escapeHtml(preferredDates || '—')}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Destination</td><td style="padding:5px 0;">${escapeHtml(destination || '—')}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Budget Range</td><td style="padding:5px 0;">${escapeHtml(budgetRange || '—')}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Destination</td><td style="padding:5px 0;">${escapeHtml(destination)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Message</td><td style="padding:5px 0;">${escapeHtml(message || '—')}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Accepted Privacy/Terms</td><td style="padding:5px 0;">Yes</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Confirmed Group Authority</td><td style="padding:5px 0;">Yes</td></tr>
