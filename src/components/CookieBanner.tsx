@@ -38,17 +38,7 @@ export default function CookieBanner() {
     setVisible(false);
   };
 
-  if (!visible) {
-    return (
-      <button
-        type="button"
-        onClick={() => setVisible(true)}
-        className="fixed bottom-2 left-2 z-[89] h-7 rounded-full border border-stone-300 bg-white px-3 text-[10px] font-semibold uppercase tracking-wide text-stone-600 hover:border-brand-red hover:text-brand-red"
-      >
-        Cookie settings
-      </button>
-    );
-  }
+  if (!visible) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[90] border-t border-stone-200 bg-white/98 backdrop-blur-sm">

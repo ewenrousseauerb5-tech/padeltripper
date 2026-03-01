@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import CookieSettingsControls from '@/src/components/CookieSettingsControls';
 
 export const metadata: Metadata = {
   title: 'Cookie Policy | Padel Tripper',
@@ -52,9 +53,10 @@ export default function CookiePolicyPage() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">5. Managing Cookie Choices</h2>
             <p>
-              You can manage cookie choices through our website cookie banner at any time (Cookie settings button) and
+              You can manage cookie choices through our website cookie banner and
               through your browser settings. Disabling strictly necessary cookies may affect website functionality.
             </p>
+            <CookieSettingsControls />
           </section>
 
           <section>
