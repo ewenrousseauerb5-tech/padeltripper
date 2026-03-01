@@ -141,7 +141,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
 
       resetForm();
       setStatus('success');
-      setSuccessMsg(`Booking request received. Reference #${data.quotation_id ?? '-'}.`);
+      setSuccessMsg('Booking request received. We have sent a confirmation email and will contact you shortly.');
     } catch (error) {
       setStatus('error');
       setErrorMsg(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
