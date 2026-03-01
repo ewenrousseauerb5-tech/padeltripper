@@ -65,15 +65,15 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="text-white/60 text-sm flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
-                <span>Terms and Conditions</span>
+                <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms and Conditions</Link>
               </li>
               <li className="text-white/60 text-sm flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
-                <span>Privacy Policy</span>
+                <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
               </li>
               <li className="text-white/60 text-sm flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
-                <span>Cookie Policy</span>
+                <Link href="/cookie-policy" className="hover:text-white transition-colors">Cookie Policy</Link>
               </li>
             </ul>
           </div>

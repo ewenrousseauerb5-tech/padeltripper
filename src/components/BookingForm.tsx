@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle2, ChevronDown, Plus, Trash2 } from 'lucide-react';
 import { ALL_EVENTS } from '../data/events';
 
@@ -375,7 +376,11 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
             className="mt-0.5 w-4 h-4 accent-brand-red rounded"
           />
           <span className="text-sm text-stone-600 leading-relaxed">
-            I acknowledge and accept Padel Tripper&apos;s Privacy Policy and Terms &amp; Conditions, and consent to the processing of my personal data for the purpose of managing this quotation request.
+            I acknowledge and accept Padel Tripper&apos;s{' '}
+            <Link href="/privacy-policy" className="text-brand-red underline hover:no-underline">Privacy Policy</Link>
+            {' '}and{' '}
+            <Link href="/terms-and-conditions" className="text-brand-red underline hover:no-underline">Terms &amp; Conditions</Link>
+            , and consent to the processing of my personal data for the purpose of managing this quotation request.
           </span>
         </label>
         <label className="flex items-start gap-3 cursor-pointer">
