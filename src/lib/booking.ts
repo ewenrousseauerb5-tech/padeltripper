@@ -146,10 +146,10 @@ function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string
   return `
 <div style="font-family:sans-serif;max-width:620px;margin:0 auto;">
   <div style="background:#111;padding:24px 32px;">
-    <h1 style="color:#fff;font-size:18px;margin:0;font-weight:700;">New Booking - Padel Tripper</h1>
+    <h1 style="color:#fff;font-size:18px;margin:0;font-weight:700;">New Quotation Request - Padel Tripper</h1>
   </div>
   <div style="padding:32px;background:#fff;border:1px solid #eee;">
-    <h2 style="color:#c0392b;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Booking Summary</h2>
+    <h2 style="color:#c0392b;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Quotation Summary</h2>
     <table style="width:100%;border-collapse:collapse;margin-bottom:28px;">
       <tr><td style="padding:5px 0;color:#888;width:40%;">Reference</td><td style="padding:5px 0;font-weight:700;">#${quotationId}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Event</td><td style="padding:5px 0;">${escapeHtml(eventLabel)}</td></tr>
@@ -350,7 +350,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       sendResendEmail(env.RESEND_API_KEY, fromEmail, {
         to: env.CONTACT_EMAIL_TO,
         reply_to: booking.email,
-        subject: `New booking - ${eventLabel} - ${booking.full_name} (x${booking.num_participants})`,
+        subject: `New quotation request - ${eventLabel} - ${booking.full_name} (x${booking.num_participants})`,
         html: adminHtml,
       }),
       sendResendEmail(env.RESEND_API_KEY, fromEmail, {
