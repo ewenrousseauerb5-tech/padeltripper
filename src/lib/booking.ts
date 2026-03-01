@@ -285,6 +285,19 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     }
 
     const supabase = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    const { data: eventRow, error: eventLookupError } = await supabase
+      .from('events')
+      .select('id')
+      .eq('id', booking.event_id)
+      .maybeSingle();
+
+    if (eventLookupError) {
+      throw new Error(`Event lookup failed: ${eventLookupError.message}`);
+    }
+    if (!eventRow?.id) {
+      return jsonResponse({ ok: false, error: 'Invalid event_id. Selected event does not exist.' }, 400);
+    }
+
     const { data: quotation, error: quotationError } = await supabase
       .from('quotations')
       .insert({
@@ -343,6 +356,10 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     return jsonResponse({ ok: true, quotation_id: quotation.id });
   } catch (error) {
     console.error('Booking API error:', error);
+    const message = error instanceof Error ? error.message : '';
+    if (message.includes('violates foreign key constraint')) {
+      return jsonResponse({ ok: false, error: 'Invalid event_id. Selected event does not exist.' }, 400);
+    }
     return jsonResponse(
       { ok: false, error: 'Something went wrong. Please try again or contact us directly.' },
       500,
