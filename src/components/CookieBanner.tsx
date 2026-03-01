@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const consentKey = 'padeltripper_cookie_consent_v1';
+const consentClientIdKey = 'padeltripper_cookie_consent_client_id';
+const policyVersion = '2026-03-01';
 
 type ConsentValue = 'accepted' | 'necessary-only';
 
@@ -19,6 +21,20 @@ export default function CookieBanner() {
 
   const saveConsent = (value: ConsentValue) => {
     window.localStorage.setItem(consentKey, value);
+    const existingClientId = window.localStorage.getItem(consentClientIdKey);
+    const clientId = existingClientId || (crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
+    window.localStorage.setItem(consentClientIdKey, clientId);
+
+    // Do not block UI if backend logging fails.
+    void fetch('/api/cookie-consent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        decision: value,
+        policy_version: policyVersion,
+        client_id: clientId,
+      }),
+    });
     setVisible(false);
   };
 
