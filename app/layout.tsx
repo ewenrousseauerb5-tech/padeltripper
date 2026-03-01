@@ -35,6 +35,14 @@ export const metadata: Metadata = {
       'en-GB': '/',
     },
   },
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png' },
+      { url: '/images/logos/logo-square.png', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-icon.png', type: 'image/png' }],
+    shortcut: ['/icon.png'],
+  },
   openGraph: {
     type: 'website',
     url: siteUrl,
