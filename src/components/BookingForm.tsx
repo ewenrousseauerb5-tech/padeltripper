@@ -375,7 +375,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
             className="mt-0.5 w-4 h-4 accent-brand-red rounded"
           />
           <span className="text-sm text-stone-600 leading-relaxed">
-            I confirm I have read and accept the Padel Tripper privacy policy and terms for this quotation request.
+            I acknowledge and accept Padel Tripper&apos;s Privacy Policy and Terms &amp; Conditions, and consent to the processing of my personal data for the purpose of managing this quotation request.
           </span>
         </label>
         <label className="flex items-start gap-3 cursor-pointer">
@@ -387,7 +387,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
             className="mt-0.5 w-4 h-4 accent-brand-red rounded"
           />
           <span className="text-sm text-stone-600 leading-relaxed">
-            I confirm I have permission from all listed participants to share their personal data for this quotation request.
+            I confirm that, where I submit personal data relating to other participants, I am duly authorized to do so and have provided the required privacy information to those individuals.
           </span>
         </label>
       </div>
