@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Calendar,
@@ -70,13 +71,22 @@ export default function EventsPage() {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const [tailorData, setTailorData] = useState({
+  const initialTailorData = {
     name: '',
     email: '',
+    phone: '',
     eventType: '',
     groupSize: '',
     dates: '',
+    destination: '',
+    budgetRange: '',
     details: '',
+    acceptedPrivacyTerms: false,
+    confirmedGroupAuthority: false,
+  };
+
+  const [tailorData, setTailorData] = useState({
+    ...initialTailorData,
   });
   const [isTailorSubmitted, setIsTailorSubmitted] = useState(false);
   const [isTailorSubmitting, setIsTailorSubmitting] = useState(false);
@@ -112,29 +122,32 @@ export default function EventsPage() {
     setTailorError(null);
 
     try {
-      const response = await fetch('/api/booking', {
+      const response = await fetch('/api/tailored-event-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: tailorData.name,
+          full_name: tailorData.name,
           email: tailorData.email,
-          event: `Tailored Event — ${tailorData.eventType}`,
-          message: [
-            `Type: ${tailorData.eventType}`,
-            tailorData.groupSize ? `Group size: ${tailorData.groupSize}` : '',
-            tailorData.dates ? `Preferred dates: ${tailorData.dates}` : '',
-            `Details: ${tailorData.details}`,
-          ].filter(Boolean).join('\n'),
+          phone: tailorData.phone,
+          event_type: tailorData.eventType,
+          group_size: tailorData.groupSize,
+          preferred_dates: tailorData.dates,
+          destination: tailorData.destination,
+          budget_range: tailorData.budgetRange,
+          message: tailorData.details,
+          accepted_privacy_terms: tailorData.acceptedPrivacyTerms,
+          confirmed_group_authority: tailorData.confirmedGroupAuthority,
         }),
       });
 
-      if (!response.ok) throw new Error('Failed');
+      const data = await response.json();
+      if (!response.ok || !data?.ok) throw new Error(data?.error || 'Failed');
 
-      setTailorData({ name: '', email: '', eventType: '', groupSize: '', dates: '', details: '' });
+      setTailorData(initialTailorData);
       setIsTailorSubmitted(true);
       setTimeout(() => setIsTailorSubmitted(false), 5000);
-    } catch {
-      setTailorError('We could not send your request right now. Please try again.');
+    } catch (error) {
+      setTailorError(error instanceof Error ? error.message : 'We could not send your request right now. Please try again.');
     } finally {
       setIsTailorSubmitting(false);
     }
@@ -508,6 +521,16 @@ export default function EventsPage() {
                           onChange={e => setTailorData({ ...tailorData, email: e.target.value })}
                         />
                       </div>
+                      <div>
+                        <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Phone Number</label>
+                        <input
+                          type="tel"
+                          className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
+                          placeholder="+44 7700 000000"
+                          value={tailorData.phone}
+                          onChange={e => setTailorData({ ...tailorData, phone: e.target.value })}
+                        />
+                      </div>
                     </div>
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
@@ -530,6 +553,7 @@ export default function EventsPage() {
                       <div>
                         <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Group Size (approx.)</label>
                         <input
+                          required
                           type="text"
                           className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
                           placeholder="e.g. 8-12 people"
@@ -548,6 +572,28 @@ export default function EventsPage() {
                         onChange={e => setTailorData({ ...tailorData, dates: e.target.value })}
                       />
                     </div>
+                    <div className="grid md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Destination</label>
+                        <input
+                          type="text"
+                          className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
+                          placeholder="e.g. Alicante, Malaga, flexible"
+                          value={tailorData.destination}
+                          onChange={e => setTailorData({ ...tailorData, destination: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Budget Range</label>
+                        <input
+                          type="text"
+                          className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
+                          placeholder="e.g. £600-£900 per person"
+                          value={tailorData.budgetRange}
+                          onChange={e => setTailorData({ ...tailorData, budgetRange: e.target.value })}
+                        />
+                      </div>
+                    </div>
                     <div>
                       <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Tell Us More</label>
                       <textarea
@@ -558,6 +604,35 @@ export default function EventsPage() {
                         value={tailorData.details}
                         onChange={e => setTailorData({ ...tailorData, details: e.target.value })}
                       />
+                    </div>
+                    <div className="bg-white rounded-xl border border-stone-200 p-4 space-y-3">
+                      <label className="flex items-start gap-3 cursor-pointer">
+                        <input
+                          required
+                          type="checkbox"
+                          checked={tailorData.acceptedPrivacyTerms}
+                          onChange={e => setTailorData({ ...tailorData, acceptedPrivacyTerms: e.target.checked })}
+                          className="mt-0.5 w-4 h-4 accent-brand-red rounded"
+                        />
+                        <span className="text-sm text-stone-600 leading-relaxed">
+                          I acknowledge and accept Padel Tripper&apos;s{' '}
+                          <Link href="/privacy-policy" className="text-brand-red underline hover:no-underline">Privacy Policy</Link>
+                          {' '}and{' '}
+                          <Link href="/terms-and-conditions" className="text-brand-red underline hover:no-underline">Terms &amp; Conditions</Link>.
+                        </span>
+                      </label>
+                      <label className="flex items-start gap-3 cursor-pointer">
+                        <input
+                          required
+                          type="checkbox"
+                          checked={tailorData.confirmedGroupAuthority}
+                          onChange={e => setTailorData({ ...tailorData, confirmedGroupAuthority: e.target.checked })}
+                          className="mt-0.5 w-4 h-4 accent-brand-red rounded"
+                        />
+                        <span className="text-sm text-stone-600 leading-relaxed">
+                          I confirm I am authorized to submit this request and provide participant/group information.
+                        </span>
+                      </label>
                     </div>
                     <button
                       type="submit"
