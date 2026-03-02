@@ -110,8 +110,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TrustpilotReviewHighlights />
-
       {/* Next Upcoming Events */}
       <section id="events" className="py-32 px-6" aria-label="Next upcoming padel holidays">
         <div className="max-w-7xl mx-auto">
@@ -186,6 +184,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <TrustpilotReviewHighlights />
     </main>
   );
 }
