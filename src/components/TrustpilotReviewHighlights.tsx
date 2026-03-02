@@ -162,7 +162,7 @@ export default function TrustpilotReviewHighlights() {
               <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Trustpilot Rating</span>
             </div>
           </div>
-          <div className="md:-translate-y-10 lg:-translate-y-12">
+          <div className="md:-translate-y-16 lg:-translate-y-20">
             <a
               href={TRUSTPILOT_URL}
               target="_blank"
