@@ -14,6 +14,7 @@ type Review = {
   title: string;
   excerpt: string;
   rating: number;
+  avatarUrl: string;
 };
 
 const reviews: Review[] = [
@@ -25,6 +26,7 @@ const reviews: Review[] = [
     title: 'Great Trip',
     excerpt: 'Great trip. Well organised. Already planning on booking a return trip.',
     rating: 5,
+    avatarUrl: 'https://ui-avatars.com/api/?name=Mr+Wilson&background=d94545&color=ffffff&size=128',
   },
   {
     name: 'Jake Cox',
@@ -35,6 +37,7 @@ const reviews: Review[] = [
     excerpt:
       'We have just returned from a 4 night stay with Padel Tripper in Alicante and are already looking into booking again.',
     rating: 5,
+    avatarUrl: 'https://ui-avatars.com/api/?name=Jake+Cox&background=111111&color=ffffff&size=128',
   },
   {
     name: 'Caroline Rickett',
@@ -44,6 +47,7 @@ const reviews: Review[] = [
     title: 'Amazing padel holiday',
     excerpt: 'We had the most amazing padel holiday and will definitely be back for more.',
     rating: 5,
+    avatarUrl: 'https://ui-avatars.com/api/?name=Caroline+Rickett&background=d94545&color=ffffff&size=128',
   },
   {
     name: 'Anja',
@@ -53,6 +57,7 @@ const reviews: Review[] = [
     title: 'Padel in Alicante',
     excerpt: 'Just returned home after 4 days in Alicante. The whole thing was really well organized.',
     rating: 5,
+    avatarUrl: 'https://ui-avatars.com/api/?name=Anja&background=111111&color=ffffff&size=128',
   },
   {
     name: 'C Brooks',
@@ -62,6 +67,7 @@ const reviews: Review[] = [
     title: 'A great few days playing padel in the sun',
     excerpt: 'I went on my own and was made to feel very welcome and included. Highly recommend.',
     rating: 5,
+    avatarUrl: 'https://ui-avatars.com/api/?name=C+Brooks&background=d94545&color=ffffff&size=128',
   },
 ];
 
@@ -127,7 +133,15 @@ export default function TrustpilotReviewHighlights() {
                 <p className="text-stone-600 leading-relaxed text-[15px]">{activeReview.excerpt}</p>
 
                 <div className="mt-6 pt-5 border-t border-stone-200 flex items-center justify-between">
-                  <p className="text-sm font-semibold text-brand-dark">{activeReview.name}</p>
+                  <div className="inline-flex items-center gap-3">
+                    <img
+                      src={activeReview.avatarUrl}
+                      alt={`${activeReview.name} profile`}
+                      className="h-10 w-10 rounded-full border border-stone-200 object-cover"
+                      loading="lazy"
+                    />
+                    <p className="text-sm font-semibold text-brand-dark">{activeReview.name}</p>
+                  </div>
                   <p className="text-sm text-stone-500 inline-flex items-center gap-2">
                     <span className="text-xl leading-none">{activeReview.flag}</span>
                     {activeReview.country}
@@ -150,12 +164,12 @@ export default function TrustpilotReviewHighlights() {
                 transition={{ duration: 0.2, ease: 'easeOut' }}
                 className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-2 border-brand-red shadow-lg shadow-brand-red/15 flex flex-col items-center justify-center z-10"
               >
-                <div className="flex items-center gap-1 mb-1">
-                  <Star size={10} className="text-brand-red fill-brand-red" />
-                  <Star size={10} className="text-brand-red fill-brand-red" />
-                  <Star size={10} className="text-brand-red fill-brand-red" />
-                </div>
-                <span className="text-2xl leading-none">{activeReview.flag}</span>
+                <img
+                  src={activeReview.avatarUrl}
+                  alt={`${activeReview.name} profile`}
+                  className="h-16 w-16 rounded-full border border-stone-200 object-cover"
+                  loading="lazy"
+                />
               </motion.div>
 
               {orbitNodes.map(node => {
