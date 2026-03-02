@@ -123,8 +123,8 @@ export default function TrustpilotReviewHighlights() {
   const orbitNodes = useMemo(() => {
     return reviews.map((review, idx) => {
       const angle = (Math.PI * 2 * idx) / reviews.length - Math.PI / 2;
-      const x = Math.cos(angle) * 124;
-      const y = Math.sin(angle) * 124;
+      const x = Math.cos(angle) * 110;
+      const y = Math.sin(angle) * 110;
       return { review, idx, x, y };
     });
   }, []);
@@ -149,17 +149,17 @@ export default function TrustpilotReviewHighlights() {
   }, []);
 
   return (
-    <section className="py-24 px-6 bg-brand-light" aria-label="Trustpilot reviews">
+    <section className="py-16 md:py-18 px-6 bg-brand-light" aria-label="Trustpilot reviews">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-10 md:mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div className="mb-7 md:mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Trustpilot Reviews</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight">
+            <h2 className="font-serif text-[30px] md:text-[38px] font-black uppercase leading-tight">
               What Guests Say About <span className="text-brand-red">Padel Tripper</span>
             </h2>
-            <div className="mt-4 inline-flex items-center gap-2 text-sm text-stone-500">
-              <span className="font-semibold text-brand-dark">{animatedRating.toFixed(1)}/5</span>
-              <span>on Trustpilot</span>
+            <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white px-4 py-2">
+              <span className="text-2xl font-serif font-black text-brand-red">{animatedRating.toFixed(1)}</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Trustpilot Rating</span>
             </div>
           </div>
           <a
@@ -173,8 +173,8 @@ export default function TrustpilotReviewHighlights() {
           </a>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="rounded-3xl bg-white border border-stone-200 p-6 md:p-8 shadow-sm">
+        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="rounded-3xl bg-white border border-stone-200 p-5 md:p-6 shadow-sm">
             <AnimatePresence mode="wait">
               <motion.article
                 key={`${activeReview.name}-${activeReview.date}`}
@@ -183,7 +183,7 @@ export default function TrustpilotReviewHighlights() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
               >
-                <div className="flex items-center justify-between gap-4 mb-4">
+                <div className="flex items-center justify-between gap-4 mb-3">
                   <div className="flex items-center gap-2">
                     {stars(activeReview.rating).map(i => (
                       <Star key={i} size={15} className="text-brand-red fill-brand-red" />
@@ -192,11 +192,11 @@ export default function TrustpilotReviewHighlights() {
                   <p className="text-xs text-stone-400">{activeReview.date}</p>
                 </div>
 
-                <Quote size={22} className="text-brand-red/55 mb-3" />
-                <h3 className="font-serif text-2xl font-black text-brand-dark mb-3">{activeReview.title}</h3>
+                <Quote size={20} className="text-brand-red/55 mb-2.5" />
+                <h3 className="font-serif text-[34px] font-black text-brand-dark mb-2.5 leading-[1.1]">{activeReview.title}</h3>
                 <p className="text-stone-600 leading-relaxed text-[15px]">{activeReview.excerpt}</p>
 
-                <div className="mt-6 pt-5 border-t border-stone-200 flex items-center justify-between">
+                <div className="mt-5 pt-4 border-t border-stone-200 flex items-center justify-between">
                   <div className="inline-flex items-center gap-3">
                     <ReviewerAvatar review={activeReview} sizeClass="h-10 w-10" textClass="text-base" />
                     <p className="text-sm font-semibold text-brand-dark">{activeReview.name}</p>
@@ -211,19 +211,19 @@ export default function TrustpilotReviewHighlights() {
           </div>
 
           <div className="hidden lg:flex items-center justify-center">
-            <div className="relative h-[360px] w-[360px]">
+            <div className="relative h-[320px] w-[320px]">
               <div className="absolute inset-0 rounded-full border border-stone-300" />
-              <div className="absolute inset-[52px] rounded-full border border-stone-200" />
-              <div className="absolute inset-[104px] rounded-full border border-stone-100" />
+              <div className="absolute inset-[48px] rounded-full border border-stone-200" />
+              <div className="absolute inset-[96px] rounded-full border border-stone-100" />
 
               <motion.div
                 key={activeIdx}
                 initial={{ scale: 0.96, opacity: 0.8 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-2 border-brand-red shadow-lg shadow-brand-red/15 flex flex-col items-center justify-center z-10"
+                className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-2 border-brand-red shadow-lg shadow-brand-red/15 flex flex-col items-center justify-center z-10"
               >
-                <ReviewerAvatar review={activeReview} sizeClass="h-16 w-16" textClass="text-xl" />
+                <ReviewerAvatar review={activeReview} sizeClass="h-14 w-14" textClass="text-lg" />
               </motion.div>
 
               {orbitNodes.map(node => {
@@ -236,7 +236,7 @@ export default function TrustpilotReviewHighlights() {
                     onClick={() => setActiveIdx(node.idx)}
                     whileTap={{ scale: 0.95 }}
                     title={`${node.review.name} — ${node.review.country}`}
-                    className={`absolute h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-200 flex items-center justify-center z-20 ${
+                    className={`absolute h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-200 flex items-center justify-center z-20 ${
                       isActive
                         ? 'border-brand-red bg-brand-red text-white shadow-lg shadow-brand-red/20 ring-4 ring-brand-red/15'
                         : 'border-stone-300 bg-white text-stone-600 hover:border-brand-red/50 hover:shadow-md'
@@ -247,7 +247,7 @@ export default function TrustpilotReviewHighlights() {
                     }}
                     aria-label={`Show review by ${node.review.name}`}
                   >
-                    <span className="text-2xl leading-none">{node.review.flag}</span>
+                    <span className="text-xl leading-none">{node.review.flag}</span>
                   </motion.button>
                 );
               })}
