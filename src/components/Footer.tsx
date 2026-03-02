@@ -54,7 +54,7 @@ export default function Footer() {
               </li>
               <li className="text-white/60 text-sm flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
-                <a href="https://wa.me/4477939870682" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">+44 7793 9870682 (WhatsApp only)</a>
+                <a href="https://wa.me/7939870682" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">7939870682 (WhatsApp only)</a>
               </li>
             </ul>
           </div>

@@ -213,7 +213,7 @@ function buildCustomerHtml(booking: NormalizedBooking): string {
       <div style="background:#f8f5f0;border:1px solid #eee6d9;border-radius:10px;padding:18px 18px;margin:0 0 22px;">
         <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.6;">This is a request only. Your place is not confirmed until we email you with your quotation details and payment instructions.</p>
       </div>
-      <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.7;">If you have any questions in the meantime, reach us on WhatsApp at <strong style="color:#101218;">+44 7793 9870682</strong> or email <strong style="color:#101218;">hello@padeltripper.com</strong>.</p>
+      <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.7;">If you have any questions in the meantime, reach us on WhatsApp at <strong style="color:#101218;">7939870682</strong> or email <strong style="color:#101218;">hello@padeltripper.com</strong>.</p>
       <p style="margin:26px 0 0;color:#8a8f97;font-size:15px;">The Padel Tripper Team</p>
     </div>
     <div style="background:#faf7f2;border-top:1px solid #ece7df;padding:14px 28px;">

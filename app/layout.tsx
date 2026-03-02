@@ -92,7 +92,7 @@ export default function RootLayout({
     url: siteUrl,
     logo: `${siteUrl}/images/logos/logo-landscape.png`,
     email: '[email protected]',
-    telephone: '+44 7793 9870682',
+    telephone: '7939870682',
     sameAs: ['https://www.instagram.com/padeltripper/'],
     areaServed: ['GB', 'NL', 'DE', 'ES', 'EU'],
     description:

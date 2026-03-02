@@ -182,7 +182,7 @@ export async function POST(request: Request) {
       <p style="margin:0 0 8px;color:#d64242;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Tailored Event Request Received</p>
       <h2 style="font-size:30px;line-height:1.15;color:#101218;margin:0 0 14px;font-weight:800;">Thanks, ${escapeHtml(fullName.split(' ')[0] || fullName)}!</h2>
       <p style="margin:0;color:#4e535b;font-size:17px;line-height:1.6;">We've received your tailored event request. Our team will review your requirements and contact you shortly with next steps.</p>
-      <p style="margin:18px 0 0;color:#4e535b;font-size:15px;line-height:1.6;">If you have any questions in the meantime, email <strong style="color:#101218;">hello@padeltripper.com</strong> or message us on WhatsApp at <strong style="color:#101218;">+44 7793 9870682</strong>.</p>
+      <p style="margin:18px 0 0;color:#4e535b;font-size:15px;line-height:1.6;">If you have any questions in the meantime, email <strong style="color:#101218;">hello@padeltripper.com</strong> or message us on WhatsApp at <strong style="color:#101218;">7939870682</strong>.</p>
       <p style="margin:24px 0 0;color:#8a8f97;font-size:14px;">The Padel Tripper Team</p>
     </div>
   </div>
