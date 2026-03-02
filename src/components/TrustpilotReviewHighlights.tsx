@@ -22,8 +22,18 @@ const reviews: Review[] = [
     country: 'United Kingdom',
     flag: '🇬🇧',
     date: '05 Dec 2025',
-    title: 'Great trip',
-    excerpt: 'Very positive feedback on the overall trip quality, smooth organization and intention to book again.',
+    title: 'Great Trip',
+    excerpt: 'Great trip. Well organised. Already planning on booking a return trip.',
+    rating: 5,
+  },
+  {
+    name: 'Jake Cox',
+    country: 'United Kingdom',
+    flag: '🇬🇧',
+    date: '01 Dec 2025',
+    title: 'The perfect padel getaway!',
+    excerpt:
+      'We have just returned from a 4 night stay with Padel Tripper in Alicante and are already looking into booking again.',
     rating: 5,
   },
   {
@@ -32,7 +42,7 @@ const reviews: Review[] = [
     flag: '🇪🇸',
     date: '06 Oct 2025',
     title: 'Amazing padel holiday',
-    excerpt: 'Described the holiday as first class, highlighting communication, organization and quality coaching.',
+    excerpt: 'We had the most amazing padel holiday and will definitely be back for more.',
     rating: 5,
   },
   {
@@ -41,25 +51,16 @@ const reviews: Review[] = [
     flag: '🇺🇸',
     date: '05 Oct 2025',
     title: 'Padel in Alicante',
-    excerpt: 'Great group dynamic across levels, excellent coaching and clear communication before and during the trip.',
+    excerpt: 'Just returned home after 4 days in Alicante. The whole thing was really well organized.',
     rating: 5,
   },
   {
-    name: 'Ben',
+    name: 'C Brooks',
     country: 'United Kingdom',
     flag: '🇬🇧',
-    date: '31 Jul 2025',
-    title: 'Great coaching and atmosphere',
-    excerpt: 'Praised the coaching setup and overall delivery, highlighting that the trip felt seamless and high quality throughout.',
-    rating: 5,
-  },
-  {
-    name: 'Jake Cox',
-    country: 'United Kingdom',
-    flag: '🇬🇧',
-    date: '01 Dec 2025',
-    title: 'Perfect padel getaway',
-    excerpt: 'Shared strong feedback on planning, coaching quality and overall guest experience from start to finish.',
+    date: '30 Sep 2025',
+    title: 'A great few days playing padel in the sun',
+    excerpt: 'I went on my own and was made to feel very welcome and included. Highly recommend.',
     rating: 5,
   },
 ];
@@ -77,7 +78,6 @@ export default function TrustpilotReviewHighlights() {
       const angle = (Math.PI * 2 * idx) / reviews.length - Math.PI / 2;
       const x = Math.cos(angle) * 124;
       const y = Math.sin(angle) * 124;
-
       return { review, idx, x, y };
     });
   }, []);
@@ -129,7 +129,7 @@ export default function TrustpilotReviewHighlights() {
                 <div className="mt-6 pt-5 border-t border-stone-200 flex items-center justify-between">
                   <p className="text-sm font-semibold text-brand-dark">{activeReview.name}</p>
                   <p className="text-sm text-stone-500 inline-flex items-center gap-2">
-                    <span className="text-lg leading-none">{activeReview.flag}</span>
+                    <span className="text-xl leading-none">{activeReview.flag}</span>
                     {activeReview.country}
                   </p>
                 </div>
@@ -145,17 +145,17 @@ export default function TrustpilotReviewHighlights() {
 
               <motion.div
                 key={activeIdx}
-                initial={{ scale: 0.95, opacity: 0.7 }}
+                initial={{ scale: 0.96, opacity: 0.8 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.22, ease: 'easeOut' }}
-                className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-dark text-white flex flex-col items-center justify-center text-center px-3 z-10"
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-2 border-brand-red shadow-lg shadow-brand-red/15 flex flex-col items-center justify-center z-10"
               >
-                <p className="text-[10px] uppercase tracking-[0.18em] text-white/60 mb-1">Selected</p>
-                <p className="text-xs font-semibold">{activeReview.name}</p>
-                <p className="text-[11px] text-white/70 inline-flex items-center gap-1.5">
-                  <span className="text-base leading-none">{activeReview.flag}</span>
-                  {activeReview.country}
-                </p>
+                <div className="flex items-center gap-1 mb-1">
+                  <Star size={10} className="text-brand-red fill-brand-red" />
+                  <Star size={10} className="text-brand-red fill-brand-red" />
+                  <Star size={10} className="text-brand-red fill-brand-red" />
+                </div>
+                <span className="text-2xl leading-none">{activeReview.flag}</span>
               </motion.div>
 
               {orbitNodes.map(node => {
@@ -166,9 +166,9 @@ export default function TrustpilotReviewHighlights() {
                     key={`${node.review.name}-${node.idx}`}
                     type="button"
                     onClick={() => setActiveIdx(node.idx)}
-                    whileTap={{ scale: 0.96 }}
+                    whileTap={{ scale: 0.95 }}
                     title={`${node.review.name} — ${node.review.country}`}
-                    className={`absolute h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border text-sm transition-all duration-200 flex items-center justify-center z-20 ${
+                    className={`absolute h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-200 flex items-center justify-center z-20 ${
                       isActive
                         ? 'border-brand-red bg-brand-red text-white shadow-lg shadow-brand-red/20 ring-4 ring-brand-red/15'
                         : 'border-stone-300 bg-white text-stone-600 hover:border-brand-red/50 hover:shadow-md'
@@ -179,7 +179,7 @@ export default function TrustpilotReviewHighlights() {
                     }}
                     aria-label={`Show review by ${node.review.name}`}
                   >
-                    <span className="text-xl leading-none">{node.review.flag}</span>
+                    <span className="text-2xl leading-none">{node.review.flag}</span>
                   </motion.button>
                 );
               })}
@@ -198,7 +198,7 @@ export default function TrustpilotReviewHighlights() {
                     isActive ? 'border-brand-red bg-brand-red text-white' : 'border-stone-300 bg-white text-stone-600'
                   }`}
                 >
-                  <p className="text-lg leading-none">{review.flag}</p>
+                  <p className="text-xl leading-none">{review.flag}</p>
                   <p className="text-xs font-semibold leading-tight mt-1">{review.name}</p>
                 </button>
               );
