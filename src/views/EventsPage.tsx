@@ -657,8 +657,8 @@ export default function EventsPage() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
-                  <a href="https://wa.me/7939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                    7939870682
+                  <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                    +44 7939870682
                   </a>
                 </div>
               </div>
