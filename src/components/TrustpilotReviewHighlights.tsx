@@ -149,7 +149,7 @@ export default function TrustpilotReviewHighlights() {
   }, []);
 
   return (
-    <section className="py-16 md:py-18 px-6 bg-brand-light" aria-label="Trustpilot reviews">
+    <section className="pt-16 pb-24 md:pt-18 md:pb-28 px-6 bg-brand-light" aria-label="Trustpilot reviews">
       <div className="max-w-6xl mx-auto">
         <div className="mb-7 md:mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
@@ -212,7 +212,7 @@ export default function TrustpilotReviewHighlights() {
             </AnimatePresence>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center lg:-translate-y-12">
+          <div className="hidden lg:flex items-center justify-center lg:translate-y-2">
             <div className="relative h-[320px] w-[320px]">
               <div className="absolute inset-0 rounded-full border border-stone-300" />
               <div className="absolute inset-[48px] rounded-full border border-stone-200" />
