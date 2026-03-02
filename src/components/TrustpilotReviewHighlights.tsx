@@ -162,15 +162,17 @@ export default function TrustpilotReviewHighlights() {
               <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Trustpilot Rating</span>
             </div>
           </div>
-          <a
-            href={TRUSTPILOT_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-red px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest text-brand-red hover:bg-brand-red hover:text-white transition-colors"
-          >
-            View on Trustpilot
-            <ExternalLink size={14} />
-          </a>
+          <div className="md:-translate-y-3">
+            <a
+              href={TRUSTPILOT_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-red px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest text-brand-red hover:bg-brand-red hover:text-white transition-colors"
+            >
+              View on Trustpilot
+              <ExternalLink size={14} />
+            </a>
+          </div>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
@@ -210,7 +212,7 @@ export default function TrustpilotReviewHighlights() {
             </AnimatePresence>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center">
+          <div className="hidden lg:flex items-center justify-center lg:-translate-y-5">
             <div className="relative h-[320px] w-[320px]">
               <div className="absolute inset-0 rounded-full border border-stone-300" />
               <div className="absolute inset-[48px] rounded-full border border-stone-200" />
