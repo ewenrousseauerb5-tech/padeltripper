@@ -18,6 +18,33 @@ type Review = {
 
 const reviews: Review[] = [
   {
+    name: 'Mr Wilson',
+    country: 'United Kingdom',
+    flag: '🇬🇧',
+    date: '05 Dec 2025',
+    title: 'Great trip',
+    excerpt: 'Very positive feedback on the overall trip quality, smooth organization and intention to book again.',
+    rating: 5,
+  },
+  {
+    name: 'Caroline Rickett',
+    country: 'Spain',
+    flag: '🇪🇸',
+    date: '06 Oct 2025',
+    title: 'Amazing padel holiday',
+    excerpt: 'Described the holiday as first class, highlighting communication, organization and quality coaching.',
+    rating: 5,
+  },
+  {
+    name: 'Anja',
+    country: 'United States',
+    flag: '🇺🇸',
+    date: '05 Oct 2025',
+    title: 'Padel in Alicante',
+    excerpt: 'Great group dynamic across levels, excellent coaching and clear communication before and during the trip.',
+    rating: 5,
+  },
+  {
     name: 'Ben',
     country: 'United Kingdom',
     flag: '🇬🇧',
@@ -27,39 +54,12 @@ const reviews: Review[] = [
     rating: 5,
   },
   {
-    name: 'Lana',
-    country: 'Spain',
-    flag: '🇪🇸',
-    date: '04 Jul 2025',
-    title: 'Very well organized',
-    excerpt: 'Highlighted excellent organization, clear planning and a smooth guest experience from pre-trip comms to on-court sessions.',
-    rating: 5,
-  },
-  {
-    name: 'Happy customer',
+    name: 'Jake Cox',
     country: 'United Kingdom',
     flag: '🇬🇧',
-    date: '05 Jun 2025',
-    title: 'Top-level trip',
-    excerpt: 'Described the retreat as very enjoyable, with strong coaching quality and a social group dynamic.',
-    rating: 5,
-  },
-  {
-    name: 'Caspar Warren',
-    country: 'United States',
-    flag: '🇺🇸',
-    date: '13 Apr 2025',
-    title: 'Will book again',
-    excerpt: 'Shared very positive feedback on the overall trip standard, coaching sessions and travel experience.',
-    rating: 5,
-  },
-  {
-    name: 'Barbara',
-    country: 'Estonia',
-    flag: '🇪🇪',
-    date: '31 Mar 2025',
-    title: 'Best group padel holiday',
-    excerpt: 'Mentioned the trip as a standout padel holiday with quality coaching and a well-run schedule.',
+    date: '01 Dec 2025',
+    title: 'Perfect padel getaway',
+    excerpt: 'Shared strong feedback on planning, coaching quality and overall guest experience from start to finish.',
     rating: 5,
   },
 ];
@@ -128,8 +128,9 @@ export default function TrustpilotReviewHighlights() {
 
                 <div className="mt-6 pt-5 border-t border-stone-200 flex items-center justify-between">
                   <p className="text-sm font-semibold text-brand-dark">{activeReview.name}</p>
-                  <p className="text-sm text-stone-500">
-                    {activeReview.flag} {activeReview.country}
+                  <p className="text-sm text-stone-500 inline-flex items-center gap-2">
+                    <span className="text-lg leading-none">{activeReview.flag}</span>
+                    {activeReview.country}
                   </p>
                 </div>
               </motion.article>
@@ -138,9 +139,6 @@ export default function TrustpilotReviewHighlights() {
 
           <div className="hidden lg:flex items-center justify-center">
             <div className="relative h-[360px] w-[360px]">
-              <p className="absolute left-1/2 top-3 -translate-x-1/2 text-[11px] uppercase tracking-[0.18em] text-stone-400 whitespace-nowrap">
-                Click a flag to change review
-              </p>
               <div className="absolute inset-0 rounded-full border border-stone-300" />
               <div className="absolute inset-[52px] rounded-full border border-stone-200" />
               <div className="absolute inset-[104px] rounded-full border border-stone-100" />
@@ -154,7 +152,10 @@ export default function TrustpilotReviewHighlights() {
               >
                 <p className="text-[10px] uppercase tracking-[0.18em] text-white/60 mb-1">Selected</p>
                 <p className="text-xs font-semibold">{activeReview.name}</p>
-                <p className="text-[11px] text-white/70">{activeReview.flag} {activeReview.country}</p>
+                <p className="text-[11px] text-white/70 inline-flex items-center gap-1.5">
+                  <span className="text-base leading-none">{activeReview.flag}</span>
+                  {activeReview.country}
+                </p>
               </motion.div>
 
               {orbitNodes.map(node => {
@@ -178,14 +179,10 @@ export default function TrustpilotReviewHighlights() {
                     }}
                     aria-label={`Show review by ${node.review.name}`}
                   >
-                    {node.review.flag}
+                    <span className="text-xl leading-none">{node.review.flag}</span>
                   </motion.button>
                 );
               })}
-
-              <p className="absolute left-1/2 bottom-4 -translate-x-1/2 text-xs text-stone-500">
-                {activeReview.name} • {activeReview.country}
-              </p>
             </div>
           </div>
 
@@ -201,7 +198,7 @@ export default function TrustpilotReviewHighlights() {
                     isActive ? 'border-brand-red bg-brand-red text-white' : 'border-stone-300 bg-white text-stone-600'
                   }`}
                 >
-                  <p className="text-sm">{review.flag}</p>
+                  <p className="text-lg leading-none">{review.flag}</p>
                   <p className="text-xs font-semibold leading-tight mt-1">{review.name}</p>
                 </button>
               );
