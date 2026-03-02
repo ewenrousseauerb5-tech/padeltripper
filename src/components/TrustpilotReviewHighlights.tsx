@@ -137,16 +137,20 @@ export default function TrustpilotReviewHighlights() {
           </div>
 
           <div className="hidden lg:flex items-center justify-center">
-            <div className="relative h-[320px] w-[320px]">
+            <div className="relative h-[360px] w-[360px]">
+              <p className="absolute left-1/2 top-3 -translate-x-1/2 text-[11px] uppercase tracking-[0.18em] text-stone-400 whitespace-nowrap">
+                Click a flag to change review
+              </p>
               <div className="absolute inset-0 rounded-full border border-stone-300" />
-              <div className="absolute inset-[44px] rounded-full border border-stone-200" />
+              <div className="absolute inset-[52px] rounded-full border border-stone-200" />
+              <div className="absolute inset-[104px] rounded-full border border-stone-100" />
 
               <motion.div
                 key={activeIdx}
                 initial={{ scale: 0.95, opacity: 0.7 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.22, ease: 'easeOut' }}
-                className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-dark text-white flex flex-col items-center justify-center text-center px-3"
+                className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-dark text-white flex flex-col items-center justify-center text-center px-3 z-10"
               >
                 <p className="text-[10px] uppercase tracking-[0.18em] text-white/60 mb-1">Selected</p>
                 <p className="text-xs font-semibold">{activeReview.name}</p>
@@ -162,18 +166,26 @@ export default function TrustpilotReviewHighlights() {
                     type="button"
                     onClick={() => setActiveIdx(node.idx)}
                     whileTap={{ scale: 0.96 }}
-                    className={`absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border text-sm transition-all duration-200 ${
+                    title={`${node.review.name} — ${node.review.country}`}
+                    className={`absolute h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border text-sm transition-all duration-200 flex items-center justify-center z-20 ${
                       isActive
-                        ? 'border-brand-red bg-brand-red text-white shadow-md'
-                        : 'border-stone-300 bg-white text-stone-600 hover:border-brand-red/50'
+                        ? 'border-brand-red bg-brand-red text-white shadow-lg shadow-brand-red/20 ring-4 ring-brand-red/15'
+                        : 'border-stone-300 bg-white text-stone-600 hover:border-brand-red/50 hover:shadow-md'
                     }`}
-                    style={{ transform: `translate(calc(-50% + ${node.x}px), calc(-50% + ${node.y}px))` }}
+                    style={{
+                      left: `calc(50% + ${node.x}px)`,
+                      top: `calc(50% + ${node.y}px)`,
+                    }}
                     aria-label={`Show review by ${node.review.name}`}
                   >
                     {node.review.flag}
                   </motion.button>
                 );
               })}
+
+              <p className="absolute left-1/2 bottom-4 -translate-x-1/2 text-xs text-stone-500">
+                {activeReview.name} • {activeReview.country}
+              </p>
             </div>
           </div>
 
