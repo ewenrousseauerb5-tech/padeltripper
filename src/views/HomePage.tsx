@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { Clock, Users, MapPin, Calendar, Star, ArrowRight } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
+import TrustpilotReviewHighlights from '../components/TrustpilotReviewHighlights';
 
 export default function HomePage() {
   return (
@@ -108,6 +109,8 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+
+      <TrustpilotReviewHighlights />
 
       {/* Next Upcoming Events */}
       <section id="events" className="py-32 px-6" aria-label="Next upcoming padel holidays">
