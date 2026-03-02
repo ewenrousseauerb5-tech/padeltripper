@@ -162,7 +162,7 @@ export default function TrustpilotReviewHighlights() {
               <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Trustpilot Rating</span>
             </div>
           </div>
-          <div className="md:-translate-y-3">
+          <div className="md:-translate-y-10 lg:-translate-y-12">
             <a
               href={TRUSTPILOT_URL}
               target="_blank"
@@ -212,7 +212,7 @@ export default function TrustpilotReviewHighlights() {
             </AnimatePresence>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center lg:-translate-y-5">
+          <div className="hidden lg:flex items-center justify-center lg:-translate-y-12">
             <div className="relative h-[320px] w-[320px]">
               <div className="absolute inset-0 rounded-full border border-stone-300" />
               <div className="absolute inset-[48px] rounded-full border border-stone-200" />
