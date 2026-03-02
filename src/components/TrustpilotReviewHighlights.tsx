@@ -14,19 +14,39 @@ type Review = {
   title: string;
   excerpt: string;
   rating: number;
-  avatarUrl: string;
+  avatarUrl?: string;
 };
 
 const reviews: Review[] = [
+  {
+    name: 'Caroline Rickett',
+    country: 'Spain',
+    flag: '🇪🇸',
+    date: '06 Oct 2025',
+    title: 'Amazing padel holiday',
+    excerpt: 'We had the most amazing padel holiday.',
+    rating: 5,
+    avatarUrl: 'https://user-images.trustpilot.com/68e3ca2c412e4c45aa6088af/73x73.png',
+  },
+  {
+    name: 'Omar Duarte',
+    country: 'Estonia',
+    flag: '🇪🇪',
+    date: '03 Oct 2025',
+    title: 'The experience was great',
+    excerpt:
+      'The experience was great. We had 2 great coaches come down and help us improve our padel. The whole experience has a great flow to it, relaxed, yet fun and challenging at the same time.',
+    rating: 5,
+    avatarUrl: 'https://user-images.trustpilot.com/68e007c68a838c80f883d000/73x73.png',
+  },
   {
     name: 'Mr Wilson',
     country: 'United Kingdom',
     flag: '🇬🇧',
     date: '05 Dec 2025',
     title: 'Great Trip',
-    excerpt: 'Great trip. Well organised. Already planning on booking a return trip.',
+    excerpt: 'Great Trip. Well organised. Already planning on booking a return trip.',
     rating: 5,
-    avatarUrl: 'https://ui-avatars.com/api/?name=Mr+Wilson&background=d94545&color=ffffff&size=128',
   },
   {
     name: 'Jake Cox',
@@ -37,27 +57,6 @@ const reviews: Review[] = [
     excerpt:
       'We have just returned from a 4 night stay with Padel Tripper in Alicante and are already looking into booking again.',
     rating: 5,
-    avatarUrl: 'https://ui-avatars.com/api/?name=Jake+Cox&background=111111&color=ffffff&size=128',
-  },
-  {
-    name: 'Caroline Rickett',
-    country: 'Spain',
-    flag: '🇪🇸',
-    date: '06 Oct 2025',
-    title: 'Amazing padel holiday',
-    excerpt: 'We had the most amazing padel holiday and will definitely be back for more.',
-    rating: 5,
-    avatarUrl: 'https://ui-avatars.com/api/?name=Caroline+Rickett&background=d94545&color=ffffff&size=128',
-  },
-  {
-    name: 'Anja',
-    country: 'United States',
-    flag: '🇺🇸',
-    date: '05 Oct 2025',
-    title: 'Padel in Alicante',
-    excerpt: 'Just returned home after 4 days in Alicante. The whole thing was really well organized.',
-    rating: 5,
-    avatarUrl: 'https://ui-avatars.com/api/?name=Anja&background=111111&color=ffffff&size=128',
   },
   {
     name: 'C Brooks',
@@ -67,12 +66,53 @@ const reviews: Review[] = [
     title: 'A great few days playing padel in the sun',
     excerpt: 'I went on my own and was made to feel very welcome and included. Highly recommend.',
     rating: 5,
-    avatarUrl: 'https://ui-avatars.com/api/?name=C+Brooks&background=d94545&color=ffffff&size=128',
   },
 ];
 
 function stars(count: number) {
   return Array.from({ length: count }, (_, i) => i);
+}
+
+function initials(name: string) {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(part => part[0]?.toUpperCase())
+    .join('');
+}
+
+function ReviewerAvatar({
+  review,
+  sizeClass,
+  textClass,
+}: {
+  review: Review;
+  sizeClass: string;
+  textClass: string;
+}) {
+  const [imgError, setImgError] = useState(false);
+
+  if (review.avatarUrl && !imgError) {
+    return (
+      <img
+        src={review.avatarUrl}
+        alt={`${review.name} profile`}
+        className={`${sizeClass} rounded-full border border-stone-200 object-cover`}
+        loading="lazy"
+        onError={() => setImgError(true)}
+      />
+    );
+  }
+
+  return (
+    <div
+      className={`${sizeClass} rounded-full border border-[#e5c89f] bg-[#f2d7b1] text-[#1a1a1a] inline-flex items-center justify-center font-semibold ${textClass}`}
+      aria-label={`${review.name} initials avatar`}
+    >
+      {initials(review.name)}
+    </div>
+  );
 }
 
 export default function TrustpilotReviewHighlights() {
@@ -134,12 +174,7 @@ export default function TrustpilotReviewHighlights() {
 
                 <div className="mt-6 pt-5 border-t border-stone-200 flex items-center justify-between">
                   <div className="inline-flex items-center gap-3">
-                    <img
-                      src={activeReview.avatarUrl}
-                      alt={`${activeReview.name} profile`}
-                      className="h-10 w-10 rounded-full border border-stone-200 object-cover"
-                      loading="lazy"
-                    />
+                    <ReviewerAvatar review={activeReview} sizeClass="h-10 w-10" textClass="text-base" />
                     <p className="text-sm font-semibold text-brand-dark">{activeReview.name}</p>
                   </div>
                   <p className="text-sm text-stone-500 inline-flex items-center gap-2">
@@ -164,12 +199,7 @@ export default function TrustpilotReviewHighlights() {
                 transition={{ duration: 0.2, ease: 'easeOut' }}
                 className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-2 border-brand-red shadow-lg shadow-brand-red/15 flex flex-col items-center justify-center z-10"
               >
-                <img
-                  src={activeReview.avatarUrl}
-                  alt={`${activeReview.name} profile`}
-                  className="h-16 w-16 rounded-full border border-stone-200 object-cover"
-                  loading="lazy"
-                />
+                <ReviewerAvatar review={activeReview} sizeClass="h-16 w-16" textClass="text-xl" />
               </motion.div>
 
               {orbitNodes.map(node => {
