@@ -157,9 +157,9 @@ export default function TrustpilotReviewHighlights() {
             <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight">
               What Guests Say About <span className="text-brand-red">Padel Tripper</span>
             </h2>
-            <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white px-4 py-2">
-              <span className="text-2xl font-serif font-black text-brand-red">{animatedRating.toFixed(1)}</span>
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Trustpilot Rating</span>
+            <div className="mt-4 inline-flex items-center gap-2 text-sm text-stone-500">
+              <span className="font-semibold text-brand-dark">{animatedRating.toFixed(1)}/5</span>
+              <span>on Trustpilot</span>
             </div>
           </div>
           <a
