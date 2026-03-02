@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ExternalLink, Quote, Star } from 'lucide-react';
 
@@ -40,12 +40,12 @@ const reviews: Review[] = [
     avatarUrl: 'https://user-images.trustpilot.com/68e007c68a838c80f883d000/73x73.png',
   },
   {
-    name: 'Mr Wilson',
-    country: 'United Kingdom',
-    flag: '🇬🇧',
-    date: '05 Dec 2025',
-    title: 'Great Trip',
-    excerpt: 'Great Trip. Well organised. Already planning on booking a return trip.',
+    name: 'Neeltje Philippe',
+    country: 'Austria',
+    flag: '🇦🇹',
+    date: '04 Jun 2025',
+    title: 'Good time in Golf Hotel Alicante',
+    excerpt: 'Fast communication, enjoyable lessons and a really fun overall experience.',
     rating: 5,
   },
   {
@@ -117,6 +117,7 @@ function ReviewerAvatar({
 
 export default function TrustpilotReviewHighlights() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [animatedRating, setAnimatedRating] = useState(0);
   const activeReview = reviews[activeIdx];
 
   const orbitNodes = useMemo(() => {
@@ -128,6 +129,25 @@ export default function TrustpilotReviewHighlights() {
     });
   }, []);
 
+  useEffect(() => {
+    const target = 4.7;
+    const durationMs = 1000;
+    const steps = 30;
+    let currentStep = 0;
+
+    const timer = setInterval(() => {
+      currentStep += 1;
+      const progress = Math.min(currentStep / steps, 1);
+      setAnimatedRating(Number((target * progress).toFixed(1)));
+
+      if (progress >= 1) {
+        clearInterval(timer);
+      }
+    }, durationMs / steps);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="py-24 px-6 bg-brand-light" aria-label="Trustpilot reviews">
       <div className="max-w-6xl mx-auto">
@@ -137,6 +157,10 @@ export default function TrustpilotReviewHighlights() {
             <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight">
               What Guests Say About <span className="text-brand-red">Padel Tripper</span>
             </h2>
+            <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white px-4 py-2">
+              <span className="text-2xl font-serif font-black text-brand-red">{animatedRating.toFixed(1)}</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Trustpilot Rating</span>
+            </div>
           </div>
           <a
             href={TRUSTPILOT_URL}
