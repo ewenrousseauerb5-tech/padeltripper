@@ -111,9 +111,9 @@ export default function HomePage() {
       </section>
 
       {/* Why We're Different */}
-      <section className="py-24 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
+      <section className="py-16 md:py-18 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-12">
+          <div className="max-w-3xl mb-8">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
             <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-5">
               Train Like A Player. <span className="text-brand-red">Travel Like A Guest.</span>
@@ -124,14 +124,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 mb-10">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 mb-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="lg:col-span-5"
             >
-              <div className="space-y-8">
+              <div className="space-y-6">
                 <div className="relative pl-8">
                   <div className="absolute left-0 top-1 h-full w-px bg-stone-300" />
                   <span className="absolute left-[-11px] top-0 h-6 w-6 rounded-full bg-brand-red text-white text-[10px] font-bold flex items-center justify-center">AM</span>
@@ -180,14 +180,14 @@ export default function HomePage() {
                   <img
                     src="/images/pitu-losada-coach.jpg"
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
-                    className="w-full h-[360px] object-cover object-[center_22%]"
+                    className="w-full h-[320px] object-cover object-[center_22%]"
                   />
                 </div>
                 <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-lg w-[68%] ml-auto -mt-16 relative bg-white">
                   <img
                     src="/images/bela-courts.webp"
                     alt="Social padel match play at Bela Padel Center in Alicante"
-                    className="w-full h-44 object-cover object-center"
+                    className="w-full h-36 object-cover object-center"
                   />
                 </div>
               </div>
