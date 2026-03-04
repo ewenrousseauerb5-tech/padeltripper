@@ -111,11 +111,11 @@ export default function HomePage() {
       </section>
 
       {/* Why We're Different */}
-      <section className="py-16 md:py-18 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
+      <section className="py-14 md:py-16 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-8">
+          <div className="max-w-3xl mb-6">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-5">
+            <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight mb-4">
               Train Like A Player. <span className="text-brand-red">Travel Like A Guest.</span>
             </h2>
             <p className="text-stone-500 leading-relaxed">
@@ -124,7 +124,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 mb-8">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-9 mb-7">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -139,7 +139,7 @@ export default function HomePage() {
                     <Trophy size={13} className="text-brand-red" />
                     Pitu Losada Academy at Montemar
                   </p>
-                  <h3 className="font-serif text-2xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
+                  <h3 className="font-serif text-xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
                   <p className="text-stone-600 leading-relaxed">
                     Morning sessions follow academy methodology at Club Atlético Montemar, developed around high-performance coaching principles.
                   </p>
@@ -151,7 +151,7 @@ export default function HomePage() {
                     <Handshake size={13} className="text-brand-red" />
                     Bela Padel Center
                   </p>
-                  <h3 className="font-serif text-2xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
+                  <h3 className="font-serif text-xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
                   <p className="text-stone-600 leading-relaxed mb-4">
                     Afternoons move into social games at Bela so players apply what they have learned in real, competitive match contexts.
                   </p>
@@ -176,18 +176,18 @@ export default function HomePage() {
               className="lg:col-span-7"
             >
               <div className="relative">
-                <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-lg">
+                <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
                   <img
                     src="/images/pitu-losada-coach.jpg"
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
-                    className="w-full h-[320px] object-cover object-[center_22%]"
+                    className="w-full h-[290px] object-cover object-[center_22%]"
                   />
                 </div>
-                <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-lg w-[68%] ml-auto -mt-16 relative bg-white">
+                <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm w-[66%] ml-auto -mt-12 relative bg-white">
                   <img
                     src="/images/bela-courts.webp"
                     alt="Social padel match play at Bela Padel Center in Alicante"
-                    className="w-full h-36 object-cover object-center"
+                    className="w-full h-32 object-cover object-center"
                   />
                 </div>
               </div>
@@ -204,11 +204,11 @@ export default function HomePage() {
       </section>
 
       {/* Next Upcoming Events */}
-      <section id="events" className="py-28 px-6 bg-white" aria-label="Next upcoming padel holidays">
+      <section id="events" className="py-30 px-6 bg-white" aria-label="Next upcoming padel holidays">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-xl mb-20">
+          <div className="max-w-2xl mb-20">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
-            <h2 className="font-serif text-4xl font-black uppercase mb-5">Next Padel Camps</h2>
+            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">Next Padel Camps</h2>
             <p className="text-stone-400 leading-relaxed">
               Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel, 6 hours of coaching, 4 hours of social play and transport to the courts.
             </p>
@@ -222,7 +222,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+                className="group rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500"
               >
                 {event.image && (
                   <div className="relative h-52 overflow-hidden">
