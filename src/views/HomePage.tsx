@@ -67,7 +67,7 @@ export default function HomePage() {
                 <img
                   src="/images/ollie.jpg"
                   alt="Ollie, co-founder of Padel Tripper, on court in Alicante"
-                  className="w-full h-[520px] object-cover object-[center_38%]"
+                  className="w-full h-[520px] object-cover object-[center_18%]"
                 />
               </div>
             </motion.div>
