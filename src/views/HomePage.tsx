@@ -65,7 +65,7 @@ export default function HomePage() {
             >
               <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
                 <img
-                  src="/images/group-photo.jpg"
+                  src="/images/ollie.jpeg"
                   alt="Ollie, co-founder of Padel Tripper, on court in Alicante"
                   className="w-full h-[520px] object-cover object-center"
                 />
