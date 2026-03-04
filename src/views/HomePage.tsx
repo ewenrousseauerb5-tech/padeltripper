@@ -194,10 +194,10 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          <div className="rounded-2xl border border-stone-200 bg-brand-dark text-white px-6 py-6 md:px-8 md:py-7">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-white/50 mb-3">The Combination</p>
-            <p className="font-serif text-2xl md:text-3xl font-black leading-tight">
-              Elite Coaching (AM) <span className="text-brand-red">+</span> Social Match Play (PM) <span className="text-brand-red">=</span> Faster Improvement & Better Trip Experience
+          <div className="rounded-2xl border border-stone-800 bg-[#141414] px-6 py-5 md:px-8 md:py-6">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-2">The Combination</p>
+            <p className="font-serif text-lg md:text-xl font-bold leading-snug text-stone-100 max-w-4xl">
+              Elite Coaching (AM) <span className="text-brand-red">+</span> Social Match Play (PM) <span className="text-brand-red">=</span> Faster Improvement and Better Trip Experience
             </p>
           </div>
         </div>
