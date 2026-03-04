@@ -149,7 +149,7 @@ export default function TrustpilotReviewHighlights() {
   }, []);
 
   return (
-    <section className="pt-16 pb-24 md:pt-18 md:pb-28 px-6 bg-brand-light" aria-label="Trustpilot reviews">
+    <section className="pt-24 pb-28 md:pt-28 md:pb-32 px-6 bg-brand-light" aria-label="Trustpilot reviews">
       <div className="max-w-6xl mx-auto">
         <div className="mb-7 md:mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">

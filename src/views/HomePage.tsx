@@ -54,7 +54,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Our Padel Camps */}
-      <section className="py-28 bg-brand-light px-6" aria-label="Why choose our padel camps in Spain">
+      <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="Why choose our padel camps in Spain">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-2xl mb-14">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Choose Us</p>
@@ -119,7 +119,7 @@ export default function HomePage() {
       </section>
 
       {/* Why We're Different */}
-      <section className="py-14 md:py-16 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
+      <section className="py-24 md:py-28 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mb-6">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
@@ -212,7 +212,7 @@ export default function HomePage() {
       </section>
 
       {/* Next Upcoming Events */}
-      <section id="events" className="py-30 px-6 bg-white" aria-label="Next upcoming padel holidays">
+      <section id="events" className="py-24 md:py-28 px-6 bg-white" aria-label="Next upcoming padel holidays">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-20">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
