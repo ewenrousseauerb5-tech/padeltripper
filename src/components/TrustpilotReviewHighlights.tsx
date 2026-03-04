@@ -195,7 +195,7 @@ export default function TrustpilotReviewHighlights() {
                 </div>
 
                 <Quote size={20} className="text-brand-red/55 mb-2.5" />
-                <h3 className="font-serif text-[34px] font-black text-brand-dark mb-2.5 leading-[1.1]">{activeReview.title}</h3>
+                <h3 className="font-serif text-2xl md:text-3xl font-black text-brand-dark mb-2.5 leading-[1.15]">{activeReview.title}</h3>
                 <p className="text-stone-600 leading-relaxed text-[15px]">{activeReview.excerpt}</p>
 
                 <div className="mt-5 pt-4 border-t border-stone-200 flex items-center justify-between">

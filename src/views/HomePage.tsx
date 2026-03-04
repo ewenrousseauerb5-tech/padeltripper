@@ -56,7 +56,15 @@ export default function HomePage() {
       {/* Why Choose Our Padel Camps */}
       <section className="py-28 bg-brand-light px-6" aria-label="Why choose our padel camps in Spain">
         <div className="max-w-6xl mx-auto">
-          <h2 className="sr-only">Why Choose Our Padel Coaching Holidays in Spain</h2>
+          <div className="max-w-2xl mb-14">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Choose Us</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">
+              Why Padel Tripper
+            </h2>
+            <p className="text-stone-400 leading-relaxed">
+              A premium retreat format built around elite coaching, social match play, and a carefully managed guest experience.
+            </p>
+          </div>
           <div className="grid md:grid-cols-3 gap-12">
             {[
               { icon: Clock, title: '6 Hours Coaching + 4 Hours Social Play', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada, plus competitive social play each afternoon. Suitable for all levels.' },
