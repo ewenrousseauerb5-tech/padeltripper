@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Clock, Users, MapPin, Calendar, Star, ArrowRight, Trophy, Target, Handshake } from 'lucide-react';
+import { Clock, Users, MapPin, Calendar, Star, ArrowRight, Trophy, Handshake } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
 import TrustpilotReviewHighlights from '../components/TrustpilotReviewHighlights';
 
@@ -113,7 +113,7 @@ export default function HomePage() {
       {/* Why We're Different */}
       <section className="py-24 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-14">
+          <div className="max-w-3xl mb-12">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
             <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-5">
               Train Like A Player. <span className="text-brand-red">Travel Like A Guest.</span>
@@ -124,75 +124,74 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-10">
-            <motion.article
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 mb-10">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-3xl overflow-hidden border border-stone-200 bg-stone-50"
+              className="lg:col-span-5"
             >
-              <div className="relative h-64 md:h-72">
-                <img
-                  src="/images/pitu-losada-coach.jpg"
-                  alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
-                  className="w-full h-full object-cover object-[center_22%]"
-                />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
-                  <Trophy size={13} className="text-brand-red" />
-                  Pitu Losada Academy
+              <div className="space-y-8">
+                <div className="relative pl-8">
+                  <div className="absolute left-0 top-1 h-full w-px bg-stone-300" />
+                  <span className="absolute left-[-11px] top-0 h-6 w-6 rounded-full bg-brand-red text-white text-[10px] font-bold flex items-center justify-center">AM</span>
+                  <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-stone-500 mb-2">
+                    <Trophy size={13} className="text-brand-red" />
+                    Pitu Losada Academy at Montemar
+                  </p>
+                  <h3 className="font-serif text-2xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
+                  <p className="text-stone-600 leading-relaxed">
+                    Morning sessions follow academy methodology at Club Atlético Montemar, developed around high-performance coaching principles.
+                  </p>
                 </div>
-              </div>
-              <div className="p-7 md:p-8">
-                <h3 className="font-serif text-2xl font-black text-brand-dark mb-3">Morning Coaching at Montemar</h3>
-                <p className="text-stone-600 leading-relaxed mb-5">
-                  Coaching is delivered at Club Atlético Montemar by coaches trained in Pitu Losada&apos;s proven methodology.
-                  This is the technical core of the trip.
-                </p>
-                <div className="grid gap-3 text-sm text-stone-600">
-                  <p className="inline-flex items-center gap-2"><Target size={15} className="text-brand-red" /> Academy of former 3x World Champion Pitu Losada</p>
-                  <p className="inline-flex items-center gap-2"><Target size={15} className="text-brand-red" /> World-class training setting at Montemar</p>
-                  <p className="inline-flex items-center gap-2"><Target size={15} className="text-brand-red" /> Structured coaching in small groups</p>
-                </div>
-              </div>
-            </motion.article>
 
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="rounded-3xl overflow-hidden border border-stone-200 bg-stone-50"
-            >
-              <div className="relative h-64 md:h-72">
-                <img
-                  src="/images/bela-courts.webp"
-                  alt="Social padel match play at Bela Padel Center in Alicante"
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
-                  <Handshake size={13} className="text-brand-red" />
-                  Bela Padel Center
-                </div>
-              </div>
-              <div className="p-7 md:p-8">
-                <h3 className="font-serif text-2xl font-black text-brand-dark mb-3">Afternoon Social Play at Bela</h3>
-                <p className="text-stone-600 leading-relaxed mb-5">
-                  Social play sessions are hosted at Bela, one of Alicante&apos;s most enjoyable clubs. You apply what you learn,
-                  play competitive points, and build confidence in real match situations.
-                </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="relative pl-8">
+                  <span className="absolute left-[-11px] top-0 h-6 w-6 rounded-full bg-brand-dark text-white text-[10px] font-bold flex items-center justify-center">PM</span>
+                  <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-stone-500 mb-2">
+                    <Handshake size={13} className="text-brand-red" />
+                    Bela Padel Center
+                  </p>
+                  <h3 className="font-serif text-2xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
+                  <p className="text-stone-600 leading-relaxed mb-4">
+                    Afternoons move into social games at Bela so players apply what they have learned in real, competitive match contexts.
+                  </p>
                   <a
                     href="https://maps.app.goo.gl/8Lbyzh8nVYucZHXt7?g_st=iw"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-stone-600 hover:border-brand-red hover:text-brand-red transition-colors"
                   >
-                    View Club Location
+                    View Bela Location
                     <ArrowRight size={13} />
                   </a>
                 </div>
               </div>
-            </motion.article>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="lg:col-span-7"
+            >
+              <div className="relative">
+                <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-lg">
+                  <img
+                    src="/images/pitu-losada-coach.jpg"
+                    alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
+                    className="w-full h-[360px] object-cover object-[center_22%]"
+                  />
+                </div>
+                <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-lg w-[68%] ml-auto -mt-16 relative bg-white">
+                  <img
+                    src="/images/bela-courts.webp"
+                    alt="Social padel match play at Bela Padel Center in Alicante"
+                    className="w-full h-44 object-cover object-center"
+                  />
+                </div>
+              </div>
+            </motion.div>
           </div>
 
           <div className="rounded-2xl border border-stone-200 bg-brand-dark text-white px-6 py-6 md:px-8 md:py-7">
