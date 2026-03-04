@@ -165,7 +165,7 @@ export default function HomePage() {
             >
               <div className="relative h-64 md:h-72">
                 <img
-                  src="/images/group-bela-court.jpg"
+                  src="/images/bela-courts.webp"
                   alt="Social padel match play at Bela Padel Center in Alicante"
                   className="w-full h-full object-cover object-center"
                 />
