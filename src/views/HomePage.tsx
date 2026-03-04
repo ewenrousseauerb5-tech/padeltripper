@@ -83,22 +83,28 @@ export default function HomePage() {
               <h2 className="font-serif text-[30px] md:text-5xl font-black uppercase leading-tight mb-6">
                 Built From Community, <span className="text-brand-red">Not Tourism</span>
               </h2>
-              <div className="space-y-4 text-stone-600 leading-relaxed">
-                <p>
+              <div className="space-y-3 text-[15px] md:text-base text-stone-600 leading-relaxed">
+                <p className="font-medium text-brand-dark">
                   I&apos;m Ollie, co-founder of Padel Tripper and Alicante Social Padel.
                 </p>
                 <p>
-                  Four years ago, I started building a local padel community in Spain. Since then, we&apos;ve hosted 700+ events, built an incredible network of 2000 players, and watched real friendships form on and off court.
+                  Four years ago, I started building a local padel community in Spain. Since then, we&apos;ve hosted 700+ events and built a network of 2000 players where real friendships formed on and off court.
                 </p>
                 <p>
-                  That success sparked something bigger. Padel Tripper was born from the same energy, but on an international level.
-                </p>
-                <p>
-                  This isn&apos;t a travel company that added padel. It&apos;s a proven padel community that expanded into unforgettable trips.
+                  That success sparked something bigger. Padel Tripper was born from the same energy, but on an international level. This isn&apos;t a travel company that added padel. It&apos;s a proven padel community that expanded into unforgettable trips.
                 </p>
                 <p>
                   We know what players want: great organisation, first-class coaching, social match play, sunshine, tapas, and meeting fellow padel addicts.
                 </p>
+              </div>
+              <div className="mt-7">
+                <Link
+                  href="/events"
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-red px-6 py-3 text-[11px] font-semibold uppercase tracking-widest text-brand-red hover:bg-brand-red hover:text-white transition-colors"
+                >
+                  See Upcoming Trips
+                  <ArrowRight size={14} />
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -256,6 +262,11 @@ export default function HomePage() {
                     <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full">
                       {event.status}
                     </div>
+                    {idx === 1 && (
+                      <div className="absolute top-4 right-4 px-3 py-1.5 bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
+                        Most Popular
+                      </div>
+                    )}
                   </div>
                 )}
                 <div className="p-7">
