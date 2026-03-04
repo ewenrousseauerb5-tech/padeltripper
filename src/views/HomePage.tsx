@@ -81,7 +81,8 @@ export default function HomePage() {
             >
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Padel Tripper</p>
               <h2 className="font-serif text-[30px] md:text-5xl font-black uppercase leading-tight mb-6">
-                The Story Behind <span className="text-brand-red">Padel Tripper</span>
+                <span className="block">The Story Behind</span>
+                <span className="block text-brand-red">Padel Tripper</span>
               </h2>
               <div className="space-y-3 text-[15px] md:text-base text-stone-600 leading-relaxed">
                 <p className="font-medium text-brand-dark">
