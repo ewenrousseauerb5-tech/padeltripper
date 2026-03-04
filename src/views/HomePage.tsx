@@ -55,7 +55,7 @@ export default function HomePage() {
 
       {/* Why Choose Our Padel Camps */}
       <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="Why choose our padel camps in Spain">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12">
             {[
               { icon: Clock, title: '6 Hours Coaching + 4 Hours Social Play', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada, plus competitive social play each afternoon. Suitable for all levels.' },
