@@ -38,13 +38,13 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/events"
-                className="px-10 py-4 rounded-full border border-white/30 text-white font-semibold uppercase tracking-widest text-sm hover:bg-white hover:text-brand-dark transition-all duration-300"
+                className="w-full sm:w-auto px-10 py-4 rounded-full border border-white/30 text-white font-semibold uppercase tracking-widest text-sm text-center hover:bg-white hover:text-brand-dark transition-all duration-300"
               >
                 View Dates
               </Link>
               <Link
                 href="/events#booking"
-                className="px-10 py-4 rounded-full bg-brand-red text-white font-semibold uppercase tracking-widest text-sm hover:bg-white hover:text-brand-dark transition-all duration-300"
+                className="w-full sm:w-auto px-10 py-4 rounded-full bg-brand-red text-white font-semibold uppercase tracking-widest text-sm text-center hover:bg-white hover:text-brand-dark transition-all duration-300"
               >
                 Book Now
               </Link>
@@ -56,15 +56,6 @@ export default function HomePage() {
       {/* Why Choose Our Padel Camps */}
       <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="Why choose our padel camps in Spain">
         <div className="max-w-6xl mx-auto">
-          <div className="max-w-2xl mb-14">
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Choose Us</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">
-              Why Padel Tripper
-            </h2>
-            <p className="text-stone-400 leading-relaxed">
-              A premium retreat format built around elite coaching, social match play, and a carefully managed guest experience.
-            </p>
-          </div>
           <div className="grid md:grid-cols-3 gap-12">
             {[
               { icon: Clock, title: '6 Hours Coaching + 4 Hours Social Play', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada, plus competitive social play each afternoon. Suitable for all levels.' },
@@ -123,12 +114,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mb-6">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight mb-4">
-              Train Like A Player. <span className="text-brand-red">Travel Like A Guest.</span>
+            <h2 className="font-serif text-[30px] md:text-4xl font-black uppercase leading-tight mb-4">
+              <span className="block">Train Like A Player.</span>
+              <span className="block text-brand-red">Travel Like A Guest.</span>
             </h2>
             <p className="text-stone-500 leading-relaxed">
-              We are not a standard padel holiday company. Your mornings are focused on high-level coaching at Club Atlético
-              Montemar with the Pitu Losada Academy. Your afternoons move into social match play at Bela Padel Center.
+              We are not a standard padel holiday company. Mornings focus on high-level coaching at Club Atlético Montemar
+              with the Pitu Losada Academy. Afternoons move into social match play at Bela Padel Center.
             </p>
           </div>
 
@@ -147,9 +139,9 @@ export default function HomePage() {
                     <Trophy size={13} className="text-brand-red" />
                     Pitu Losada Academy at Montemar
                   </p>
-                  <h3 className="font-serif text-xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
+                  <h3 className="font-serif text-lg md:text-xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
                   <p className="text-stone-600 leading-relaxed">
-                    Morning sessions follow academy methodology at Club Atlético Montemar, developed around high-performance coaching principles.
+                    Morning sessions follow academy methodology at Club Atlético Montemar, built around high-performance coaching principles.
                   </p>
                 </div>
 
@@ -159,15 +151,15 @@ export default function HomePage() {
                     <Handshake size={13} className="text-brand-red" />
                     Bela Padel Center
                   </p>
-                  <h3 className="font-serif text-xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
+                  <h3 className="font-serif text-lg md:text-xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
                   <p className="text-stone-600 leading-relaxed mb-4">
-                    Afternoons move into social games at Bela so players apply what they have learned in real, competitive match contexts.
+                    Afternoons move into social games at Bela so players apply what they learned in competitive match contexts.
                   </p>
                   <a
                     href="https://maps.app.goo.gl/8Lbyzh8nVYucZHXt7?g_st=iw"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-stone-600 hover:border-brand-red hover:text-brand-red transition-colors"
+                    className="inline-flex w-fit items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-stone-600 hover:border-brand-red hover:text-brand-red transition-colors"
                   >
                     View Bela Location
                     <ArrowRight size={13} />
