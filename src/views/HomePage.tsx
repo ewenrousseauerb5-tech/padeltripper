@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Clock, Users, MapPin, Calendar, Star, ArrowRight } from 'lucide-react';
+import { Clock, Users, MapPin, Calendar, Star, ArrowRight, Trophy, Target, Handshake } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
 import TrustpilotReviewHighlights from '../components/TrustpilotReviewHighlights';
 
@@ -107,6 +107,100 @@ export default function HomePage() {
               From post-tournament celebrations to sunset drinks overlooking the Mediterranean — every trip is packed with unforgettable moments and lifelong friendships.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Why We're Different */}
+      <section className="py-24 px-6 bg-white" aria-label="What makes Padel Tripper different">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-14">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-5">
+              Train Like A Player. <span className="text-brand-red">Travel Like A Guest.</span>
+            </h2>
+            <p className="text-stone-500 leading-relaxed">
+              We are not a standard padel holiday company. Your mornings are focused on high-level coaching at Club Atlético
+              Montemar with the Pitu Losada Academy. Your afternoons move into social match play at Bela Padel Center.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-10">
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-3xl overflow-hidden border border-stone-200 bg-stone-50"
+            >
+              <div className="relative h-64 md:h-72">
+                <img
+                  src="/images/pitu-losada-coach.jpg"
+                  alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
+                  <Trophy size={13} className="text-brand-red" />
+                  Pitu Losada Academy
+                </div>
+              </div>
+              <div className="p-7 md:p-8">
+                <h3 className="font-serif text-2xl font-black text-brand-dark mb-3">Morning Coaching at Montemar</h3>
+                <p className="text-stone-600 leading-relaxed mb-5">
+                  Coaching is delivered at Club Atlético Montemar by coaches trained in Pitu Losada&apos;s proven methodology.
+                  This is the technical core of the trip.
+                </p>
+                <div className="grid gap-3 text-sm text-stone-600">
+                  <p className="inline-flex items-center gap-2"><Target size={15} className="text-brand-red" /> Academy of former 3x World Champion Pitu Losada</p>
+                  <p className="inline-flex items-center gap-2"><Target size={15} className="text-brand-red" /> World-class training setting at Montemar</p>
+                  <p className="inline-flex items-center gap-2"><Target size={15} className="text-brand-red" /> Structured coaching in small groups</p>
+                </div>
+              </div>
+            </motion.article>
+
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="rounded-3xl overflow-hidden border border-stone-200 bg-stone-50"
+            >
+              <div className="relative h-64 md:h-72">
+                <img
+                  src="/images/group-bela-court.jpg"
+                  alt="Social padel match play at Bela Padel Center in Alicante"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
+                  <Handshake size={13} className="text-brand-red" />
+                  Bela Padel Center
+                </div>
+              </div>
+              <div className="p-7 md:p-8">
+                <h3 className="font-serif text-2xl font-black text-brand-dark mb-3">Afternoon Social Play at Bela</h3>
+                <p className="text-stone-600 leading-relaxed mb-5">
+                  Social play sessions are hosted at Bela, one of Alicante&apos;s most enjoyable clubs. You apply what you learn,
+                  play competitive points, and build confidence in real match situations.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="https://maps.app.goo.gl/8Lbyzh8nVYucZHXt7?g_st=iw"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-stone-600 hover:border-brand-red hover:text-brand-red transition-colors"
+                  >
+                    View Club Location
+                    <ArrowRight size={13} />
+                  </a>
+                </div>
+              </div>
+            </motion.article>
+          </div>
+
+          <div className="rounded-2xl border border-stone-200 bg-brand-dark text-white px-6 py-6 md:px-8 md:py-7">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-white/50 mb-3">The Combination</p>
+            <p className="font-serif text-2xl md:text-3xl font-black leading-tight">
+              Elite Coaching (AM) <span className="text-brand-red">+</span> Social Match Play (PM) <span className="text-brand-red">=</span> Faster Improvement & Better Trip Experience
+            </p>
+          </div>
         </div>
       </section>
 
