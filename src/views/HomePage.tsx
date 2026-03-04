@@ -111,7 +111,7 @@ export default function HomePage() {
       </section>
 
       {/* Why We're Different */}
-      <section className="py-24 px-6 bg-white" aria-label="What makes Padel Tripper different">
+      <section className="py-24 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mb-14">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
@@ -135,7 +135,7 @@ export default function HomePage() {
                 <img
                   src="/images/pitu-losada-coach.jpg"
                   alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[center_22%]"
                 />
                 <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
                   <Trophy size={13} className="text-brand-red" />
@@ -167,7 +167,7 @@ export default function HomePage() {
                 <img
                   src="/images/group-bela-court.jpg"
                   alt="Social padel match play at Bela Padel Center in Alicante"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
                   <Handshake size={13} className="text-brand-red" />
@@ -205,7 +205,7 @@ export default function HomePage() {
       </section>
 
       {/* Next Upcoming Events */}
-      <section id="events" className="py-32 px-6" aria-label="Next upcoming padel holidays">
+      <section id="events" className="py-28 px-6 bg-white" aria-label="Next upcoming padel holidays">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-xl mb-20">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
@@ -279,7 +279,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TrustpilotReviewHighlights />
+      <div className="pt-6 md:pt-8 bg-white">
+        <TrustpilotReviewHighlights />
+      </div>
     </main>
   );
 }
