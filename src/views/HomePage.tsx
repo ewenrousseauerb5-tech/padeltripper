@@ -28,7 +28,7 @@ export default function HomePage() {
             className="max-w-3xl"
           >
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-sm mb-6">Alicante, Costa Blanca</p>
-            <h1 className="font-serif text-5xl md:text-7xl font-black text-white uppercase leading-[0.95] mb-8">
+            <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase leading-[0.95] mb-7">
               Padel Holidays <br />
               <span className="text-brand-red">in Spain</span>
             </h1>
@@ -100,7 +100,7 @@ export default function HomePage() {
             viewport={{ once: true }}
           >
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">The Experience</p>
-            <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-black text-white uppercase mb-5">
               More Than Just <span className="text-brand-red">Padel</span>
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed font-light">
@@ -115,7 +115,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mb-8">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Why Padel Tripper</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-black leading-tight mb-4">
+            <h2 className="font-serif text-[28px] md:text-[34px] font-black leading-tight mb-4">
               Train Like A Player. <span className="text-brand-red">Travel Like A Guest.</span>
             </h2>
             <p className="text-stone-500 leading-relaxed">
@@ -139,7 +139,7 @@ export default function HomePage() {
                     <Trophy size={13} className="text-brand-red" />
                     Pitu Losada Academy at Montemar
                   </p>
-                  <h3 className="font-serif text-2xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
+                  <h3 className="font-serif text-xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
                   <p className="text-stone-600 leading-relaxed">
                     Morning sessions follow academy methodology at Club Atlético Montemar, developed around high-performance coaching principles.
                   </p>
@@ -151,7 +151,7 @@ export default function HomePage() {
                     <Handshake size={13} className="text-brand-red" />
                     Bela Padel Center
                   </p>
-                  <h3 className="font-serif text-2xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
+                  <h3 className="font-serif text-xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
                   <p className="text-stone-600 leading-relaxed mb-4">
                     Afternoons move into social games at Bela so players apply what they have learned in real, competitive match contexts.
                   </p>
@@ -208,7 +208,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-xl mb-14">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
-            <h2 className="font-serif text-4xl font-black uppercase mb-5">Next Padel Camps</h2>
+            <h2 className="font-serif text-[34px] font-black uppercase mb-4">Next Padel Camps</h2>
             <p className="text-stone-400 leading-relaxed">
               Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel, 6 hours of coaching, 4 hours of social play and transport to the courts.
             </p>
