@@ -54,10 +54,10 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Our Padel Camps */}
-      <section className="py-20 bg-white px-6 border-b border-stone-100" aria-label="Why choose our padel camps in Spain">
+      <section className="py-28 bg-brand-light px-6" aria-label="Why choose our padel camps in Spain">
         <div className="max-w-6xl mx-auto">
           <h2 className="sr-only">Why Choose Our Padel Coaching Holidays in Spain</h2>
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-3 gap-12">
             {[
               { icon: Clock, title: '6 Hours Coaching + 4 Hours Social Play', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada, plus competitive social play each afternoon. Suitable for all levels.' },
               { icon: Users, title: 'Expert Coaching Ratio', desc: 'Maximum 4 players per coach for personalised attention. Perfect for solo travellers, couples, or group padel holidays.' },
@@ -69,13 +69,13 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.15 }}
-                className="text-left space-y-4 border border-stone-200 rounded-2xl p-6 bg-stone-50/40"
+                className="text-center space-y-5"
               >
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-brand-red bg-white border border-stone-200" aria-hidden="true">
-                  <item.icon size={20} strokeWidth={1.8} />
+                <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-brand-red mx-auto" aria-hidden="true">
+                  <item.icon size={26} strokeWidth={1.5} />
                 </div>
-                <h3 className="font-serif text-lg font-bold tracking-tight text-brand-dark">{item.title}</h3>
-                <p className="text-stone-500 text-sm leading-relaxed">
+                <h3 className="font-serif text-lg font-bold uppercase tracking-tight">{item.title}</h3>
+                <p className="text-stone-400 text-sm leading-relaxed max-w-xs mx-auto">
                   {item.desc}
                 </p>
               </motion.article>
@@ -111,11 +111,11 @@ export default function HomePage() {
       </section>
 
       {/* Why We're Different */}
-      <section className="py-16 md:py-18 px-6 bg-stone-50 border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
+      <section className="py-16 md:py-18 px-6 bg-brand-light border-y border-stone-200/70" aria-label="What makes Padel Tripper different">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mb-8">
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Why Padel Tripper</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-black leading-tight mb-4">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Why Padel Tripper</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-5">
               Train Like A Player. <span className="text-brand-red">Travel Like A Guest.</span>
             </h2>
             <p className="text-stone-500 leading-relaxed">
@@ -135,7 +135,7 @@ export default function HomePage() {
                 <div className="relative pl-8">
                   <div className="absolute left-0 top-1 h-full w-px bg-stone-300" />
                   <span className="absolute left-[-11px] top-0 h-6 w-6 rounded-full bg-brand-red text-white text-[10px] font-bold flex items-center justify-center">AM</span>
-                  <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-2">
+                  <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-stone-500 mb-2">
                     <Trophy size={13} className="text-brand-red" />
                     Pitu Losada Academy at Montemar
                   </p>
@@ -147,7 +147,7 @@ export default function HomePage() {
 
                 <div className="relative pl-8">
                   <span className="absolute left-[-11px] top-0 h-6 w-6 rounded-full bg-brand-dark text-white text-[10px] font-bold flex items-center justify-center">PM</span>
-                  <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-2">
+                  <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-stone-500 mb-2">
                     <Handshake size={13} className="text-brand-red" />
                     Bela Padel Center
                   </p>
@@ -194,19 +194,19 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          <div className="rounded-2xl border border-stone-200 bg-white px-6 py-5 md:px-8 md:py-6">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone-400 mb-2">The Combination</p>
-            <p className="font-serif text-xl md:text-2xl font-black leading-tight text-brand-dark">
-              Elite Coaching (AM) <span className="text-brand-red">+</span> Social Match Play (PM) <span className="text-brand-red">=</span> Faster Improvement
+          <div className="rounded-2xl border border-stone-200 bg-brand-dark text-white px-6 py-6 md:px-8 md:py-7">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-white/50 mb-3">The Combination</p>
+            <p className="font-serif text-2xl md:text-3xl font-black leading-tight">
+              Elite Coaching (AM) <span className="text-brand-red">+</span> Social Match Play (PM) <span className="text-brand-red">=</span> Faster Improvement & Better Trip Experience
             </p>
           </div>
         </div>
       </section>
 
       {/* Next Upcoming Events */}
-      <section id="events" className="py-22 px-6 bg-white" aria-label="Next upcoming padel holidays">
+      <section id="events" className="py-28 px-6 bg-white" aria-label="Next upcoming padel holidays">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-xl mb-14">
+          <div className="max-w-xl mb-20">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
             <h2 className="font-serif text-4xl font-black uppercase mb-5">Next Padel Camps</h2>
             <p className="text-stone-400 leading-relaxed">
@@ -214,7 +214,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {UPCOMING_EVENTS.map((event, idx) => (
               <motion.div
                 key={event.id}
@@ -222,16 +222,16 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group rounded-2xl overflow-hidden border border-stone-200 bg-white hover:border-stone-300 transition-colors duration-300"
+                className="group rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
               >
                 {event.image && (
                   <div className="relative h-52 overflow-hidden">
                     <img
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
-                      className={`w-full h-full object-cover ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : 'object-top'}`}
+                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : 'object-top'}`}
                     />
-                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-white text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full border border-stone-200">
+                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full">
                       {event.status}
                     </div>
                   </div>
