@@ -79,7 +79,7 @@ export default function HomePage() {
               transition={{ delay: 0.08 }}
               className="lg:col-span-7"
             >
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Padel Tripper</p>
+              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Us</p>
               <h2 className="font-serif text-[30px] md:text-5xl font-black uppercase leading-tight mb-6">
                 <span className="block">The Story Behind</span>
                 <span className="block text-brand-red">Padel Tripper</span>
