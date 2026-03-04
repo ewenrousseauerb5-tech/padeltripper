@@ -18,7 +18,7 @@ import {
   Users,
   Building2,
 } from 'lucide-react';
-import { ALL_EVENTS } from '../data/events';
+import { FUTURE_EVENTS } from '../data/events';
 import BookingForm from '../components/BookingForm';
 
 const CAROUSEL_PHOTOS = [
@@ -182,7 +182,7 @@ export default function EventsPage() {
       <section className="py-24 px-6" aria-label="All padel holiday dates and prices">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {ALL_EVENTS.map((event, idx) => (
+            {FUTURE_EVENTS.map((event, idx) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 20 }}

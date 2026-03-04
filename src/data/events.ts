@@ -1,5 +1,6 @@
 export interface PadelEvent {
   id: number;
+  startDate: string;
   date: string;
   dateShort: string;
   nights: number;
@@ -17,6 +18,7 @@ export interface PadelEvent {
 export const ALL_EVENTS: PadelEvent[] = [
   {
     id: 80,
+    startDate: '2026-03-17',
     date: '17th - 20th March 2026',
     dateShort: 'Mar 17–20',
     nights: 3,
@@ -31,6 +33,7 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
   {
     id: 73,
+    startDate: '2026-03-23',
     date: '23rd - 27th March 2026',
     dateShort: 'Mar 23–27',
     nights: 4,
@@ -44,6 +47,7 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
   {
     id: 68,
+    startDate: '2026-03-31',
     date: '31st March - 3rd April 2026',
     dateShort: 'Mar 31 – Apr 3',
     nights: 3,
@@ -57,6 +61,7 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
   {
     id: 69,
+    startDate: '2026-04-14',
     date: '14th - 17th April 2026',
     dateShort: 'Apr 14–17',
     nights: 3,
@@ -69,6 +74,7 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
   {
     id: 62,
+    startDate: '2026-05-05',
     date: '5th - 8th May 2026',
     dateShort: 'May 5–8',
     nights: 3,
@@ -81,6 +87,7 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
   {
     id: 88,
+    startDate: '2026-05-12',
     name: 'Hosted Alicante Padel Experience: Ben Kettleborough',
     date: '12th - 15th May 2026',
     dateShort: 'May 12–15',
@@ -94,6 +101,7 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
   {
     id: 70,
+    startDate: '2026-05-26',
     date: '26th - 29th May 2026',
     dateShort: 'May 26–29',
     nights: 3,
@@ -106,4 +114,14 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
 ];
 
-export const UPCOMING_EVENTS = ALL_EVENTS.slice(0, 3);
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+export const FUTURE_EVENTS = ALL_EVENTS
+  .filter(event => {
+    const eventDate = new Date(`${event.startDate}T00:00:00`);
+    return eventDate >= today;
+  })
+  .sort((a, b) => a.startDate.localeCompare(b.startDate));
+
+export const UPCOMING_EVENTS = FUTURE_EVENTS.slice(0, 3);

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, ChevronDown, Plus, Trash2 } from 'lucide-react';
-import { ALL_EVENTS } from '../data/events';
+import { ALL_EVENTS, FUTURE_EVENTS } from '../data/events';
 
 interface Participant {
   full_name: string;
@@ -170,7 +170,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
                 className={`${inputClass} appearance-none pr-10`}
               >
                 <option value="">Choose a date...</option>
-                {ALL_EVENTS.map(event => (
+                {FUTURE_EVENTS.map(event => (
                   <option key={event.id} value={event.id}>
                     {event.date} - From {event.price}
                   </option>
