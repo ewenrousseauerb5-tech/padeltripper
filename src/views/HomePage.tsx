@@ -196,7 +196,7 @@ export default function HomePage() {
 
           <div className="rounded-2xl border border-stone-800 bg-[#141414] px-6 py-5 md:px-8 md:py-6">
             <p className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-2">The Combination</p>
-            <p className="font-serif text-lg md:text-xl font-bold leading-snug text-stone-100 max-w-4xl">
+            <p className="font-serif text-lg md:text-[19px] font-bold leading-snug text-stone-100 max-w-none md:whitespace-nowrap">
               Elite Coaching (AM) <span className="text-brand-red">+</span> Social Match Play (PM) <span className="text-brand-red">=</span> Faster Improvement and Better Trip Experience
             </p>
           </div>
