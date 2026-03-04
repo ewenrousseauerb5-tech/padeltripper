@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Clock, Users, MapPin, Calendar, Star, ArrowRight, Trophy, Handshake } from 'lucide-react';
+import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
 import TrustpilotReviewHighlights from '../components/TrustpilotReviewHighlights';
 
@@ -53,32 +53,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose Our Padel Camps */}
-      <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="Why choose our padel camps in Spain">
+      {/* About Padel Tripper */}
+      <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="About Padel Tripper">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12">
-            {[
-              { icon: Clock, title: '6 Hours Coaching + 4 Hours Social Play', desc: 'Intensive padel training sessions at the academy of 3x World Champion Pitu Losada, plus competitive social play each afternoon. Suitable for all levels.' },
-              { icon: Users, title: 'Expert Coaching Ratio', desc: 'Maximum 4 players per coach for personalised attention. Perfect for solo travellers, couples, or group padel holidays.' },
-              { icon: MapPin, title: 'Alicante, Costa Blanca', desc: "Play padel in one of Spain's sunniest cities with world-class facilities. Direct flights from the UK all year round." },
-            ].map((item, idx) => (
-              <motion.article
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.15 }}
-                className="text-center space-y-5"
-              >
-                <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-brand-red mx-auto" aria-hidden="true">
-                  <item.icon size={26} strokeWidth={1.5} />
-                </div>
-                <h3 className="font-serif text-lg font-bold uppercase tracking-tight">{item.title}</h3>
-                <p className="text-stone-400 text-sm leading-relaxed max-w-xs mx-auto">
-                  {item.desc}
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5"
+            >
+              <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
+                <img
+                  src="/images/group-photo.jpg"
+                  alt="Ollie, co-founder of Padel Tripper, on court in Alicante"
+                  className="w-full h-[520px] object-cover object-center"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="lg:col-span-7"
+            >
+              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Padel Tripper</p>
+              <h2 className="font-serif text-[30px] md:text-5xl font-black uppercase leading-tight mb-6">
+                Built From Community, <span className="text-brand-red">Not Tourism</span>
+              </h2>
+              <div className="space-y-4 text-stone-600 leading-relaxed">
+                <p>
+                  I&apos;m Ollie, co-founder of Padel Tripper and Alicante Social Padel.
                 </p>
-              </motion.article>
-            ))}
+                <p>
+                  Four years ago, I started building a local padel community in Spain. Since then, we&apos;ve hosted 700+ events, built an incredible network of 2000 players, and watched real friendships form on and off court.
+                </p>
+                <p>
+                  That success sparked something bigger. Padel Tripper was born from the same energy, but on an international level.
+                </p>
+                <p>
+                  This isn&apos;t a travel company that added padel. It&apos;s a proven padel community that expanded into unforgettable trips.
+                </p>
+                <p>
+                  We know what players want: great organisation, first-class coaching, social match play, sunshine, tapas, and meeting fellow padel addicts.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
