@@ -94,6 +94,7 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
   const full_name = normalizeString(raw.full_name);
   const email = normalizeString(raw.email);
   const participants = Array.isArray(raw.participants) ? normalizeParticipants(raw.participants) : [];
+  const num_participants = Number(raw.num_participants);
 
   if (!Number.isFinite(event_id) || event_id <= 0) {
     return { error: 'event_id is required.' };
@@ -104,15 +105,23 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
   if (!email) {
     return { error: 'email is required.' };
   }
-  if (!participants.length) {
-    return { error: 'participants is required.' };
+  if (!Number.isFinite(num_participants) || num_participants <= 0) {
+    return { error: 'num_participants is required.' };
   }
-  if (raw.accepted_privacy_terms !== true) {
-    return { error: 'Privacy policy and terms must be accepted.' };
-  }
-  if (participants.length > 1 && raw.confirmed_participant_consent !== true) {
-    return { error: 'Participant data consent must be confirmed when adding multiple participants.' };
-  }
+
+  const normalizedParticipants =
+    participants.length > 0
+      ? participants
+      : [
+          {
+            full_name,
+            email,
+            padel_level: '',
+            trip_goals: '',
+            special_requirements: '',
+            equipment_rental: false,
+          },
+        ];
 
   return {
     booking: {
@@ -121,13 +130,13 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
       full_name,
       email,
       phone: normalizeString(raw.phone),
-      num_participants: Number(raw.num_participants) > 0 ? Number(raw.num_participants) : participants.length,
+      num_participants,
       accommodation_type: normalizeString(raw.accommodation_type),
       dietary_requirements: normalizeString(raw.dietary_requirements),
       special_requests: normalizeString(raw.special_requests),
       accepted_privacy_terms: raw.accepted_privacy_terms === true,
       confirmed_participant_consent: raw.confirmed_participant_consent === true,
-      participants,
+      participants: normalizedParticipants,
     },
   };
 }
@@ -143,17 +152,6 @@ function escapeHtml(value: string): string {
 
 function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string {
   const eventLabel = booking.event_name || `Event #${booking.event_id}`;
-  const participantRows = booking.participants
-    .map(
-      (p, i) => `
-      <tr style="border-bottom:1px solid #f0f0f0;">
-        <td style="padding:8px 12px;font-weight:600;">${i + 1}. ${escapeHtml(p.full_name || '—')}</td>
-        <td style="padding:8px 12px;">${escapeHtml(p.email || '—')}</td>
-        <td style="padding:8px 12px;">${escapeHtml(p.padel_level || '—')}</td>
-        <td style="padding:8px 12px;">${p.equipment_rental ? 'Yes' : 'No'}</td>
-      </tr>`,
-    )
-    .join('');
 
   return `
 <div style="font-family:sans-serif;max-width:620px;margin:0 auto;">
@@ -167,25 +165,8 @@ function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string
       <tr><td style="padding:5px 0;color:#888;">Event</td><td style="padding:5px 0;">${escapeHtml(eventLabel)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Lead Booker</td><td style="padding:5px 0;">${escapeHtml(booking.full_name)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Email</td><td style="padding:5px 0;">${escapeHtml(booking.email)}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Phone</td><td style="padding:5px 0;">${escapeHtml(booking.phone || '—')}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Participants</td><td style="padding:5px 0;">${booking.num_participants}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Accommodation</td><td style="padding:5px 0;">${escapeHtml(booking.accommodation_type || '—')}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Dietary</td><td style="padding:5px 0;">${escapeHtml(booking.dietary_requirements || '—')}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Special Requests</td><td style="padding:5px 0;">${escapeHtml(booking.special_requests || '—')}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Accepted Privacy/Terms</td><td style="padding:5px 0;">${booking.accepted_privacy_terms ? 'Yes' : 'No'}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Confirmed Participant Consent</td><td style="padding:5px 0;">${booking.confirmed_participant_consent ? 'Yes' : 'No'}</td></tr>
-    </table>
-    <h2 style="color:#c0392b;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Participants</h2>
-    <table style="width:100%;border-collapse:collapse;">
-      <thead>
-        <tr style="background:#f8f8f8;">
-          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#999;">Name</th>
-          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#999;">Email</th>
-          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#999;">Level</th>
-          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#999;">Rental</th>
-        </tr>
-      </thead>
-      <tbody>${participantRows}</tbody>
+      <tr><td style="padding:5px 0;color:#888;">Other Information</td><td style="padding:5px 0;">${escapeHtml(booking.special_requests || '—')}</td></tr>
     </table>
   </div>
 </div>`;
