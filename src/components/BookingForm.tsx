@@ -28,7 +28,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   const [eventId, setEventId] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
-  const [numParticipants, setNumParticipants] = useState(1);
+  const [numParticipantsInput, setNumParticipantsInput] = useState('1');
   const [otherInfo, setOtherInfo] = useState('');
   const [acceptedLegal, setAcceptedLegal] = useState(false);
 
@@ -39,11 +39,16 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   }, [selectedEventId]);
 
   const selectedEvent = ALL_EVENTS.find(event => String(event.id) === eventId);
+  const getNormalizedParticipants = () => {
+    const parsed = parseInt(numParticipantsInput, 10);
+    if (!Number.isFinite(parsed)) return 1;
+    return Math.max(1, Math.min(16, parsed));
+  };
 
   const resetForm = () => {
     setFullName('');
     setEmail('');
-    setNumParticipants(1);
+    setNumParticipantsInput('1');
     setOtherInfo('');
     setAcceptedLegal(false);
 
@@ -66,7 +71,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
         event_name: selectedEvent ? `${selectedEvent.date} - From ${selectedEvent.price}` : undefined,
         full_name: fullName.trim(),
         email: email.trim(),
-        num_participants: numParticipants,
+        num_participants: getNormalizedParticipants(),
         special_requests: otherInfo.trim(),
         accepted_privacy_terms: acceptedLegal,
       };
@@ -147,9 +152,10 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
               type="number"
               min={1}
               max={16}
-              value={numParticipants}
+              value={numParticipantsInput}
               onFocus={e => e.currentTarget.select()}
-              onChange={e => setNumParticipants(Math.max(1, Math.min(16, parseInt(e.target.value, 10) || 1)))}
+              onChange={e => setNumParticipantsInput(e.target.value)}
+              onBlur={() => setNumParticipantsInput(String(getNormalizedParticipants()))}
               className={inputClass}
             />
           </div>
