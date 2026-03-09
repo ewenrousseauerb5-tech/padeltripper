@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle2, ChevronDown } from 'lucide-react';
 import { ALL_EVENTS, FUTURE_EVENTS } from '../data/events';
 
@@ -29,6 +30,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   const [email, setEmail] = useState('');
   const [numParticipants, setNumParticipants] = useState(1);
   const [otherInfo, setOtherInfo] = useState('');
+  const [acceptedLegal, setAcceptedLegal] = useState(false);
 
   useEffect(() => {
     if (selectedEventId) {
@@ -43,6 +45,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     setEmail('');
     setNumParticipants(1);
     setOtherInfo('');
+    setAcceptedLegal(false);
 
     if (!selectedEventId) {
       setEventId('');
@@ -65,6 +68,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
         email: email.trim(),
         num_participants: numParticipants,
         special_requests: otherInfo.trim(),
+        accepted_privacy_terms: acceptedLegal,
       };
 
       const response = await fetch('/api/booking', {
@@ -172,6 +176,27 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
       {status === 'error' && (
         <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{errorMsg}</p>
       )}
+
+      <label className="flex items-start gap-3 text-sm text-stone-500">
+        <input
+          required
+          type="checkbox"
+          checked={acceptedLegal}
+          onChange={e => setAcceptedLegal(e.target.checked)}
+          className="mt-0.5 h-4 w-4 rounded border-stone-300 text-brand-red focus:ring-brand-red"
+        />
+        <span>
+          I accept the{' '}
+          <Link href="/privacy-policy" className="text-brand-red underline hover:text-brand-dark">
+            Privacy Policy
+          </Link>{' '}
+          and{' '}
+          <Link href="/terms-and-conditions" className="text-brand-red underline hover:text-brand-dark">
+            Terms & Conditions
+          </Link>
+          .
+        </span>
+      </label>
 
       <button
         type="submit"
