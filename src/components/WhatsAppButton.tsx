@@ -1,7 +1,11 @@
 export default function WhatsAppButton() {
+  const prefilledMessage = encodeURIComponent(
+    "Hi Padel Tripper! I'm interested in joining one of your upcoming trips. Could you share availability and next steps?",
+  );
+
   return (
     <a
-      href="https://wa.me/447939870682"
+      href={`https://wa.me/447939870682?text=${prefilledMessage}`}
       target="_blank"
       rel="noreferrer"
       className="fixed bottom-6 right-6 bg-[#25D366] text-white px-5 py-3 rounded-full font-semibold shadow-lg shadow-[#25D366]/20 flex items-center gap-2 hover:scale-105 hover:shadow-xl transition-all z-50 text-sm"
