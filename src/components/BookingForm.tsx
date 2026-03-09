@@ -148,6 +148,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
               min={1}
               max={16}
               value={numParticipants}
+              onFocus={e => e.currentTarget.select()}
               onChange={e => setNumParticipants(Math.max(1, Math.min(16, parseInt(e.target.value, 10) || 1)))}
               className={inputClass}
             />
