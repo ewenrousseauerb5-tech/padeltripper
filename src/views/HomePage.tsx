@@ -15,7 +15,7 @@ export default function HomePage() {
           <img
             src="/images/hero-padel-camp.jpg"
             alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
-            className="w-full h-full object-cover brightness-[0.4]"
+            className="md:hidden w-full h-full object-cover brightness-[0.4]"
           />
           <video
             className="md:hidden absolute inset-0 w-full h-full object-cover brightness-[0.4]"
@@ -35,8 +35,7 @@ export default function HomePage() {
             muted
             loop
             playsInline
-            preload="metadata"
-            poster="/images/hero-padel-camp.jpg"
+            preload="auto"
             aria-hidden="true"
           >
             <source src="/videos/hero-background.m4v" type="video/mp4" />
