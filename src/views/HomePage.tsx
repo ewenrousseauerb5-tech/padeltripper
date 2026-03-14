@@ -18,18 +18,6 @@ export default function HomePage() {
             className="md:hidden w-full h-full object-cover brightness-[0.4]"
           />
           <video
-            className="md:hidden absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            poster="/images/hero-padel-camp.jpg"
-            aria-hidden="true"
-          >
-            <source src="/Reel 3 (no music.text).mp4" type="video/mp4" />
-          </video>
-          <video
             className="hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4]"
             autoPlay
             muted
