@@ -18,7 +18,7 @@ export default function HomePage() {
             className="md:hidden w-full h-full object-cover brightness-[0.4]"
           />
           <video
-            className="md:hidden absolute inset-0 w-full h-full object-cover brightness-[0.4]"
+            className="md:hidden absolute inset-0 w-full h-full object-cover"
             autoPlay
             muted
             loop
