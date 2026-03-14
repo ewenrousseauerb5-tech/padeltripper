@@ -23,11 +23,11 @@ export default function HomePage() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             poster="/images/hero-padel-camp.jpg"
             aria-hidden="true"
           >
-            <source src="/videos/hero-mobile.m4v" type="video/mp4" />
+            <source src="/Reel 3 (no music.text).mp4" type="video/mp4" />
           </video>
           <video
             className="hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4]"
