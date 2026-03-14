@@ -17,6 +17,18 @@ export default function HomePage() {
             alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
             className="w-full h-full object-cover brightness-[0.4]"
           />
+          <video
+            className="hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4]"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/images/hero-padel-camp.jpg"
+            aria-hidden="true"
+          >
+            <source src="/videos/hero-background.m4v" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
         </div>
 
