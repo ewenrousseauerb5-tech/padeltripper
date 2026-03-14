@@ -33,7 +33,7 @@ export default function HomePage() {
               <span className="text-brand-red">in Spain</span>
             </h1>
             <p className="text-lg text-white/70 mb-12 max-w-lg leading-relaxed font-light">
-              4-day padel retreats on the Costa Blanca with professional coaching, 4&#8209;star hotel and a great group of players. The ultimate padel camp experience.
+              Discover the fastest growing sport in the world in Spain, the home of padel. What&apos;s not to love?
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
