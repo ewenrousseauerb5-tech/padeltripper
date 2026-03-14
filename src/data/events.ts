@@ -17,21 +17,6 @@ export interface PadelEvent {
 
 export const ALL_EVENTS: PadelEvent[] = [
   {
-    id: 80,
-    startDate: '2026-03-17',
-    date: '17th - 20th March 2026',
-    dateShort: 'Mar 17–20',
-    nights: 3,
-    status: 'Available',
-    price: '£695',
-    filled: 2,
-    max: 16,
-    location: 'Alicante, Spain',
-    hotel: '4* Hotel Alicante Golf',
-    image: '/images/tournament-feb-25.jpg',
-    imagePosition: 'center',
-  },
-  {
     id: 73,
     startDate: '2026-03-23',
     date: '23rd - 27th March 2026',
