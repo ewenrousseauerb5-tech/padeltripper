@@ -26,10 +26,10 @@ export default function HomePage() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
           >
-            <source src="/videos/hero-background.m4v" type="video/mp4" />
+            <source src="/videos/hero-background.m4v" type="video/mp4" media="(min-width: 768px)" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
         </div>
@@ -82,6 +82,8 @@ export default function HomePage() {
                   src="/images/ollie.jpg"
                   alt="Ollie, co-founder of Padel Tripper, on court in Alicante"
                   className="w-full h-[520px] object-cover object-[center_34%]"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </motion.div>
@@ -133,6 +135,8 @@ export default function HomePage() {
             src="/images/post-tournament-celebration.jpg"
             alt="Padel Tripper group celebrating after a tournament at Club Montemar, Alicante"
             className="w-full h-full object-cover brightness-[0.3]"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-center">
@@ -224,6 +228,8 @@ export default function HomePage() {
                     src="/images/pitu-losada-coach.jpg"
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
                     className="w-full h-[290px] object-cover object-[center_22%]"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm w-[66%] ml-auto -mt-12 relative bg-white">
@@ -231,6 +237,8 @@ export default function HomePage() {
                     src="/images/bela-courts.webp"
                     alt="Social padel match play at Bela Padel Center in Alicante"
                     className="w-full h-32 object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -273,6 +281,8 @@ export default function HomePage() {
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
                       className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : 'object-top'}`}
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full">
                       {event.status}
