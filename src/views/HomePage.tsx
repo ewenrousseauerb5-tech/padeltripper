@@ -13,7 +13,7 @@ export default function HomePage() {
       <section className="relative h-screen flex items-center overflow-hidden" aria-label="Padel holidays Spain hero">
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/hero-padel-camp.jpg"
+            src="/images/hero-mobile.jpg"
             alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
             className="md:hidden w-full h-full object-cover brightness-[0.4]"
           />
