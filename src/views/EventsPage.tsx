@@ -16,7 +16,6 @@ import {
   Clock,
   Sparkles,
   Users,
-  Building2,
   Instagram,
 } from 'lucide-react';
 import { FUTURE_EVENTS } from '../data/events';
@@ -514,19 +513,27 @@ export default function EventsPage() {
               <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-6">
                 Tailor Your Own <span className="text-brand-red">Padel Tripper Experience</span>
               </h2>
-              <div className="space-y-4 text-stone-400 leading-relaxed mb-10">
+              <div className="space-y-3 text-stone-400 leading-relaxed mb-6">
                 <p>
                   Design your own Padel Tripper holiday built around our popular 4-day padel experience.
                 </p>
                 <p>
-                  Our typical trip includes 6 hours of professional coaching to sharpen your game, along with as much social padel as you can handle. Play, compete, and enjoy the game with your friends while improving your skills in a fun and relaxed atmosphere.
+                  Tell us your group size and preferred dates, and we&apos;ll come back with the best options to create your perfect padel getaway.
                 </p>
-                <p>
-                  Off the court, you&apos;ll have the chance to take in everything breath-taking Alicante has to offer — from beautiful beaches and great food to vibrant nightlife and stunning Mediterranean views.
-                </p>
-                <p>
-                  Simply tell us how many people are travelling and your preferred dates, and we&apos;ll tailor the trip to suit your group. Once we have your details, we&apos;ll come back to you with the best options we can offer to create your perfect padel getaway.
-                </p>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3 mb-10">
+                <div className="rounded-xl border border-stone-200 bg-white p-4">
+                  <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Format</p>
+                  <p className="text-sm text-brand-dark font-medium">Built around our popular 4-day experience</p>
+                </div>
+                <div className="rounded-xl border border-stone-200 bg-white p-4">
+                  <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">On Court</p>
+                  <p className="text-sm text-brand-dark font-medium">6 hours of pro coaching + social padel</p>
+                </div>
+                <div className="rounded-xl border border-stone-200 bg-white p-4 sm:col-span-2">
+                  <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Off Court</p>
+                  <p className="text-sm text-brand-dark font-medium">Beaches, great food, nightlife and Mediterranean views</p>
+                </div>
               </div>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
@@ -536,15 +543,6 @@ export default function EventsPage() {
                   <div>
                     <p className="font-semibold text-brand-dark text-sm mb-1">Group Trips</p>
                     <p className="text-stone-400 text-sm">Bring your own group of friends, family, or club members. We'll handle everything.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-red/10 flex items-center justify-center text-brand-red shrink-0 mt-0.5">
-                    <Building2 size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-dark text-sm mb-1">Corporate Events</p>
-                    <p className="text-stone-400 text-sm">Team building with a twist. Padel, sun, and unforgettable team bonding in Alicante.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
