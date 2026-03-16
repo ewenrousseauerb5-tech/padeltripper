@@ -273,7 +273,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500"
+                className="group h-full rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col"
               >
                 {event.image && (
                   <div className="relative h-52 overflow-hidden">
@@ -294,12 +294,12 @@ export default function HomePage() {
                     )}
                   </div>
                 )}
-                <div className="p-7">
+                <div className="p-7 flex flex-col flex-1">
                   <div className="flex justify-between items-center mb-5">
                     <span className="font-semibold text-sm text-brand-dark">{event.dateShort}</span>
                     <span className="text-xl font-serif font-black text-brand-red">From {event.price}</span>
                   </div>
-                  <div className="space-y-2.5 mb-5">
+                  <div className="space-y-2.5 mb-5 flex-1">
                     {event.eligibilityNote && (
                       <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                         {event.eligibilityNote}
@@ -320,7 +320,7 @@ export default function HomePage() {
                   </div>
                   <Link
                     href="/events#booking"
-                    className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300"
+                    className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300 mt-auto"
                   >
                     Book This Trip
                   </Link>
