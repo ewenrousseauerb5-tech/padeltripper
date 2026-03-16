@@ -230,7 +230,7 @@ export default function HomePage() {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
                   <img
-                    src="/images/bela-courts.webp"
+                    src="/images/bela-courts-hd.jpg"
                     alt="Social padel match play at Bela Padel Center in Alicante"
                     className="w-full h-[290px] object-cover object-center"
                     loading="lazy"
@@ -239,9 +239,9 @@ export default function HomePage() {
                 </div>
                 <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm w-[66%] ml-auto -mt-12 relative bg-white">
                   <img
-                    src="/images/pitu-losada-coach.jpg"
+                    src="/images/pitu-losada-coach-hd.jpg"
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
-                    className="w-full h-32 object-cover object-[center_22%]"
+                    className="w-full h-36 object-cover object-[center_28%]"
                     loading="lazy"
                     decoding="async"
                   />
