@@ -167,13 +167,11 @@ export default function HomePage() {
             <div className="space-y-3 text-stone-500 leading-relaxed">
               <p>
                 Padel trips should be more than just a few games. They should be an unforgettable experience.
-                With Padel Tripper, you train at the academy of 3-time world champion Pitu Losada, learning
-                from elite coaches in a truly professional environment.
+                That&apos;s exactly why Padel Tripper exists.
               </p>
               <p>
-                You also experience social play at Bela Padel Center, one of the most prestigious clubs in Spain.
-                And from the moment you arrive, our team is on hand 24/7 to make sure everything runs seamlessly,
-                on and off court.
+                From the moment you arrive, our team is on hand 24/7 to make sure everything runs seamlessly,
+                giving you a premium experience on and off the court.
               </p>
             </div>
           </div>
