@@ -130,7 +130,7 @@ export default function TrustpilotReviewHighlights() {
   }, []);
 
   useEffect(() => {
-    const target = 4.7;
+    const target = 5.0;
     const durationMs = 1000;
     const steps = 30;
     let currentStep = 0;
@@ -146,6 +146,14 @@ export default function TrustpilotReviewHighlights() {
     }, durationMs / steps);
 
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const rotateTimer = setInterval(() => {
+      setActiveIdx(prev => (prev + 1) % reviews.length);
+    }, 4500);
+
+    return () => clearInterval(rotateTimer);
   }, []);
 
   return (

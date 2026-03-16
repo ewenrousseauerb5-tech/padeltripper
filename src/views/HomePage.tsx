@@ -80,7 +80,7 @@ export default function HomePage() {
               <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
                 <img
                   src="/images/ollie.jpg"
-                  alt="Ollie, co-founder of Padel Tripper, on court in Alicante"
+                  alt="Ollie, founder of Padel Tripper, on court in Alicante"
                   className="w-full h-[520px] object-cover object-[center_34%]"
                   loading="lazy"
                   decoding="async"
@@ -102,7 +102,7 @@ export default function HomePage() {
               </h2>
               <div className="space-y-3 text-[15px] md:text-base text-stone-600 leading-relaxed">
                 <p className="font-medium text-brand-dark">
-                  I&apos;m Ollie, co-founder of Padel Tripper and Alicante Social Padel.
+                  I&apos;m Ollie, founder of Padel Tripper and Alicante Social Padel.
                 </p>
                 <p>
                   Four years ago, I started building a local padel community in Spain. Since then, we&apos;ve hosted 700+ events and built a network of 2000 players where real friendships formed on and off court.
