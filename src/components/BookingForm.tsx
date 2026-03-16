@@ -16,7 +16,7 @@ interface BookingResponse {
 }
 
 const inputClass =
-  'w-full px-4 py-3.5 bg-stone-50 border border-stone-100 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm';
+  'w-full px-4 py-3.5 bg-stone-50 border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm';
 
 const labelClass = 'block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2';
 
@@ -97,10 +97,10 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-7">
       <div>
         <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-red mb-5">Quotation Request</p>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-5">
           <div className="md:col-span-2">
             <label className={labelClass}>Select Date *</label>
             <div className="relative">
@@ -145,7 +145,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
             />
           </div>
 
-          <div>
+          <div className="md:col-span-2 md:max-w-[220px]">
             <label className={labelClass}>How Many Players *</label>
             <input
               required
@@ -163,11 +163,11 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
           <div className="md:col-span-2">
             <label className={labelClass}>Any Other Information</label>
             <textarea
-              rows={4}
+              rows={5}
               placeholder="Anything else we should know?"
               value={otherInfo}
               onChange={e => setOtherInfo(e.target.value)}
-              className={`${inputClass} resize-y`}
+              className={`${inputClass} resize-none`}
             />
           </div>
         </div>
@@ -184,31 +184,33 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
         <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{errorMsg}</p>
       )}
 
-      <label className="flex items-start gap-3 text-sm text-stone-500">
-        <input
-          required
-          type="checkbox"
-          checked={acceptedLegal}
-          onChange={e => setAcceptedLegal(e.target.checked)}
-          className="mt-0.5 h-4 w-4 rounded border-stone-300 text-brand-red focus:ring-brand-red"
-        />
-        <span>
-          I accept the{' '}
-          <Link href="/privacy-policy" className="text-brand-red underline hover:text-brand-dark">
-            Privacy Policy
-          </Link>{' '}
-          and{' '}
-          <Link href="/terms-and-conditions" className="text-brand-red underline hover:text-brand-dark">
-            Terms & Conditions
-          </Link>
-          .
-        </span>
-      </label>
+      <div className="rounded-xl border border-stone-200 bg-stone-50/70 p-4">
+        <label className="flex items-start gap-3 text-sm text-stone-600">
+          <input
+            required
+            type="checkbox"
+            checked={acceptedLegal}
+            onChange={e => setAcceptedLegal(e.target.checked)}
+            className="mt-0.5 h-4 w-4 rounded border-stone-300 text-brand-red focus:ring-brand-red"
+          />
+          <span>
+            I accept the{' '}
+            <Link href="/privacy-policy" className="text-brand-red underline hover:text-brand-dark">
+              Privacy Policy
+            </Link>{' '}
+            and{' '}
+            <Link href="/terms-and-conditions" className="text-brand-red underline hover:text-brand-dark">
+              Terms & Conditions
+            </Link>
+            .
+          </span>
+        </label>
+      </div>
 
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full py-4 rounded-full bg-brand-red text-white font-semibold uppercase tracking-[0.15em] hover:bg-brand-dark disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+        className="w-full py-4 rounded-full bg-brand-red text-white font-semibold uppercase tracking-[0.15em] hover:bg-brand-dark disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
         {status === 'loading' ? 'Submitting...' : 'Submit Quotation Request'}
       </button>

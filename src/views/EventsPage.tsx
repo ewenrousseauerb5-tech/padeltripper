@@ -397,10 +397,10 @@ export default function EventsPage() {
 
       {/* Booking Form */}
       <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Header + contact */}
-          <div className="grid md:grid-cols-2 gap-12 items-start mb-12">
-            <div>
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-10">
+            <div className="lg:col-span-7">
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
               <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-6">
                 Book Your <span className="text-brand-red">Trip</span>
@@ -409,9 +409,9 @@ export default function EventsPage() {
                 Fill in the form and we&apos;ll confirm your spot within 24 hours. Got a question first? Drop us a message on WhatsApp.
               </p>
             </div>
-            <div className="space-y-5 md:pt-16">
-              <div className="flex items-center gap-5">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+            <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6 space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
                   <Mail size={20} />
                 </div>
                 <div>
@@ -419,8 +419,8 @@ export default function EventsPage() {
                   <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
                 </div>
               </div>
-              <div className="flex items-center gap-5">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
                   <Phone size={20} />
                 </div>
                 <div>
@@ -430,8 +430,8 @@ export default function EventsPage() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-center gap-5">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
                   <Instagram size={20} />
                 </div>
                 <div>
@@ -444,9 +444,9 @@ export default function EventsPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_360px] gap-6 lg:gap-8 items-start">
+          <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-start">
             {/* Form */}
-            <div className="bg-white rounded-2xl p-7 md:p-9 shadow-2xl">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
