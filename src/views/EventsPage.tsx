@@ -512,11 +512,22 @@ export default function EventsPage() {
             <div>
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Bespoke Experiences</p>
               <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-6">
-                Tailor Your <span className="text-brand-red">Own Event</span>
+                Tailor Your Own <span className="text-brand-red">Padel Tripper Experience</span>
               </h2>
-              <p className="text-stone-400 leading-relaxed mb-10">
-                Looking for something unique? We create bespoke padel experiences for groups, corporate teams, and special occasions. From private coaching to full event management — we'll design the perfect trip.
-              </p>
+              <div className="space-y-4 text-stone-400 leading-relaxed mb-10">
+                <p>
+                  Design your own Padel Tripper holiday built around our popular 4-day padel experience.
+                </p>
+                <p>
+                  Our typical trip includes 6 hours of professional coaching to sharpen your game, along with as much social padel as you can handle. Play, compete, and enjoy the game with your friends while improving your skills in a fun and relaxed atmosphere.
+                </p>
+                <p>
+                  Off the court, you&apos;ll have the chance to take in everything breath-taking Alicante has to offer — from beautiful beaches and great food to vibrant nightlife and stunning Mediterranean views.
+                </p>
+                <p>
+                  Simply tell us how many people are travelling and your preferred dates, and we&apos;ll tailor the trip to suit your group. Once we have your details, we&apos;ll come back to you with the best options we can offer to create your perfect padel getaway.
+                </p>
+              </div>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-brand-red/10 flex items-center justify-center text-brand-red shrink-0 mt-0.5">
