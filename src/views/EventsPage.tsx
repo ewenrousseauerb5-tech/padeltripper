@@ -414,13 +414,13 @@ export default function EventsPage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-stretch">
+          <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-start">
             {/* Form */}
             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            <div className="h-full flex flex-col gap-3">
+            <div className="space-y-3">
               <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5 space-y-3">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
                 <div className="flex items-center gap-4">
@@ -457,34 +457,30 @@ export default function EventsPage() {
               </aside>
 
               {/* Basic itinerary */}
-              <aside className="flex-1 rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-5 md:p-6 flex flex-col">
+              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
-                <h3 className="font-serif text-[28px] font-black text-white uppercase leading-tight mb-4">
+                <h3 className="font-serif text-[26px] font-black text-white uppercase leading-tight mb-3">
                   Basic <span className="text-brand-red">Itinerary</span>
                 </h3>
 
-                <div className="space-y-3 flex-1">
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                <div className="space-y-2.5">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                     <p className="text-white text-sm font-semibold mb-1">Tuesday</p>
-                    <p className="text-white/60 text-sm leading-relaxed">Arrival, hotel check-in and welcome drinks in the evening.</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">Arrival, hotel check-in and welcome drinks in the evening.</p>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                     <p className="text-white text-sm font-semibold mb-1">Wednesday</p>
-                    <p className="text-white/60 text-sm leading-relaxed">Morning coaching at Montemar and afternoon social games at Bela.</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">Morning coaching at Montemar and afternoon social games at Bela.</p>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                     <p className="text-white text-sm font-semibold mb-1">Thursday</p>
-                    <p className="text-white/60 text-sm leading-relaxed">More coaching + social play, then optional night out in Alicante.</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">More coaching + social play, then optional night out in Alicante.</p>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                     <p className="text-white text-sm font-semibold mb-1">Friday</p>
-                    <p className="text-white/60 text-sm leading-relaxed">Final coaching session, then departures after midday.</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">Final coaching session, then departures after midday.</p>
                   </div>
                 </div>
-
-                <p className="mt-4 text-xs text-white/45 leading-relaxed">
-                  Full day-by-day details are available in the FAQ section above.
-                </p>
               </aside>
             </div>
           </div>
