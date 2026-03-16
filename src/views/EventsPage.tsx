@@ -416,11 +416,11 @@ export default function EventsPage() {
 
           <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-start">
             {/* Form */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
+            <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl">
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5 space-y-3">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
                 <div className="flex items-center gap-4">
@@ -454,9 +454,6 @@ export default function EventsPage() {
                     </a>
                   </div>
                 </div>
-                <p className="text-xs text-white/45 leading-relaxed pt-1">
-                  Quick reply time on WhatsApp for availability questions.
-                </p>
               </aside>
 
               {/* Basic itinerary */}
