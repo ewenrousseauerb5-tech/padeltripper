@@ -190,7 +190,7 @@ export default function EventsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
-                className="relative bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                className="relative bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full"
               >
                 {/* Red top accent */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-brand-red rounded-t-2xl" />
@@ -210,7 +210,7 @@ export default function EventsPage() {
                   </div>
                 </div>
 
-                <div className="space-y-3 mb-7">
+                <div className="space-y-3 mb-7 flex-1">
                   {event.eligibilityNote && (
                     <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                       {event.eligibilityNote}
@@ -237,7 +237,7 @@ export default function EventsPage() {
                 <a
                   href="#booking"
                   onClick={() => setSelectedEventId(event.id)}
-                  className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300"
+                  className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300 mt-auto"
                 >
                   Book This Trip
                 </a>
