@@ -20,15 +20,27 @@
 }
 
 @keyframes promo-marquee-scroll {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
 
-.promo-marquee-track {
+.promo-marquee-inner {
+  display: flex;
   width: max-content;
-  animation: promo-marquee-scroll 24s linear infinite;
+  animation: promo-marquee-scroll 22s linear infinite;
+}
+
+.promo-marquee-group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
