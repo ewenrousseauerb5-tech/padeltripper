@@ -242,15 +242,15 @@ export default function EventsPage() {
       </section>
 
       {/* Photo Carousel */}
-      <section className="py-24 bg-brand-dark px-6" aria-label="Padel holiday experience gallery">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
+      <section className="py-14 md:py-16 bg-brand-dark px-6" aria-label="Padel holiday experience gallery">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Gallery</p>
             <h2 className="font-serif text-3xl font-black text-white uppercase mb-3">The Padel Tripper <span className="text-brand-red">Experience</span></h2>
             <p className="text-white/40 text-sm font-light">More than just padel — it's the people, the sun, the memories.</p>
           </div>
           <div className="relative">
-            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentSlide}
@@ -390,6 +390,51 @@ export default function EventsPage() {
                 </div>
               </AccordionItem>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Form */}
+      <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
+        <div className="max-w-5xl mx-auto">
+          {/* Header + contact */}
+          <div className="grid md:grid-cols-2 gap-12 items-start mb-12">
+            <div>
+              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-6">
+                Book Your <span className="text-brand-red">Trip</span>
+              </h2>
+              <p className="text-white/40 leading-relaxed font-light">
+                Fill in the form and we&apos;ll confirm your spot within 24 hours. Got a question first? Drop us a message on WhatsApp.
+              </p>
+            </div>
+            <div className="space-y-5 md:pt-16">
+              <div className="flex items-center gap-5">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
+                  <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-5">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
+                  <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                    +44 7939870682
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-2xl">
+            <BookingForm selectedEventId={selectedEventId} />
           </div>
         </div>
       </section>
@@ -627,50 +672,6 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Booking Form */}
-      <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
-        <div className="max-w-5xl mx-auto">
-          {/* Header + contact */}
-          <div className="grid md:grid-cols-2 gap-12 items-start mb-12">
-            <div>
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-6">
-                Book Your <span className="text-brand-red">Trip</span>
-              </h2>
-              <p className="text-white/40 leading-relaxed font-light">
-                Fill in the form and we&apos;ll confirm your spot within 24 hours. Got a question first? Drop us a message on WhatsApp.
-              </p>
-            </div>
-            <div className="space-y-5 md:pt-16">
-              <div className="flex items-center gap-5">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
-                  <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-5">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
-                  <Phone size={20} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
-                  <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                    +44 7939870682
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Form */}
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-2xl">
-            <BookingForm selectedEventId={selectedEventId} />
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
