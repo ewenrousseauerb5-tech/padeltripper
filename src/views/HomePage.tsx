@@ -237,11 +237,11 @@ export default function HomePage() {
                     decoding="async"
                   />
                 </div>
-                <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm w-[66%] ml-auto -mt-12 relative bg-white">
+                <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm w-[56%] ml-auto -mt-14 relative bg-white">
                   <img
                     src="/images/pitu-losada-coach-hd.jpg"
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
-                    className="w-full h-36 object-cover object-[center_28%]"
+                    className="w-full h-44 object-cover object-[center_26%]"
                     loading="lazy"
                     decoding="async"
                   />
