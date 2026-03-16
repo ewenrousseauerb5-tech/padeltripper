@@ -14,6 +14,8 @@ export interface PadelEvent {
   imagePosition?: 'top' | 'center' | 'bottom' | 'lower' | 'slightLower';
   name?: string;
   eligibilityNote?: string;
+  originalPrice?: string;
+  promoNote?: string;
 }
 
 export const ALL_EVENTS: PadelEvent[] = [
@@ -39,7 +41,9 @@ export const ALL_EVENTS: PadelEvent[] = [
     dateShort: 'Apr 14–17',
     nights: 3,
     status: 'Available',
-    price: '£750',
+    price: '£650',
+    originalPrice: '£750',
+    promoNote: '£100 discount until 31 March',
     filled: 2,
     max: 16,
     location: 'Alicante, Spain',

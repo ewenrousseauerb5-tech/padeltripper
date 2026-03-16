@@ -162,7 +162,10 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
                 <option value="">Choose a date...</option>
                 {FUTURE_EVENTS.map(event => (
                   <option key={event.id} value={event.id}>
-                    {event.date} - From {event.price}{event.eligibilityNote ? ` (${event.eligibilityNote})` : ''}
+                    {event.date} - From {event.price}
+                    {event.originalPrice ? ` (was ${event.originalPrice})` : ''}
+                    {event.promoNote ? ` - ${event.promoNote}` : ''}
+                    {event.eligibilityNote ? ` (${event.eligibilityNote})` : ''}
                   </option>
                 ))}
               </select>

@@ -206,11 +206,17 @@ export default function EventsPage() {
                     {event.status}
                   </div>
                   <div className="text-2xl font-serif font-black text-brand-red">
+                    {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{event.originalPrice}</span>}
                     From {event.price}
                   </div>
                 </div>
 
                 <div className="space-y-3 mb-7 flex-1">
+                  {event.promoNote && (
+                    <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                      {event.promoNote}
+                    </p>
+                  )}
                   {event.eligibilityNote && (
                     <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                       {event.eligibilityNote}

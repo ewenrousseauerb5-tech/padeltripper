@@ -302,9 +302,17 @@ export default function HomePage() {
                 <div className="p-7 flex flex-col flex-1">
                   <div className="flex justify-between items-center mb-5">
                     <span className="font-semibold text-sm text-brand-dark">{event.dateShort}</span>
-                    <span className="text-xl font-serif font-black text-brand-red">From {event.price}</span>
+                    <span className="text-xl font-serif font-black text-brand-red">
+                      {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{event.originalPrice}</span>}
+                      From {event.price}
+                    </span>
                   </div>
                   <div className="space-y-2.5 mb-5 flex-1">
+                    {event.promoNote && (
+                      <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                        {event.promoNote}
+                      </p>
+                    )}
                     {event.eligibilityNote && (
                       <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                         {event.eligibilityNote}

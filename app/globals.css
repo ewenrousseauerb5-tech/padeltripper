@@ -18,3 +18,17 @@
 ::selection {
   background-color: #d9454540;
 }
+
+@keyframes promo-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.promo-marquee-track {
+  width: max-content;
+  animation: promo-marquee-scroll 24s linear infinite;
+}
