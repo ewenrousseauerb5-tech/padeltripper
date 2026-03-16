@@ -14,8 +14,6 @@ import {
   ChevronRight,
   ChevronDown,
   Clock,
-  Sparkles,
-  Users,
   Instagram,
 } from 'lucide-react';
 import { FUTURE_EVENTS } from '../data/events';
@@ -535,24 +533,14 @@ export default function EventsPage() {
                   <p className="text-sm text-brand-dark font-medium">Beaches, great food, nightlife and Mediterranean views</p>
                 </div>
               </div>
-              <div className="space-y-5">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-red/10 flex items-center justify-center text-brand-red shrink-0 mt-0.5">
-                    <Users size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-dark text-sm mb-1">Group Trips</p>
-                    <p className="text-stone-400 text-sm">Bring your own group of friends, family, or club members. We'll handle everything.</p>
-                  </div>
+              <div className="grid sm:grid-cols-2 gap-3 mb-2">
+                <div className="rounded-xl border border-stone-200 bg-white p-4">
+                  <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Group Type</p>
+                  <p className="text-sm text-brand-dark font-medium">Friends, family, clubs and private groups</p>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-red/10 flex items-center justify-center text-brand-red shrink-0 mt-0.5">
-                    <Sparkles size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-dark text-sm mb-1">Special Occasions</p>
-                    <p className="text-stone-400 text-sm">Birthdays, stag/hen dos, celebrations — make it a padel holiday to remember.</p>
-                  </div>
+                <div className="rounded-xl border border-stone-200 bg-white p-4">
+                  <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Perfect For</p>
+                  <p className="text-sm text-brand-dark font-medium">Birthdays, celebrations and unforgettable padel getaways</p>
                 </div>
               </div>
               <button
