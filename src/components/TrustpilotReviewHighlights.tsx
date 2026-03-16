@@ -67,6 +67,34 @@ const reviews: Review[] = [
     excerpt: 'I went on my own and was made to feel very welcome and included. Highly recommend.',
     rating: 5,
   },
+  {
+    name: 'Ben Kettleborough',
+    country: 'United Kingdom',
+    flag: '🇬🇧',
+    date: '22 Nov 2025',
+    title: 'Brilliant trip all round',
+    excerpt:
+      'Brilliant trip. Hosts could not have been more accommodating, friendly or helpful. Coaching was top notch and I learned a lot.',
+    rating: 5,
+  },
+  {
+    name: 'Mr Wilson',
+    country: 'United Kingdom',
+    flag: '🇬🇧',
+    date: '05 Dec 2025',
+    title: 'Great trip',
+    excerpt: 'Great trip. Well organised. Already planning on booking a return trip.',
+    rating: 5,
+  },
+  {
+    name: 'Charlotte Warren',
+    country: 'United Kingdom',
+    flag: '🇬🇧',
+    date: '26 Sep 2025',
+    title: 'Loved every second',
+    excerpt: 'Loved every second. Thank you for making our week so memorable.',
+    rating: 5,
+  },
 ];
 
 function stars(count: number) {
@@ -151,7 +179,7 @@ export default function TrustpilotReviewHighlights() {
   useEffect(() => {
     const rotateTimer = setInterval(() => {
       setActiveIdx(prev => (prev + 1) % reviews.length);
-    }, 4500);
+    }, 2500);
 
     return () => clearInterval(rotateTimer);
   }, []);
