@@ -378,7 +378,7 @@ export default function EventsPage() {
                 <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
                   <p>Everyone stays at the Hotel Alicante Golf — a comfortable 4-star hotel right next to Playa San Juan. Pool, sun terrace, good food, and an easy tram link into the city centre.</p>
                   <p>The beach is a short walk away and the hotel has everything you need to recharge between sessions.</p>
-                  <p className="font-medium text-brand-dark">Pricing is based on two guests sharing a room. Solo travellers can add a single room supplement of &pound;100.</p>
+                  <p className="font-medium text-brand-dark">Pricing is based on two guests sharing a room. Solo travellers can add a single room supplement of &pound;150.</p>
                 </div>
               </AccordionItem>
 
