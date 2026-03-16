@@ -30,6 +30,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   const [numParticipantsInput, setNumParticipantsInput] = useState('1');
   const [otherInfo, setOtherInfo] = useState('');
   const [acceptedLegal, setAcceptedLegal] = useState(false);
+  const [confirmedEligibility, setConfirmedEligibility] = useState(false);
 
   useEffect(() => {
     if (selectedEventId) {
@@ -37,7 +38,12 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     }
   }, [selectedEventId]);
 
+  useEffect(() => {
+    setConfirmedEligibility(false);
+  }, [eventId]);
+
   const selectedEvent = ALL_EVENTS.find(event => String(event.id) === eventId);
+  const requiresEligibilityConfirmation = Boolean(selectedEvent?.eligibilityNote);
   const getNormalizedParticipants = () => {
     const parsed = parseInt(numParticipantsInput, 10);
     if (!Number.isFinite(parsed)) return 1;
@@ -50,6 +56,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     setNumParticipantsInput('1');
     setOtherInfo('');
     setAcceptedLegal(false);
+    setConfirmedEligibility(false);
 
     if (!selectedEventId) {
       setEventId('');
@@ -72,6 +79,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
         num_participants: getNormalizedParticipants(),
         special_requests: otherInfo.trim(),
         accepted_privacy_terms: acceptedLegal,
+        eligibility_confirmed: requiresEligibilityConfirmation ? confirmedEligibility : undefined,
       };
 
       const response = await fetch('/api/booking', {
@@ -227,6 +235,23 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
 
       {status === 'error' && (
         <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{errorMsg}</p>
+      )}
+
+      {requiresEligibilityConfirmation && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-4">
+          <label className="flex items-start gap-3 text-sm text-amber-900">
+            <input
+              required
+              type="checkbox"
+              checked={confirmedEligibility}
+              onChange={e => setConfirmedEligibility(e.target.checked)}
+              className="mt-0.5 h-4 w-4 rounded border-amber-300 text-brand-red focus:ring-brand-red"
+            />
+            <span>
+              I confirm I meet the required level for this event: <strong>{selectedEvent?.eligibilityNote}</strong>.
+            </span>
+          </label>
+        </div>
       )}
 
       <div className="rounded-xl border border-stone-200 bg-stone-50/70 p-4">
