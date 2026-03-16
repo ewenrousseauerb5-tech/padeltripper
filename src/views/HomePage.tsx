@@ -39,11 +39,11 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="max-w-3xl"
+            className="max-w-4xl"
           >
-            <h1 className="font-serif text-5xl md:text-7xl font-black text-white uppercase leading-[0.95] mb-8">
-              Ultimate padel retreats <br />
-              <span className="text-brand-red">in Alicante</span>
+            <h1 className="font-serif text-4xl md:text-7xl font-black text-white uppercase leading-[0.95] mb-8">
+              <span className="block whitespace-nowrap">Ultimate padel retreats</span>
+              <span className="block text-brand-red whitespace-nowrap">in Alicante</span>
             </h1>
             <p className="text-lg text-white/70 mb-12 max-w-lg leading-relaxed font-light">
               Discover the fastest growing sport in the world in Spain, the home of padel. What&apos;s not to love?
