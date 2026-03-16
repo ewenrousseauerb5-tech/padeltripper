@@ -414,13 +414,13 @@ export default function EventsPage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-start">
+          <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-stretch">
             {/* Form */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
+            <div className="h-full bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            <div className="space-y-4">
+            <div className="h-full flex flex-col gap-4">
               <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-5 md:p-6 space-y-4">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
                 <div className="flex items-center gap-4">
@@ -457,7 +457,7 @@ export default function EventsPage() {
               </aside>
 
               {/* Basic itinerary */}
-              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 md:p-7">
+              <aside className="flex-1 rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 md:p-7">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
                 <h3 className="font-serif text-2xl font-black text-white uppercase leading-tight mb-5">
                   Basic <span className="text-brand-red">Itinerary</span>
