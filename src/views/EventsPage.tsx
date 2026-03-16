@@ -17,6 +17,7 @@ import {
   Sparkles,
   Users,
   Building2,
+  Instagram,
 } from 'lucide-react';
 import { FUTURE_EVENTS } from '../data/events';
 import BookingForm from '../components/BookingForm';
@@ -426,6 +427,17 @@ export default function EventsPage() {
                   <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
                   <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
                     +44 7939870682
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center gap-5">
+                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red">
+                  <Instagram size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Instagram</p>
+                  <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                    @padeltripper
                   </a>
                 </div>
               </div>

@@ -56,6 +56,10 @@ export default function Footer() {
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
                 <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">+44 7939870682 (WhatsApp only)</a>
               </li>
+              <li className="text-white/60 text-sm flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
+                <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">@padeltripper (Instagram)</a>
+              </li>
             </ul>
           </div>
 
