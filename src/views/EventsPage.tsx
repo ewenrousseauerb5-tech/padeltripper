@@ -420,7 +420,7 @@ export default function EventsPage() {
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5 space-y-3">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
                 <div className="flex items-center gap-4">
@@ -454,10 +454,13 @@ export default function EventsPage() {
                     </a>
                   </div>
                 </div>
+                <p className="text-xs text-white/45 leading-relaxed pt-1">
+                  Quick reply time on WhatsApp for availability questions.
+                </p>
               </aside>
 
               {/* Basic itinerary */}
-              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5">
+              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-5 md:p-6">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
                 <h3 className="font-serif text-[26px] font-black text-white uppercase leading-tight mb-3">
                   Basic <span className="text-brand-red">Itinerary</span>
