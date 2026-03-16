@@ -403,50 +403,15 @@ export default function EventsPage() {
       {/* Booking Form */}
       <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
         <div className="max-w-6xl mx-auto">
-          {/* Header + contact */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-10">
-            <div className="lg:col-span-7">
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-6">
-                Book Your <span className="text-brand-red">Trip</span>
-              </h2>
-              <p className="text-white/40 leading-relaxed font-light">
-                Fill in the form and we&apos;ll confirm your spot within 24 hours. Got a question first? Drop us a message on WhatsApp.
-              </p>
-            </div>
-            <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6 space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
-                  <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                  <Phone size={20} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
-                  <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                    +44 7939870682
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                  <Instagram size={20} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Instagram</p>
-                  <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                    @padeltripper
-                  </a>
-                </div>
-              </div>
-            </div>
+          {/* Header */}
+          <div className="mb-10 max-w-3xl">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-6">
+              Book Your <span className="text-brand-red">Trip</span>
+            </h2>
+            <p className="text-white/40 leading-relaxed font-light">
+              Fill in the form and we&apos;ll confirm your spot within 24 hours. Got a question first? Drop us a message on WhatsApp.
+            </p>
           </div>
 
           <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-start">
@@ -455,36 +420,73 @@ export default function EventsPage() {
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            {/* Basic itinerary */}
-            <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 md:p-7">
-              <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
-              <h3 className="font-serif text-2xl font-black text-white uppercase leading-tight mb-5">
-                Basic <span className="text-brand-red">Itinerary</span>
-              </h3>
+            <div className="space-y-4">
+              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-5 md:p-6 space-y-4">
+                <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
+                    <Mail size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
+                    <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
+                    <Phone size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
+                    <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                      +44 7939870682
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
+                    <Instagram size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Instagram</p>
+                    <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                      @padeltripper
+                    </a>
+                  </div>
+                </div>
+              </aside>
 
-              <div className="space-y-4">
-                <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                  <p className="text-white text-sm font-semibold mb-1">Tuesday</p>
-                  <p className="text-white/60 text-sm leading-relaxed">Arrival, hotel check-in and welcome drinks in the evening.</p>
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                  <p className="text-white text-sm font-semibold mb-1">Wednesday</p>
-                  <p className="text-white/60 text-sm leading-relaxed">Morning coaching at Montemar and afternoon social games at Bela.</p>
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                  <p className="text-white text-sm font-semibold mb-1">Thursday</p>
-                  <p className="text-white/60 text-sm leading-relaxed">More coaching + social play, then optional night out in Alicante.</p>
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                  <p className="text-white text-sm font-semibold mb-1">Friday</p>
-                  <p className="text-white/60 text-sm leading-relaxed">Final coaching session, then departures after midday.</p>
-                </div>
-              </div>
+              {/* Basic itinerary */}
+              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 md:p-7">
+                <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
+                <h3 className="font-serif text-2xl font-black text-white uppercase leading-tight mb-5">
+                  Basic <span className="text-brand-red">Itinerary</span>
+                </h3>
 
-              <p className="mt-5 text-xs text-white/45 leading-relaxed">
-                Full day-by-day details are available in the FAQ section above.
-              </p>
-            </aside>
+                <div className="space-y-4">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-white text-sm font-semibold mb-1">Tuesday</p>
+                    <p className="text-white/60 text-sm leading-relaxed">Arrival, hotel check-in and welcome drinks in the evening.</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-white text-sm font-semibold mb-1">Wednesday</p>
+                    <p className="text-white/60 text-sm leading-relaxed">Morning coaching at Montemar and afternoon social games at Bela.</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-white text-sm font-semibold mb-1">Thursday</p>
+                    <p className="text-white/60 text-sm leading-relaxed">More coaching + social play, then optional night out in Alicante.</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-white text-sm font-semibold mb-1">Friday</p>
+                    <p className="text-white/60 text-sm leading-relaxed">Final coaching session, then departures after midday.</p>
+                  </div>
+                </div>
+
+                <p className="mt-5 text-xs text-white/45 leading-relaxed">
+                  Full day-by-day details are available in the FAQ section above.
+                </p>
+              </aside>
+            </div>
           </div>
         </div>
       </section>
