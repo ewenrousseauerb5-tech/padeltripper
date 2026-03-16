@@ -164,10 +164,18 @@ export default function HomePage() {
               <span className="block">Train Like A Player.</span>
               <span className="block text-brand-red">Travel Like A Guest.</span>
             </h2>
-            <p className="text-stone-500 leading-relaxed">
-              We are not a standard padel holiday company. Mornings focus on high-level coaching at Club Atlético Montemar
-              with the Pitu Losada Academy. Afternoons move into social match play at Bela Padel Center.
-            </p>
+            <div className="space-y-3 text-stone-500 leading-relaxed">
+              <p>
+                Padel trips should be more than just a few games. They should be an unforgettable experience.
+                With Padel Tripper, you train at the academy of 3-time world champion Pitu Losada, learning
+                from elite coaches in a truly professional environment.
+              </p>
+              <p>
+                You also experience social play at Bela Padel Center, one of the most prestigious clubs in Spain.
+                And from the moment you arrive, our team is on hand 24/7 to make sure everything runs seamlessly,
+                on and off court.
+              </p>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-9 mb-7">
@@ -185,9 +193,9 @@ export default function HomePage() {
                     <Trophy size={13} className="text-brand-red" />
                     Pitu Losada Academy at Montemar
                   </p>
-                  <h3 className="font-serif text-lg md:text-xl font-black text-brand-dark mb-2">Elite Technical Coaching</h3>
+                  <h3 className="font-serif text-lg md:text-xl font-black text-brand-dark mb-2">World-Class Coaching Environment</h3>
                   <p className="text-stone-600 leading-relaxed">
-                    Morning sessions follow academy methodology at Club Atlético Montemar, built around high-performance coaching principles.
+                    Morning sessions follow the Pitu Losada Academy methodology at Club Atlético Montemar, focused on real improvement and high-level technical work.
                   </p>
                 </div>
 
@@ -197,9 +205,9 @@ export default function HomePage() {
                     <Handshake size={13} className="text-brand-red" />
                     Bela Padel Center
                   </p>
-                  <h3 className="font-serif text-lg md:text-xl font-black text-brand-dark mb-2">Real Social Match Play</h3>
+                  <h3 className="font-serif text-lg md:text-xl font-black text-brand-dark mb-2">Authentic Spanish Club Atmosphere</h3>
                   <p className="text-stone-600 leading-relaxed mb-4">
-                    Afternoons move into social games at Bela so players apply what they learned in competitive match contexts.
+                    Afternoons move into social games at Bela, where you apply what you learned in real matches and enjoy the true vibe of a Spanish padel club.
                   </p>
                   <a
                     href="https://maps.app.goo.gl/8Lbyzh8nVYucZHXt7?g_st=iw"
@@ -247,7 +255,7 @@ export default function HomePage() {
           <div className="rounded-2xl border border-stone-800 bg-[#141414] px-6 py-5 md:px-8 md:py-6">
             <p className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-2">The Combination</p>
             <p className="font-serif text-lg md:text-[19px] font-bold leading-snug text-stone-100 max-w-none md:whitespace-nowrap">
-              Elite Coaching (AM) <span className="text-brand-red">+</span> Social Match Play (PM) <span className="text-brand-red">=</span> Faster Improvement and Better Trip Experience
+              Elite Coaching (AM) <span className="text-brand-red">+</span> Spanish Club Match Play (PM) <span className="text-brand-red">+</span> 24/7 Team Support <span className="text-brand-red">=</span> A Premium Padel Experience
             </p>
           </div>
         </div>
