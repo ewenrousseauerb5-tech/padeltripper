@@ -195,7 +195,7 @@ export default function TrustpilotReviewHighlights() {
             </h2>
             <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white px-4 py-2">
               <span className="text-2xl font-serif font-black text-brand-red">{animatedRating.toFixed(1)}</span>
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Trustpilot Rating</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Rating</span>
             </div>
           </div>
           <div className="md:-translate-y-16 lg:-translate-y-20">
