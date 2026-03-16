@@ -211,6 +211,11 @@ export default function EventsPage() {
                 </div>
 
                 <div className="space-y-3 mb-7">
+                  {event.eligibilityNote && (
+                    <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                      {event.eligibilityNote}
+                    </p>
+                  )}
                   <div className="flex items-center gap-3">
                     <Calendar size={15} className="text-brand-red shrink-0" />
                     <span className="font-bold text-brand-dark text-sm">{event.date}</span>

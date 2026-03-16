@@ -300,6 +300,11 @@ export default function HomePage() {
                     <span className="text-xl font-serif font-black text-brand-red">From {event.price}</span>
                   </div>
                   <div className="space-y-2.5 mb-5">
+                    {event.eligibilityNote && (
+                      <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                        {event.eligibilityNote}
+                      </p>
+                    )}
                     <div className="flex items-center gap-3 text-stone-400">
                       <Calendar size={14} className="text-brand-red/60" />
                       <span className="text-sm">{event.nights} nights / {event.nights + 1} days</span>

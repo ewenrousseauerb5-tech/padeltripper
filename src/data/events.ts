@@ -13,6 +13,7 @@ export interface PadelEvent {
   image?: string;
   imagePosition?: 'top' | 'center' | 'bottom' | 'lower';
   name?: string;
+  eligibilityNote?: string;
 }
 
 export const ALL_EVENTS: PadelEvent[] = [
@@ -45,6 +46,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     hotel: '4* Hotel Alicante Golf',
     image: '/images/padel-coaching-session.jpg',
     imagePosition: 'center',
+    eligibilityNote: 'Only for players rated 3.0+ on Playtomic (or equivalent)',
   },
   {
     id: 62,
