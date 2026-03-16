@@ -280,7 +280,7 @@ export default function HomePage() {
                     <img
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
-                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : event.imagePosition === 'lower' ? 'object-[center_60%]' : 'object-top'}`}
+                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : event.imagePosition === 'lower' ? 'object-[center_60%]' : event.imagePosition === 'slightLower' ? 'object-[center_22%]' : 'object-top'}`}
                       loading="lazy"
                       decoding="async"
                     />

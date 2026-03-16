@@ -11,7 +11,7 @@ export interface PadelEvent {
   location: string;
   hotel: string;
   image?: string;
-  imagePosition?: 'top' | 'center' | 'bottom' | 'lower';
+  imagePosition?: 'top' | 'center' | 'bottom' | 'lower' | 'slightLower';
   name?: string;
   eligibilityNote?: string;
 }
@@ -61,7 +61,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
     image: '/images/group-bela-court.jpg',
-    imagePosition: 'top',
+    imagePosition: 'slightLower',
   },
   {
     id: 88,
