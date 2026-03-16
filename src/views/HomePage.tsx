@@ -230,7 +230,7 @@ export default function HomePage() {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
                   <img
-                    src="/images/bela-courts-hd.jpg"
+                    src="/images/bela-center.webp"
                     alt="Social padel match play at Bela Padel Center in Alicante"
                     className="w-full h-[290px] object-cover object-center"
                     loading="lazy"
