@@ -41,10 +41,9 @@ export default function HomePage() {
             transition={{ duration: 1, ease: 'easeOut' }}
             className="max-w-3xl"
           >
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-sm mb-6">Alicante, Costa Blanca</p>
             <h1 className="font-serif text-5xl md:text-7xl font-black text-white uppercase leading-[0.95] mb-8">
-              Padel Holidays <br />
-              <span className="text-brand-red">in Spain</span>
+              Ultimate padel retreats <br />
+              <span className="text-brand-red">in Alicante</span>
             </h1>
             <p className="text-lg text-white/70 mb-12 max-w-lg leading-relaxed font-light">
               Discover the fastest growing sport in the world in Spain, the home of padel. What&apos;s not to love?
