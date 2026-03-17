@@ -157,6 +157,13 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     <form onSubmit={handleSubmit} className="space-y-7">
       <div>
         <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-red mb-5">Quotation Request</p>
+        <div className="mb-5 rounded-xl border border-stone-200 bg-stone-50/80 px-4 py-3">
+          <p className="text-xs text-stone-600 leading-relaxed">
+            <span className="font-semibold text-brand-dark">&pound;745.00 per person</span> based on 2 sharing
+            {' '}<span className="text-stone-400">|</span>{' '}
+            <span className="font-semibold text-brand-dark">+&pound;150.00</span> single room supplement
+          </p>
+        </div>
         <div className="grid md:grid-cols-2 gap-5">
           <div className="md:col-span-2">
             <label className={labelClass}>Select Date *</label>
