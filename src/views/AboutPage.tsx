@@ -46,8 +46,7 @@ export default function AboutPage() {
 
           <div className="lg:col-span-7">
             <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight mb-5">
-              <span className="block">How It</span>
-              <span className="block text-brand-red">All Started</span>
+              How It <span className="text-brand-red">All Started</span>
             </h2>
             <div className="space-y-4 text-stone-600 leading-relaxed max-w-2xl">
               <p className="font-medium text-brand-dark">
@@ -120,23 +119,6 @@ export default function AboutPage() {
               <p className="text-sm text-stone-600 leading-relaxed">
                 Padel Tripper now brings that same energy to curated holiday experiences in Spain.
               </p>
-            </div>
-          </div>
-
-          <div className="mt-10 md:mt-12 rounded-2xl border border-stone-200 bg-brand-light px-6 md:px-8 py-6">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-              <div>
-                <p className="font-serif text-2xl md:text-3xl font-black text-brand-dark leading-none">5.0</p>
-                <p className="text-[11px] uppercase tracking-widest text-stone-500 mt-2">Average Rating</p>
-              </div>
-              <div>
-                <p className="font-serif text-2xl md:text-3xl font-black text-brand-dark leading-none">2000+</p>
-                <p className="text-[11px] uppercase tracking-widest text-stone-500 mt-2">Travellers</p>
-              </div>
-              <div>
-                <p className="font-serif text-2xl md:text-3xl font-black text-brand-dark leading-none">700+</p>
-                <p className="text-[11px] uppercase tracking-widest text-stone-500 mt-2">Events Hosted</p>
-              </div>
             </div>
           </div>
         </div>
