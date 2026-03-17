@@ -298,7 +298,7 @@ export default function HomePage() {
       </section>
 
       {/* About Padel Tripper */}
-      <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="About Padel Tripper">
+      <section className="py-24 md:py-28 bg-white px-6" aria-label="About Padel Tripper">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <motion.div
