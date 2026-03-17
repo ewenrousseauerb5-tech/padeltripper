@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Calendar, Clock, MapPin, Star } from 'lucide-react';
+import { Calendar, Check, Clock, MapPin, Star } from 'lucide-react';
 import type { PadelEvent } from '@/src/data/events';
 
 interface EventsGridProps {
@@ -69,6 +69,18 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                 <div className="flex items-center gap-3 text-stone-400">
                   <Star size={14} className="shrink-0" />
                   <span className="text-sm">{event.hotel}</span>
+                </div>
+                <div className="flex items-center gap-3 text-stone-400">
+                  <Check size={14} className="shrink-0 text-brand-red/80" />
+                  <span className="text-sm">6 hours coaching</span>
+                </div>
+                <div className="flex items-center gap-3 text-stone-400">
+                  <Check size={14} className="shrink-0 text-brand-red/80" />
+                  <span className="text-sm">6 hours social play</span>
+                </div>
+                <div className="flex items-center gap-3 text-stone-400">
+                  <Check size={14} className="shrink-0 text-brand-red/80" />
+                  <span className="text-sm">B&amp;B at the hotel included</span>
                 </div>
               </div>
 

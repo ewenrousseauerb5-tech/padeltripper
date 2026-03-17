@@ -40,15 +40,15 @@ export default function Navbar() {
           <div className="promo-marquee-inner h-full">
             <div className="promo-marquee-group h-full">
               <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £650 (WAS £750)</span>
+              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
               <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £650 (WAS £750)</span>
+              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
             </div>
             <div className="promo-marquee-group h-full" aria-hidden="true">
               <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £650 (WAS £750)</span>
+              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
               <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £650 (WAS £750)</span>
+              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
             </div>
           </div>
         </div>
