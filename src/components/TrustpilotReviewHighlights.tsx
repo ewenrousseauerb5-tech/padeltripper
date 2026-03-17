@@ -151,8 +151,8 @@ export default function TrustpilotReviewHighlights() {
   const orbitNodes = useMemo(() => {
     return reviews.map((review, idx) => {
       const angle = (Math.PI * 2 * idx) / reviews.length - Math.PI / 2;
-      const x = Math.cos(angle) * 110;
-      const y = Math.sin(angle) * 110;
+      const x = Math.cos(angle) * 96;
+      const y = Math.sin(angle) * 96;
       return { review, idx, x, y };
     });
   }, []);
@@ -211,7 +211,7 @@ export default function TrustpilotReviewHighlights() {
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="grid gap-6 lg:grid-cols-[1.16fr_0.84fr] lg:items-center">
           <div className="rounded-3xl bg-white border border-stone-200 p-5 md:p-6 shadow-sm">
             <AnimatePresence mode="wait">
               <motion.article
@@ -248,11 +248,11 @@ export default function TrustpilotReviewHighlights() {
             </AnimatePresence>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center lg:translate-y-2">
-            <div className="relative h-[320px] w-[320px]">
+          <div className="hidden lg:flex items-center justify-center lg:translate-y-1">
+            <div className="relative h-[280px] w-[280px]">
               <div className="absolute inset-0 rounded-full border border-stone-300" />
-              <div className="absolute inset-[48px] rounded-full border border-stone-200" />
-              <div className="absolute inset-[96px] rounded-full border border-stone-100" />
+              <div className="absolute inset-[42px] rounded-full border border-stone-200" />
+              <div className="absolute inset-[84px] rounded-full border border-stone-100" />
 
               <motion.div
                 key={activeIdx}
