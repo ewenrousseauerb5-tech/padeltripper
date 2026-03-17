@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
 
@@ -25,6 +27,10 @@ export default function Navbar() {
     const timer = window.setInterval(updatePromoVisibility, 60_000);
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   const showTransparent = isHome && !scrolled;
 
@@ -64,6 +70,21 @@ export default function Navbar() {
             )}
           />
         </Link>
+
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen(prev => !prev)}
+          className={cn(
+            "lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+            showTransparent ? "bg-white/10 text-white hover:bg-white/20" : "bg-stone-100 text-brand-dark hover:bg-stone-200"
+          )}
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-nav-menu"
+        >
+          {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+
         <div className="hidden lg:flex items-center gap-10 text-[13px] font-semibold uppercase tracking-wider">
           <Link href="/" className={cn(
             "transition-colors duration-300",
@@ -90,6 +111,25 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
+
+      {mobileMenuOpen && (
+        <div id="mobile-nav-menu" className="lg:hidden border-t border-black/10 bg-white/95 backdrop-blur-xl">
+          <div className="px-6 py-4 space-y-1">
+            <Link href="/" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+              Home
+            </Link>
+            <Link href="/about" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+              About
+            </Link>
+            <Link href="/events" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+              Events
+            </Link>
+            <Link href="/events#booking" className="mt-2 block rounded-full bg-brand-red px-4 py-3 text-center text-xs font-bold uppercase tracking-widest text-white hover:bg-brand-dark transition-colors">
+              Book Your Trip
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
