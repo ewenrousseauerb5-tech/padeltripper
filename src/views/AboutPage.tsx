@@ -6,7 +6,7 @@ import { ArrowRight, Trophy, Users, Sparkles } from 'lucide-react';
 export default function AboutPage() {
   return (
     <main>
-      <section className="relative h-[50vh] min-h-[400px] pt-28 flex items-end overflow-hidden">
+      <section className="relative h-[50vh] min-h-[420px] pt-28 md:pt-32 flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/group-social-evening.jpg"
@@ -19,7 +19,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-20 md:pb-24">
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Us</p>
           <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-3xl">
             Built By Padel Players,
@@ -32,8 +32,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24 bg-brand-light px-6 border-b border-stone-200/70">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-10 items-center">
+      <section className="py-24 md:py-28 bg-brand-light px-6 border-b border-stone-200/70">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 md:gap-14 items-center">
           <div className="lg:col-span-5">
             <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
               <img
@@ -51,7 +51,7 @@ export default function AboutPage() {
               <span className="block">The Story Behind</span>
               <span className="block text-brand-red">Padel Tripper</span>
             </h2>
-            <div className="space-y-3 text-stone-600 leading-relaxed">
+            <div className="space-y-4 text-stone-600 leading-relaxed max-w-2xl">
               <p className="font-medium text-brand-dark">
                 I&apos;m Ollie, founder of Padel Tripper and Alicante Social Padel.
               </p>
@@ -63,7 +63,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-3 mt-7">
+            <div className="grid sm:grid-cols-3 gap-4 mt-9">
               <div className="rounded-2xl border border-stone-200 bg-white p-4">
                 <Trophy className="text-brand-red mb-3" size={18} />
                 <p className="text-xl font-black font-serif text-brand-dark leading-none">700+</p>
@@ -81,7 +81,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-10">
               <Link
                 href="/events"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-red px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white hover:bg-brand-dark transition-colors"
@@ -94,29 +94,29 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6 bg-white border-b border-stone-200/70">
+      <section className="py-20 md:py-24 px-6 bg-white border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto">
-          <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4 text-center">Our Journey</p>
-          <h3 className="font-serif text-2xl md:text-3xl font-black uppercase text-brand-dark text-center mb-8">
+          <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-5 text-center">Our Journey</p>
+          <h3 className="font-serif text-2xl md:text-3xl font-black uppercase text-brand-dark text-center mb-10 md:mb-12">
             From Local Community To International Trips
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6 relative">
-            <div className="rounded-2xl border border-stone-200 bg-brand-light p-6">
+          <div className="grid md:grid-cols-3 gap-5 md:gap-7 relative">
+            <div className="rounded-2xl border border-stone-200 bg-brand-light p-7">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-stone-500 mb-2">Step 1</p>
               <p className="font-serif text-xl font-black text-brand-dark mb-2">Community Started</p>
               <p className="text-sm text-stone-600 leading-relaxed">
                 Alicante Social Padel began with local sessions focused on good games and great people.
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 bg-brand-light p-6">
+            <div className="rounded-2xl border border-stone-200 bg-brand-light p-7">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-stone-500 mb-2">Step 2</p>
               <p className="font-serif text-xl font-black text-brand-dark mb-2">700+ Events Hosted</p>
               <p className="text-sm text-stone-600 leading-relaxed">
                 A proven formula grew across thousands of players and hundreds of organised events.
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 bg-brand-light p-6">
+            <div className="rounded-2xl border border-stone-200 bg-brand-light p-7">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-stone-500 mb-2">Step 3</p>
               <p className="font-serif text-xl font-black text-brand-dark mb-2">International Retreats</p>
               <p className="text-sm text-stone-600 leading-relaxed">
@@ -127,9 +127,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-14 md:py-16 px-6 bg-brand-dark">
+      <section className="py-16 md:py-20 px-6 bg-brand-dark">
         <div className="max-w-7xl mx-auto">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] px-6 md:px-10 py-8 md:py-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] px-7 md:px-12 py-9 md:py-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-9 md:gap-10">
             <div>
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Social Proof</p>
               <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
