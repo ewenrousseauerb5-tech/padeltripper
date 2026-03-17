@@ -32,18 +32,14 @@ export default function ExperienceGallery() {
   }, [nextSlide]);
 
   return (
-    <section
-      className="py-20 md:py-24 px-6 border-y border-stone-200/70"
-      style={{ background: 'linear-gradient(180deg, #f5f5f3 0%, #ffffff 60%)' }}
-      aria-label="Padel holiday experience gallery"
-    >
+    <section className="py-20 md:py-24 px-6 bg-brand-dark" aria-label="Padel holiday experience gallery">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8 md:mb-10">
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Gallery</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-black text-brand-dark uppercase mb-3">The Padel Tripper <span className="text-brand-red">Experience</span></h2>
-          <p className="text-stone-500 text-sm font-light">More than just padel — it&apos;s the people, the sun, the memories.</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-black text-white uppercase mb-3">The Padel Tripper <span className="text-brand-red">Experience</span></h2>
+          <p className="text-white/45 text-sm font-light">More than just padel — it&apos;s the people, the sun, the memories.</p>
         </div>
-        <div className="relative rounded-3xl border border-stone-800 bg-[#121212] p-4 md:p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+        <div className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-4 md:p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
           <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img
