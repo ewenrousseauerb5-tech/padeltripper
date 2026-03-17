@@ -89,7 +89,6 @@ export default function EventsPage() {
     <main>
       <EventsHero />
       <EventsGrid events={FUTURE_EVENTS} onSelectEvent={setSelectedEventId} />
-      <ExperienceGallery />
 
       {/* Booking Form */}
       <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
@@ -410,6 +409,8 @@ export default function EventsPage() {
           </AnimatePresence>
         </div>
       </section>
+
+      <ExperienceGallery />
 
     </main>
   );

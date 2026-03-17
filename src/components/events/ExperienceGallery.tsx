@@ -32,14 +32,14 @@ export default function ExperienceGallery() {
   }, [nextSlide]);
 
   return (
-    <section className="py-14 md:py-16 bg-brand-dark px-6" aria-label="Padel holiday experience gallery">
+    <section className="py-20 md:py-24 bg-brand-light px-6 border-t border-stone-200/70" aria-label="Padel holiday experience gallery">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 md:mb-10">
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Gallery</p>
-          <h2 className="font-serif text-3xl font-black text-white uppercase mb-3">The Padel Tripper <span className="text-brand-red">Experience</span></h2>
-          <p className="text-white/40 text-sm font-light">More than just padel — it&apos;s the people, the sun, the memories.</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-black text-brand-dark uppercase mb-3">The Padel Tripper <span className="text-brand-red">Experience</span></h2>
+          <p className="text-stone-500 text-sm font-light">More than just padel — it&apos;s the people, the sun, the memories.</p>
         </div>
-        <div className="relative">
+        <div className="relative rounded-3xl border border-stone-200 bg-white p-4 md:p-5 shadow-sm">
           <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img
@@ -57,14 +57,14 @@ export default function ExperienceGallery() {
 
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+            className="absolute left-7 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 bg-black/35 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-black/50 transition-colors"
             aria-label="Previous photo"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+            className="absolute right-7 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 bg-black/35 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-black/50 transition-colors"
             aria-label="Next photo"
           >
             <ChevronRight size={20} />
@@ -76,7 +76,7 @@ export default function ExperienceGallery() {
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentSlide ? 'bg-brand-red w-8' : 'bg-white/20 w-1.5 hover:bg-white/40'
+                  idx === currentSlide ? 'bg-brand-red w-8' : 'bg-stone-300 w-1.5 hover:bg-stone-400'
                 }`}
                 aria-label={`Go to photo ${idx + 1}`}
               />
