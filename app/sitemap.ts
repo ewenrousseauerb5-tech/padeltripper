@@ -1,43 +1,42 @@
 import type { MetadataRoute } from 'next';
-
-const siteUrl = 'https://padeltripper.com';
+import { SITE_URL } from '@/src/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
     {
-      url: `${siteUrl}/`,
+      url: `${SITE_URL}/`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: `${siteUrl}/events`,
+      url: `${SITE_URL}/events`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/about`,
+      url: `${SITE_URL}/about`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${siteUrl}/privacy-policy`,
+      url: `${SITE_URL}/privacy-policy`,
       lastModified: now,
       changeFrequency: 'yearly',
       priority: 0.4,
     },
     {
-      url: `${siteUrl}/terms-and-conditions`,
+      url: `${SITE_URL}/terms-and-conditions`,
       lastModified: now,
       changeFrequency: 'yearly',
       priority: 0.4,
     },
     {
-      url: `${siteUrl}/cookie-policy`,
+      url: `${SITE_URL}/cookie-policy`,
       lastModified: now,
       changeFrequency: 'yearly',
       priority: 0.4,

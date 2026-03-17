@@ -1,21 +1,20 @@
 import type { Metadata } from 'next';
 import HomePage from '@/src/views/HomePage';
-
-const siteUrl = 'https://padeltripper.com';
+import { SITE_URL } from '@/src/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Premium Padel Retreats in Alicante',
+  title: 'Ultimate Padel Retreats in Alicante',
   description:
-    'Join premium 4-day padel retreats in Alicante with elite coaching, 4-star accommodation, and curated international groups.',
+    'Join ultimate 4-day padel retreats in Alicante with elite coaching, 4-star accommodation, and curated international groups.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
-    url: siteUrl,
-    title: 'Padel Tripper | Premium Padel Retreats in Alicante',
+    url: SITE_URL,
+    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
     description:
-      'Elite coaching, premium accommodation, and unforgettable padel retreats in Alicante for international players.',
+      'Elite coaching, 4-star accommodation, and unforgettable padel retreats in Alicante for international players.',
     images: [
       {
         url: '/images/hero-padel-camp.jpg',
@@ -27,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Padel Tripper | Premium Padel Retreats in Alicante',
+    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
     description:
-      'Elite coaching, premium accommodation, and unforgettable padel retreats in Alicante for international players.',
+      'Elite coaching, 4-star accommodation, and unforgettable padel retreats in Alicante for international players.',
     images: ['/images/hero-padel-camp.jpg'],
   },
 };
@@ -39,7 +38,7 @@ export default function Page() {
     '@context': 'https://schema.org',
     '@type': 'SportsActivityLocation',
     name: 'Padel Tripper Retreats - Alicante',
-    url: siteUrl,
+    url: SITE_URL,
     sport: 'Padel',
     description:
       'Premium small-group padel retreats in Alicante with professional coaching and 4-star accommodation.',

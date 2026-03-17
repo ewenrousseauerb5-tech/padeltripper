@@ -4,18 +4,17 @@ import Navbar from '@/src/components/Navbar';
 import Footer from '@/src/components/Footer';
 import WhatsAppButton from '@/src/components/WhatsAppButton';
 import CookieBanner from '@/src/components/CookieBanner';
+import { SITE_URL } from '@/src/lib/seo';
 import './globals.css';
 
-const siteUrl = 'https://padeltripper.com';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Padel Tripper | Premium Padel Retreats in Alicante',
+    default: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
     template: '%s | Padel Tripper',
   },
   description:
-    'Premium padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups for international players.',
+    'Ultimate padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups for international players.',
   applicationName: 'Padel Tripper',
   keywords: [
     'padel retreat spain',
@@ -46,11 +45,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: siteUrl,
+    url: SITE_URL,
     siteName: 'Padel Tripper',
-    title: 'Padel Tripper | Premium Padel Retreats in Alicante',
+    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
     description:
-      'Premium padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups.',
+      'Ultimate padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups.',
     images: [
       {
         url: '/images/hero-padel-camp.jpg',
@@ -63,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Padel Tripper | Premium Padel Retreats in Alicante',
+    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
     description:
-      'Premium padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups.',
+      'Ultimate padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups.',
     images: ['/images/hero-padel-camp.jpg'],
   },
   robots: {
@@ -90,8 +89,8 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Padel Tripper',
-    url: siteUrl,
-    logo: `${siteUrl}/images/logos/logo-landscape.png`,
+    url: SITE_URL,
+    logo: `${SITE_URL}/images/logos/logo-landscape.png`,
     email: '[email protected]',
     telephone: '+44 7939870682',
     sameAs: ['https://www.instagram.com/padeltripper/'],
@@ -104,7 +103,7 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Padel Tripper',
-    url: siteUrl,
+    url: SITE_URL,
     inLanguage: 'en',
   };
 

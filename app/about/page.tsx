@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import AboutPage from '@/src/views/AboutPage';
-
-const siteUrl = 'https://padeltripper.com';
+import { SITE_URL } from '@/src/lib/seo';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: `${siteUrl}/about`,
+    url: `${SITE_URL}/about`,
     title: 'About Us | Padel Tripper',
     description:
       'The story behind Padel Tripper and how a local Alicante padel community became premium international trips.',

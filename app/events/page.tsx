@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import EventsPage from '@/src/views/EventsPage';
 import { ALL_EVENTS } from '@/src/data/events';
-
-const siteUrl = 'https://padeltripper.com';
+import { SITE_URL } from '@/src/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Padel Retreat Dates & Prices',
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: `${siteUrl}/events`,
+    url: `${SITE_URL}/events`,
     title: 'Padel Retreat Dates & Prices | Padel Tripper',
     description:
       'Upcoming premium padel retreat dates in Alicante. Secure your place and request your quotation online.',
@@ -56,7 +55,7 @@ export default function Page() {
           priceCurrency: 'GBP',
           price: event.price.replace(/[^\d.]/g, ''),
           availability: event.status === 'Available' ? 'https://schema.org/InStock' : 'https://schema.org/LimitedAvailability',
-          url: `${siteUrl}/events#booking`,
+          url: `${SITE_URL}/events#booking`,
         },
       },
     })),
