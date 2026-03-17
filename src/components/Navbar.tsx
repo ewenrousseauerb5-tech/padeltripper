@@ -69,6 +69,10 @@ export default function Navbar() {
             "transition-colors duration-300",
             showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
           )}>Home</Link>
+          <Link href="/about" className={cn(
+            "transition-colors duration-300",
+            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+          )}>About</Link>
           <Link href="/events" className={cn(
             "transition-colors duration-300",
             showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
