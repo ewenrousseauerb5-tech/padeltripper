@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin } from 'lucide-react';
+import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
 import TrustpilotReviewHighlights from '../components/TrustpilotReviewHighlights';
 
@@ -266,7 +266,7 @@ export default function HomePage() {
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
             <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">Next Padel Camps</h2>
             <p className="text-stone-400 leading-relaxed">
-              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel, 6 hours of coaching, 4 hours of social play and transport to the courts.
+              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel with B&amp;B, plus 6 hours of coaching and 6 hours of social play.
             </p>
           </div>
 
@@ -307,7 +307,7 @@ export default function HomePage() {
                       From {event.price}
                     </span>
                   </div>
-                  <div className="space-y-2.5 mb-5 flex-1">
+                  <div className="space-y-2 mb-5 flex-1">
                     {event.promoNote && (
                       <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
                         {event.promoNote}
@@ -328,7 +328,11 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-center gap-3 text-stone-400">
                       <Star size={14} />
-                      <span className="text-sm">{event.hotel}</span>
+                      <span className="text-sm">{event.hotel} + B&amp;B</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <Check size={14} className="text-brand-red/70" />
+                      <span className="text-sm">6h coaching + 6h social play</span>
                     </div>
                   </div>
                   <Link
