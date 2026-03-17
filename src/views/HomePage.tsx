@@ -66,63 +66,101 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About Padel Tripper */}
-      <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="About Padel Tripper">
+      {/* Next Upcoming Events */}
+      <section id="events" className="py-24 md:py-28 px-6 bg-white" aria-label="Next upcoming padel holidays">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-5"
-            >
-              <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
-                <img
-                  src="/images/ollie.jpg"
-                  alt="Ollie, founder of Padel Tripper, on court in Alicante"
-                  className="w-full h-[520px] object-cover object-[center_34%]"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </motion.div>
+          <div className="max-w-2xl mb-20">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">Next Padel Camps</h2>
+            <p className="text-stone-400 leading-relaxed">
+              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel with B&amp;B, plus 6 hours of coaching and 6 hours of social play.
+            </p>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="lg:col-span-7"
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {UPCOMING_EVENTS.map((event, idx) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group h-full rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col"
+              >
+                {event.image && (
+                  <div className="relative h-52 overflow-hidden">
+                    <img
+                      src={event.image}
+                      alt={`Padel camp in Alicante — ${event.dateShort}`}
+                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : event.imagePosition === 'lower' ? 'object-[center_60%]' : event.imagePosition === 'slightLower' ? 'object-[center_22%]' : 'object-top'}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full">
+                      {event.status}
+                    </div>
+                    {idx === 1 && (
+                      <div className="absolute top-4 right-4 px-3 py-1.5 bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
+                        Most Popular
+                      </div>
+                    )}
+                  </div>
+                )}
+                <div className="p-7 flex flex-col flex-1">
+                  <div className="flex justify-between items-center mb-5">
+                    <span className="font-semibold text-sm text-brand-dark">{event.dateShort}</span>
+                    <span className="text-xl font-serif font-black text-brand-red">
+                      {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{event.originalPrice}</span>}
+                      From {event.price}
+                    </span>
+                  </div>
+                  <div className="space-y-2 mb-5 flex-1">
+                    {event.promoNote && (
+                      <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                        {event.promoNote}
+                      </p>
+                    )}
+                    {event.eligibilityNote && (
+                      <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                        {event.eligibilityNote}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <Calendar size={14} className="text-brand-red/60" />
+                      <span className="text-sm">{event.nights} nights / {event.nights + 1} days</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <MapPin size={14} />
+                      <span className="text-sm">{event.location}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <Star size={14} />
+                      <span className="text-sm">{event.hotel} + B&amp;B</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <Check size={14} className="text-brand-red/70" />
+                      <span className="text-sm">6h coaching + 6h social play</span>
+                    </div>
+                  </div>
+                  <Link
+                    href="/events#booking"
+                    className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300 mt-auto"
+                  >
+                    Book This Trip
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-stone-200 text-brand-dark font-semibold uppercase tracking-widest text-sm hover:bg-brand-dark hover:text-white hover:border-brand-dark transition-all duration-300"
             >
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Us</p>
-              <h2 className="font-serif text-[30px] md:text-5xl font-black uppercase leading-tight mb-6">
-                <span className="block">The Story Behind</span>
-                <span className="block text-brand-red">Padel Tripper</span>
-              </h2>
-              <div className="space-y-3 text-[15px] md:text-base text-stone-600 leading-relaxed">
-                <p className="font-medium text-brand-dark">
-                  I&apos;m Ollie, founder of Padel Tripper and Alicante Social Padel.
-                </p>
-                <p>
-                  Four years ago, I started building a local padel community in Spain. Since then, we&apos;ve hosted 700+ events and built a network of 2000 players where real friendships formed on and off court.
-                </p>
-                <p>
-                  That success sparked something bigger. Padel Tripper was born from the same energy, but on an international level. This isn&apos;t a travel company that added padel. It&apos;s a proven padel community that expanded into unforgettable trips.
-                </p>
-                <p>
-                  We know what players want: great organisation, first-class coaching, social match play, sunshine, tapas, and meeting fellow padel addicts.
-                </p>
-              </div>
-              <div className="mt-7">
-                <Link
-                  href="/events"
-                  className="inline-flex items-center gap-2 rounded-full border border-brand-red px-6 py-3 text-[11px] font-semibold uppercase tracking-widest text-brand-red hover:bg-brand-red hover:text-white transition-colors"
-                >
-                  See Upcoming Trips
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </motion.div>
+              View All Events & Dates
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
@@ -259,101 +297,63 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Next Upcoming Events */}
-      <section id="events" className="py-24 md:py-28 px-6 bg-white" aria-label="Next upcoming padel holidays">
+      {/* About Padel Tripper */}
+      <section className="py-24 md:py-28 bg-brand-light px-6" aria-label="About Padel Tripper">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-20">
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">Next Padel Camps</h2>
-            <p className="text-stone-400 leading-relaxed">
-              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel with B&amp;B, plus 6 hours of coaching and 6 hours of social play.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {UPCOMING_EVENTS.map((event, idx) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group h-full rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col"
-              >
-                {event.image && (
-                  <div className="relative h-52 overflow-hidden">
-                    <img
-                      src={event.image}
-                      alt={`Padel camp in Alicante — ${event.dateShort}`}
-                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : event.imagePosition === 'lower' ? 'object-[center_60%]' : event.imagePosition === 'slightLower' ? 'object-[center_22%]' : 'object-top'}`}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full">
-                      {event.status}
-                    </div>
-                    {idx === 1 && (
-                      <div className="absolute top-4 right-4 px-3 py-1.5 bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
-                        Most Popular
-                      </div>
-                    )}
-                  </div>
-                )}
-                <div className="p-7 flex flex-col flex-1">
-                  <div className="flex justify-between items-center mb-5">
-                    <span className="font-semibold text-sm text-brand-dark">{event.dateShort}</span>
-                    <span className="text-xl font-serif font-black text-brand-red">
-                      {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{event.originalPrice}</span>}
-                      From {event.price}
-                    </span>
-                  </div>
-                  <div className="space-y-2 mb-5 flex-1">
-                    {event.promoNote && (
-                      <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                        {event.promoNote}
-                      </p>
-                    )}
-                    {event.eligibilityNote && (
-                      <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-                        {event.eligibilityNote}
-                      </p>
-                    )}
-                    <div className="flex items-center gap-3 text-stone-400">
-                      <Calendar size={14} className="text-brand-red/60" />
-                      <span className="text-sm">{event.nights} nights / {event.nights + 1} days</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-stone-400">
-                      <MapPin size={14} />
-                      <span className="text-sm">{event.location}</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-stone-400">
-                      <Star size={14} />
-                      <span className="text-sm">{event.hotel} + B&amp;B</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-stone-400">
-                      <Check size={14} className="text-brand-red/70" />
-                      <span className="text-sm">6h coaching + 6h social play</span>
-                    </div>
-                  </div>
-                  <Link
-                    href="/events#booking"
-                    className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300 mt-auto"
-                  >
-                    Book This Trip
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link
-              href="/events"
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-stone-200 text-brand-dark font-semibold uppercase tracking-widest text-sm hover:bg-brand-dark hover:text-white hover:border-brand-dark transition-all duration-300"
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5"
             >
-              View All Events & Dates
-              <ArrowRight size={16} />
-            </Link>
+              <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
+                <img
+                  src="/images/ollie.jpg"
+                  alt="Ollie, founder of Padel Tripper, on court in Alicante"
+                  className="w-full h-[520px] object-cover object-[center_34%]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="lg:col-span-7"
+            >
+              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Us</p>
+              <h2 className="font-serif text-[30px] md:text-5xl font-black uppercase leading-tight mb-6">
+                <span className="block">The Story Behind</span>
+                <span className="block text-brand-red">Padel Tripper</span>
+              </h2>
+              <div className="space-y-3 text-[15px] md:text-base text-stone-600 leading-relaxed">
+                <p className="font-medium text-brand-dark">
+                  I&apos;m Ollie, founder of Padel Tripper and Alicante Social Padel.
+                </p>
+                <p>
+                  Four years ago, I started building a local padel community in Spain. Since then, we&apos;ve hosted 700+ events and built a network of 2000 players where real friendships formed on and off court.
+                </p>
+                <p>
+                  That success sparked something bigger. Padel Tripper was born from the same energy, but on an international level. This isn&apos;t a travel company that added padel. It&apos;s a proven padel community that expanded into unforgettable trips.
+                </p>
+                <p>
+                  We know what players want: great organisation, first-class coaching, social match play, sunshine, tapas, and meeting fellow padel addicts.
+                </p>
+              </div>
+              <div className="mt-7">
+                <Link
+                  href="/events"
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-red px-6 py-3 text-[11px] font-semibold uppercase tracking-widest text-brand-red hover:bg-brand-red hover:text-white transition-colors"
+                >
+                  See Upcoming Trips
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
