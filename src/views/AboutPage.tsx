@@ -122,27 +122,22 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="py-16 md:py-20 px-6 bg-brand-dark">
-        <div className="max-w-7xl mx-auto">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] px-7 md:px-12 py-9 md:py-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-9 md:gap-10">
-            <div>
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Social Proof</p>
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-                <p className="font-serif text-2xl md:text-3xl font-black text-white leading-none">5.0 Rating</p>
-                <p className="font-serif text-2xl md:text-3xl font-black text-white leading-none">2000+ Travellers</p>
-                <p className="font-serif text-2xl md:text-3xl font-black text-white leading-none">700+ Events</p>
+          <div className="mt-10 md:mt-12 rounded-2xl border border-stone-200 bg-brand-light px-6 md:px-8 py-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+              <div>
+                <p className="font-serif text-2xl md:text-3xl font-black text-brand-dark leading-none">5.0</p>
+                <p className="text-[11px] uppercase tracking-widest text-stone-500 mt-2">Average Rating</p>
+              </div>
+              <div>
+                <p className="font-serif text-2xl md:text-3xl font-black text-brand-dark leading-none">2000+</p>
+                <p className="text-[11px] uppercase tracking-widest text-stone-500 mt-2">Travellers</p>
+              </div>
+              <div>
+                <p className="font-serif text-2xl md:text-3xl font-black text-brand-dark leading-none">700+</p>
+                <p className="text-[11px] uppercase tracking-widest text-stone-500 mt-2">Events Hosted</p>
               </div>
             </div>
-            <Link
-              href="/events"
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3 text-xs font-semibold uppercase tracking-widest text-white hover:bg-white hover:text-brand-dark transition-colors"
-            >
-              View Upcoming Dates
-              <ArrowRight size={14} />
-            </Link>
           </div>
         </div>
       </section>
