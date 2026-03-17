@@ -46,8 +46,8 @@ export default function AboutPage() {
 
           <div className="lg:col-span-7">
             <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight mb-5">
-              <span className="block">The Story Behind</span>
-              <span className="block text-brand-red">Padel Tripper</span>
+              <span className="block">How It</span>
+              <span className="block text-brand-red">All Started</span>
             </h2>
             <div className="space-y-4 text-stone-600 leading-relaxed max-w-2xl">
               <p className="font-medium text-brand-dark">
@@ -95,28 +95,28 @@ export default function AboutPage() {
       <section className="py-20 md:py-24 px-6 bg-white border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto">
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-5 text-center">Our Journey</p>
-          <h3 className="font-serif text-2xl md:text-3xl font-black uppercase text-brand-dark text-center mb-10 md:mb-12">
+          <h2 className="font-serif text-2xl md:text-3xl font-black uppercase text-brand-dark text-center mb-10 md:mb-12">
             From Local Community To International Trips
-          </h3>
+          </h2>
 
           <div className="grid md:grid-cols-3 gap-5 md:gap-7 relative">
             <div className="rounded-2xl border border-stone-200 bg-brand-light p-7">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-stone-500 mb-2">Step 1</p>
-              <p className="font-serif text-xl font-black text-brand-dark mb-2">Community Started</p>
+              <h3 className="font-serif text-xl font-black text-brand-dark mb-2">Community Started</h3>
               <p className="text-sm text-stone-600 leading-relaxed">
                 Alicante Social Padel began with local sessions focused on good games and great people.
               </p>
             </div>
             <div className="rounded-2xl border border-stone-200 bg-brand-light p-7">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-stone-500 mb-2">Step 2</p>
-              <p className="font-serif text-xl font-black text-brand-dark mb-2">700+ Events Hosted</p>
+              <h3 className="font-serif text-xl font-black text-brand-dark mb-2">700+ Events Hosted</h3>
               <p className="text-sm text-stone-600 leading-relaxed">
                 A proven formula grew across thousands of players and hundreds of organised events.
               </p>
             </div>
             <div className="rounded-2xl border border-stone-200 bg-brand-light p-7">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-stone-500 mb-2">Step 3</p>
-              <p className="font-serif text-xl font-black text-brand-dark mb-2">International Retreats</p>
+              <h3 className="font-serif text-xl font-black text-brand-dark mb-2">International Retreats</h3>
               <p className="text-sm text-stone-600 leading-relaxed">
                 Padel Tripper now brings that same energy to curated holiday experiences in Spain.
               </p>
