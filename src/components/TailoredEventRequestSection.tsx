@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'motion/react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, CalendarDays, Dumbbell, Users } from 'lucide-react';
 
 const initialTailorData = {
   name: '',
@@ -94,18 +94,27 @@ export default function TailoredEventRequestSection() {
                 Tell us your group size and preferred dates, and we&apos;ll come back with the best options to create your perfect padel getaway.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <div className="rounded-xl border border-stone-200 bg-brand-light p-4">
+            <div className="grid sm:grid-cols-3 gap-3">
+              <div className="rounded-2xl border border-stone-200 bg-white p-4">
+                <div className="w-9 h-9 rounded-full bg-brand-light flex items-center justify-center text-brand-red mb-3">
+                  <CalendarDays size={16} />
+                </div>
                 <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Format</p>
-                <p className="text-sm text-brand-dark font-medium">Built around our proven 4-day trip</p>
+                <p className="text-sm text-brand-dark font-medium leading-snug">Proven 4-day Padel Tripper experience</p>
               </div>
-              <div className="rounded-xl border border-stone-200 bg-brand-light p-4">
+              <div className="rounded-2xl border border-stone-200 bg-white p-4">
+                <div className="w-9 h-9 rounded-full bg-brand-light flex items-center justify-center text-brand-red mb-3">
+                  <Dumbbell size={16} />
+                </div>
                 <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">On Court</p>
-                <p className="text-sm text-brand-dark font-medium">6h coaching + social play</p>
+                <p className="text-sm text-brand-dark font-medium leading-snug">6h professional coaching + social play</p>
               </div>
-              <div className="rounded-xl border border-stone-200 bg-brand-light p-4 sm:col-span-2">
+              <div className="rounded-2xl border border-stone-200 bg-white p-4 sm:col-span-3 md:col-span-1">
+                <div className="w-9 h-9 rounded-full bg-brand-light flex items-center justify-center text-brand-red mb-3">
+                  <Users size={16} />
+                </div>
                 <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Perfect For</p>
-                <p className="text-sm text-brand-dark font-medium">Friends, clubs, birthdays and private group getaways</p>
+                <p className="text-sm text-brand-dark font-medium leading-snug">Friends, clubs, birthdays and private groups</p>
               </div>
             </div>
           </div>
