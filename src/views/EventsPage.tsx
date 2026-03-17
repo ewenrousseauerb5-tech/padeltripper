@@ -107,39 +107,11 @@ export default function EventsPage() {
           </div>
 
           <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-start">
-            <div className="space-y-6">
-              <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl">
-                <BookingForm selectedEventId={selectedEventId} />
-              </div>
-
-              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-5 md:p-6">
-                <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
-                <h3 className="font-serif text-[26px] font-black text-white uppercase leading-tight mb-3">
-                  Basic <span className="text-brand-red">Itinerary</span>
-                </h3>
-
-                <div className="space-y-2.5">
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Tuesday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">Arrival, hotel check-in and welcome drinks in the evening.</p>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Wednesday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">Morning coaching at Montemar and afternoon social games at Bela.</p>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Thursday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">More coaching + social play, then optional night out in Alicante.</p>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Friday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">Final coaching session, then departures after midday.</p>
-                  </div>
-                </div>
-              </aside>
+            <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl">
+              <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            <div>
+            <div className="space-y-3">
               <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5 space-y-3">
                 <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
                 <div className="flex items-center gap-4">
@@ -171,6 +143,32 @@ export default function EventsPage() {
                     <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
                       @padeltripper
                     </a>
+                  </div>
+                </div>
+              </aside>
+
+              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-5 md:p-6">
+                <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
+                <h3 className="font-serif text-[26px] font-black text-white uppercase leading-tight mb-3">
+                  Basic <span className="text-brand-red">Itinerary</span>
+                </h3>
+
+                <div className="space-y-2.5">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <p className="text-white text-sm font-semibold mb-1">Tuesday</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">Arrival, hotel check-in and welcome drinks in the evening.</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <p className="text-white text-sm font-semibold mb-1">Wednesday</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">Morning coaching at Montemar and afternoon social games at Bela.</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <p className="text-white text-sm font-semibold mb-1">Thursday</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">More coaching + social play, then optional night out in Alicante.</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <p className="text-white text-sm font-semibold mb-1">Friday</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed">Final coaching session, then departures after midday.</p>
                   </div>
                 </div>
               </aside>
