@@ -43,7 +43,7 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                 </div>
               </div>
 
-              <div className="space-y-3 mb-7 flex-1">
+              <div className="space-y-2 mb-7 flex-1">
                 {event.promoNote && (
                   <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
                     {event.promoNote}
@@ -68,19 +68,11 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                 </div>
                 <div className="flex items-center gap-3 text-stone-400">
                   <Star size={14} className="shrink-0" />
-                  <span className="text-sm">{event.hotel}</span>
+                  <span className="text-sm">{event.hotel} + B&amp;B</span>
                 </div>
                 <div className="flex items-center gap-3 text-stone-400">
                   <Check size={14} className="shrink-0 text-brand-red/80" />
-                  <span className="text-sm">6 hours coaching</span>
-                </div>
-                <div className="flex items-center gap-3 text-stone-400">
-                  <Check size={14} className="shrink-0 text-brand-red/80" />
-                  <span className="text-sm">6 hours social play</span>
-                </div>
-                <div className="flex items-center gap-3 text-stone-400">
-                  <Check size={14} className="shrink-0 text-brand-red/80" />
-                  <span className="text-sm">B&amp;B at the hotel included</span>
+                  <span className="text-sm">6h coaching + 6h social play</span>
                 </div>
               </div>
 
