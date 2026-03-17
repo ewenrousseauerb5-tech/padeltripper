@@ -21,12 +21,12 @@ export default function AboutPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Us</p>
-          <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase leading-[0.95] max-w-4xl mb-5">
+          <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-3xl">
             Built By Padel Players,
             <br />
             <span className="text-brand-red">For Padel Players</span>
           </h1>
-          <p className="text-white/75 max-w-2xl text-base md:text-lg leading-relaxed">
+          <p className="text-white/50 max-w-2xl text-lg font-light">
             We started as a real local padel community in Alicante and grew into curated trips for players who want coaching, competition and good vibes in one premium experience.
           </p>
         </div>
@@ -47,11 +47,11 @@ export default function AboutPage() {
           </div>
 
           <div className="lg:col-span-7">
-            <h2 className="font-serif text-3xl md:text-5xl font-black uppercase leading-tight mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-black uppercase leading-tight mb-5">
               <span className="block">The Story Behind</span>
               <span className="block text-brand-red">Padel Tripper</span>
             </h2>
-            <div className="space-y-4 text-stone-600 leading-relaxed">
+            <div className="space-y-3 text-stone-600 leading-relaxed">
               <p className="font-medium text-brand-dark">
                 I&apos;m Ollie, founder of Padel Tripper and Alicante Social Padel.
               </p>
@@ -63,20 +63,20 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-3 mt-8">
+            <div className="grid sm:grid-cols-3 gap-3 mt-7">
               <div className="rounded-2xl border border-stone-200 bg-white p-4">
                 <Trophy className="text-brand-red mb-3" size={18} />
-                <p className="text-2xl font-black font-serif text-brand-dark leading-none">700+</p>
+                <p className="text-xl font-black font-serif text-brand-dark leading-none">700+</p>
                 <p className="text-xs uppercase tracking-wider text-stone-500 mt-2">Events Hosted</p>
               </div>
               <div className="rounded-2xl border border-stone-200 bg-white p-4">
                 <Users className="text-brand-red mb-3" size={18} />
-                <p className="text-2xl font-black font-serif text-brand-dark leading-none">2000+</p>
+                <p className="text-xl font-black font-serif text-brand-dark leading-none">2000+</p>
                 <p className="text-xs uppercase tracking-wider text-stone-500 mt-2">Community Players</p>
               </div>
               <div className="rounded-2xl border border-stone-200 bg-white p-4">
                 <Sparkles className="text-brand-red mb-3" size={18} />
-                <p className="text-2xl font-black font-serif text-brand-dark leading-none">24/7</p>
+                <p className="text-xl font-black font-serif text-brand-dark leading-none">24/7</p>
                 <p className="text-xs uppercase tracking-wider text-stone-500 mt-2">On-Trip Support</p>
               </div>
             </div>
@@ -94,20 +94,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-14 px-6 bg-white border-b border-stone-200/70">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-4">Our Mission</p>
-          <p className="font-serif text-2xl md:text-3xl font-black uppercase text-brand-dark leading-tight">
-            Build premium padel holidays where players improve fast,
-            <span className="text-brand-red"> connect naturally</span> and leave with unforgettable memories.
-          </p>
-        </div>
-      </section>
-
       <section className="py-16 md:py-20 px-6 bg-white border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto">
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4 text-center">Our Journey</p>
-          <h3 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark text-center mb-10">
+          <h3 className="font-serif text-2xl md:text-3xl font-black uppercase text-brand-dark text-center mb-8">
             From Local Community To International Trips
           </h3>
 
@@ -143,9 +133,9 @@ export default function AboutPage() {
             <div>
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Social Proof</p>
               <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-                <p className="font-serif text-3xl md:text-4xl font-black text-white leading-none">5.0 Rating</p>
-                <p className="font-serif text-3xl md:text-4xl font-black text-white leading-none">2000+ Travellers</p>
-                <p className="font-serif text-3xl md:text-4xl font-black text-white leading-none">700+ Events</p>
+                <p className="font-serif text-2xl md:text-3xl font-black text-white leading-none">5.0 Rating</p>
+                <p className="font-serif text-2xl md:text-3xl font-black text-white leading-none">2000+ Travellers</p>
+                <p className="font-serif text-2xl md:text-3xl font-black text-white leading-none">700+ Events</p>
               </div>
             </div>
             <Link
