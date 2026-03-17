@@ -98,6 +98,10 @@ export default function Navbar() {
             "transition-colors duration-300",
             showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
           )}>Events</Link>
+          <Link href="/tailored-events" className={cn(
+            "transition-colors duration-300",
+            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+          )}>Tailored</Link>
           <Link
             href="/events#booking"
             className={cn(
@@ -123,6 +127,9 @@ export default function Navbar() {
             </Link>
             <Link href="/events" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
               Events
+            </Link>
+            <Link href="/tailored-events" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+              Tailored
             </Link>
             <Link href="/events#booking" className="mt-2 block rounded-full bg-brand-red px-4 py-3 text-center text-xs font-bold uppercase tracking-widest text-white hover:bg-brand-dark transition-colors">
               Book Your Trip
