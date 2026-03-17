@@ -6,7 +6,7 @@ import { ArrowRight, Trophy, Users, Sparkles } from 'lucide-react';
 export default function AboutPage() {
   return (
     <main>
-      <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
+      <section className="relative h-[50vh] min-h-[400px] pt-28 flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/group-social-evening.jpg"
