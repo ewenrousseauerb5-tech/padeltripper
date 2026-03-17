@@ -1,73 +1,24 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Calendar,
-  MapPin,
-  Star,
   CheckCircle2,
   Mail,
   Phone,
-  ChevronLeft,
   ChevronRight,
-  ChevronDown,
-  Clock,
   Instagram,
 } from 'lucide-react';
-import { FUTURE_EVENTS } from '../data/events';
 import BookingForm from '../components/BookingForm';
-
-const CAROUSEL_PHOTOS = [
-  { src: '/images/post-tournament-celebration.jpg', alt: 'Padel Tripper group celebrating after a tournament at Club Montemar, Alicante' },
-  { src: '/images/alicante-castle-view.jpg', alt: 'View over Alicante from the castle — Costa Blanca' },
-  { src: '/images/post-tournament-drinks.jpg', alt: 'Group padel holiday — post-tournament drinks in the sun' },
-  { src: '/images/padel-coaching-alicante.jpg', alt: 'Padel coaching session at Club Atlético Montemar, Alicante' },
-  { src: '/images/san-juan-beach-alicante.jpg', alt: 'Playa San Juan beach, Alicante — just minutes from Hotel Alicante Golf' },
-  { src: '/images/players-enjoying-padel.jpg', alt: 'Players laughing during a padel coaching session in Alicante' },
-  { src: '/images/group-social-evening.jpg', alt: 'Padel Tripper group social evening in Alicante' },
-  { src: '/images/padel-night-game.jpg', alt: 'Evening padel under the lights in Alicante' },
-];
-
-function AccordionItem({ title, children, defaultOpen = false }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-
-  return (
-    <div className="bg-white rounded-xl overflow-hidden border border-stone-100 hover:border-stone-200 transition-colors">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-6 text-left hover:bg-stone-50/50 transition-colors"
-      >
-        <span className="font-serif font-bold text-brand-dark text-[15px] pr-4">{title}</span>
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
-          isOpen ? 'bg-brand-red text-white rotate-180' : 'bg-stone-100 text-stone-400'
-        }`}>
-          <ChevronDown size={16} />
-        </div>
-      </button>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 pb-6">
-              {children}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+import { FUTURE_EVENTS } from '../data/events';
+import EventsHero from '../components/events/EventsHero';
+import EventsGrid from '../components/events/EventsGrid';
+import ExperienceGallery from '../components/events/ExperienceGallery';
+import EventsFaqSection from '../components/events/EventsFaqSection';
 
 export default function EventsPage() {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   const initialTailorData = {
     name: '',
@@ -98,19 +49,6 @@ export default function EventsPage() {
       window.scrollTo(0, 0);
     }
   }, []);
-
-  const nextSlide = useCallback(() => {
-    setCurrentSlide(prev => (prev + 1) % CAROUSEL_PHOTOS.length);
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide(prev => (prev - 1 + CAROUSEL_PHOTOS.length) % CAROUSEL_PHOTOS.length);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(nextSlide, 4000);
-    return () => clearInterval(timer);
-  }, [nextSlide]);
 
   const handleTailorSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,259 +87,10 @@ export default function EventsPage() {
 
   return (
     <main>
-      {/* Hero with background photo */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/post-tournament-celebration.jpg"
-            alt="Padel Tripper players at Club Montemar, Alicante — Costa Blanca"
-            className="w-full h-full object-cover object-top brightness-[0.3]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">All Dates & Prices</p>
-            <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4">
-              Padel Camp <span className="text-brand-red">Dates</span>
-            </h1>
-            <p className="text-white/50 max-w-2xl text-lg font-light">
-              Browse all our upcoming padel coaching holidays in Alicante. Choose your dates and book your spot.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* All Events Grid */}
-      <section className="py-24 px-6" aria-label="All padel holiday dates and prices">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FUTURE_EVENTS.map((event, idx) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="relative bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full"
-              >
-                {/* Red top accent */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-brand-red rounded-t-2xl" />
-
-                <div className="flex justify-between items-start mb-5 pt-2">
-                  <div className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-full ${
-                    event.status === 'Filling Fast'
-                      ? 'bg-brand-red/10 text-brand-red'
-                      : event.status === 'Limited Spaces'
-                      ? 'bg-amber-50 text-amber-600'
-                      : 'bg-stone-100 text-stone-400'
-                  }`}>
-                    {event.status}
-                  </div>
-                  <div className="text-2xl font-serif font-black text-brand-red">
-                    {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{event.originalPrice}</span>}
-                    From {event.price}
-                  </div>
-                </div>
-
-                <div className="space-y-3 mb-7 flex-1">
-                  {event.promoNote && (
-                    <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                      {event.promoNote}
-                    </p>
-                  )}
-                  {event.eligibilityNote && (
-                    <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-                      {event.eligibilityNote}
-                    </p>
-                  )}
-                  <div className="flex items-center gap-3">
-                    <Calendar size={15} className="text-brand-red shrink-0" />
-                    <span className="font-bold text-brand-dark text-sm">{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-stone-400">
-                    <Clock size={14} className="shrink-0" />
-                    <span className="text-sm">{event.nights} nights / {event.nights + 1} days</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-stone-400">
-                    <MapPin size={14} className="shrink-0" />
-                    <span className="text-sm">{event.location}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-stone-400">
-                    <Star size={14} className="shrink-0" />
-                    <span className="text-sm">{event.hotel}</span>
-                  </div>
-                </div>
-
-                <a
-                  href="#booking"
-                  onClick={() => setSelectedEventId(event.id)}
-                  className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300 mt-auto"
-                >
-                  Book This Trip
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Photo Carousel */}
-      <section className="py-14 md:py-16 bg-brand-dark px-6" aria-label="Padel holiday experience gallery">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Gallery</p>
-            <h2 className="font-serif text-3xl font-black text-white uppercase mb-3">The Padel Tripper <span className="text-brand-red">Experience</span></h2>
-            <p className="text-white/40 text-sm font-light">More than just padel — it's the people, the sun, the memories.</p>
-          </div>
-          <div className="relative">
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentSlide}
-                  src={CAROUSEL_PHOTOS[currentSlide].src}
-                  alt={CAROUSEL_PHOTOS[currentSlide].alt}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </AnimatePresence>
-            </div>
-
-            {/* Controls */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
-              aria-label="Previous photo"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
-              aria-label="Next photo"
-            >
-              <ChevronRight size={20} />
-            </button>
-
-            {/* Dots */}
-            <div className="flex justify-center gap-2 mt-6">
-              {CAROUSEL_PHOTOS.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    idx === currentSlide ? 'bg-brand-red w-8' : 'bg-white/20 w-1.5 hover:bg-white/40'
-                  }`}
-                  aria-label={`Go to photo ${idx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Everything You Need to Know — FAQ Accordion */}
-      <section className="py-28 bg-brand-light px-6" aria-label="Padel holiday package information">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-start">
-            {/* Left — Title + Photo */}
-            <div className="md:sticky md:top-28">
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">FAQ</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-4">
-                Everything You<br />Need to <span className="text-brand-red">Know</span>
-              </h2>
-              <p className="text-stone-400 text-sm mb-10 max-w-sm leading-relaxed">
-                All the details about your padel holiday in Alicante — from coaching to accommodation.
-              </p>
-              <img
-                src="/images/pitu-losada-coach.jpg"
-                alt="Pitu Losada — 3x World Champion padel coach at Club Atlético Montemar, Alicante"
-                className="rounded-2xl w-full aspect-[4/3] object-cover shadow-lg hidden md:block"
-              />
-            </div>
-
-            {/* Right — Accordion */}
-            <div className="space-y-3">
-              <AccordionItem
-                title="What does a typical itinerary look like?"
-                defaultOpen
-              >
-                <div className="space-y-4">
-                  <div>
-                    <p className="font-semibold text-brand-dark text-sm mb-1">Tuesday — Arrival</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">Check in, dump your bags, and get into holiday mode. There's often time for an informal hit if you land early. The trip officially starts with welcome drinks at 7.30pm up on the hotel Mirador — a rooftop terrace with views over the golf course.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-dark text-sm mb-1">Wednesday</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">Meet the coaching team at Club Atlético Montemar at 9.45am. Morning coaching session 10am–12pm. After a break, we head to Bela Padel Centre for a 3–5pm afternoon social — expect competitive games and plenty of laughs.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-dark text-sm mb-1">Thursday</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">Morning coaching at Montemar again (10am–12pm), then back to Bela for the afternoon session (3–5pm). Round the day off with a night out in the city — Plaza del Ayuntamiento is the go-to for a few well-earned drinks.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-dark text-sm mb-1">Friday — Departure</p>
-                    <p className="text-stone-400 text-sm leading-relaxed">Last coaching session of the trip (10am–12pm), then farewells at 12.15pm. Got an evening flight? The courts don't close at midday — feel free to keep playing.</p>
-                  </div>
-                  <p className="text-stone-300 text-xs italic">Afternoon sessions may run 90 minutes subject to court availability.</p>
-                </div>
-              </AccordionItem>
-
-              <AccordionItem title="Do flights come with the package?">
-                <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>Flights aren't included — you'll book those independently. Alicante is well connected from most UK airports and flights are generally very reasonable.</p>
-                  <p>Make sure you have adequate travel insurance in place before you travel. This should cover the dates of your trip and any sporting activities.</p>
-                  <p className="font-medium text-brand-dark">Important: don't book your flights until you've received email confirmation from us that your trip is going ahead.</p>
-                </div>
-              </AccordionItem>
-
-              <AccordionItem title="How do I get from the airport to the hotel?">
-                <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>Taxis from Alicante airport are easy to find and reliable — expect to pay around €35–40 and the journey takes roughly 20 minutes.</p>
-                  <p>If several of you are landing around the same time, we'll coordinate a group transfer where we can. Full arrival details are shared ahead of the trip.</p>
-                  <p>Hotel check-in is from <strong className="text-brand-dark">4pm</strong> and check-out is by <strong className="text-brand-dark">12pm</strong> on your departure day.</p>
-                </div>
-              </AccordionItem>
-
-              <AccordionItem title="What happens between coaching sessions?">
-                <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>Between sessions the time is yours. Head back to the hotel for a swim and some downtime, or stay at the club and make use of the bar and facilities on site.</p>
-                  <p>Evenings are unstructured — Alicante has a brilliant restaurant and bar scene. We'll share recommendations and often join the group for a drink or dinner.</p>
-                </div>
-              </AccordionItem>
-
-              <AccordionItem title="Where do we stay?">
-                <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>Everyone stays at the Hotel Alicante Golf — a comfortable 4-star hotel right next to Playa San Juan. Pool, sun terrace, good food, and an easy tram link into the city centre.</p>
-                  <p>The beach is a short walk away and the hotel has everything you need to recharge between sessions.</p>
-                  <p className="font-medium text-brand-dark">Pricing is based on two guests sharing a room. Solo travellers can add a single room supplement of &pound;150.</p>
-                </div>
-              </AccordionItem>
-
-              <AccordionItem title="Do I need to bring my own racquet?">
-                <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>Not at all — racquet hire is included in the price, so don't worry if you don't have your own.</p>
-                  <p>Bring comfortable sports kit and proper court shoes. Alicante tends to be warm and sunny even in spring, so pack a cap and sunscreen too.</p>
-                </div>
-              </AccordionItem>
-
-              <AccordionItem title="How does the group stay in touch?">
-                <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                  <p>Before the trip you'll have direct contact details for our team on the ground — someone will always be available if you need anything.</p>
-                  <p>We set up a WhatsApp group for each trip so everyone can connect ahead of time and during the week. It's optional but most people find it useful.</p>
-                </div>
-              </AccordionItem>
-            </div>
-          </div>
-        </div>
-      </section>
+      <EventsHero />
+      <EventsGrid events={FUTURE_EVENTS} onSelectEvent={setSelectedEventId} />
+      <ExperienceGallery />
+      <EventsFaqSection />
 
       {/* Booking Form */}
       <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
