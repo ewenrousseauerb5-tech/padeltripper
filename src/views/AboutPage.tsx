@@ -6,28 +6,26 @@ import { ArrowRight, Trophy, Users, Sparkles } from 'lucide-react';
 export default function AboutPage() {
   return (
     <main>
-      <section className="relative h-[50vh] min-h-[420px] pt-28 md:pt-32 flex items-end overflow-hidden">
+      <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/group-social-evening.jpg"
             alt="Padel Tripper group in Alicante enjoying the social side of the trip"
-            className="w-full h-full object-cover object-center brightness-[0.35]"
+            className="w-full h-full object-cover object-top brightness-[0.3]"
             loading="eager"
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-20 md:pb-24">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Us</p>
           <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-3xl">
-            Built By Padel Players,
-            <br />
-            <span className="text-brand-red">For Padel Players</span>
+            Padel Tripper <span className="text-brand-red">Story</span>
           </h1>
           <p className="text-white/50 max-w-2xl text-lg font-light">
-            We started as a real local padel community in Alicante and grew into curated trips for players who want coaching, competition and good vibes in one premium experience.
+            Built from a real Alicante padel community into premium trips for players who want great coaching, social games and a seamless experience.
           </p>
         </div>
       </section>
