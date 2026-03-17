@@ -90,7 +90,6 @@ export default function EventsPage() {
       <EventsHero />
       <EventsGrid events={FUTURE_EVENTS} onSelectEvent={setSelectedEventId} />
       <ExperienceGallery />
-      <EventsFaqSection />
 
       {/* Booking Form */}
       <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
@@ -176,6 +175,8 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      <EventsFaqSection />
 
       {/* Tailor Your Event */}
       <section id="tailor" className="py-28 px-6" aria-label="Tailor your own padel event">
