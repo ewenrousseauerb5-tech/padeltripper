@@ -162,7 +162,7 @@ export default function VenuesPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-12 gap-4 md:gap-5">
+          <div className="grid md:grid-cols-12 gap-4 md:gap-5 items-start">
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -174,7 +174,7 @@ export default function VenuesPage() {
                 alt="Pool area in Hotel Alicante Golf"
                 width={1600}
                 height={1060}
-                className="w-full h-[310px] md:h-[430px] object-cover object-center"
+                className="block w-full h-[310px] md:h-[430px] object-cover object-center"
                 sizes="(max-width: 768px) 100vw, 58vw"
               />
               </motion.div>
