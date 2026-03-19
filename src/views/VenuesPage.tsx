@@ -188,7 +188,7 @@ export default function VenuesPage() {
                 className="rounded-2xl overflow-hidden border border-white/15"
               >
                 <Image
-                  src="/images/venues/Hotel-hab.jpg"
+                  src="/images/venues/Hotel-habitacion.avif"
                   alt="Hotel room at Alicante Golf"
                   width={900}
                   height={700}
