@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
@@ -12,14 +13,16 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden" aria-label="Padel holidays Spain hero">
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/foto-movil-1.jpeg"
-            alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
-            className="md:hidden w-full h-full object-cover brightness-[0.4]"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
+          <div className="md:hidden absolute inset-0">
+            <Image
+              src="/images/foto-movil-1.jpeg"
+              alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover brightness-[0.4]"
+            />
+          </div>
           <video
             className="hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4]"
             autoPlay

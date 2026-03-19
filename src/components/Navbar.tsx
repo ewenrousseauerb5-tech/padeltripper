@@ -14,7 +14,23 @@ export default function Navbar() {
   const isHome = pathname === '/';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    let ticking = false;
+    let lastValue = false;
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const nextValue = window.scrollY > 50;
+        if (nextValue !== lastValue) {
+          lastValue = nextValue;
+          setScrolled(nextValue);
+        }
+        ticking = false;
+      });
+    };
+
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);

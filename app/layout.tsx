@@ -1,11 +1,24 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { Inter, Montserrat } from 'next/font/google';
 import Navbar from '@/src/components/Navbar';
 import Footer from '@/src/components/Footer';
 import WhatsAppButton from '@/src/components/WhatsAppButton';
 import CookieBanner from '@/src/components/CookieBanner';
 import { SITE_URL } from '@/src/lib/seo';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -109,7 +122,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={`${inter.variable} ${montserrat.variable}`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
