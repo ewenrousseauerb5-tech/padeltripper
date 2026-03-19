@@ -179,20 +179,20 @@ export default function VenuesPage() {
               />
               </motion.div>
 
-            <div className="md:col-span-5 grid sm:grid-cols-2 md:grid-cols-1 gap-4 md:gap-5">
+            <div className="md:col-span-5 h-[310px] md:h-[430px] grid grid-rows-2 gap-4 md:gap-5">
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ delay: 0.05 }}
-                className="rounded-2xl overflow-hidden border border-white/15"
+                className="rounded-2xl overflow-hidden border border-white/15 h-full"
               >
                 <Image
                   src="/images/venues/Hotel-golf.jpg"
                   alt="Hotel Alicante Golf exterior"
                   width={900}
                   height={700}
-                  className="w-full h-[205px] md:h-[205px] object-cover object-center"
+                  className="w-full h-full object-cover object-center"
                   sizes="(max-width: 768px) 50vw, 34vw"
                 />
               </motion.div>
@@ -202,25 +202,25 @@ export default function VenuesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ delay: 0.1 }}
-                className="grid grid-cols-2 gap-4 md:gap-5"
+                className="grid grid-cols-2 gap-4 md:gap-5 h-full"
               >
-                <div className="rounded-2xl overflow-hidden border border-white/15">
+                <div className="rounded-2xl overflow-hidden border border-white/15 h-full">
                   <Image
                     src="/images/venues/Hotel-comedor.webp"
                     alt="Dining area in Hotel Alicante Golf"
                     width={900}
                     height={700}
-                    className="w-full h-[190px] md:h-[220px] object-cover object-center"
+                    className="w-full h-full object-cover object-center"
                     sizes="(max-width: 768px) 50vw, 17vw"
                   />
                 </div>
-                <div className="rounded-2xl overflow-hidden border border-white/15">
+                <div className="rounded-2xl overflow-hidden border border-white/15 h-full">
                   <Image
                     src="/images/venues/Hotel-habitacion.jpg"
                     alt="Hotel room at Alicante Golf"
                     width={900}
                     height={700}
-                    className="w-full h-[190px] md:h-[220px] object-cover object-center"
+                    className="w-full h-full object-cover object-center"
                     sizes="(max-width: 768px) 50vw, 17vw"
                   />
                 </div>
