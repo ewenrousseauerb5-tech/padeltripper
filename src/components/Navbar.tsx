@@ -114,6 +114,10 @@ export default function Navbar() {
             "transition-colors duration-300",
             showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
           )}>Events</Link>
+          <Link href="/venues" className={cn(
+            "transition-colors duration-300",
+            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+          )}>Venues</Link>
           <Link href="/tailored-events" className={cn(
             "transition-colors duration-300",
             showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
@@ -143,6 +147,9 @@ export default function Navbar() {
             </Link>
             <Link href="/events" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
               Events
+            </Link>
+            <Link href="/venues" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+              Venues
             </Link>
             <Link href="/tailored-events" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
               Tailored
