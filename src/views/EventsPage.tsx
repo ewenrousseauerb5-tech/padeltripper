@@ -2,13 +2,22 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Mail, Phone, Instagram, ArrowRight } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import { FUTURE_EVENTS } from '../data/events';
 import EventsHero from '../components/events/EventsHero';
 import EventsGrid from '../components/events/EventsGrid';
-import ExperienceGallery from '../components/events/ExperienceGallery';
-import EventsFaqSection from '../components/events/EventsFaqSection';
+
+const EventsFaqSection = dynamic(() => import('../components/events/EventsFaqSection'), {
+  ssr: false,
+  loading: () => <section className="py-20 bg-brand-light px-6" />,
+});
+
+const ExperienceGallery = dynamic(() => import('../components/events/ExperienceGallery'), {
+  ssr: false,
+  loading: () => <section className="py-20 bg-brand-dark px-6" />,
+});
 
 export default function EventsPage() {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);

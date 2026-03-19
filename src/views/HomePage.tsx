@@ -2,11 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
-import TrustpilotReviewHighlights from '../components/TrustpilotReviewHighlights';
+
+const TrustpilotReviewHighlights = dynamic(() => import('../components/TrustpilotReviewHighlights'), {
+  ssr: false,
+  loading: () => (
+    <section className="pt-6 md:pt-8 bg-white px-6">
+      <div className="max-w-7xl mx-auto h-40 rounded-2xl border border-stone-200 bg-brand-light animate-pulse" />
+    </section>
+  ),
+});
 
 export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
@@ -18,6 +27,14 @@ export default function HomePage() {
       requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
       cancelIdleCallback?: (handle: number) => void;
     };
+
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+    const saveDataEnabled = Boolean(connection?.saveData);
+    const slowNetwork = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveDataEnabled || slowNetwork || prefersReducedMotion) return;
 
     const onIdle = () => setLoadDesktopVideo(true);
     if (win.requestIdleCallback && win.cancelIdleCallback) {
