@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
@@ -8,6 +9,26 @@ import { UPCOMING_EVENTS } from '../data/events';
 import TrustpilotReviewHighlights from '../components/TrustpilotReviewHighlights';
 
 export default function HomePage() {
+  const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) return;
+
+    const win = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+
+    const onIdle = () => setLoadDesktopVideo(true);
+    if (win.requestIdleCallback && win.cancelIdleCallback) {
+      const idleId = win.requestIdleCallback(() => onIdle(), { timeout: 1200 });
+      return () => win.cancelIdleCallback!(idleId);
+    }
+
+    const timeout = win.setTimeout(onIdle, 400);
+    return () => win.clearTimeout(timeout);
+  }, []);
+
   return (
     <main>
       {/* Hero Section */}
@@ -23,16 +44,28 @@ export default function HomePage() {
               className="object-cover brightness-[0.4]"
             />
           </div>
+          <div className="hidden md:block absolute inset-0">
+            <Image
+              src="/images/hero-padel-camp.jpg"
+              alt="Padel Tripper guests enjoying a premium retreat in Alicante"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover brightness-[0.4]"
+            />
+          </div>
           <video
-            className="hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4]"
+            className={`hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4] transition-opacity duration-500 ${
+              loadDesktopVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             aria-hidden="true"
           >
-            <source src="/videos/hero-background.m4v" type="video/mp4" media="(min-width: 768px)" />
+            {loadDesktopVideo ? <source src="/videos/hero-background.m4v" type="video/mp4" media="(min-width: 768px)" /> : null}
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
         </div>
