@@ -169,14 +169,14 @@ export default function VenuesPage() {
               viewport={{ once: true, amount: 0.25 }}
               className="md:col-span-7 rounded-2xl overflow-hidden border border-white/15"
             >
-                <Image
-                  src="/images/venues/Hotel-golf.jpg"
-                  alt="Hotel Alicante Golf exterior"
-                  width={1600}
-                  height={1060}
-                  className="w-full h-[310px] md:h-[430px] object-cover object-[center_92%]"
-                  sizes="(max-width: 768px) 100vw, 58vw"
-                />
+              <Image
+                src="/images/venues/Hotel-piscina.webp"
+                alt="Pool area in Hotel Alicante Golf"
+                width={1600}
+                height={1060}
+                className="w-full h-[310px] md:h-[430px] object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 58vw"
+              />
               </motion.div>
 
             <div className="md:col-span-5 grid sm:grid-cols-2 md:grid-cols-1 gap-4 md:gap-5">
@@ -188,8 +188,8 @@ export default function VenuesPage() {
                 className="rounded-2xl overflow-hidden border border-white/15"
               >
                 <Image
-                  src="/images/venues/Hotel-piscina.webp"
-                  alt="Pool area in Hotel Alicante Golf"
+                  src="/images/venues/Hotel-golf.jpg"
+                  alt="Hotel Alicante Golf exterior"
                   width={900}
                   height={700}
                   className="w-full h-[205px] md:h-[205px] object-cover object-center"
