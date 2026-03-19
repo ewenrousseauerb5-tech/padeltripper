@@ -174,7 +174,7 @@ export default function VenuesPage() {
                   alt="Hotel Alicante Golf exterior"
                   width={1600}
                   height={1060}
-                  className="w-full h-[310px] md:h-[430px] object-cover object-[center_72%]"
+                  className="w-full h-[310px] md:h-[430px] object-cover object-[center_82%]"
                   sizes="(max-width: 768px) 100vw, 58vw"
                 />
             </motion.div>
@@ -188,7 +188,7 @@ export default function VenuesPage() {
                 className="rounded-2xl overflow-hidden border border-white/15"
               >
                 <Image
-                  src="/images/venues/Hotel-hab.jpg"
+                  src="/images/venues/Hotel-habitacion.jpg"
                   alt="Hotel room at Alicante Golf"
                   width={900}
                   height={700}
