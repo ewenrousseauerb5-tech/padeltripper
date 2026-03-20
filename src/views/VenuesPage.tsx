@@ -111,7 +111,7 @@ export default function VenuesPage() {
                   alt="Pitu Losada at the training academy"
                   width={1400}
                   height={900}
-                  className="w-full h-[290px] md:h-[340px] object-cover object-[center_8%] group-hover:scale-[1.02] transition-transform duration-500"
+                  className="w-full h-[290px] md:h-[340px] object-cover object-[center_0%] group-hover:scale-[1.02] transition-transform duration-500"
                   sizes="(max-width: 1024px) 100vw, 48vw"
                 />
               </div>
