@@ -12,6 +12,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`));
 
   useEffect(() => {
     let ticking = false;
@@ -104,23 +105,33 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-10 text-[13px] font-semibold uppercase tracking-wider">
           <Link href="/" className={cn(
             "transition-colors duration-300",
-            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+            isActive('/')
+              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
+              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>Home</Link>
           <Link href="/about" className={cn(
             "transition-colors duration-300",
-            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+            isActive('/about')
+              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
+              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>About</Link>
           <Link href="/events" className={cn(
             "transition-colors duration-300",
-            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+            isActive('/events')
+              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
+              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>Events</Link>
           <Link href="/venues" className={cn(
             "transition-colors duration-300",
-            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+            isActive('/venues')
+              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
+              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>Venues</Link>
           <Link href="/tailored-events" className={cn(
             "transition-colors duration-300",
-            showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark"
+            isActive('/tailored-events')
+              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
+              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>Tailored</Link>
           <Link
             href="/events#booking"
@@ -139,19 +150,34 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div id="mobile-nav-menu" className="lg:hidden border-t border-black/10 bg-white/95 backdrop-blur-xl">
           <div className="px-6 py-4 space-y-1">
-            <Link href="/" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+            <Link href="/" className={cn(
+              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
+              isActive('/') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
+            )}>
               Home
             </Link>
-            <Link href="/about" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+            <Link href="/about" className={cn(
+              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
+              isActive('/about') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
+            )}>
               About
             </Link>
-            <Link href="/events" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+            <Link href="/events" className={cn(
+              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
+              isActive('/events') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
+            )}>
               Events
             </Link>
-            <Link href="/venues" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+            <Link href="/venues" className={cn(
+              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
+              isActive('/venues') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
+            )}>
               Venues
             </Link>
-            <Link href="/tailored-events" className="block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-stone-600 hover:bg-stone-100 hover:text-brand-dark transition-colors">
+            <Link href="/tailored-events" className={cn(
+              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
+              isActive('/tailored-events') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
+            )}>
               Tailored
             </Link>
             <Link href="/events#booking" className="mt-2 block rounded-full bg-brand-red px-4 py-3 text-center text-xs font-bold uppercase tracking-widest text-white hover:bg-brand-dark transition-colors">
