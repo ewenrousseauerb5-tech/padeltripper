@@ -29,7 +29,7 @@ export default function VenuesPage() {
         >
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Coaches & Venues</p>
           <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl">
-            World-Class <span className="text-brand-red">Padel Partners</span>
+            World-Class <span className="block text-brand-red">Padel Partners</span>
           </h1>
           <p className="text-white/60 max-w-2xl text-lg font-light">
             Train at elite clubs, enjoy social games in iconic Spanish courts, and stay in a premium 4-star hotel designed for a seamless Alicante experience.
