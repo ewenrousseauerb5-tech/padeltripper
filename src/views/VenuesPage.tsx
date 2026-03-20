@@ -94,6 +94,20 @@ export default function VenuesPage() {
             <p className="text-stone-600 leading-relaxed mb-7">
               The programme is led by elite coaches from the academy of 3-time world champion Pitu Losada, giving every trip a premium and professional standard.
             </p>
+            <p className="text-stone-600 leading-relaxed mb-6">
+              This is where the real work happens: tactical clarity, cleaner shot selection, and practical patterns you can immediately apply in match situations. Every session is structured to help you improve with confidence, not just hit balls.
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-3 mb-7">
+              <div className="rounded-xl border border-stone-200 bg-white px-4 py-3">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-1">Method</p>
+                <p className="text-sm font-semibold text-brand-dark">High-level coaching, adapted to your level</p>
+              </div>
+              <div className="rounded-xl border border-stone-200 bg-white px-4 py-3">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-1">Outcome</p>
+                <p className="text-sm font-semibold text-brand-dark">Better decisions under pressure in real games</p>
+              </div>
+            </div>
 
             <div className="rounded-2xl border border-stone-200 bg-white p-3 max-w-[300px]">
               <Image
@@ -123,6 +137,9 @@ export default function VenuesPage() {
             </h2>
             <p className="text-stone-600 leading-relaxed mb-6">
               Our social matches are hosted at Bela, one of Spain&apos;s most prestigious clubs. It gives you the true Spanish padel atmosphere while still keeping the trip structure smooth and high quality.
+            </p>
+            <p className="text-stone-600 leading-relaxed mb-6">
+              After coaching, this is where everything comes together. You play competitive but friendly matches, build rhythm with different partners, and enjoy the same social energy that made Alicante Social Padel grow into a thriving community.
             </p>
 
             <div className="grid sm:grid-cols-3 gap-3">
@@ -179,6 +196,9 @@ export default function VenuesPage() {
             </h2>
             <p className="text-stone-600 leading-relaxed">
               Spacious rooms, quality breakfast, and a premium base that keeps you close to coaching, social padel and Alicante&apos;s coastline.
+            </p>
+            <p className="text-stone-600 leading-relaxed mt-4">
+              We chose this hotel because it matches the full Padel Tripper standard: practical location, reliable comfort, and the right atmosphere to recover well and enjoy the trip beyond the court.
             </p>
           </motion.div>
 
@@ -254,6 +274,7 @@ export default function VenuesPage() {
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.22em] text-white/40 mb-1">Included Standard</p>
                   <p className="text-white font-medium">4* accommodation with B&amp;B included, close to clubs and social spots.</p>
+                  <p className="text-white/65 text-sm mt-1">Designed so your days feel effortless: play, recover, repeat.</p>
                 </div>
                 <Sparkles size={18} className="text-brand-red shrink-0" />
               </div>
