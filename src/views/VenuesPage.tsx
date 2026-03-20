@@ -21,20 +21,21 @@ export default function VenuesPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16"
-        >
-          <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Coaches & Venues</p>
-          <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl">
-            World-Class <span className="block text-brand-red">Padel Partners</span>
-          </h1>
-          <p className="text-white/60 max-w-2xl text-lg font-light">
-            Train at elite clubs, enjoy social games in iconic Spanish courts, and stay in a premium 4-star hotel designed for a seamless Alicante experience.
-          </p>
-        </motion.div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Coaches & Venues</p>
+            <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl">
+              World-Class <span className="block text-brand-red">Padel Partners</span>
+            </h1>
+            <p className="text-white/60 max-w-2xl text-lg font-light">
+              Train at elite clubs, enjoy social games in iconic Spanish courts, and stay in a premium 4-star hotel designed for a seamless Alicante experience.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       <section className="py-12 md:py-14 px-6 bg-white border-b border-stone-200/70">
