@@ -32,7 +32,7 @@ export default function VenuesPage() {
       bullet2: 'Structured sessions that accelerate improvement',
       image: '/images/venues/Pitu-losada.jpg',
       imageAlt: 'Pitu Losada at the training academy',
-      imageClass: 'object-cover object-[center_35%]',
+      imageClass: 'object-cover object-[center_20%]',
     },
   } as const;
 
@@ -89,82 +89,78 @@ export default function VenuesPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24 px-6 bg-brand-light border-b border-stone-200/70">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-10 items-stretch">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="rounded-3xl border border-stone-200 bg-white p-6 md:p-8 flex flex-col"
-          >
-            <div className="inline-flex rounded-full border border-stone-200 bg-brand-light p-1 mb-6 w-fit">
-              <button
-                type="button"
-                onClick={() => setTrainingFocus('montemar')}
-                className={`px-4 py-2 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${
-                  trainingFocus === 'montemar' ? 'bg-brand-dark text-white' : 'text-stone-500 hover:text-brand-dark'
-                }`}
-              >
-                Montemar
-              </button>
-              <button
-                type="button"
-                onClick={() => setTrainingFocus('pitu')}
-                className={`px-4 py-2 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${
-                  trainingFocus === 'pitu' ? 'bg-brand-red text-white' : 'text-stone-500 hover:text-brand-dark'
-                }`}
-              >
-                Pitu Method
-              </button>
-            </div>
-
-            <motion.div
-              key={trainingFocus}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.28, ease: 'easeOut' }}
-              className="flex flex-col flex-1"
+      <section className="py-20 md:py-24 px-6 bg-brand-dark border-b border-black/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-6 md:mb-7 inline-flex rounded-full border border-white/20 bg-white/5 p-1 w-fit">
+            <button
+              type="button"
+              onClick={() => setTrainingFocus('montemar')}
+              className={`px-4 py-2 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${
+                trainingFocus === 'montemar' ? 'bg-white text-brand-dark' : 'text-white/70 hover:text-white'
+              }`}
             >
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">{activeTraining.eyebrow}</p>
-              <h2 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark mb-5">
-                {activeTraining.titleLeft} <span className="text-brand-red">{activeTraining.titleHighlight}</span>
-              </h2>
-              <p className="text-stone-600 leading-relaxed mb-6">{activeTraining.description}</p>
-
-              <div className="grid sm:grid-cols-2 gap-3 mt-auto">
-                <div className="rounded-xl border border-stone-200 bg-brand-light px-4 py-3">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-1">Method</p>
-                  <p className="text-sm font-semibold text-brand-dark">{activeTraining.bullet1}</p>
-                </div>
-                <div className="rounded-xl border border-stone-200 bg-brand-light px-4 py-3">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-1">Outcome</p>
-                  <p className="text-sm font-semibold text-brand-dark">{activeTraining.bullet2}</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+              Montemar
+            </button>
+            <button
+              type="button"
+              onClick={() => setTrainingFocus('pitu')}
+              className={`px-4 py-2 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${
+                trainingFocus === 'pitu' ? 'bg-brand-red text-white' : 'text-white/70 hover:text-white'
+              }`}
+            >
+              Pitu Method
+            </button>
+          </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            key={`showcase-${trainingFocus}`}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.05 }}
-            className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm"
+            viewport={{ once: true, amount: 0.25 }}
+            className="relative rounded-3xl overflow-hidden border border-white/15 min-h-[460px] md:min-h-[540px]"
           >
             <motion.div
               key={`img-${trainingFocus}`}
-              initial={{ scale: 1.03, opacity: 0.8 }}
+              initial={{ scale: 1.03, opacity: 0.85 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="relative h-[420px] md:h-full min-h-[420px]"
+              className="absolute inset-0"
             >
               <Image
                 src={activeTraining.image}
                 alt={activeTraining.imageAlt}
                 fill
                 className={activeTraining.imageClass}
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="100vw"
               />
+            </motion.div>
+
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+
+            <motion.div
+              key={`content-${trainingFocus}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, ease: 'easeOut' }}
+              className="relative z-10 p-6 md:p-8 lg:p-10 max-w-2xl"
+            >
+              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">{activeTraining.eyebrow}</p>
+              <h2 className="font-serif text-3xl md:text-5xl font-black uppercase text-white mb-5 leading-tight">
+                {activeTraining.titleLeft} <span className="text-brand-red">{activeTraining.titleHighlight}</span>
+              </h2>
+              <p className="text-white/80 leading-relaxed mb-6">{activeTraining.description}</p>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/60 mb-1">Method</p>
+                  <p className="text-sm font-semibold text-white">{activeTraining.bullet1}</p>
+                </div>
+                <div className="rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/60 mb-1">Outcome</p>
+                  <p className="text-sm font-semibold text-white">{activeTraining.bullet2}</p>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
