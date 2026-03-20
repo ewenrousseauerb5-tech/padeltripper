@@ -96,7 +96,7 @@ export default function VenuesPage() {
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              className="flex flex-col"
+              className="order-2 lg:order-2 flex flex-col"
             >
               <div className="inline-flex rounded-full border border-stone-200 bg-brand-light p-1 mb-6 w-fit">
                 <button
@@ -150,7 +150,7 @@ export default function VenuesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ delay: 0.04 }}
-              className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100"
+              className="order-1 lg:order-1 rounded-3xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100"
             >
               <motion.div
                 key={`img-${trainingFocus}`}
@@ -172,7 +172,7 @@ export default function VenuesPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24 px-6 bg-brand-light border-b border-stone-200/70">
+      <section className="py-20 md:py-24 px-6 bg-white border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -231,7 +231,7 @@ export default function VenuesPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24 px-6 bg-white border-b border-stone-200/70">
+      <section className="py-20 md:py-24 px-6 bg-brand-light border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -332,7 +332,7 @@ export default function VenuesPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6 bg-brand-light border-b border-stone-200/70">
+      <section className="py-16 md:py-20 px-6 bg-white border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto rounded-3xl border border-stone-200 bg-white p-7 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="max-w-2xl">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Ready To Join</p>
