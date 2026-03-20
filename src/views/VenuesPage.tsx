@@ -25,7 +25,7 @@ export default function VenuesPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16"
+          className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-14 md:pt-20 pb-16"
         >
           <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Coaches & Venues</p>
           <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl">
