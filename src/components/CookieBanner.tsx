@@ -9,21 +9,47 @@ const policyVersion = '2026-03-01';
 
 type ConsentValue = 'accepted' | 'necessary-only';
 
+function getStoredValue(key: string): string | null {
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function setStoredValue(key: string, value: string): void {
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {
+    // Ignore storage failures (private mode / restricted browsers).
+  }
+}
+
+function buildClientId(): string {
+  const existingClientId = getStoredValue(consentClientIdKey);
+  if (existingClientId) return existingClientId;
+
+  const randomId =
+    globalThis.crypto && 'randomUUID' in globalThis.crypto
+      ? globalThis.crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  setStoredValue(consentClientIdKey, randomId);
+  return randomId;
+}
+
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem(consentKey);
+    const saved = getStoredValue(consentKey);
     if (!saved) {
       setVisible(true);
     }
   }, []);
 
   const saveConsent = (value: ConsentValue) => {
-    window.localStorage.setItem(consentKey, value);
-    const existingClientId = window.localStorage.getItem(consentClientIdKey);
-    const clientId = existingClientId || (crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
-    window.localStorage.setItem(consentClientIdKey, clientId);
+    setStoredValue(consentKey, value);
+    const clientId = buildClientId();
 
     // Do not block UI if backend logging fails.
     void fetch('/api/cookie-consent', {
