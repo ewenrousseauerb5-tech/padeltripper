@@ -191,7 +191,7 @@ export default function TrustpilotReviewHighlights() {
           <div className="max-w-2xl">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Trustpilot Reviews</p>
             <h2 className="font-serif text-[30px] md:text-[38px] font-black uppercase leading-tight">
-              What Guests Say About <span className="text-brand-red">Padel Tripper</span>
+              What Guests Say About <span className="block text-brand-red">Padel Tripper</span>
             </h2>
             <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white px-4 py-2">
               <span className="text-2xl font-serif font-black text-brand-red">{animatedRating.toFixed(1)}</span>
