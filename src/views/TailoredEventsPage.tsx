@@ -27,8 +27,8 @@ export default function TailoredEventsPage() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Tailored Events</p>
-            <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl">
-              Tailor Your Own <span className="block text-brand-red">Padel Trip</span>
+            <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl md:whitespace-nowrap">
+              Tailor Your Own <span className="text-brand-red">Padel Trip</span>
             </h1>
             <p className="text-white/60 max-w-2xl text-lg font-light">
               Build your own Padel Tripper experience around our proven 4-day format in Alicante.
