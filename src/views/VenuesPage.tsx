@@ -166,7 +166,7 @@ export default function VenuesPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24 px-6 bg-white border-b border-stone-200/70">
+      <section className="py-20 md:py-24 px-6 bg-brand-light border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 18 }}

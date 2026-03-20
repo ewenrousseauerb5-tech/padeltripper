@@ -109,18 +109,18 @@ export default function Navbar() {
               ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
               : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>Home</Link>
-          <Link href="/about" className={cn(
-            "transition-colors duration-300",
-            isActive('/about')
-              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
-              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
-          )}>About</Link>
           <Link href="/events" className={cn(
             "transition-colors duration-300",
             isActive('/events')
               ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
               : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>Events</Link>
+          <Link href="/about" className={cn(
+            "transition-colors duration-300",
+            isActive('/about')
+              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
+              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
+          )}>About</Link>
           <Link href="/venues" className={cn(
             "transition-colors duration-300",
             isActive('/venues')
@@ -156,17 +156,17 @@ export default function Navbar() {
             )}>
               Home
             </Link>
-            <Link href="/about" className={cn(
-              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
-              isActive('/about') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
-            )}>
-              About
-            </Link>
             <Link href="/events" className={cn(
               "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
               isActive('/events') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
             )}>
               Events
+            </Link>
+            <Link href="/about" className={cn(
+              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
+              isActive('/about') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
+            )}>
+              About
             </Link>
             <Link href="/venues" className={cn(
               "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
