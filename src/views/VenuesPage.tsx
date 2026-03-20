@@ -1,43 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { ArrowRight, Building2, Sparkles, Trophy, WavesLadder } from 'lucide-react';
 
 export default function VenuesPage() {
-  const [trainingFocus, setTrainingFocus] = useState<'montemar' | 'pitu'>('montemar');
-
-  const trainingContent = {
-    montemar: {
-      eyebrow: 'Training Academy',
-      titleLeft: 'Club',
-      titleHighlight: 'Montemar',
-      description:
-        'Your technical sessions take place at Club Montemar, where we deliver focused coaching in a proven high-performance setting. This is where the real work happens: tactical clarity, cleaner shot selection, and practical patterns you can apply in real matches.',
-      bullet1: 'High-level coaching adapted to your level',
-      bullet2: 'Better decisions under pressure in live points',
-      image: '/images/venues/montemar.jpg',
-      imageAlt: 'Club Montemar training environment in Alicante',
-      imageClass: 'object-cover object-center',
-    },
-    pitu: {
-      eyebrow: 'Elite Methodology',
-      titleLeft: 'Pitu',
-      titleHighlight: 'Losada',
-      description:
-        'The programme is led by elite coaches from the academy of 3-time world champion Pitu Losada, giving every trip a premium and professional standard. Sessions are structured for clear progression so you leave Alicante with a stronger game, not just good memories.',
-      bullet1: 'World-class methodology with practical feedback',
-      bullet2: 'Structured sessions that accelerate improvement',
-      image: '/images/venues/Pitu-losada.jpg',
-      imageAlt: 'Pitu Losada at the training academy',
-      imageClass: 'object-cover object-[center_20%]',
-    },
-  } as const;
-
-  const activeTraining = trainingContent[trainingFocus];
-
   return (
     <main>
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
@@ -90,84 +58,77 @@ export default function VenuesPage() {
       </section>
 
       <section className="py-20 md:py-24 px-6 bg-[#f7f5f1] border-b border-stone-200/70">
-        <div className="max-w-7xl mx-auto rounded-3xl border border-stone-200 bg-white p-6 md:p-8 lg:p-10">
-          <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-7 lg:gap-10 items-stretch">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-8">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Training Environments</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark">
+              Montemar & <span className="text-brand-red">Pitu Method</span>
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-10">
+            <motion.article
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              className="order-2 lg:order-2 flex flex-col"
+              className="group"
             >
-              <div className="inline-flex rounded-full border border-stone-200 bg-brand-light p-1 mb-6 w-fit">
-                <button
-                  type="button"
-                  onClick={() => setTrainingFocus('montemar')}
-                  className={`px-4 py-2 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${
-                    trainingFocus === 'montemar' ? 'bg-brand-dark text-white' : 'text-stone-500 hover:text-brand-dark'
-                  }`}
-                >
-                  Montemar
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setTrainingFocus('pitu')}
-                  className={`px-4 py-2 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${
-                    trainingFocus === 'pitu' ? 'bg-brand-red text-white' : 'text-stone-500 hover:text-brand-dark'
-                  }`}
-                >
-                  Pitu Method
-                </button>
-              </div>
-
-              <motion.div
-                key={`copy-${trainingFocus}`}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="flex flex-col flex-1"
-              >
-                <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">{activeTraining.eyebrow}</p>
-                <h2 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark mb-5 leading-tight">
-                  {activeTraining.titleLeft} <span className="text-brand-red">{activeTraining.titleHighlight}</span>
-                </h2>
-                <p className="text-stone-600 leading-relaxed mb-6">{activeTraining.description}</p>
-
-                <div className="grid sm:grid-cols-2 gap-3 mt-auto">
-                  <div className="rounded-xl border border-stone-200 bg-brand-light px-4 py-3">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-1">Method</p>
-                    <p className="text-sm font-semibold text-brand-dark">{activeTraining.bullet1}</p>
-                  </div>
-                  <div className="rounded-xl border border-stone-200 bg-brand-light px-4 py-3">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-1">Outcome</p>
-                    <p className="text-sm font-semibold text-brand-dark">{activeTraining.bullet2}</p>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ delay: 0.04 }}
-              className="order-1 lg:order-1 rounded-3xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100"
-            >
-              <motion.div
-                key={`img-${trainingFocus}`}
-                initial={{ scale: 1.02, opacity: 0.85 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.28, ease: 'easeOut' }}
-                className="relative h-[380px] md:h-full min-h-[420px]"
-              >
+              <div className="relative rounded-2xl overflow-hidden border border-stone-200 shadow-sm">
                 <Image
-                  src={activeTraining.image}
-                  alt={activeTraining.imageAlt}
-                  fill
-                  className={activeTraining.imageClass}
+                  src="/images/venues/montemar.jpg"
+                  alt="Club Montemar training environment in Alicante"
+                  width={1400}
+                  height={900}
+                  className="w-full h-[290px] md:h-[340px] object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
                   sizes="(max-width: 1024px) 100vw, 48vw"
                 />
-              </motion.div>
-            </motion.div>
+              </div>
+              <div className="pt-4 md:pt-5">
+                <div className="inline-flex items-center gap-3 mb-4">
+                  <span className="bg-brand-red/10 text-brand-red px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] rounded">
+                    Training Academy
+                  </span>
+                </div>
+                <h3 className="font-serif text-3xl md:text-4xl font-black text-brand-dark leading-tight mb-4">
+                  Club <span className="text-brand-red">Montemar</span>
+                </h3>
+                <p className="text-stone-600 leading-relaxed">
+                  Focused technical sessions in a proven high-performance setting. This is where tactical clarity, cleaner shot selection and match-ready patterns are built step by step.
+                </p>
+              </div>
+            </motion.article>
+
+            <motion.article
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ delay: 0.05 }}
+              className="group"
+            >
+              <div className="relative rounded-2xl overflow-hidden border border-stone-200 shadow-sm">
+                <Image
+                  src="/images/venues/Pitu-losada.jpg"
+                  alt="Pitu Losada at the training academy"
+                  width={1400}
+                  height={900}
+                  className="w-full h-[290px] md:h-[340px] object-cover object-[center_16%] group-hover:scale-[1.02] transition-transform duration-500"
+                  sizes="(max-width: 1024px) 100vw, 48vw"
+                />
+              </div>
+              <div className="pt-4 md:pt-5">
+                <div className="inline-flex items-center gap-3 mb-4">
+                  <span className="bg-brand-dark/10 text-brand-dark px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] rounded">
+                    Elite Methodology
+                  </span>
+                </div>
+                <h3 className="font-serif text-3xl md:text-4xl font-black text-brand-dark leading-tight mb-4">
+                  Pitu <span className="text-brand-red">Losada</span>
+                </h3>
+                <p className="text-stone-600 leading-relaxed">
+                  Coaching led by the academy of 3-time world champion Pitu Losada. Clear structure, practical feedback and measurable improvement from day one.
+                </p>
+              </div>
+            </motion.article>
           </div>
         </div>
       </section>
