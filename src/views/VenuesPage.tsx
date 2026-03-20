@@ -107,7 +107,7 @@ export default function VenuesPage() {
             >
               <div className="relative rounded-2xl overflow-hidden border border-stone-200 shadow-sm">
                 <Image
-                  src="/images/venues/Pitu-losada.jpg"
+                  src="/images/pitu-losada-coach-hd.jpg"
                   alt="Pitu Losada at the training academy"
                   width={1400}
                   height={900}
