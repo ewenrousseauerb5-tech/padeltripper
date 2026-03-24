@@ -17,7 +17,7 @@ export default function MayEventsLandingPage() {
 
   return (
     <main className="bg-[#0b0d10] text-white">
-      <section className="px-4 md:px-6 pt-6 md:pt-8">
+      <section className="px-4 md:px-6 pt-24 md:pt-28">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[72vh] md:min-h-[78vh]">
           <video
             className="absolute inset-0 h-full w-full object-cover object-center"
@@ -34,19 +34,19 @@ export default function MayEventsLandingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/80" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/55" />
 
-          <div className="relative z-10 p-6 md:p-10 lg:p-12 h-full flex flex-col justify-end">
+          <div className="relative z-10 p-6 md:p-10 lg:p-12 h-full flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl"
+              className="max-w-3xl mx-auto text-center"
             >
               <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-4">May Padel Voucher</p>
               <h1 className="font-serif text-4xl md:text-6xl font-black uppercase leading-[0.96] mb-5">
                 Premium Padel Retreats
                 <span className="block text-brand-red">In Alicante</span>
               </h1>
-              <p className="text-white/80 text-lg leading-relaxed max-w-2xl mb-8">
+              <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
                 Two May dates, one premium format. 6h coaching, 6h social play, 4* hotel with B&amp;B, and founder-level hosting throughout the trip.
               </p>
               <a
