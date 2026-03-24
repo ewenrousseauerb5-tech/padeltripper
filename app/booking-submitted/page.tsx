@@ -2,6 +2,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CheckCircle2, ChevronRight, MessageCircle } from 'lucide-react';
 
+export const runtime = 'edge';
+
 export const metadata: Metadata = {
   title: 'Request Received | Padel Tripper',
   robots: {
