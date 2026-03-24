@@ -39,7 +39,7 @@ export default function MayEventsLandingPage() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-5xl mx-auto text-center md:translate-y-6"
+              className="max-w-5xl mx-auto text-center md:translate-y-12"
             >
               <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-4">May Padel Voucher</p>
               <h1 className="font-serif text-4xl md:text-6xl font-black uppercase leading-[0.96] mb-5">
