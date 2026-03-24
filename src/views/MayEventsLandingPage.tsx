@@ -39,7 +39,7 @@ export default function MayEventsLandingPage() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-5xl mx-auto text-center md:translate-y-12"
+              className="max-w-5xl mx-auto text-center md:translate-y-20"
             >
               <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-4">May Padel Voucher</p>
               <h1 className="font-serif text-4xl md:text-6xl font-black uppercase leading-[0.96] mb-5">
@@ -132,7 +132,7 @@ export default function MayEventsLandingPage() {
       </section>
 
       <section id="book-now" className="py-16 md:py-20 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl text-brand-dark">
             <BookingForm selectedEventId={selectedEventId} />
           </div>
