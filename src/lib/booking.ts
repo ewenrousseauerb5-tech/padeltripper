@@ -199,12 +199,18 @@ function buildCustomerHtml(booking: NormalizedBooking): string {
     </div>
     <div style="padding:32px 28px 26px;">
       <p style="margin:0 0 8px;color:#d64242;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Quotation Request Received</p>
-      <h2 style="font-size:34px;line-height:1.15;color:#101218;margin:0 0 14px;font-weight:800;">Thanks, ${escapeHtml(firstName)}!</h2>
-      <p style="margin:0 0 20px;color:#4e535b;font-size:20px;line-height:1.55;">We've received your quotation request for <strong style="color:#101218;">${escapeHtml(eventLabel)}</strong>. Our team will review availability and contact you shortly with next steps.</p>
+      <h2 style="font-size:32px;line-height:1.15;color:#101218;margin:0 0 14px;font-weight:800;">Thanks, ${escapeHtml(firstName)}!</h2>
+      <p style="margin:0 0 18px;color:#4e535b;font-size:18px;line-height:1.55;">We've received your quotation request for <strong style="color:#101218;">${escapeHtml(eventLabel)}</strong>.</p>
+      <div style="background:#fbf8f3;border:1px solid #eee6d9;border-radius:10px;padding:14px 16px;margin:0 0 18px;">
+        <p style="margin:0;color:#3e444d;font-size:14px;line-height:1.55;"><strong style="color:#101218;">What happens next:</strong></p>
+        <p style="margin:8px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">1. We check hotel and trip availability.</p>
+        <p style="margin:4px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">2. We email your confirmation so you can book flights confidently.</p>
+        <p style="margin:4px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">3. We share final trip details before arrival.</p>
+      </div>
       <div style="background:#f8f5f0;border:1px solid #eee6d9;border-radius:10px;padding:18px 18px;margin:0 0 22px;">
         <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.6;">This is a request only. Your place is not confirmed until we email you with your quotation details and payment instructions.</p>
       </div>
-      <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.7;">If you have any questions in the meantime, reach us on WhatsApp at <strong style="color:#101218;">+44 7939870682</strong> or email <strong style="color:#101218;">hello@padeltripper.com</strong>.</p>
+      <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.7;">If you have any questions in the meantime, reach us at <strong style="color:#101218;">hello@padeltripper.com</strong> or <strong style="color:#101218;">+44 7939870682</strong>.</p>
       <p style="margin:26px 0 0;color:#8a8f97;font-size:15px;">The Padel Tripper Team</p>
     </div>
     <div style="background:#faf7f2;border-top:1px solid #ece7df;padding:14px 28px;">
