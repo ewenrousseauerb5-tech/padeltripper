@@ -12,6 +12,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname() ?? '/';
   const isHome = pathname === '/';
+  const hidePromoOnPage = pathname === '/may-padel-retreat';
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`));
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export default function Navbar() {
         ? "bg-transparent"
         : "bg-white/90 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.06)]"
     )}>
-      {showPromo && (
+      {showPromo && !hidePromoOnPage && (
         <div className="h-8 bg-brand-red text-white overflow-hidden border-b border-black/10">
           <div className="promo-marquee-inner h-full">
             <div className="promo-marquee-group h-full">
