@@ -132,29 +132,10 @@ export default function MayEventsLandingPage() {
       </section>
 
       <section id="book-now" className="py-16 md:py-20 px-6">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_320px] gap-6 lg:gap-8 items-start">
+        <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl text-brand-dark">
             <BookingForm selectedEventId={selectedEventId} />
           </div>
-
-          <aside className="rounded-2xl border border-white/12 bg-white/[0.03] p-5 md:p-6">
-            <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Quick Process</p>
-            <h3 className="font-serif text-2xl font-black uppercase mb-4">Simple Next Steps</h3>
-            <div className="space-y-3">
-              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-                <p className="text-sm font-semibold mb-1">1. Availability check</p>
-                <p className="text-white/65 text-sm">We confirm spaces and room options for your selected date.</p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-                <p className="text-sm font-semibold mb-1">2. Booking confirmation</p>
-                <p className="text-white/65 text-sm">You receive confirmation and can secure flights confidently.</p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-                <p className="text-sm font-semibold mb-1">3. WhatsApp onboarding</p>
-                <p className="text-white/65 text-sm">You are added to the trip group before arrival in Alicante.</p>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
     </main>

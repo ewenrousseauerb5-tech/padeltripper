@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, ChevronDown } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { ChevronDown } from 'lucide-react';
 import { ALL_EVENTS, FUTURE_EVENTS } from '../data/events';
 
 interface BookingFormProps {
@@ -21,8 +22,10 @@ const inputClass =
 const labelClass = 'block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2';
 
 export default function BookingForm({ selectedEventId }: BookingFormProps) {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const router = useRouter();
+  const pathname = usePathname();
 
   const [eventId, setEventId] = useState('');
   const [fullName, setFullName] = useState('');
@@ -93,65 +96,19 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
         throw new Error(data.error || 'Submission failed.');
       }
 
+      const eventLabel = selectedEvent ? selectedEvent.date : '';
+      const query = new URLSearchParams();
+      if (eventLabel) query.set('event', eventLabel);
+      if (data.quotation_id) query.set('qid', String(data.quotation_id));
+      if (pathname) query.set('from', pathname);
+
       resetForm();
-      setStatus('success');
+      router.push(`/booking-submitted?${query.toString()}`);
     } catch (error) {
       setStatus('error');
       setErrorMsg(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
     }
   };
-
-  if (status === 'success') {
-    return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50/40 p-6 md:p-7">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mb-4">
-          <CheckCircle2 size={26} />
-        </div>
-
-        <h3 className="font-serif text-2xl md:text-3xl font-black text-brand-dark uppercase leading-tight mb-3">
-          Thanks For Your Request
-        </h3>
-        <p className="text-stone-600 leading-relaxed mb-6">
-          We&apos;ve received your quotation request. Here&apos;s what happens next:
-        </p>
-
-        <div className="space-y-3 mb-6">
-          <div className="rounded-xl border border-stone-200 bg-white p-4">
-            <p className="text-sm font-semibold text-brand-dark mb-1">1. Availability Check</p>
-            <p className="text-sm text-stone-600">We now check hotel and trip availability for your selected dates.</p>
-          </div>
-          <div className="rounded-xl border border-stone-200 bg-white p-4">
-            <p className="text-sm font-semibold text-brand-dark mb-1">2. Confirmation To Book Flights</p>
-            <p className="text-sm text-stone-600">If available, we confirm your place so you can safely book your flights.</p>
-          </div>
-          <div className="rounded-xl border border-stone-200 bg-white p-4">
-            <p className="text-sm font-semibold text-brand-dark mb-1">3. Pre-Trip WhatsApp Group</p>
-            <p className="text-sm text-stone-600">A few days before the event, we add you to the WhatsApp group and you&apos;re ready to enjoy the trip.</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-3">
-          <a
-            href="https://wa.me/447939870682"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand-dark px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white hover:bg-brand-red transition-colors"
-          >
-            Message on WhatsApp
-          </a>
-          <button
-            type="button"
-            onClick={() => {
-              setStatus('idle');
-            }}
-            className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-6 py-3 text-xs font-semibold uppercase tracking-widest text-stone-600 hover:border-brand-red hover:text-brand-red transition-colors"
-          >
-            Submit Another Request
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-7">
