@@ -20,8 +20,6 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
   const params = await searchParams;
   const eventLabel = Array.isArray(params.event) ? params.event[0] : params.event;
   const quotationId = Array.isArray(params.qid) ? params.qid[0] : params.qid;
-  const fromPathRaw = Array.isArray(params.from) ? params.from[0] : params.from;
-  const fromPath = fromPathRaw?.startsWith('/') ? fromPathRaw : '/events';
 
   return (
     <main className="bg-[#0b0d10] text-white min-h-screen">
@@ -96,7 +94,7 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
                 WhatsApp Us
               </a>
               <Link
-                href={fromPath}
+                href="/"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-transparent px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white/85 hover:bg-white hover:text-brand-dark hover:border-white transition-colors"
               >
                 Back To Page
