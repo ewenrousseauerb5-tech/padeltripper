@@ -39,11 +39,11 @@ export default function MayEventsLandingPage() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto text-center"
+              className="max-w-5xl mx-auto text-center md:translate-y-6"
             >
               <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-4">May Padel Voucher</p>
               <h1 className="font-serif text-4xl md:text-6xl font-black uppercase leading-[0.96] mb-5">
-                Premium Padel Retreats
+                <span className="md:whitespace-nowrap">Premium Padel Retreats</span>
                 <span className="block text-brand-red">In Alicante</span>
               </h1>
               <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
