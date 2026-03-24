@@ -13,7 +13,8 @@ export default function Navbar() {
   const pathname = usePathname() ?? '/';
   const isHome = pathname === '/';
   const isMayLanding = pathname === '/may-padel-retreat';
-  const hidePromoOnPage = pathname === '/may-padel-retreat';
+  const isBookingSubmitted = pathname === '/booking-submitted';
+  const hidePromoOnPage = pathname === '/may-padel-retreat' || pathname === '/booking-submitted';
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`));
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const showTransparent = (isHome || isMayLanding) && !scrolled;
+  const showTransparent = (isHome || isMayLanding || isBookingSubmitted) && !scrolled;
 
   return (
     <nav className={cn(
