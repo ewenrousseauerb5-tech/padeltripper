@@ -20,13 +20,14 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
   const params = await searchParams;
   const eventLabel = Array.isArray(params.event) ? params.event[0] : params.event;
   const quotationId = Array.isArray(params.qid) ? params.qid[0] : params.qid;
+  const confirmationImage = '/images/tournament-oct-24.jpg';
 
   return (
     <main className="bg-[#0b0d10] text-white min-h-screen">
       <section className="px-4 md:px-6 pt-24 md:pt-28">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[62vh]">
           <img
-            src="/images/tournament-oct-24.jpg"
+            src={confirmationImage}
             alt="Padel Tripper group in Alicante"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
@@ -100,7 +101,7 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
           <aside className="h-full rounded-3xl border border-white/12 bg-white/[0.03] p-5 md:p-6 backdrop-blur-sm">
             <div className="rounded-2xl overflow-hidden border border-white/12 mb-5">
               <img
-                src="/images/tournament-oct-24.jpg"
+                src={confirmationImage}
                 alt="Padel Tripper players in Alicante"
                 className="h-44 w-full object-cover"
                 loading="lazy"

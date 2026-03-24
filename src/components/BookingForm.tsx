@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
 import { ALL_EVENTS, FUTURE_EVENTS } from '../data/events';
 
@@ -25,7 +25,6 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const router = useRouter();
-  const pathname = usePathname();
 
   const [eventId, setEventId] = useState('');
   const [fullName, setFullName] = useState('');
@@ -100,10 +99,11 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
       const query = new URLSearchParams();
       if (eventLabel) query.set('event', eventLabel);
       if (data.quotation_id) query.set('qid', String(data.quotation_id));
-      if (pathname) query.set('from', pathname);
+      const queryString = query.toString();
+      const destination = queryString ? `/booking-submitted?${queryString}` : '/booking-submitted';
 
       resetForm();
-      router.push(`/booking-submitted?${query.toString()}`);
+      router.push(destination);
     } catch (error) {
       setStatus('error');
       setErrorMsg(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
