@@ -106,23 +106,29 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
                 loading="lazy"
               />
             </div>
+            <p className="text-brand-red font-semibold uppercase tracking-[0.24em] text-[10px] mb-3">Mini Itinerary</p>
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 mb-5 text-sm text-white/70 space-y-1.5">
+              <p><span className="text-white font-semibold">Day 1:</span> Arrival, check-in and welcome drinks.</p>
+              <p><span className="text-white font-semibold">Day 2-3:</span> Morning coaching + afternoon social padel.</p>
+              <p><span className="text-white font-semibold">Day 4:</span> Final session and departures.</p>
+            </div>
             <p className="text-brand-red font-semibold uppercase tracking-[0.24em] text-[10px] mb-3">FAQ</p>
             <div className="space-y-2.5 text-sm">
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">Do flights come with the package?</summary>
-                <p className="mt-2 text-white/60">Flights are not included. Please book flights only after we confirm your place by email.</p>
+                <summary className="cursor-pointer list-none font-semibold text-white/90">When will I get confirmation?</summary>
+                <p className="mt-2 text-white/60">Usually within 24 hours, once we confirm availability with the hotel and team.</p>
               </details>
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">How do I get from Alicante airport to the hotel?</summary>
-                <p className="mt-2 text-white/60">Taxi is usually around €35–40 and takes about 20 minutes. If arrivals align, we can also help coordinate shared transfers.</p>
+                <summary className="cursor-pointer list-none font-semibold text-white/90">When should I book flights?</summary>
+                <p className="mt-2 text-white/60">Only after our confirmation email, so you can book with confidence.</p>
               </details>
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">Where do we stay?</summary>
-                <p className="mt-2 text-white/60">At the 4* Hotel Alicante Golf near Playa San Juan. Pricing is based on two sharing; single room supplement is £150.</p>
+                <summary className="cursor-pointer list-none font-semibold text-white/90">What is included in the trip?</summary>
+                <p className="mt-2 text-white/60">6h coaching, 6h social play, 4* hotel stay and B&amp;B.</p>
               </details>
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">Do I need to bring my own racquet?</summary>
-                <p className="mt-2 text-white/60">No. Racquet hire is included. Just bring your sports kit and court shoes.</p>
+                <summary className="cursor-pointer list-none font-semibold text-white/90">How do we stay in touch before the event?</summary>
+                <p className="mt-2 text-white/60">We add everyone to a WhatsApp group a few days before the trip.</p>
               </details>
             </div>
           </aside>
