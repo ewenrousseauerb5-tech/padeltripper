@@ -26,7 +26,7 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
       <section className="px-4 md:px-6 pt-24 md:pt-28">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[62vh]">
           <img
-            src="/images/tournament-oct-24.jpg"
+            src="/images/bela-center.webp"
             alt="Padel Tripper group in Alicante"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
@@ -100,7 +100,7 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
           <aside className="rounded-3xl border border-white/12 bg-white/[0.03] p-5 md:p-6 backdrop-blur-sm">
             <div className="rounded-2xl overflow-hidden border border-white/12 mb-5">
               <img
-                src="/images/tournament-oct-24.jpg"
+                src="/images/bela-center.webp"
                 alt="Padel Tripper players in Alicante"
                 className="h-44 w-full object-cover"
                 loading="lazy"
