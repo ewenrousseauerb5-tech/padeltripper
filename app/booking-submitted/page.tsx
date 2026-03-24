@@ -53,8 +53,8 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
       </section>
 
       <section className="px-6 py-12 md:py-14">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_360px] gap-6 md:gap-8 items-start">
-          <div className="rounded-3xl border border-white/12 bg-white/[0.03] p-6 md:p-8 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_360px] gap-6 md:gap-8 lg:items-stretch">
+          <div className="h-full rounded-3xl border border-white/12 bg-white/[0.03] p-6 md:p-8 backdrop-blur-sm">
             {(eventLabel || quotationId) && (
               <div className="rounded-2xl border border-white/12 bg-black/25 p-4 mb-7 text-sm">
                 {eventLabel && <p className="text-white/85 mb-1"><span className="text-white/50">Event:</span> {eventLabel}</p>}
@@ -97,7 +97,7 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
             </div>
           </div>
 
-          <aside className="rounded-3xl border border-white/12 bg-white/[0.03] p-5 md:p-6 backdrop-blur-sm">
+          <aside className="h-full rounded-3xl border border-white/12 bg-white/[0.03] p-5 md:p-6 backdrop-blur-sm">
             <div className="rounded-2xl overflow-hidden border border-white/12 mb-5">
               <img
                 src="/images/group-bela-court.jpg"
@@ -123,10 +123,6 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
                 <summary className="cursor-pointer list-none font-semibold text-white/90">What is included in the trip?</summary>
                 <p className="mt-2 text-white/60">6h coaching, 6h social play, 4* hotel stay and B&amp;B.</p>
-              </details>
-              <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">How do we stay in touch before the event?</summary>
-                <p className="mt-2 text-white/60">We add everyone to a WhatsApp group a few days before the trip.</p>
               </details>
             </div>
           </aside>
