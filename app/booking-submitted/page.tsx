@@ -25,18 +25,12 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
     <main className="bg-[#0b0d10] text-white min-h-screen">
       <section className="px-4 md:px-6 pt-24 md:pt-28">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[62vh]">
-          <video
+          <img
+            src="/images/group-bela-court.jpg"
+            alt="Padel Tripper group in Alicante"
             className="absolute inset-0 h-full w-full object-cover object-center"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/images/group-bela-court.jpg"
-            aria-hidden="true"
-          >
-            <source src="/videos/hero-background.m4v" type="video/mp4" />
-          </video>
+            loading="eager"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/80" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/55" />
 
@@ -115,16 +109,20 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
             <p className="text-brand-red font-semibold uppercase tracking-[0.24em] text-[10px] mb-3">FAQ</p>
             <div className="space-y-2.5 text-sm">
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">When will I get a reply?</summary>
-                <p className="mt-2 text-white/60">Usually within 24 hours, including confirmation of availability.</p>
+                <summary className="cursor-pointer list-none font-semibold text-white/90">Do flights come with the package?</summary>
+                <p className="mt-2 text-white/60">Flights are not included. Please book flights only after we confirm your place by email.</p>
               </details>
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">Can I ask questions before paying?</summary>
-                <p className="mt-2 text-white/60">Yes, we encourage it. Message us on WhatsApp and we will guide you.</p>
+                <summary className="cursor-pointer list-none font-semibold text-white/90">How do I get from Alicante airport to the hotel?</summary>
+                <p className="mt-2 text-white/60">Taxi is usually around €35–40 and takes about 20 minutes. If arrivals align, we can also help coordinate shared transfers.</p>
               </details>
               <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
-                <summary className="cursor-pointer list-none font-semibold text-white/90">What happens next after confirmation?</summary>
-                <p className="mt-2 text-white/60">You can book flights, then we add you to the event WhatsApp group before travel.</p>
+                <summary className="cursor-pointer list-none font-semibold text-white/90">Where do we stay?</summary>
+                <p className="mt-2 text-white/60">At the 4* Hotel Alicante Golf near Playa San Juan. Pricing is based on two sharing; single room supplement is £150.</p>
+              </details>
+              <details className="rounded-xl border border-white/10 bg-white/[0.02] p-3 group">
+                <summary className="cursor-pointer list-none font-semibold text-white/90">Do I need to bring my own racquet?</summary>
+                <p className="mt-2 text-white/60">No. Racquet hire is included. Just bring your sports kit and court shoes.</p>
               </details>
             </div>
           </aside>
