@@ -1,7 +1,6 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Calendar, Check, MapPin, Star } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
@@ -20,15 +19,20 @@ export default function MayEventsLandingPage() {
     <main className="bg-[#0b0d10] text-white">
       <section className="px-4 md:px-6 pt-6 md:pt-8">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[72vh] md:min-h-[78vh]">
-          <Image
-            src="/images/group-bela-court.jpg"
-            alt="Padel Tripper May events in Alicante"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[center_34%]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/35 to-black/65" />
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/images/group-bela-court.jpg"
+            aria-hidden="true"
+          >
+            <source src="/videos/hero-background.m4v" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/55" />
 
           <div className="relative z-10 p-6 md:p-10 lg:p-12 h-full flex flex-col justify-end">
             <motion.div

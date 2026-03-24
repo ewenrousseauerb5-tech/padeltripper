@@ -12,6 +12,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname() ?? '/';
   const isHome = pathname === '/';
+  const isMayLanding = pathname === '/may-padel-retreat';
   const hidePromoOnPage = pathname === '/may-padel-retreat';
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`));
 
@@ -50,7 +51,7 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const showTransparent = isHome && !scrolled;
+  const showTransparent = (isHome || isMayLanding) && !scrolled;
 
   return (
     <nav className={cn(
