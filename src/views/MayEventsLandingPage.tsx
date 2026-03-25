@@ -7,6 +7,10 @@ import BookingForm from '../components/BookingForm';
 import { ALL_EVENTS } from '../data/events';
 
 const MAY_EVENT_IDS = [88, 70];
+const MAY_VOUCHER_PRICE_OVERRIDES: Record<number, string> = {
+  88: '£645.00',
+  70: '£645.00',
+};
 
 export default function MayEventsLandingPage() {
   const mayEvents = useMemo(
@@ -144,7 +148,7 @@ export default function MayEventsLandingPage() {
             Voucher offer available: £100 off selected dates (limited time).
           </div>
           <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl text-brand-dark">
-            <BookingForm selectedEventId={selectedEventId} />
+            <BookingForm selectedEventId={selectedEventId} priceOverrides={MAY_VOUCHER_PRICE_OVERRIDES} />
           </div>
         </div>
       </section>

@@ -8,6 +8,7 @@ import { ALL_EVENTS, FUTURE_EVENTS } from '../data/events';
 
 interface BookingFormProps {
   selectedEventId?: number | null;
+  priceOverrides?: Record<number, string>;
 }
 
 interface BookingResponse {
@@ -21,7 +22,7 @@ const inputClass =
 
 const labelClass = 'block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2';
 
-export default function BookingForm({ selectedEventId }: BookingFormProps) {
+export default function BookingForm({ selectedEventId, priceOverrides }: BookingFormProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const router = useRouter();
@@ -45,6 +46,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
   }, [eventId]);
 
   const selectedEvent = ALL_EVENTS.find(event => String(event.id) === eventId);
+  const getDisplayPrice = (event: { id: number; price: string }) => priceOverrides?.[event.id] ?? event.price;
   const requiresEligibilityConfirmation = Boolean(selectedEvent?.eligibilityNote);
   const getNormalizedParticipants = () => {
     const parsed = parseInt(numParticipantsInput, 10);
@@ -75,7 +77,7 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
     try {
       const payload = {
         event_id: Number(eventId),
-        event_name: selectedEvent ? `${selectedEvent.date} - From ${selectedEvent.price}` : undefined,
+        event_name: selectedEvent ? `${selectedEvent.date} - From ${getDisplayPrice(selectedEvent)}` : undefined,
         full_name: fullName.trim(),
         email: email.trim(),
         num_participants: getNormalizedParticipants(),
@@ -134,8 +136,10 @@ export default function BookingForm({ selectedEventId }: BookingFormProps) {
                 <option value="">Choose a date...</option>
                 {FUTURE_EVENTS.map(event => (
                   <option key={event.id} value={event.id}>
-                    {event.date} - From {event.price}
-                    {event.originalPrice ? ` (was ${event.originalPrice})` : ''}
+                    {event.date} - From {getDisplayPrice(event)}
+                    {event.originalPrice
+                      ? ` (was ${event.originalPrice})`
+                      : (priceOverrides?.[event.id] && priceOverrides[event.id] !== event.price ? ` (was ${event.price})` : '')}
                     {event.promoNote ? ` - ${event.promoNote}` : ''}
                     {event.eligibilityNote ? ` (${event.eligibilityNote})` : ''}
                   </option>
