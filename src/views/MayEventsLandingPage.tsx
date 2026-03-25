@@ -53,9 +53,13 @@ export default function MayEventsLandingPage() {
               <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
                 Two May dates, one premium format. 6h coaching, 6h social play, 4* hotel with B&amp;B, and founder-level hosting throughout the trip.
               </p>
-              <p className="text-sm md:text-base text-white/85 mb-4">
-                Limited-time £100 voucher available on selected dates.
-              </p>
+              <div className="mx-auto mb-4 inline-flex items-center gap-3 rounded-full border border-brand-red/40 bg-black/35 px-4 py-2.5">
+                <span className="rounded-full bg-brand-red px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white">Voucher</span>
+                <span className="text-xs md:text-sm text-white/90 font-semibold">
+                  <span className="line-through text-white/50 mr-2">£745</span>
+                  <span className="text-brand-red">£645</span>
+                </span>
+              </div>
               <a
                 href="#book-now"
                 className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-widest text-brand-dark hover:bg-brand-red hover:text-white transition-colors"
