@@ -62,7 +62,7 @@ export default function MayEventsLandingPage() {
               </div>
               <a
                 href="#book-now"
-                className="mt-6 inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-widest text-brand-dark hover:bg-brand-red hover:text-white transition-colors"
+                className="mt-6 flex w-fit mx-auto items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-widest text-brand-dark hover:bg-brand-red hover:text-white transition-colors"
               >
                 Reserve My Spot
               </a>
