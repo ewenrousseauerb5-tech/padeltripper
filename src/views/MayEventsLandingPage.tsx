@@ -50,10 +50,7 @@ export default function MayEventsLandingPage() {
                 Two May dates, one premium format. 6h coaching, 6h social play, 4* hotel with B&amp;B, and founder-level hosting throughout the trip.
               </p>
               <p className="text-sm md:text-base text-white/85 mb-4">
-                Limited-time voucher offer:{' '}
-                <span className="line-through text-white/55">£745</span>{' '}
-                <span className="text-brand-red font-bold">£645</span>{' '}
-                per person
+                Limited-time £100 voucher available on selected dates.
               </p>
               <a
                 href="#book-now"
@@ -78,11 +75,7 @@ export default function MayEventsLandingPage() {
           </div>
           <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-5">
             <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">Price</p>
-            <p className="font-semibold text-white">
-              <span className="line-through text-white/50 mr-2">£745.00</span>
-              <span className="text-brand-red">£645.00</span>
-              <span className="text-white/75"> (+£150 single room)</span>
-            </p>
+            <p className="font-semibold text-white">From £745.00 (+£150 single room)</p>
             <p className="text-[11px] text-brand-red/90 mt-2 font-semibold uppercase tracking-[0.12em]">£100 voucher - limited time</p>
           </div>
         </div>
@@ -114,7 +107,10 @@ export default function MayEventsLandingPage() {
                 >
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-[10px] uppercase tracking-[0.2em] text-white/55">{event.status}</span>
-                    <span className="font-serif text-2xl font-black text-brand-red">From {event.price}</span>
+                    <span className="font-serif text-xl md:text-2xl font-black text-brand-red">
+                      <span className="mr-2 text-white/50 line-through text-base md:text-lg">£745</span>
+                      <span>£645</span>
+                    </span>
                   </div>
                   <h3 className="font-serif text-3xl font-black mb-4">{event.dateShort}</h3>
                   <div className="space-y-2.5 text-white/75">
@@ -145,8 +141,7 @@ export default function MayEventsLandingPage() {
       <section id="book-now" className="py-16 md:py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="mb-4 rounded-xl border border-brand-red/35 bg-brand-red/10 px-4 py-3 text-center text-xs md:text-sm font-semibold text-white">
-            Voucher offer: <span className="line-through text-white/65">£745</span>{' '}
-            <span className="text-brand-red">£645</span> per person (limited time).
+            Voucher offer available: £100 off selected dates (limited time).
           </div>
           <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl text-brand-dark">
             <BookingForm selectedEventId={selectedEventId} />
