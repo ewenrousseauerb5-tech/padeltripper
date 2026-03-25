@@ -49,12 +49,15 @@ export default function MayEventsLandingPage() {
               <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
                 Two May dates, one premium format. 6h coaching, 6h social play, 4* hotel with B&amp;B, and founder-level hosting throughout the trip.
               </p>
-              <div className="mx-auto mb-8 inline-flex items-center rounded-full border border-brand-red/40 bg-brand-red/15 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                £100 Voucher Available - Limited Time Offer
-              </div>
+              <p className="text-sm md:text-base text-white/85 mb-4">
+                Limited-time voucher offer:{' '}
+                <span className="line-through text-white/55">£745</span>{' '}
+                <span className="text-brand-red font-bold">£645</span>{' '}
+                per person
+              </p>
               <a
                 href="#book-now"
-                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-widest text-brand-dark hover:bg-brand-red hover:text-white transition-colors"
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-widest text-brand-dark hover:bg-brand-red hover:text-white transition-colors"
               >
                 Reserve My Spot
               </a>
@@ -75,8 +78,12 @@ export default function MayEventsLandingPage() {
           </div>
           <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-5">
             <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">Price</p>
-            <p className="font-semibold text-white">From £745.00 (+£150 single room)</p>
-            <p className="text-[11px] text-brand-red/90 mt-2 font-semibold uppercase tracking-[0.12em]">Includes £100 voucher offer</p>
+            <p className="font-semibold text-white">
+              <span className="line-through text-white/50 mr-2">£745.00</span>
+              <span className="text-brand-red">£645.00</span>
+              <span className="text-white/75"> (+£150 single room)</span>
+            </p>
+            <p className="text-[11px] text-brand-red/90 mt-2 font-semibold uppercase tracking-[0.12em]">£100 voucher - limited time</p>
           </div>
         </div>
       </section>
@@ -138,7 +145,8 @@ export default function MayEventsLandingPage() {
       <section id="book-now" className="py-16 md:py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="mb-4 rounded-xl border border-brand-red/35 bg-brand-red/10 px-4 py-3 text-center text-xs md:text-sm font-semibold text-white">
-            Your quotation will include details on how to claim and apply your <span className="text-brand-red">£100 voucher</span>.
+            Voucher offer: <span className="line-through text-white/65">£745</span>{' '}
+            <span className="text-brand-red">£645</span> per person (limited time).
           </div>
           <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl text-brand-dark">
             <BookingForm selectedEventId={selectedEventId} />
