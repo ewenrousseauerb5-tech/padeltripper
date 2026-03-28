@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data/events';
+import { toDualCurrencyDisplay } from '../lib/pricing';
 
 const TrustpilotReviewHighlights = dynamic(() => import('../components/TrustpilotReviewHighlights'), {
   ssr: false,
@@ -163,8 +164,8 @@ export default function HomePage() {
                   <div className="flex justify-between items-center mb-5">
                     <span className="font-semibold text-sm text-brand-dark">{event.dateShort}</span>
                     <span className="text-xl font-serif font-black text-brand-red">
-                      {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{event.originalPrice}</span>}
-                      From {event.price}
+                      {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{toDualCurrencyDisplay(event.originalPrice)}</span>}
+                      From {toDualCurrencyDisplay(event.price)}
                     </span>
                   </div>
                   <div className="space-y-2 mb-5 flex-1">

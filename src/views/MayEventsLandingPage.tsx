@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import { Calendar, Check, MapPin, Star } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import { ALL_EVENTS } from '../data/events';
+import { toDualCurrencyDisplay } from '../lib/pricing';
 
 const MAY_EVENT_IDS = [88, 70];
 const MAY_VOUCHER_PRICE_OVERRIDES: Record<number, string> = {
@@ -55,8 +56,8 @@ export default function MayEventsLandingPage() {
               </p>
               <div className="mx-auto mb-4 inline-flex items-center rounded-full border border-brand-red/40 bg-black/35 px-5 py-2.5">
                 <span className="text-sm md:text-base text-white/90 font-semibold">
-                  <span className="line-through text-white/50 mr-2">£745</span>
-                  <span className="text-brand-red font-bold">£645</span>
+                  <span className="line-through text-white/50 mr-2">{toDualCurrencyDisplay('£745')}</span>
+                  <span className="text-brand-red font-bold">{toDualCurrencyDisplay('£645')}</span>
                 </span>
               </div>
               <a
@@ -82,7 +83,7 @@ export default function MayEventsLandingPage() {
           </div>
           <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-5">
             <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">Price</p>
-            <p className="font-semibold text-white">From £745.00 (+£150 single room)</p>
+            <p className="font-semibold text-white">From {toDualCurrencyDisplay('£745.00')} (+{toDualCurrencyDisplay('£150')} single room)</p>
             <p className="text-[11px] text-brand-red/90 mt-2 font-semibold uppercase tracking-[0.12em]">£100 voucher - limited time</p>
           </div>
         </div>
@@ -115,8 +116,8 @@ export default function MayEventsLandingPage() {
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-[10px] uppercase tracking-[0.2em] text-white/55">{event.status}</span>
                     <span className="font-serif text-xl md:text-2xl font-black text-brand-red">
-                      <span className="mr-2 text-white/50 line-through text-base md:text-lg">£745</span>
-                      <span>£645</span>
+                      <span className="mr-2 text-white/50 line-through text-base md:text-lg">{toDualCurrencyDisplay('£745')}</span>
+                      <span>{toDualCurrencyDisplay('£645')}</span>
                     </span>
                   </div>
                   <h3 className="font-serif text-3xl font-black mb-4">{event.dateShort}</h3>
