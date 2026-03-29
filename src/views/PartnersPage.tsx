@@ -41,6 +41,7 @@ export default function PartnersPage() {
       <section className="py-16 md:py-20 px-6 bg-white border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-4xl">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Partner Opportunity</p>
             <p className="text-stone-600 leading-relaxed mb-4">
               Padel Tripper partners with coaches, club managers, and well-connected players to offer exclusive discounts for their communities while earning commissions on every booking.
             </p>
@@ -75,7 +76,7 @@ export default function PartnersPage() {
               <img
                 src="/images/bela-center.webp"
                 alt="Padel partner venue in Alicante"
-                className="w-full h-52 md:h-56 object-cover"
+                className="w-full h-52 md:h-56 object-cover object-center"
                 loading="lazy"
               />
             </div>
@@ -83,7 +84,7 @@ export default function PartnersPage() {
               <img
                 src="/images/group-bela-court.jpg"
                 alt="Padel partner community trip in Alicante"
-                className="w-full h-52 md:h-56 object-cover"
+                className="w-full h-52 md:h-56 object-cover object-[center_42%]"
                 loading="lazy"
               />
             </div>
@@ -91,7 +92,7 @@ export default function PartnersPage() {
               <img
                 src="/images/padel-coaching-session.jpg"
                 alt="Padel partner coaching event in Alicante"
-                className="w-full h-40 md:h-44 object-cover"
+                className="w-full h-44 md:h-48 object-cover object-[center_38%]"
                 loading="lazy"
               />
             </div>
@@ -99,7 +100,7 @@ export default function PartnersPage() {
               <img
                 src="/images/group-social-evening.jpg"
                 alt="Padel social evening for partner communities"
-                className="w-full h-40 md:h-44 object-cover"
+                className="w-full h-44 md:h-48 object-cover object-center"
                 loading="lazy"
               />
             </div>
