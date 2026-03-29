@@ -130,6 +130,12 @@ export default function Navbar() {
               ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
               : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
           )}>Venues</Link>
+          <Link href="/partners" className={cn(
+            "transition-colors duration-300",
+            isActive('/partners')
+              ? (showTransparent ? "text-white font-bold" : "text-brand-dark font-bold")
+              : (showTransparent ? "text-white/80 hover:text-white" : "text-stone-500 hover:text-brand-dark")
+          )}>Partners</Link>
           <Link href="/tailored-events" className={cn(
             "transition-colors duration-300",
             isActive('/tailored-events')
@@ -176,6 +182,12 @@ export default function Navbar() {
               isActive('/venues') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
             )}>
               Venues
+            </Link>
+            <Link href="/partners" className={cn(
+              "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
+              isActive('/partners') ? "bg-stone-100 text-brand-dark font-bold" : "text-stone-600 hover:bg-stone-100 hover:text-brand-dark"
+            )}>
+              Partners
             </Link>
             <Link href="/tailored-events" className={cn(
               "block rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors",
