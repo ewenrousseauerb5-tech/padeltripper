@@ -48,6 +48,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/partners" className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
+                  Partners
+                </Link>
+              </li>
+              <li>
                 <Link href="/events" className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
                   Upcoming Events
