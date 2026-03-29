@@ -16,7 +16,7 @@ export default function PartnersPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center brightness-[0.32]"
+            className="object-cover object-[center_30%] brightness-[0.32]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
         </div>
@@ -40,8 +40,11 @@ export default function PartnersPage() {
 
       <section className="py-16 md:py-20 px-6 bg-white border-b border-stone-200/70">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Partner Opportunity</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark mb-5">
+              Grow Your Club With <span className="text-brand-red">Padel Tripper</span>
+            </h2>
             <p className="text-stone-600 leading-relaxed mb-4">
               Padel Tripper partners with coaches, club managers, and well-connected players to offer exclusive discounts for their communities while earning commissions on every booking.
             </p>
@@ -84,7 +87,7 @@ export default function PartnersPage() {
               <img
                 src="/images/group-bela-court.jpg"
                 alt="Padel partner community trip in Alicante"
-                className="w-full h-52 md:h-56 object-cover object-[center_42%]"
+                className="w-full h-52 md:h-56 object-cover object-[center_30%]"
                 loading="lazy"
               />
             </div>
@@ -92,7 +95,7 @@ export default function PartnersPage() {
               <img
                 src="/images/padel-coaching-session.jpg"
                 alt="Padel partner coaching event in Alicante"
-                className="w-full h-44 md:h-48 object-cover object-[center_38%]"
+                className="w-full h-44 md:h-48 object-cover object-[center_56%]"
                 loading="lazy"
               />
             </div>
