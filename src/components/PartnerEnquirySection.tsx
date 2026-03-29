@@ -15,7 +15,6 @@ const initialData = {
   email: '',
   phone: '',
   role: '',
-  communitySize: '',
   details: '',
   acceptedPrivacyTerms: false,
 };
@@ -41,7 +40,6 @@ export default function PartnerEnquirySection() {
           email: data.email,
           phone: data.phone,
           role: data.role,
-          community_size: data.communitySize,
           message: data.details,
           accepted_privacy_terms: data.acceptedPrivacyTerms,
         }),
@@ -132,18 +130,6 @@ export default function PartnerEnquirySection() {
                   placeholder="Coach, club manager, etc."
                 />
               </div>
-            </div>
-
-            <div>
-              <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Community Size *</label>
-              <input
-                required
-                type="text"
-                className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3.5 text-sm focus:border-brand-red focus:outline-none transition-colors"
-                value={data.communitySize}
-                onChange={e => setData({ ...data, communitySize: e.target.value })}
-                placeholder="Approx number of players"
-              />
             </div>
 
             <div>

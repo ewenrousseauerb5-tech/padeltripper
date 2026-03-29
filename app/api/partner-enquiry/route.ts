@@ -5,7 +5,6 @@ interface PartnerPayload {
   email?: string;
   phone?: string;
   role?: string;
-  community_size?: string;
   message?: string;
   accepted_privacy_terms?: boolean;
 }
@@ -98,12 +97,11 @@ export async function POST(request: Request) {
     const email = normalize(body.email);
     const phone = normalize(body.phone);
     const role = normalize(body.role);
-    const communitySize = normalize(body.community_size);
     const message = normalize(body.message);
 
-    if (!fullName || !email || !role || !communitySize) {
+    if (!fullName || !email || !role) {
       return Response.json(
-        { ok: false, error: 'full_name, email, role and community_size are required.' },
+        { ok: false, error: 'full_name, email and role are required.' },
         { status: 400, headers: corsHeaders },
       );
     }
@@ -128,7 +126,6 @@ export async function POST(request: Request) {
       <tr><td style="padding:5px 0;color:#888;">Email</td><td style="padding:5px 0;">${escapeHtml(email)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Phone</td><td style="padding:5px 0;">${escapeHtml(phone || '—')}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Role / Club</td><td style="padding:5px 0;">${escapeHtml(role)}</td></tr>
-      <tr><td style="padding:5px 0;color:#888;">Community Size</td><td style="padding:5px 0;">${escapeHtml(communitySize)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Message</td><td style="padding:5px 0;">${escapeHtml(message || '—')}</td></tr>
     </table>
   </div>

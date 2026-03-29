@@ -38,35 +38,9 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="py-14 md:py-16 px-6 bg-[#0b0d10] border-b border-white/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-4 md:gap-5">
-            {[
-              { src: '/images/group-bela-court.jpg', alt: 'Padel group at Bela courts', label: 'Community Trips' },
-              { src: '/images/padel-coaching-session.jpg', alt: 'Padel coaching in Alicante', label: 'Coaching-led Events' },
-              { src: '/images/group-social-evening.jpg', alt: 'Padel social evening in Alicante', label: 'Social Experiences' },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.src}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-                className="relative rounded-2xl overflow-hidden border border-white/10"
-              >
-                <img src={item.src} alt={item.alt} className="h-56 w-full object-cover" loading="lazy" />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                  <p className="text-white text-xs font-semibold uppercase tracking-[0.15em]">{item.label}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-16 md:py-20 px-6 bg-white border-b border-stone-200/70">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-8 md:gap-10 items-start">
-          <div>
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl">
             <p className="text-stone-600 leading-relaxed mb-4">
               Padel Tripper partners with coaches, club managers, and well-connected players to offer exclusive discounts for their communities while earning commissions on every booking.
             </p>
@@ -96,27 +70,35 @@ export default function PartnersPage() {
             </a>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="rounded-2xl overflow-hidden border border-stone-200 md:col-span-2">
+          <div className="mt-10 grid md:grid-cols-2 gap-4">
+            <div className="rounded-2xl overflow-hidden border border-stone-200">
               <img
                 src="/images/bela-center.webp"
                 alt="Padel partner venue in Alicante"
-                className="w-full h-48 md:h-52 object-cover"
+                className="w-full h-52 md:h-56 object-cover"
                 loading="lazy"
               />
             </div>
             <div className="rounded-2xl overflow-hidden border border-stone-200">
               <img
-                src="/images/group-dinner-alicante.jpg"
-                alt="Padel Tripper social group dinner"
+                src="/images/group-bela-court.jpg"
+                alt="Padel partner community trip in Alicante"
+                className="w-full h-52 md:h-56 object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-stone-200">
+              <img
+                src="/images/padel-coaching-session.jpg"
+                alt="Padel partner coaching event in Alicante"
                 className="w-full h-40 md:h-44 object-cover"
                 loading="lazy"
               />
             </div>
             <div className="rounded-2xl overflow-hidden border border-stone-200">
               <img
-                src="/images/sunset-group-hotel.jpg"
-                alt="Padel Tripper sunset hotel social"
+                src="/images/group-social-evening.jpg"
+                alt="Padel social evening for partner communities"
                 className="w-full h-40 md:h-44 object-cover"
                 loading="lazy"
               />
@@ -124,7 +106,7 @@ export default function PartnersPage() {
             <div className="rounded-xl border border-stone-200 bg-brand-light p-4 md:col-span-2">
               <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">After You Apply</p>
               <p className="text-sm text-brand-dark leading-relaxed">
-                Once your form is submitted, you&apos;ll receive your own unique partner reference and our team will guide you through setup.
+                Once your form is submitted, you&apos;ll receive your unique partner reference and our team will guide you through setup.
               </p>
             </div>
           </div>
