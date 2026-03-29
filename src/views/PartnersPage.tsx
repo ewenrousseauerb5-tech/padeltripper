@@ -2,23 +2,23 @@
 
 import Image from 'next/image';
 import { motion } from 'motion/react';
-import { ArrowRight, Handshake, Users } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import PartnerEnquirySection from '../components/PartnerEnquirySection';
 
 export default function PartnersPage() {
   return (
     <main>
-      <section className="relative h-[52vh] min-h-[420px] flex items-end overflow-hidden">
+      <section className="relative h-[56vh] min-h-[440px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/group-photo.jpg"
+            src="/images/tournament-oct-24.jpg"
             alt="Padel Tripper partner community"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center brightness-[0.32]"
+            className="object-cover object-center brightness-[0.35]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
@@ -38,8 +38,34 @@ export default function PartnersPage() {
         </div>
       </section>
 
+      <section className="py-14 md:py-16 px-6 bg-[#0b0d10] border-b border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-5">
+            {[
+              { src: '/images/group-bela-court.jpg', alt: 'Padel group at Bela courts', label: 'Community Trips' },
+              { src: '/images/padel-coaching-session.jpg', alt: 'Padel coaching in Alicante', label: 'Coaching-led Events' },
+              { src: '/images/group-social-evening.jpg', alt: 'Padel social evening in Alicante', label: 'Social Experiences' },
+            ].map((item, idx) => (
+              <motion.div
+                key={item.src}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+                className="relative rounded-2xl overflow-hidden border border-white/10"
+              >
+                <img src={item.src} alt={item.alt} className="h-56 w-full object-cover" loading="lazy" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                  <p className="text-white text-xs font-semibold uppercase tracking-[0.15em]">{item.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 px-6 bg-white border-b border-stone-200/70">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-8 md:gap-10 items-start">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-8 md:gap-10 items-start">
           <div>
             <p className="text-stone-600 leading-relaxed mb-4">
               Padel Tripper partners with coaches, club managers, and well-connected players to offer exclusive discounts for their communities while earning commissions on every booking.
@@ -48,9 +74,9 @@ export default function PartnersPage() {
               If you have a strong network within your club or regularly organise padel groups and trips, this is a great way to add value for your players while generating extra income.
             </p>
 
-            <div className="space-y-3 mb-6">
+            <div className="grid sm:grid-cols-2 gap-3 mb-6">
               <div className="rounded-xl border border-stone-200 bg-brand-light px-4 py-3 text-sm text-brand-dark">
-                Earn a commission on each booking made through your referral.
+                Earn commission on each booking made through your referral.
               </div>
               <div className="rounded-xl border border-stone-200 bg-brand-light px-4 py-3 text-sm text-brand-dark">
                 Work closely with the Padel Tripper team with full support throughout.
@@ -70,31 +96,54 @@ export default function PartnersPage() {
             </a>
           </div>
 
-          <div className="grid gap-4">
-            <div className="rounded-2xl overflow-hidden border border-stone-200">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="rounded-2xl overflow-hidden border border-stone-200 md:col-span-2">
               <img
                 src="/images/bela-center.webp"
-                alt="Padel partners and player community in Alicante"
-                className="w-full h-48 object-cover"
+                alt="Padel partner venue in Alicante"
+                className="w-full h-48 md:h-52 object-cover"
                 loading="lazy"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-stone-200 bg-brand-light p-5">
-                <div className="w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-brand-red mb-3">
-                  <Users size={16} />
-                </div>
-                <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Community Value</p>
-                <p className="text-sm text-brand-dark font-medium leading-snug">Exclusive offers for your players.</p>
-              </div>
-              <div className="rounded-2xl border border-stone-200 bg-brand-light p-5">
-                <div className="w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-brand-red mb-3">
-                  <Handshake size={16} />
-                </div>
-                <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">Partner Support</p>
-                <p className="text-sm text-brand-dark font-medium leading-snug">Hands-on help from our team.</p>
-              </div>
+            <div className="rounded-2xl overflow-hidden border border-stone-200">
+              <img
+                src="/images/group-dinner-alicante.jpg"
+                alt="Padel Tripper social group dinner"
+                className="w-full h-40 md:h-44 object-cover"
+                loading="lazy"
+              />
             </div>
+            <div className="rounded-2xl overflow-hidden border border-stone-200">
+              <img
+                src="/images/sunset-group-hotel.jpg"
+                alt="Padel Tripper sunset hotel social"
+                className="w-full h-40 md:h-44 object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="rounded-xl border border-stone-200 bg-brand-light p-4 md:col-span-2">
+              <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">After You Apply</p>
+              <p className="text-sm text-brand-dark leading-relaxed">
+                Once your form is submitted, you&apos;ll receive your own unique partner reference and our team will guide you through setup.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-16 px-6 bg-brand-dark">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-4">
+          <div className="rounded-2xl border border-white/15 bg-white/[0.03] p-5">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red mb-2">Step 1</p>
+            <p className="text-white/90 text-sm">Submit the partner enquiry form below.</p>
+          </div>
+          <div className="rounded-2xl border border-white/15 bg-white/[0.03] p-5">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red mb-2">Step 2</p>
+            <p className="text-white/90 text-sm">Receive your unique reference and onboarding details.</p>
+          </div>
+          <div className="rounded-2xl border border-white/15 bg-white/[0.03] p-5">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red mb-2">Step 3</p>
+            <p className="text-white/90 text-sm">Share with your network and earn on each confirmed booking.</p>
           </div>
         </div>
       </section>
