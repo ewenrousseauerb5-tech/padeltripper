@@ -8,17 +8,17 @@ import PartnerEnquirySection from '../components/PartnerEnquirySection';
 export default function PartnersPage() {
   return (
     <main>
-      <section className="relative h-[56vh] min-h-[440px] flex items-end overflow-hidden">
+      <section className="relative h-[52vh] min-h-[420px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/tournament-oct-24.jpg"
+            src="/images/group-photo.jpg"
             alt="Padel Tripper partner community"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center brightness-[0.35]"
+            className="object-cover object-center brightness-[0.32]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
@@ -28,7 +28,7 @@ export default function PartnersPage() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Another Sub Heading</p>
-            <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl">
+            <h1 className="font-serif text-4xl md:text-6xl font-black text-white uppercase mb-4 max-w-4xl md:whitespace-nowrap">
               Partner With <span className="text-brand-red">Padel Tripper</span>
             </h1>
             <p className="text-white/65 max-w-2xl text-lg font-light">
@@ -127,23 +127,6 @@ export default function PartnersPage() {
                 Once your form is submitted, you&apos;ll receive your own unique partner reference and our team will guide you through setup.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14 md:py-16 px-6 bg-brand-dark">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-4">
-          <div className="rounded-2xl border border-white/15 bg-white/[0.03] p-5">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red mb-2">Step 1</p>
-            <p className="text-white/90 text-sm">Submit the partner enquiry form below.</p>
-          </div>
-          <div className="rounded-2xl border border-white/15 bg-white/[0.03] p-5">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red mb-2">Step 2</p>
-            <p className="text-white/90 text-sm">Receive your unique reference and onboarding details.</p>
-          </div>
-          <div className="rounded-2xl border border-white/15 bg-white/[0.03] p-5">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red mb-2">Step 3</p>
-            <p className="text-white/90 text-sm">Share with your network and earn on each confirmed booking.</p>
           </div>
         </div>
       </section>
