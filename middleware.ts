@@ -28,8 +28,10 @@ export async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const isDashboardPage = pathname.startsWith('/dashboard');
   const isDashboardApi = pathname.startsWith('/api/dashboard');
+  const isDashboardAuthApi = pathname.startsWith('/api/dashboard/auth/');
 
   if (!isDashboardPage && !isDashboardApi) return NextResponse.next();
+  if (isDashboardAuthApi) return NextResponse.next();
 
   const isLoginPage = pathname === '/dashboard/login';
   const valid = await isValidDashboardSession(request);
