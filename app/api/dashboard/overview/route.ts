@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { ALL_EVENTS } from '@/src/data/events';
 
 export const runtime = 'edge';
 
@@ -6,6 +7,13 @@ type MaybeRecord = Record<string, unknown>;
 
 function safeArray(value: unknown): MaybeRecord[] {
   return Array.isArray(value) ? (value as MaybeRecord[]) : [];
+}
+
+function toIsoDate(value: unknown): string | null {
+  if (typeof value !== 'string' || !value.trim()) return null;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toISOString().slice(0, 10);
 }
 
 export async function GET() {
@@ -47,7 +55,47 @@ export async function GET() {
 
     const bookings = safeArray(bookingsRes.data);
     const participants = safeArray(participantsRes.data);
-    const events = safeArray(eventsRes.data);
+    const rawEvents = safeArray(eventsRes.data);
+    const eventFallbackById = new Map(ALL_EVENTS.map(event => [event.id, event]));
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const events = rawEvents
+      .map((eventRow) => {
+        const idValue = Number(eventRow.id);
+        const fallback = Number.isFinite(idValue) ? eventFallbackById.get(idValue) : undefined;
+        const startDate = toIsoDate(eventRow.start_date) ?? fallback?.startDate ?? null;
+        const endDate = toIsoDate(eventRow.end_date)
+          ?? (fallback
+            ? new Date(new Date(`${fallback.startDate}T00:00:00`).getTime() + (fallback.nights * 24 * 60 * 60 * 1000))
+              .toISOString()
+              .slice(0, 10)
+            : null);
+
+        return {
+          ...eventRow,
+          start_date: startDate,
+          end_date: endDate,
+        };
+      })
+      .sort((a, b) => {
+        const aDate = a.start_date ? new Date(`${a.start_date}T00:00:00`) : null;
+        const bDate = b.start_date ? new Date(`${b.start_date}T00:00:00`) : null;
+        const aValid = aDate && !Number.isNaN(aDate.getTime());
+        const bValid = bDate && !Number.isNaN(bDate.getTime());
+
+        if (aValid && bValid) {
+          const aTime = aDate.getTime();
+          const bTime = bDate.getTime();
+
+          const aDiff = aTime >= today.getTime() ? aTime - today.getTime() : Number.MAX_SAFE_INTEGER / 2 + (today.getTime() - aTime);
+          const bDiff = bTime >= today.getTime() ? bTime - today.getTime() : Number.MAX_SAFE_INTEGER / 2 + (today.getTime() - bTime);
+          return aDiff - bDiff;
+        }
+        if (aValid) return -1;
+        if (bValid) return 1;
+        return 0;
+      });
     const workflows = safeArray(workflowsRes.data);
     const partners = safeArray(partnersRes.data);
 
