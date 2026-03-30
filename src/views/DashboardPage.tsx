@@ -166,6 +166,20 @@ export default function DashboardPage() {
     return map;
   }, [data.workflows]);
 
+  const sortedEvents = useMemo(() => {
+    const getTime = (value: string | null): number => {
+      if (!value) return Number.POSITIVE_INFINITY;
+      const time = new Date(value).getTime();
+      return Number.isNaN(time) ? Number.POSITIVE_INFINITY : time;
+    };
+
+    return [...data.events].sort((a, b) => {
+      const startDiff = getTime(a.start_date) - getTime(b.start_date);
+      if (startDiff !== 0) return startDiff;
+      return getTime(a.end_date) - getTime(b.end_date);
+    });
+  }, [data.events]);
+
   const activeBooking = useMemo(
     () => data.bookings.find(booking => booking.id === activeBookingId) || null,
     [activeBookingId, data.bookings],
@@ -430,7 +444,7 @@ export default function DashboardPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.events.map(event => (
+                      {sortedEvents.map(event => (
                         <tr key={event.id} className="border-t border-white/10">
                           <td className="px-4 py-3">{event.name || `Event #${event.id}`}</td>
                           <td className="px-4 py-3">{formatDate(event.start_date)} - {formatDate(event.end_date)}</td>
