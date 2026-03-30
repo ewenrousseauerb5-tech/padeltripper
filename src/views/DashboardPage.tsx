@@ -126,6 +126,7 @@ function buildPreviewText(action: string, booking: BookingRow): string {
 
 export default function DashboardPage() {
   const [tab, setTab] = useState<DashboardTab>('bookings');
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [data, setData] = useState<DashboardData>(initialData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -136,6 +137,17 @@ export default function DashboardPage() {
   const [activeBookingId, setActiveBookingId] = useState<number | null>(null);
   const [submittingAction, setSubmittingAction] = useState(false);
   const [bookingSearch, setBookingSearch] = useState('');
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem('dashboard-theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('dashboard-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     const load = async () => {
@@ -259,39 +271,65 @@ export default function DashboardPage() {
     window.location.href = '/dashboard/login';
   };
 
+  const isLight = theme === 'light';
+
   return (
-    <main className="bg-[#0b0d10] min-h-screen pt-28 pb-14 px-6 text-white">
+    <main
+      className={`min-h-screen pt-28 pb-14 px-6 transition-colors ${
+        isLight
+          ? 'bg-slate-100 text-slate-900 [&_p]:text-slate-700 [&_h1]:text-slate-900 [&_h3]:text-slate-900'
+          : 'bg-[#0b0d10] text-white'
+      }`}
+    >
       <section className="max-w-7xl mx-auto">
+        <div className="mb-5 flex justify-end">
+          <button
+            type="button"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className={`rounded-full border px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] transition-colors ${
+              isLight
+                ? 'border-slate-300 bg-white text-slate-700 hover:bg-slate-900 hover:text-white'
+                : 'border-white/25 bg-white/5 text-white/80 hover:bg-white hover:text-brand-dark'
+            }`}
+          >
+            {isLight ? 'Switch To Dark' : 'Switch To Light'}
+          </button>
+        </div>
+
         <div className="mb-8">
           <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-3">Internal Dashboard</p>
           <h1 className="font-serif text-4xl md:text-5xl font-black uppercase">Operations Console</h1>
-          <p className="text-white/60 mt-4 max-w-3xl">
+          <p className={`${isLight ? 'text-slate-600' : 'text-white/60'} mt-4 max-w-3xl`}>
             Semi-automatic workflow with manual confirmation checkpoints for hotel, payment and coaches.
           </p>
           <button
             type="button"
             onClick={handleLogout}
-            className="mt-4 rounded-full border border-white/25 px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-white/80 hover:bg-white hover:text-brand-dark transition-colors"
+            className={`mt-4 rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-widest transition-colors ${
+              isLight
+                ? 'border-slate-300 text-slate-700 hover:bg-slate-900 hover:text-white'
+                : 'border-white/25 text-white/80 hover:bg-white hover:text-brand-dark'
+            }`}
           >
             Logout
           </button>
         </div>
 
         <div className="grid md:grid-cols-4 gap-4 mb-7">
-          <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-1">Bookings</p>
+          <div className={`rounded-2xl border p-4 ${isLight ? 'border-slate-200 bg-white' : 'border-white/12 bg-white/[0.03]'}`}>
+            <p className={`text-[10px] uppercase tracking-[0.2em] mb-1 ${isLight ? 'text-slate-500' : 'text-white/50'}`}>Bookings</p>
             <p className="text-2xl font-serif font-black">{data.bookings.length}</p>
           </div>
-          <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-1">Participants</p>
+          <div className={`rounded-2xl border p-4 ${isLight ? 'border-slate-200 bg-white' : 'border-white/12 bg-white/[0.03]'}`}>
+            <p className={`text-[10px] uppercase tracking-[0.2em] mb-1 ${isLight ? 'text-slate-500' : 'text-white/50'}`}>Participants</p>
             <p className="text-2xl font-serif font-black">{data.participants.length}</p>
           </div>
-          <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-1">Partners</p>
+          <div className={`rounded-2xl border p-4 ${isLight ? 'border-slate-200 bg-white' : 'border-white/12 bg-white/[0.03]'}`}>
+            <p className={`text-[10px] uppercase tracking-[0.2em] mb-1 ${isLight ? 'text-slate-500' : 'text-white/50'}`}>Partners</p>
             <p className="text-2xl font-serif font-black">{data.partners.length}</p>
           </div>
-          <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-1">Events</p>
+          <div className={`rounded-2xl border p-4 ${isLight ? 'border-slate-200 bg-white' : 'border-white/12 bg-white/[0.03]'}`}>
+            <p className={`text-[10px] uppercase tracking-[0.2em] mb-1 ${isLight ? 'text-slate-500' : 'text-white/50'}`}>Events</p>
             <p className="text-2xl font-serif font-black">{data.events.length}</p>
           </div>
         </div>
@@ -308,7 +346,11 @@ export default function DashboardPage() {
               type="button"
               onClick={() => setTab(item.id as DashboardTab)}
               className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors ${
-                tab === item.id ? 'bg-brand-red text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'
+                tab === item.id
+                  ? 'bg-brand-red text-white'
+                  : isLight
+                    ? 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                    : 'bg-white/10 text-white/70 hover:bg-white/20'
               }`}
             >
               {item.label}
@@ -325,28 +367,32 @@ export default function DashboardPage() {
           <div className="rounded-xl border border-red-300/40 bg-red-400/10 px-4 py-3 text-sm text-red-100 mb-5">{error}</div>
         )}
 
-        <div className="rounded-2xl border border-white/12 bg-white/[0.03] overflow-hidden">
+        <div className={`rounded-2xl border overflow-hidden ${isLight ? 'border-slate-200 bg-white' : 'border-white/12 bg-white/[0.03]'}`}>
           {loading ? (
-            <div className="p-8 text-white/60 text-sm">Loading dashboard...</div>
+            <div className={`p-8 text-sm ${isLight ? 'text-slate-500' : 'text-white/60'}`}>Loading dashboard...</div>
           ) : (
             <>
               {tab === 'bookings' && (
                 <div className="p-4 md:p-5">
                   <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/45">
+                    <p className={`text-xs uppercase tracking-[0.2em] ${isLight ? 'text-slate-500' : 'text-white/45'}`}>
                       {filteredBookings.length} bookings
                     </p>
                     <input
                       value={bookingSearch}
                       onChange={event => setBookingSearch(event.target.value)}
                       placeholder="Search by lead, email, event or ID"
-                      className="w-full md:w-[360px] rounded-xl border border-white/15 bg-black/25 px-3 py-2 text-sm text-white/90 placeholder:text-white/35 focus:outline-none focus:border-white/35"
+                      className={`w-full md:w-[360px] rounded-xl border px-3 py-2 text-sm focus:outline-none ${
+                        isLight
+                          ? 'border-slate-300 bg-white text-slate-800 placeholder:text-slate-400 focus:border-slate-500'
+                          : 'border-white/15 bg-black/25 text-white/90 placeholder:text-white/35 focus:border-white/35'
+                      }`}
                     />
                   </div>
 
                   <div className="overflow-x-auto">
                     <table className="min-w-full text-sm">
-                      <thead className="bg-white/[0.02] text-white/60">
+                      <thead className={isLight ? 'bg-slate-50 text-slate-600' : 'bg-white/[0.02] text-white/60'}>
                         <tr>
                           <th className="px-4 py-3 text-left">Lead</th>
                           <th className="w-[200px] px-4 py-3 text-left">Event</th>
@@ -364,7 +410,12 @@ export default function DashboardPage() {
                       const eventLabel = event?.name || (booking.event_id ? `#${booking.event_id}` : '—');
 
                       return (
-                        <tr key={booking.id} className={`border-t border-white/10 ${index % 2 === 0 ? 'bg-transparent' : 'bg-white/[0.015]'}`}>
+                        <tr
+                          key={booking.id}
+                          className={`border-t ${isLight ? 'border-slate-200' : 'border-white/10'} ${
+                            index % 2 === 0 ? 'bg-transparent' : isLight ? 'bg-slate-50/70' : 'bg-white/[0.015]'
+                          }`}
+                        >
                           <td className="px-4 py-3">
                             <p className="font-semibold">{booking.full_name || '—'}</p>
                             <p className="text-white/50 text-xs">{booking.email || '—'}</p>
@@ -401,21 +452,27 @@ export default function DashboardPage() {
                               <button
                                 type="button"
                                 onClick={() => openPreview(booking, 'hotel_request_sent')}
-                                className="rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/85 hover:bg-brand-red hover:text-white transition-colors"
+                                className={`rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider hover:bg-brand-red hover:text-white transition-colors ${
+                                  isLight ? 'text-slate-700' : 'text-white/85'
+                                }`}
                               >
                                 Hotel
                               </button>
                               <button
                                 type="button"
                                 onClick={() => openPreview(booking, 'coach_notified')}
-                                className="rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/85 hover:bg-brand-red hover:text-white transition-colors"
+                                className={`rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider hover:bg-brand-red hover:text-white transition-colors ${
+                                  isLight ? 'text-slate-700' : 'text-white/85'
+                                }`}
                               >
                                 Coach
                               </button>
                               <button
                                 type="button"
                                 onClick={() => openPreview(booking, 'payment_reminder_sent')}
-                                className="rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/85 hover:bg-brand-red hover:text-white transition-colors"
+                                className={`rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider hover:bg-brand-red hover:text-white transition-colors ${
+                                  isLight ? 'text-slate-700' : 'text-white/85'
+                                }`}
                               >
                                 Payment
                               </button>
@@ -433,7 +490,7 @@ export default function DashboardPage() {
               {tab === 'participants' && (
                 <div className="overflow-x-auto">
                   <table className="min-w-full text-sm">
-                    <thead className="bg-white/[0.02] text-white/60">
+                    <thead className={isLight ? 'bg-slate-50 text-slate-600' : 'bg-white/[0.02] text-white/60'}>
                       <tr>
                         <th className="px-4 py-3 text-left">Name</th>
                         <th className="px-4 py-3 text-left">Email</th>
@@ -444,7 +501,7 @@ export default function DashboardPage() {
                     </thead>
                     <tbody>
                       {data.participants.map(participant => (
-                        <tr key={participant.id} className="border-t border-white/10">
+                        <tr key={participant.id} className={`border-t ${isLight ? 'border-slate-200' : 'border-white/10'}`}>
                           <td className="px-4 py-3">{participant.full_name || '—'}</td>
                           <td className="px-4 py-3">{participant.email || '—'}</td>
                           <td className="px-4 py-3">{participant.padel_level || '—'}</td>
@@ -460,7 +517,7 @@ export default function DashboardPage() {
               {tab === 'partners' && (
                 <div className="overflow-x-auto">
                   <table className="min-w-full text-sm">
-                    <thead className="bg-white/[0.02] text-white/60">
+                    <thead className={isLight ? 'bg-slate-50 text-slate-600' : 'bg-white/[0.02] text-white/60'}>
                       <tr>
                         <th className="px-4 py-3 text-left">Reference</th>
                         <th className="px-4 py-3 text-left">Name</th>
@@ -472,7 +529,7 @@ export default function DashboardPage() {
                     </thead>
                     <tbody>
                       {data.partners.map(partner => (
-                        <tr key={partner.id} className="border-t border-white/10">
+                        <tr key={partner.id} className={`border-t ${isLight ? 'border-slate-200' : 'border-white/10'}`}>
                           <td className="px-4 py-3">{partner.reference || '—'}</td>
                           <td className="px-4 py-3">{partner.full_name || '—'}</td>
                           <td className="px-4 py-3">{partner.email || '—'}</td>
@@ -493,7 +550,7 @@ export default function DashboardPage() {
               {tab === 'events' && (
                 <div className="overflow-x-auto">
                   <table className="min-w-full text-sm">
-                    <thead className="bg-white/[0.02] text-white/60">
+                    <thead className={isLight ? 'bg-slate-50 text-slate-600' : 'bg-white/[0.02] text-white/60'}>
                       <tr>
                         <th className="px-4 py-3 text-left">Event</th>
                         <th className="px-4 py-3 text-left">Dates</th>
@@ -504,7 +561,7 @@ export default function DashboardPage() {
                     </thead>
                     <tbody>
                       {sortedEvents.map(event => (
-                        <tr key={event.id} className="border-t border-white/10">
+                        <tr key={event.id} className={`border-t ${isLight ? 'border-slate-200' : 'border-white/10'}`}>
                           <td className="px-4 py-3">{event.name || `Event #${event.id}`}</td>
                           <td className="px-4 py-3">{formatDate(event.start_date)} - {formatDate(event.end_date)}</td>
                           <td className="px-4 py-3">{event.base_price || '—'}</td>
@@ -526,21 +583,29 @@ export default function DashboardPage() {
       </section>
 
       {previewOpen && activeBooking && (
-        <div className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm p-4 flex items-center justify-center">
-          <div className="w-full max-w-3xl rounded-2xl border border-white/15 bg-[#111318] p-5 md:p-6">
+        <div className={`fixed inset-0 z-[70] p-4 flex items-center justify-center backdrop-blur-sm ${isLight ? 'bg-slate-900/45' : 'bg-black/60'}`}>
+          <div className={`w-full max-w-3xl rounded-2xl border p-5 md:p-6 ${isLight ? 'border-slate-200 bg-white text-slate-900' : 'border-white/15 bg-[#111318]'}`}>
             <p className="text-brand-red text-xs font-semibold uppercase tracking-[0.2em] mb-2">Preview</p>
             <h3 className="font-serif text-2xl font-black uppercase mb-3">Review Before Confirm</h3>
-            <p className="text-white/60 text-sm mb-4">Booking #{activeBooking.id} · {activeBooking.full_name || 'Lead'}</p>
+            <p className={`text-sm mb-4 ${isLight ? 'text-slate-600' : 'text-white/60'}`}>Booking #{activeBooking.id} · {activeBooking.full_name || 'Lead'}</p>
             <textarea
               value={previewBody}
               onChange={e => setPreviewBody(e.target.value)}
-              className="w-full min-h-[220px] rounded-xl border border-white/15 bg-black/25 p-4 text-sm text-white/90 focus:outline-none focus:border-brand-red"
+              className={`w-full min-h-[220px] rounded-xl border p-4 text-sm focus:outline-none focus:border-brand-red ${
+                isLight
+                  ? 'border-slate-300 bg-slate-50 text-slate-800'
+                  : 'border-white/15 bg-black/25 text-white/90'
+              }`}
             />
             <div className="mt-5 flex flex-wrap gap-2 justify-end">
               <button
                 type="button"
                 onClick={() => setPreviewOpen(false)}
-                className="rounded-full border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white/80 hover:bg-white hover:text-brand-dark transition-colors"
+                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors ${
+                  isLight
+                    ? 'border-slate-300 text-slate-700 hover:bg-slate-900 hover:text-white'
+                    : 'border-white/25 text-white/80 hover:bg-white hover:text-brand-dark'
+                }`}
               >
                 Cancel
               </button>
