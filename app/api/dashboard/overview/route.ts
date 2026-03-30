@@ -71,11 +71,15 @@ export async function GET() {
               .toISOString()
               .slice(0, 10)
             : null);
+        const eventEndDate = endDate ? new Date(`${endDate}T00:00:00`) : null;
+        const isCompleted = Boolean(eventEndDate && !Number.isNaN(eventEndDate.getTime()) && eventEndDate.getTime() < today.getTime());
+        const normalizedStatus = isCompleted ? 'COMPLETED' : (typeof eventRow.status === 'string' ? eventRow.status : 'AVAILABLE');
 
         return {
           ...eventRow,
           start_date: startDate,
           end_date: endDate,
+          status: normalizedStatus,
         };
       })
       .sort((a, b) => {
