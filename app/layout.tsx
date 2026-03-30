@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { Inter, Montserrat } from 'next/font/google';
-import Navbar from '@/src/components/Navbar';
-import Footer from '@/src/components/Footer';
-import WhatsAppButton from '@/src/components/WhatsAppButton';
-import CookieBanner from '@/src/components/CookieBanner';
+import AppShell from '@/src/components/AppShell';
 import { SITE_URL } from '@/src/lib/seo';
 import './globals.css';
 
@@ -131,13 +128,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <div className="min-h-screen bg-white font-sans text-brand-dark">
-          <Navbar />
-          {children}
-          <Footer />
-          <WhatsAppButton />
-          <CookieBanner />
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
