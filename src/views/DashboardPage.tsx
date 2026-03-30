@@ -80,6 +80,31 @@ function formatDate(value: string | null): string {
   });
 }
 
+function toLabel(value: string | null | undefined): string {
+  if (!value) return 'Not set';
+  return value
+    .replaceAll('_', ' ')
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function statusBadgeClass(value: string | null | undefined): string {
+  const normalized = (value || '').toLowerCase();
+  if (normalized.includes('paid') || normalized.includes('confirmed') || normalized.includes('completed') || normalized.includes('acknowledged')) {
+    return 'bg-emerald-500/15 text-emerald-200 border-emerald-400/30';
+  }
+  if (normalized.includes('pending') || normalized.includes('draft')) {
+    return 'bg-amber-500/15 text-amber-200 border-amber-400/30';
+  }
+  if (normalized.includes('sent') || normalized.includes('requested') || normalized.includes('notified')) {
+    return 'bg-sky-500/15 text-sky-200 border-sky-400/30';
+  }
+  if (normalized.includes('declined') || normalized.includes('cancelled') || normalized.includes('rejected')) {
+    return 'bg-rose-500/15 text-rose-200 border-rose-400/30';
+  }
+  return 'bg-white/10 text-white/75 border-white/20';
+}
+
 function buildPreviewText(action: string, booking: BookingRow): string {
   const lead = booking.full_name || 'Lead';
   const eventLabel = booking.event_id ? `event #${booking.event_id}` : 'selected event';
@@ -279,15 +304,49 @@ export default function DashboardPage() {
                               <p>#{booking.event_id || '—'}</p>
                               <p className="text-white/50 text-xs">{formatDate(booking.created_at)}</p>
                             </td>
-                            <td className="px-4 py-3">{booking.status || 'SUBMITTED'}</td>
-                            <td className="px-4 py-3">{wf?.hotel_status || 'not_sent'}</td>
-                            <td className="px-4 py-3">{wf?.payment_status || booking.payment_status || 'pending'}</td>
-                            <td className="px-4 py-3">{wf?.coach_status || 'not_sent'}</td>
+                            <td className="px-4 py-3">
+                              <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(booking.status || 'SUBMITTED')}`}>
+                                {toLabel(booking.status || 'SUBMITTED')}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent')}`}>
+                                {toLabel(wf?.hotel_status || 'not_sent')}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || booking.payment_status || 'pending')}`}>
+                                {toLabel(wf?.payment_status || booking.payment_status || 'pending')}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.coach_status || 'not_sent')}`}>
+                                {toLabel(wf?.coach_status || 'not_sent')}
+                              </span>
+                            </td>
                             <td className="px-4 py-3">
                               <div className="flex flex-wrap gap-2">
-                                <button type="button" onClick={() => openPreview(booking, 'hotel_request_sent')} className="rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wider hover:bg-white/20">Preview Hotel</button>
-                                <button type="button" onClick={() => openPreview(booking, 'coach_notified')} className="rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wider hover:bg-white/20">Preview Coach</button>
-                                <button type="button" onClick={() => openPreview(booking, 'payment_reminder_sent')} className="rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wider hover:bg-white/20">Preview Payment</button>
+                                <button
+                                  type="button"
+                                  onClick={() => openPreview(booking, 'hotel_request_sent')}
+                                  className="rounded-full border border-sky-400/40 bg-sky-500/15 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-sky-100 hover:bg-sky-500/25 transition-colors"
+                                >
+                                  Preview Hotel
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => openPreview(booking, 'coach_notified')}
+                                  className="rounded-full border border-violet-400/40 bg-violet-500/15 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-violet-100 hover:bg-violet-500/25 transition-colors"
+                                >
+                                  Preview Coach
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => openPreview(booking, 'payment_reminder_sent')}
+                                  className="rounded-full border border-amber-400/40 bg-amber-500/15 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-amber-100 hover:bg-amber-500/25 transition-colors"
+                                >
+                                  Preview Payment
+                                </button>
                               </div>
                             </td>
                           </tr>
@@ -345,7 +404,11 @@ export default function DashboardPage() {
                           <td className="px-4 py-3">{partner.full_name || '—'}</td>
                           <td className="px-4 py-3">{partner.email || '—'}</td>
                           <td className="px-4 py-3">{partner.role || '—'}</td>
-                          <td className="px-4 py-3">{partner.status || 'NEW'}</td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(partner.status || 'NEW')}`}>
+                              {toLabel(partner.status || 'NEW')}
+                            </span>
+                          </td>
                           <td className="px-4 py-3">{formatDate(partner.created_at)}</td>
                         </tr>
                       ))}
@@ -373,7 +436,11 @@ export default function DashboardPage() {
                           <td className="px-4 py-3">{formatDate(event.start_date)} - {formatDate(event.end_date)}</td>
                           <td className="px-4 py-3">{event.base_price || '—'}</td>
                           <td className="px-4 py-3">{event.current_participants || 0}/{event.max_participants || 0}</td>
-                          <td className="px-4 py-3">{event.status || '—'}</td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(event.status || '—')}`}>
+                              {toLabel(event.status || '—')}
+                            </span>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
