@@ -349,7 +349,7 @@ export default function DashboardPage() {
                       <thead className="bg-white/[0.02] text-white/60">
                         <tr>
                           <th className="px-4 py-3 text-left">Lead</th>
-                          <th className="px-4 py-3 text-left">Event</th>
+                          <th className="w-[200px] px-4 py-3 text-left">Event</th>
                           <th className="px-4 py-3 text-left">Booking</th>
                           <th className="px-4 py-3 text-left">Hotel</th>
                           <th className="px-4 py-3 text-left">Payment</th>
@@ -369,8 +369,8 @@ export default function DashboardPage() {
                             <p className="font-semibold">{booking.full_name || '—'}</p>
                             <p className="text-white/50 text-xs">{booking.email || '—'}</p>
                           </td>
-                          <td className="px-4 py-3">
-                            <p>{eventLabel}</p>
+                          <td className="w-[200px] px-4 py-3">
+                            <p className="max-w-[180px] truncate">{eventLabel}</p>
                             <p className="text-white/50 text-xs">
                               {event ? `${formatDate(event.start_date)} - ${formatDate(event.end_date)}` : '—'}
                             </p>
@@ -401,21 +401,21 @@ export default function DashboardPage() {
                               <button
                                 type="button"
                                 onClick={() => openPreview(booking, 'hotel_request_sent')}
-                                className="rounded-full border border-sky-400/40 bg-sky-500/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-sky-100 hover:bg-sky-500/25 transition-colors"
+                                className="rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/85 hover:bg-brand-red hover:text-white transition-colors"
                               >
                                 Hotel
                               </button>
                               <button
                                 type="button"
                                 onClick={() => openPreview(booking, 'coach_notified')}
-                                className="rounded-full border border-violet-400/40 bg-violet-500/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-violet-100 hover:bg-violet-500/25 transition-colors"
+                                className="rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/85 hover:bg-brand-red hover:text-white transition-colors"
                               >
                                 Coach
                               </button>
                               <button
                                 type="button"
                                 onClick={() => openPreview(booking, 'payment_reminder_sent')}
-                                className="rounded-full border border-amber-400/40 bg-amber-500/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-amber-100 hover:bg-amber-500/25 transition-colors"
+                                className="rounded-full border border-brand-red/55 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/85 hover:bg-brand-red hover:text-white transition-colors"
                               >
                                 Payment
                               </button>
