@@ -88,24 +88,34 @@ function toLabel(value: string | null | undefined): string {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-function statusBadgeClass(value: string | null | undefined): string {
+function statusBadgeClass(value: string | null | undefined, isLight = false): string {
   const normalized = (value || '').toLowerCase().replaceAll('_', ' ').trim();
   if (!normalized || normalized === 'not set' || normalized === 'not sent') {
-    return 'bg-slate-500/15 text-slate-200 border-slate-300/25';
+    return isLight
+      ? 'bg-slate-100 text-slate-700 border-slate-300'
+      : 'bg-slate-500/15 text-slate-200 border-slate-300/25';
   }
   if (normalized.includes('paid') || normalized.includes('confirmed') || normalized.includes('completed') || normalized.includes('acknowledged')) {
-    return 'bg-emerald-500/15 text-emerald-200 border-emerald-400/30';
+    return isLight
+      ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+      : 'bg-emerald-500/15 text-emerald-200 border-emerald-400/30';
   }
   if (normalized.includes('pending') || normalized.includes('draft') || normalized.includes('reminder')) {
-    return 'bg-amber-500/15 text-amber-200 border-amber-400/30';
+    return isLight
+      ? 'bg-amber-50 text-amber-700 border-amber-200'
+      : 'bg-amber-500/15 text-amber-200 border-amber-400/30';
   }
   if (normalized.includes('sent') || normalized.includes('requested') || normalized.includes('notified')) {
-    return 'bg-sky-500/15 text-sky-200 border-sky-400/30';
+    return isLight
+      ? 'bg-sky-50 text-sky-700 border-sky-200'
+      : 'bg-sky-500/15 text-sky-200 border-sky-400/30';
   }
   if (normalized.includes('declined') || normalized.includes('cancelled') || normalized.includes('rejected')) {
-    return 'bg-rose-500/15 text-rose-200 border-rose-400/30';
+    return isLight
+      ? 'bg-rose-50 text-rose-700 border-rose-200'
+      : 'bg-rose-500/15 text-rose-200 border-rose-400/30';
   }
-  return 'bg-white/10 text-white/75 border-white/20';
+  return isLight ? 'bg-slate-100 text-slate-700 border-slate-300' : 'bg-white/10 text-white/75 border-white/20';
 }
 
 function buildPreviewText(action: string, booking: BookingRow): string {
@@ -418,32 +428,32 @@ export default function DashboardPage() {
                         >
                           <td className="px-4 py-3">
                             <p className="font-semibold">{booking.full_name || '—'}</p>
-                            <p className="text-white/50 text-xs">{booking.email || '—'}</p>
+                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>{booking.email || '—'}</p>
                           </td>
                           <td className="w-[200px] px-4 py-3">
                             <p className="max-w-[180px] truncate">{eventLabel}</p>
-                            <p className="text-white/50 text-xs">
+                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>
                               {event ? `${formatDate(event.start_date)} - ${formatDate(event.end_date)}` : '—'}
                             </p>
                           </td>
                           <td className="px-4 py-3">
                             <p>#{booking.id}</p>
-                            <p className="text-white/50 text-xs">
+                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>
                               {booking.num_participants || 1} players · {formatDate(booking.created_at)}
                             </p>
                           </td>
                           <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent')}`}>
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent', isLight)}`}>
                               {toLabel(wf?.hotel_status || 'not_sent')}
                             </span>
                           </td>
                           <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || booking.payment_status || 'pending')}`}>
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || booking.payment_status || 'pending', isLight)}`}>
                               {toLabel(wf?.payment_status || booking.payment_status || 'pending')}
                             </span>
                           </td>
                           <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.coach_status || 'not_sent')}`}>
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.coach_status || 'not_sent', isLight)}`}>
                               {toLabel(wf?.coach_status || 'not_sent')}
                             </span>
                           </td>
@@ -535,7 +545,7 @@ export default function DashboardPage() {
                           <td className="px-4 py-3">{partner.email || '—'}</td>
                           <td className="px-4 py-3">{partner.role || '—'}</td>
                           <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(partner.status || 'NEW')}`}>
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(partner.status || 'NEW', isLight)}`}>
                               {toLabel(partner.status || 'NEW')}
                             </span>
                           </td>
@@ -567,7 +577,7 @@ export default function DashboardPage() {
                           <td className="px-4 py-3">{event.base_price || '—'}</td>
                           <td className="px-4 py-3">{event.current_participants || 0}/{event.max_participants || 0}</td>
                           <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(event.status || '—')}`}>
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(event.status || '—', isLight)}`}>
                               {toLabel(event.status || '—')}
                             </span>
                           </td>
