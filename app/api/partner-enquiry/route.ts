@@ -1,3 +1,5 @@
+import { createClient } from '@supabase/supabase-js';
+
 export const runtime = 'edge';
 
 interface PartnerPayload {
@@ -78,6 +80,8 @@ export async function POST(request: Request) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const contactEmailTo = process.env.CONTACT_EMAIL_TO ?? process.env.BOOKING_NOTIFICATION_EMAIL;
     const fromEmail = normalize(process.env.RESEND_FROM_EMAIL) || fallbackFromEmail;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!resendApiKey || !contactEmailTo) {
       return Response.json(
@@ -113,6 +117,23 @@ export async function POST(request: Request) {
     }
 
     const reference = generatePartnerReference();
+
+    if (supabaseUrl && supabaseKey) {
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      const { error: partnerInsertError } = await supabase.from('partner_enquiries').insert({
+        reference,
+        full_name: fullName,
+        email,
+        phone: phone || null,
+        role,
+        message: message || null,
+        status: 'NEW',
+        source: 'website_partners_form',
+      });
+      if (partnerInsertError) {
+        console.error('Partner enquiry DB insert failed:', partnerInsertError.message);
+      }
+    }
 
     const adminHtml = `
 <div style="font-family:sans-serif;max-width:620px;margin:0 auto;">
