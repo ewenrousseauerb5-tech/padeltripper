@@ -103,7 +103,7 @@ export default function PartnersPage() {
               <img
                 src="/images/group-social-evening.jpg"
                 alt="Padel social evening for partner communities"
-                className="w-full h-44 md:h-48 object-cover object-center"
+                className="w-full h-44 md:h-48 object-cover object-[center_46%]"
                 loading="lazy"
               />
             </div>
