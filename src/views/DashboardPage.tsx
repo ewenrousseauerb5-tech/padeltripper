@@ -176,6 +176,11 @@ export default function DashboardPage() {
     }
   };
 
+  const handleLogout = async () => {
+    await fetch('/api/dashboard/auth/logout', { method: 'POST' });
+    window.location.href = '/dashboard/login';
+  };
+
   return (
     <main className="bg-[#0b0d10] min-h-screen pt-28 pb-14 px-6 text-white">
       <section className="max-w-7xl mx-auto">
@@ -185,6 +190,13 @@ export default function DashboardPage() {
           <p className="text-white/60 mt-4 max-w-3xl">
             Semi-automatic workflow with manual confirmation checkpoints for hotel, payment and coaches.
           </p>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="mt-4 rounded-full border border-white/25 px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-white/80 hover:bg-white hover:text-brand-dark transition-colors"
+          >
+            Logout
+          </button>
         </div>
 
         <div className="grid md:grid-cols-4 gap-4 mb-7">

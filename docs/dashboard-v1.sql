@@ -1,5 +1,7 @@
 -- Padel Tripper Dashboard v1 (semi-automatic workflow)
 -- Safe to run multiple times where possible.
+-- IMPORTANT: Dashboard login uses Supabase Auth users.
+-- Create allowed dashboard users in Supabase Auth (email/password) from the Supabase dashboard.
 
 -- 1) Workflow status per booking / quotation
 create table if not exists public.booking_workflows (
