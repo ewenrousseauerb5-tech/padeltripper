@@ -45,10 +45,10 @@ export default function PartnersPage() {
             <h2 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark mb-5">
               Grow Your Club With <span className="text-brand-red">Padel Tripper</span>
             </h2>
-            <p className="text-stone-600 leading-relaxed mb-4">
+            <p className="text-stone-600 leading-relaxed mb-4 text-left md:text-justify">
               Padel Tripper partners with coaches, club managers, and well-connected players to offer exclusive discounts for their communities while earning commissions on every booking.
             </p>
-            <p className="text-stone-600 leading-relaxed mb-6">
+            <p className="text-stone-600 leading-relaxed mb-6 text-left md:text-justify">
               If you have a strong network within your club or regularly organise padel groups and trips, this is a great way to add value for your players while generating extra income.
             </p>
 
@@ -61,7 +61,7 @@ export default function PartnersPage() {
               </div>
             </div>
 
-            <p className="text-stone-500 leading-relaxed mb-7">
+            <p className="text-stone-500 leading-relaxed mb-7 text-left md:text-justify">
               This opportunity is ideal for coaches, club representatives, and padel enthusiasts who want to bring their community together through unforgettable padel experiences.
             </p>
 
@@ -109,7 +109,7 @@ export default function PartnersPage() {
             </div>
             <div className="rounded-xl border border-stone-200 bg-brand-light p-4 md:col-span-2">
               <p className="text-[11px] uppercase tracking-widest text-stone-400 font-semibold mb-1">After You Apply</p>
-              <p className="text-sm text-brand-dark leading-relaxed">
+              <p className="text-sm text-brand-dark leading-relaxed text-left md:text-justify">
                 Once your form is submitted, you&apos;ll receive your unique partner reference and our team will guide you through setup.
               </p>
             </div>
