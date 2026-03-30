@@ -89,11 +89,14 @@ function toLabel(value: string | null | undefined): string {
 }
 
 function statusBadgeClass(value: string | null | undefined): string {
-  const normalized = (value || '').toLowerCase();
+  const normalized = (value || '').toLowerCase().replaceAll('_', ' ').trim();
+  if (!normalized || normalized === 'not set' || normalized === 'not sent') {
+    return 'bg-slate-500/15 text-slate-200 border-slate-300/25';
+  }
   if (normalized.includes('paid') || normalized.includes('confirmed') || normalized.includes('completed') || normalized.includes('acknowledged')) {
     return 'bg-emerald-500/15 text-emerald-200 border-emerald-400/30';
   }
-  if (normalized.includes('pending') || normalized.includes('draft')) {
+  if (normalized.includes('pending') || normalized.includes('draft') || normalized.includes('reminder')) {
     return 'bg-amber-500/15 text-amber-200 border-amber-400/30';
   }
   if (normalized.includes('sent') || normalized.includes('requested') || normalized.includes('notified')) {
@@ -132,6 +135,7 @@ export default function DashboardPage() {
   const [previewBody, setPreviewBody] = useState('');
   const [activeBookingId, setActiveBookingId] = useState<number | null>(null);
   const [submittingAction, setSubmittingAction] = useState(false);
+  const [bookingSearch, setBookingSearch] = useState('');
 
   useEffect(() => {
     const load = async () => {
@@ -196,20 +200,24 @@ export default function DashboardPage() {
     return [...data.bookings].sort((a, b) => getTime(b.created_at) - getTime(a.created_at));
   }, [data.bookings]);
 
-  const bookingSummary = useMemo(() => {
-    let needsHotel = 0;
-    let pendingPayment = 0;
-    let needsCoach = 0;
+  const filteredBookings = useMemo(() => {
+    const query = bookingSearch.trim().toLowerCase();
+    if (!query) return sortedBookings;
 
-    sortedBookings.forEach(booking => {
-      const wf = workflowMap.get(booking.id);
-      if ((wf?.hotel_status || 'not_sent') === 'not_sent') needsHotel += 1;
-      if ((wf?.payment_status || booking.payment_status || 'pending') === 'pending') pendingPayment += 1;
-      if ((wf?.coach_status || 'not_sent') === 'not_sent') needsCoach += 1;
+    return sortedBookings.filter(booking => {
+      const event = booking.event_id ? eventMap.get(booking.event_id) : null;
+      const haystack = [
+        booking.full_name || '',
+        booking.email || '',
+        String(booking.id),
+        String(booking.event_id || ''),
+        event?.name || '',
+      ]
+        .join(' ')
+        .toLowerCase();
+      return haystack.includes(query);
     });
-
-    return { needsHotel, pendingPayment, needsCoach };
-  }, [sortedBookings, workflowMap]);
+  }, [bookingSearch, sortedBookings, eventMap]);
 
   const activeBooking = useMemo(
     () => data.bookings.find(booking => booking.id === activeBookingId) || null,
@@ -323,101 +331,101 @@ export default function DashboardPage() {
           ) : (
             <>
               {tab === 'bookings' && (
-                <div className="p-4 md:p-6 space-y-4">
-                  <div className="grid sm:grid-cols-3 gap-3">
-                    <div className="rounded-xl border border-sky-400/25 bg-sky-500/10 px-4 py-3">
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-sky-200/75">Need Hotel Check</p>
-                      <p className="mt-1 text-xl font-semibold text-sky-100">{bookingSummary.needsHotel}</p>
-                    </div>
-                    <div className="rounded-xl border border-amber-400/25 bg-amber-500/10 px-4 py-3">
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-amber-200/80">Pending Payment</p>
-                      <p className="mt-1 text-xl font-semibold text-amber-100">{bookingSummary.pendingPayment}</p>
-                    </div>
-                    <div className="rounded-xl border border-violet-400/25 bg-violet-500/10 px-4 py-3">
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-violet-200/80">Need Coach Alert</p>
-                      <p className="mt-1 text-xl font-semibold text-violet-100">{bookingSummary.needsCoach}</p>
-                    </div>
+                <div className="p-4 md:p-5">
+                  <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/45">
+                      {filteredBookings.length} bookings
+                    </p>
+                    <input
+                      value={bookingSearch}
+                      onChange={event => setBookingSearch(event.target.value)}
+                      placeholder="Search by lead, email, event or ID"
+                      className="w-full md:w-[360px] rounded-xl border border-white/15 bg-black/25 px-3 py-2 text-sm text-white/90 placeholder:text-white/35 focus:outline-none focus:border-white/35"
+                    />
                   </div>
 
-                  <div className="space-y-3">
-                    {sortedBookings.map(booking => {
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full text-sm">
+                      <thead className="bg-white/[0.02] text-white/60">
+                        <tr>
+                          <th className="px-4 py-3 text-left">Lead</th>
+                          <th className="px-4 py-3 text-left">Event</th>
+                          <th className="px-4 py-3 text-left">Booking</th>
+                          <th className="px-4 py-3 text-left">Hotel</th>
+                          <th className="px-4 py-3 text-left">Payment</th>
+                          <th className="px-4 py-3 text-left">Coaches</th>
+                          <th className="px-4 py-3 text-left">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    {filteredBookings.map((booking, index) => {
                       const wf = workflowMap.get(booking.id);
                       const event = booking.event_id ? eventMap.get(booking.event_id) : null;
-                      const eventLabel = event?.name || (booking.event_id ? `Event #${booking.event_id}` : 'No event selected');
+                      const eventLabel = event?.name || (booking.event_id ? `#${booking.event_id}` : '—');
 
                       return (
-                        <article
-                          key={booking.id}
-                          className="rounded-2xl border border-white/12 bg-white/[0.02] p-4 md:p-5"
-                        >
-                          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                            <div>
-                              <p className="text-sm text-white/55">Booking #{booking.id}</p>
-                              <h3 className="mt-1 text-lg font-semibold text-white">{booking.full_name || 'Unknown lead'}</h3>
-                              <p className="text-sm text-white/65">{booking.email || 'No email provided'}</p>
-                            </div>
-                            <span className={`inline-flex self-start rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(booking.status || 'submitted')}`}>
-                              {toLabel(booking.status || 'submitted')}
+                        <tr key={booking.id} className={`border-t border-white/10 ${index % 2 === 0 ? 'bg-transparent' : 'bg-white/[0.015]'}`}>
+                          <td className="px-4 py-3">
+                            <p className="font-semibold">{booking.full_name || '—'}</p>
+                            <p className="text-white/50 text-xs">{booking.email || '—'}</p>
+                          </td>
+                          <td className="px-4 py-3">
+                            <p>{eventLabel}</p>
+                            <p className="text-white/50 text-xs">
+                              {event ? `${formatDate(event.start_date)} - ${formatDate(event.end_date)}` : '—'}
+                            </p>
+                          </td>
+                          <td className="px-4 py-3">
+                            <p>#{booking.id}</p>
+                            <p className="text-white/50 text-xs">
+                              {booking.num_participants || 1} players · {formatDate(booking.created_at)}
+                            </p>
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent')}`}>
+                              {toLabel(wf?.hotel_status || 'not_sent')}
                             </span>
-                          </div>
-
-                          <div className="mt-4 grid gap-3 md:grid-cols-3">
-                            <div className="rounded-xl border border-white/10 bg-black/20 px-3.5 py-3">
-                              <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">Event</p>
-                              <p className="mt-1 text-sm font-medium text-white/90">{eventLabel}</p>
-                              {event && (
-                                <p className="mt-1 text-xs text-white/55">
-                                  {formatDate(event.start_date)} - {formatDate(event.end_date)}
-                                </p>
-                              )}
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || booking.payment_status || 'pending')}`}>
+                              {toLabel(wf?.payment_status || booking.payment_status || 'pending')}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.coach_status || 'not_sent')}`}>
+                              {toLabel(wf?.coach_status || 'not_sent')}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">
+                            <div className="flex flex-wrap gap-2">
+                              <button
+                                type="button"
+                                onClick={() => openPreview(booking, 'hotel_request_sent')}
+                                className="rounded-full border border-sky-400/40 bg-sky-500/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-sky-100 hover:bg-sky-500/25 transition-colors"
+                              >
+                                Hotel
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => openPreview(booking, 'coach_notified')}
+                                className="rounded-full border border-violet-400/40 bg-violet-500/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-violet-100 hover:bg-violet-500/25 transition-colors"
+                              >
+                                Coach
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => openPreview(booking, 'payment_reminder_sent')}
+                                className="rounded-full border border-amber-400/40 bg-amber-500/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-amber-100 hover:bg-amber-500/25 transition-colors"
+                              >
+                                Payment
+                              </button>
                             </div>
-                            <div className="rounded-xl border border-white/10 bg-black/20 px-3.5 py-3">
-                              <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">Players</p>
-                              <p className="mt-1 text-sm font-medium text-white/90">{booking.num_participants || 1} total</p>
-                              <p className="mt-1 text-xs text-white/55">Submitted {formatDate(booking.created_at)}</p>
-                            </div>
-                            <div className="rounded-xl border border-white/10 bg-black/20 px-3.5 py-3">
-                              <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">Workflow</p>
-                              <div className="mt-2 flex flex-wrap gap-1.5">
-                                <span className={`inline-flex rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent')}`}>
-                                  Hotel: {toLabel(wf?.hotel_status || 'not_sent')}
-                                </span>
-                                <span className={`inline-flex rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || booking.payment_status || 'pending')}`}>
-                                  Payment: {toLabel(wf?.payment_status || booking.payment_status || 'pending')}
-                                </span>
-                                <span className={`inline-flex rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.coach_status || 'not_sent')}`}>
-                                  Coaches: {toLabel(wf?.coach_status || 'not_sent')}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            <button
-                              type="button"
-                              onClick={() => openPreview(booking, 'hotel_request_sent')}
-                              className="rounded-full border border-sky-400/45 bg-sky-500/15 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-sky-100 hover:bg-sky-500/25 transition-colors"
-                            >
-                              Preview Hotel Email
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => openPreview(booking, 'coach_notified')}
-                              className="rounded-full border border-violet-400/45 bg-violet-500/15 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-violet-100 hover:bg-violet-500/25 transition-colors"
-                            >
-                              Preview Coach Email
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => openPreview(booking, 'payment_reminder_sent')}
-                              className="rounded-full border border-amber-400/45 bg-amber-500/15 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-amber-100 hover:bg-amber-500/25 transition-colors"
-                            >
-                              Preview Payment Email
-                            </button>
-                          </div>
-                        </article>
+                          </td>
+                        </tr>
                       );
                     })}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               )}
