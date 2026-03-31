@@ -105,6 +105,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     status: 'Available',
     price: '£645.00',
     originalPrice: '£745.00',
+    promoNote: '£100 off this event',
     filled: 5,
     max: 16,
     location: 'Alicante, Spain',
