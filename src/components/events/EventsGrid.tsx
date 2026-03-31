@@ -26,7 +26,7 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-brand-red rounded-t-2xl" />
 
-              <div className="flex justify-between items-start mb-5 pt-2">
+              <div className="flex justify-between items-start gap-3 mb-5 pt-2">
                 <div
                   className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-full ${
                     event.status === 'Filling Fast'
@@ -38,9 +38,15 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                 >
                   {event.status}
                 </div>
-                <div className="text-2xl font-serif font-black text-brand-red">
-                  {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{toDualCurrencyDisplay(event.originalPrice)}</span>}
-                  From {toDualCurrencyDisplay(event.price)}
+                <div className="text-right shrink-0">
+                  {event.originalPrice && (
+                    <p className="text-xs font-semibold text-stone-400 line-through whitespace-nowrap mb-1">
+                      {toDualCurrencyDisplay(event.originalPrice)}
+                    </p>
+                  )}
+                  <p className="text-xl lg:text-2xl font-serif font-black text-brand-red leading-none whitespace-nowrap">
+                    From {toDualCurrencyDisplay(event.price)}
+                  </p>
                 </div>
               </div>
 

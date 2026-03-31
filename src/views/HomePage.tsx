@@ -161,12 +161,18 @@ export default function HomePage() {
                   </div>
                 )}
                 <div className="p-7 flex flex-col flex-1">
-                  <div className="flex justify-between items-center mb-5">
+                  <div className="flex justify-between items-start gap-3 mb-5">
                     <span className="font-semibold text-sm text-brand-dark">{event.dateShort}</span>
-                    <span className="text-xl font-serif font-black text-brand-red">
-                      {event.originalPrice && <span className="text-sm font-semibold text-stone-400 line-through mr-2">{toDualCurrencyDisplay(event.originalPrice)}</span>}
-                      From {toDualCurrencyDisplay(event.price)}
-                    </span>
+                    <div className="text-right shrink-0">
+                      {event.originalPrice && (
+                        <p className="text-xs font-semibold text-stone-400 line-through whitespace-nowrap mb-1">
+                          {toDualCurrencyDisplay(event.originalPrice)}
+                        </p>
+                      )}
+                      <p className="text-xl font-serif font-black text-brand-red leading-none whitespace-nowrap">
+                        From {toDualCurrencyDisplay(event.price)}
+                      </p>
+                    </div>
                   </div>
                   <div className="space-y-2 mb-5 flex-1">
                     {event.promoNote && (
