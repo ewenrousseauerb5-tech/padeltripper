@@ -28,6 +28,7 @@ interface ParticipantRow {
   full_name: string | null;
   email: string | null;
   padel_level: string | null;
+  status: string | null;
   created_at: string | null;
 }
 
@@ -68,6 +69,9 @@ const initialData: DashboardData = {
   events: [],
   workflows: [],
 };
+
+type EditEntity = 'booking' | 'participant' | 'event' | 'partner';
+type EditMode = 'create' | 'update';
 
 function formatDate(value: string | null): string {
   if (!value) return '—';
@@ -147,6 +151,12 @@ export default function DashboardPage() {
   const [activeBookingId, setActiveBookingId] = useState<number | null>(null);
   const [submittingAction, setSubmittingAction] = useState(false);
   const [bookingSearch, setBookingSearch] = useState('');
+  const [editingOpen, setEditingOpen] = useState(false);
+  const [editingEntity, setEditingEntity] = useState<EditEntity>('participant');
+  const [editingMode, setEditingMode] = useState<EditMode>('update');
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingValues, setEditingValues] = useState<Record<string, string>>({});
+  const [savingEdit, setSavingEdit] = useState(false);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem('dashboard-theme');
@@ -159,31 +169,31 @@ export default function DashboardPage() {
     window.localStorage.setItem('dashboard-theme', theme);
   }, [theme]);
 
+  const loadDashboard = async () => {
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/dashboard/overview', { method: 'GET' });
+      const result = await response.json();
+      if (!response.ok || !result?.ok) throw new Error(result?.error || 'Could not load dashboard.');
+      setData({
+        bookings: result.data?.bookings || [],
+        participants: result.data?.participants || [],
+        partners: result.data?.partners || [],
+        events: result.data?.events || [],
+        workflows: result.data?.workflows || [],
+      });
+      setWarnings(Array.isArray(result.warnings) ? result.warnings : []);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Could not load dashboard.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const load = async () => {
-      setLoading(true);
-      setError('');
-
-      try {
-        const response = await fetch('/api/dashboard/overview', { method: 'GET' });
-        const result = await response.json();
-        if (!response.ok || !result?.ok) throw new Error(result?.error || 'Could not load dashboard.');
-        setData({
-          bookings: result.data?.bookings || [],
-          participants: result.data?.participants || [],
-          partners: result.data?.partners || [],
-          events: result.data?.events || [],
-          workflows: result.data?.workflows || [],
-        });
-        setWarnings(Array.isArray(result.warnings) ? result.warnings : []);
-      } catch (loadError) {
-        setError(loadError instanceof Error ? loadError.message : 'Could not load dashboard.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    void load();
+    void loadDashboard();
   }, []);
 
   const workflowMap = useMemo(() => {
@@ -269,10 +279,115 @@ export default function DashboardPage() {
       const result = await response.json();
       if (!response.ok || !result?.ok) throw new Error(result?.error || 'Action failed.');
       setPreviewOpen(false);
+      await loadDashboard();
     } catch (actionError) {
       setError(actionError instanceof Error ? actionError.message : 'Action failed.');
     } finally {
       setSubmittingAction(false);
+    }
+  };
+
+  const openCreateParticipant = () => {
+    setEditingEntity('participant');
+    setEditingMode('create');
+    setEditingId(null);
+    setEditingValues({
+      quotation_id: '',
+      full_name: '',
+      email: '',
+      padel_level: '',
+      status: 'pending',
+    });
+    setEditingOpen(true);
+  };
+
+  const openEditRecord = (entity: EditEntity, row: Record<string, unknown>) => {
+    setEditingEntity(entity);
+    setEditingMode('update');
+    setEditingId(Number(row.id));
+
+    if (entity === 'booking') {
+      setEditingValues({
+        event_id: String(row.event_id ?? ''),
+        full_name: String(row.full_name ?? ''),
+        email: String(row.email ?? ''),
+        num_participants: String(row.num_participants ?? ''),
+        status: String(row.status ?? ''),
+        payment_status: String(row.payment_status ?? ''),
+      });
+    } else if (entity === 'participant') {
+      setEditingValues({
+        quotation_id: String(row.quotation_id ?? ''),
+        full_name: String(row.full_name ?? ''),
+        email: String(row.email ?? ''),
+        padel_level: String(row.padel_level ?? ''),
+        status: String(row.status ?? ''),
+      });
+    } else if (entity === 'event') {
+      setEditingValues({
+        name: String(row.name ?? ''),
+        start_date: String(row.start_date ?? ''),
+        end_date: String(row.end_date ?? ''),
+        status: String(row.status ?? ''),
+        base_price: String(row.base_price ?? ''),
+        max_participants: String(row.max_participants ?? ''),
+        current_participants: String(row.current_participants ?? ''),
+        is_public: row.is_public === true ? 'true' : 'false',
+      });
+    } else {
+      setEditingValues({
+        reference: String(row.reference ?? ''),
+        full_name: String(row.full_name ?? ''),
+        email: String(row.email ?? ''),
+        role: String(row.role ?? ''),
+        status: String(row.status ?? ''),
+      });
+    }
+    setEditingOpen(true);
+  };
+
+  const handleEditChange = (field: string, value: string) => {
+    setEditingValues(prev => ({ ...prev, [field]: value }));
+  };
+
+  const saveEditRecord = async () => {
+    setSavingEdit(true);
+    setError('');
+
+    try {
+      const values: Record<string, unknown> = { ...editingValues };
+      if (editingEntity === 'booking') {
+        values.event_id = Number(values.event_id || 0);
+        values.num_participants = Number(values.num_participants || 0);
+      }
+      if (editingEntity === 'participant' && values.quotation_id !== '') {
+        values.quotation_id = Number(values.quotation_id);
+      }
+      if (editingEntity === 'event') {
+        values.max_participants = Number(values.max_participants || 0);
+        values.current_participants = Number(values.current_participants || 0);
+      }
+
+      const response = await fetch('/api/dashboard/records', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          entity: editingEntity,
+          mode: editingMode,
+          id: editingMode === 'update' ? editingId : undefined,
+          values,
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok || !result?.ok) throw new Error(result?.error || 'Could not save changes.');
+
+      setEditingOpen(false);
+      await loadDashboard();
+    } catch (saveError) {
+      setError(saveError instanceof Error ? saveError.message : 'Could not save changes.');
+    } finally {
+      setSavingEdit(false);
     }
   };
 
@@ -486,6 +601,15 @@ export default function DashboardPage() {
                               >
                                 Payment
                               </button>
+                              <button
+                                type="button"
+                                onClick={() => openEditRecord('booking', booking as unknown as Record<string, unknown>)}
+                                className={`rounded-full border border-slate-400/50 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
+                                  isLight ? 'text-slate-700 hover:bg-slate-800 hover:text-white' : 'text-white/85 hover:bg-white hover:text-brand-dark'
+                                }`}
+                              >
+                                Edit
+                              </button>
                             </div>
                           </td>
                         </tr>
@@ -498,15 +622,27 @@ export default function DashboardPage() {
               )}
 
               {tab === 'participants' && (
-                <div className="overflow-x-auto">
+                <div className="p-4 md:p-5">
+                  <div className="mb-4 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={openCreateParticipant}
+                      className="rounded-full bg-brand-red px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-white hover:bg-brand-dark transition-colors"
+                    >
+                      Add Participant
+                    </button>
+                  </div>
+                  <div className="overflow-x-auto">
                   <table className="min-w-full text-sm">
                     <thead className={isLight ? 'bg-slate-50 text-slate-600' : 'bg-white/[0.02] text-white/60'}>
                       <tr>
                         <th className="px-4 py-3 text-left">Name</th>
                         <th className="px-4 py-3 text-left">Email</th>
                         <th className="px-4 py-3 text-left">Level</th>
+                        <th className="px-4 py-3 text-left">Status</th>
                         <th className="px-4 py-3 text-left">Booking</th>
                         <th className="px-4 py-3 text-left">Created</th>
+                        <th className="px-4 py-3 text-left">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -515,12 +651,29 @@ export default function DashboardPage() {
                           <td className="px-4 py-3">{participant.full_name || '—'}</td>
                           <td className="px-4 py-3">{participant.email || '—'}</td>
                           <td className="px-4 py-3">{participant.padel_level || '—'}</td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(participant.status || 'not_set', isLight)}`}>
+                              {toLabel(participant.status || 'not_set')}
+                            </span>
+                          </td>
                           <td className="px-4 py-3">#{participant.quotation_id || '—'}</td>
                           <td className="px-4 py-3">{formatDate(participant.created_at)}</td>
+                          <td className="px-4 py-3">
+                            <button
+                              type="button"
+                              onClick={() => openEditRecord('participant', participant as unknown as Record<string, unknown>)}
+                              className={`rounded-full border border-slate-400/50 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
+                                isLight ? 'text-slate-700 hover:bg-slate-800 hover:text-white' : 'text-white/85 hover:bg-white hover:text-brand-dark'
+                              }`}
+                            >
+                              Edit
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
+                </div>
                 </div>
               )}
 
@@ -535,6 +688,7 @@ export default function DashboardPage() {
                         <th className="px-4 py-3 text-left">Role</th>
                         <th className="px-4 py-3 text-left">Status</th>
                         <th className="px-4 py-3 text-left">Created</th>
+                        <th className="px-4 py-3 text-left">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -550,6 +704,17 @@ export default function DashboardPage() {
                             </span>
                           </td>
                           <td className="px-4 py-3">{formatDate(partner.created_at)}</td>
+                          <td className="px-4 py-3">
+                            <button
+                              type="button"
+                              onClick={() => openEditRecord('partner', partner as unknown as Record<string, unknown>)}
+                              className={`rounded-full border border-slate-400/50 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
+                                isLight ? 'text-slate-700 hover:bg-slate-800 hover:text-white' : 'text-white/85 hover:bg-white hover:text-brand-dark'
+                              }`}
+                            >
+                              Edit
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -567,6 +732,7 @@ export default function DashboardPage() {
                         <th className="px-4 py-3 text-left">Price</th>
                         <th className="px-4 py-3 text-left">Capacity</th>
                         <th className="px-4 py-3 text-left">Status</th>
+                        <th className="px-4 py-3 text-left">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -581,6 +747,17 @@ export default function DashboardPage() {
                               {toLabel(event.status || '—')}
                             </span>
                           </td>
+                          <td className="px-4 py-3">
+                            <button
+                              type="button"
+                              onClick={() => openEditRecord('event', event as unknown as Record<string, unknown>)}
+                              className={`rounded-full border border-slate-400/50 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
+                                isLight ? 'text-slate-700 hover:bg-slate-800 hover:text-white' : 'text-white/85 hover:bg-white hover:text-brand-dark'
+                              }`}
+                            >
+                              Edit
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -591,6 +768,208 @@ export default function DashboardPage() {
           )}
         </div>
       </section>
+
+      {editingOpen && (
+        <div className={`fixed inset-0 z-[75] p-4 flex items-center justify-center backdrop-blur-sm ${isLight ? 'bg-slate-900/45' : 'bg-black/60'}`}>
+          <div className={`w-full max-w-2xl rounded-2xl border p-5 md:p-6 ${isLight ? 'border-slate-200 bg-white text-slate-900' : 'border-white/15 bg-[#111318]'}`}>
+            <p className="text-brand-red text-xs font-semibold uppercase tracking-[0.2em] mb-2">
+              {editingMode === 'create' ? 'Create' : 'Edit'} {editingEntity}
+            </p>
+            <h3 className="font-serif text-2xl font-black uppercase mb-5">
+              {editingMode === 'create' ? 'Add New Record' : `Update #${editingId || '—'}`}
+            </h3>
+
+            <div className="grid md:grid-cols-2 gap-3">
+              {(editingEntity === 'booking' || editingEntity === 'participant') && (
+                <label className="block">
+                  <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>
+                    {editingEntity === 'participant' ? 'Booking ID' : 'Event ID'}
+                  </span>
+                  <input
+                    value={editingValues.quotation_id ?? editingValues.event_id ?? ''}
+                    onChange={(event) => handleEditChange(editingEntity === 'participant' ? 'quotation_id' : 'event_id', event.target.value)}
+                    className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                  />
+                </label>
+              )}
+
+              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'partner') && (
+                <label className="block">
+                  <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Full Name</span>
+                  <input
+                    value={editingValues.full_name ?? ''}
+                    onChange={(event) => handleEditChange('full_name', event.target.value)}
+                    className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                  />
+                </label>
+              )}
+
+              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'partner') && (
+                <label className="block md:col-span-2">
+                  <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Email</span>
+                  <input
+                    value={editingValues.email ?? ''}
+                    onChange={(event) => handleEditChange('email', event.target.value)}
+                    className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                  />
+                </label>
+              )}
+
+              {editingEntity === 'booking' && (
+                <>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Players</span>
+                    <input
+                      value={editingValues.num_participants ?? ''}
+                      onChange={(event) => handleEditChange('num_participants', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Payment Status</span>
+                    <input
+                      value={editingValues.payment_status ?? ''}
+                      onChange={(event) => handleEditChange('payment_status', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                </>
+              )}
+
+              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'event' || editingEntity === 'partner') && (
+                <label className="block">
+                  <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Status</span>
+                  <input
+                    value={editingValues.status ?? ''}
+                    onChange={(event) => handleEditChange('status', event.target.value)}
+                    className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                  />
+                </label>
+              )}
+
+              {editingEntity === 'participant' && (
+                <label className="block">
+                  <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Padel Level</span>
+                  <input
+                    value={editingValues.padel_level ?? ''}
+                    onChange={(event) => handleEditChange('padel_level', event.target.value)}
+                    className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                  />
+                </label>
+              )}
+
+              {editingEntity === 'event' && (
+                <>
+                  <label className="block md:col-span-2">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Event Name</span>
+                    <input
+                      value={editingValues.name ?? ''}
+                      onChange={(event) => handleEditChange('name', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Start Date</span>
+                    <input
+                      type="date"
+                      value={editingValues.start_date ?? ''}
+                      onChange={(event) => handleEditChange('start_date', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>End Date</span>
+                    <input
+                      type="date"
+                      value={editingValues.end_date ?? ''}
+                      onChange={(event) => handleEditChange('end_date', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Price</span>
+                    <input
+                      value={editingValues.base_price ?? ''}
+                      onChange={(event) => handleEditChange('base_price', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Max Participants</span>
+                    <input
+                      value={editingValues.max_participants ?? ''}
+                      onChange={(event) => handleEditChange('max_participants', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Current Participants</span>
+                    <input
+                      value={editingValues.current_participants ?? ''}
+                      onChange={(event) => handleEditChange('current_participants', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Public</span>
+                    <select
+                      value={editingValues.is_public ?? 'false'}
+                      onChange={(event) => handleEditChange('is_public', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    >
+                      <option value="true">true</option>
+                      <option value="false">false</option>
+                    </select>
+                  </label>
+                </>
+              )}
+
+              {editingEntity === 'partner' && (
+                <>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Reference</span>
+                    <input
+                      value={editingValues.reference ?? ''}
+                      onChange={(event) => handleEditChange('reference', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Role</span>
+                    <input
+                      value={editingValues.role ?? ''}
+                      onChange={(event) => handleEditChange('role', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                </>
+              )}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2 justify-end">
+              <button
+                type="button"
+                onClick={() => setEditingOpen(false)}
+                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors ${
+                  isLight
+                    ? 'border-slate-300 text-slate-700 hover:bg-slate-900 hover:text-white'
+                    : 'border-white/25 text-white/80 hover:bg-white hover:text-brand-dark'
+                }`}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={saveEditRecord}
+                disabled={savingEdit}
+                className="rounded-full bg-brand-red px-5 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-white hover:text-brand-dark disabled:opacity-60 transition-colors"
+              >
+                {savingEdit ? 'Saving...' : 'Save Changes'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {previewOpen && activeBooking && (
         <div className={`fixed inset-0 z-[70] p-4 flex items-center justify-center backdrop-blur-sm ${isLight ? 'bg-slate-900/45' : 'bg-black/60'}`}>

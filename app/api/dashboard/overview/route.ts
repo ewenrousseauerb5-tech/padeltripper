@@ -27,17 +27,19 @@ export async function GET() {
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const [bookingsRes, participantsRes, eventsRes, workflowsRes, partnersRes] = await Promise.all([
+    const participantsWithStatusPromise = supabase
+      .from('participants')
+      .select('id,quotation_id,full_name,email,padel_level,status,created_at')
+      .order('created_at', { ascending: false })
+      .limit(500);
+
+    const [bookingsRes, participantsWithStatusRes, eventsRes, workflowsRes, partnersRes] = await Promise.all([
       supabase
         .from('quotations')
         .select('id,event_id,full_name,email,num_participants,status,payment_status,created_at')
         .order('created_at', { ascending: false })
         .limit(300),
-      supabase
-        .from('participants')
-        .select('id,quotation_id,full_name,email,padel_level,created_at')
-        .order('created_at', { ascending: false })
-        .limit(500),
+      participantsWithStatusPromise,
       supabase
         .from('events')
         .select('id,name,start_date,end_date,status,base_price,max_participants,current_participants,is_public')
@@ -54,7 +56,15 @@ export async function GET() {
     ]);
 
     const bookings = safeArray(bookingsRes.data);
-    const participants = safeArray(participantsRes.data);
+    let participants = safeArray(participantsWithStatusRes.data);
+    if (participantsWithStatusRes.error) {
+      const fallbackParticipantsRes = await supabase
+        .from('participants')
+        .select('id,quotation_id,full_name,email,padel_level,created_at')
+        .order('created_at', { ascending: false })
+        .limit(500);
+      participants = safeArray(fallbackParticipantsRes.data).map(participant => ({ ...participant, status: null }));
+    }
     const rawEvents = safeArray(eventsRes.data);
     const eventFallbackById = new Map(ALL_EVENTS.map(event => [event.id, event]));
     const today = new Date();
@@ -105,6 +115,7 @@ export async function GET() {
 
     // Some optional dashboard tables may not exist yet. Keep dashboard usable.
     const optionalErrors: string[] = [];
+    if (participantsWithStatusRes.error) optionalErrors.push(`participants.status unavailable: ${participantsWithStatusRes.error.message}`);
     if (workflowsRes.error) optionalErrors.push(`booking_workflows: ${workflowsRes.error.message}`);
     if (partnersRes.error) optionalErrors.push(`partner_enquiries: ${partnersRes.error.message}`);
 
