@@ -74,6 +74,15 @@ const initialData: DashboardData = {
 type EditEntity = 'booking' | 'participant' | 'event' | 'partner';
 type EditMode = 'create' | 'update';
 
+const STATUS_OPTIONS: Record<EditEntity, string[]> = {
+  booking: ['SUBMITTED', 'HOTEL_REQUESTED', 'COACH_NOTIFIED', 'PAYMENT_REMINDER_SENT', 'PAID', 'CONFIRMED', 'CANCELLED'],
+  participant: ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'CANCELLED'],
+  event: ['AVAILABLE', 'FILLING_FAST', 'LIMITED_SPACES', 'COMPLETED', 'PRIVATE'],
+  partner: ['NEW', 'CONTACTED', 'APPROVED', 'ACTIVE', 'REJECTED'],
+};
+
+const PAYMENT_STATUS_OPTIONS = ['pending', 'paid', 'failed', 'refunded'];
+
 function formatDate(value: string | null): string {
   if (!value) return '—';
   const date = new Date(value);
@@ -297,7 +306,7 @@ export default function DashboardPage() {
       full_name: '',
       email: '',
       padel_level: '',
-      status: 'pending',
+      status: 'PENDING',
     });
     setEditingOpen(true);
   };
@@ -829,11 +838,18 @@ export default function DashboardPage() {
                   </label>
                   <label className="block">
                     <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Payment Status</span>
-                    <input
+                    <select
                       value={editingValues.payment_status ?? ''}
                       onChange={(event) => handleEditChange('payment_status', event.target.value)}
                       className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
-                    />
+                    >
+                      <option value="">Select payment status...</option>
+                      {PAYMENT_STATUS_OPTIONS.map((statusOption) => (
+                        <option key={statusOption} value={statusOption}>
+                          {toLabel(statusOption)}
+                        </option>
+                      ))}
+                    </select>
                   </label>
                 </>
               )}
@@ -841,11 +857,18 @@ export default function DashboardPage() {
               {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'event' || editingEntity === 'partner') && (
                 <label className="block">
                   <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Status</span>
-                  <input
+                  <select
                     value={editingValues.status ?? ''}
                     onChange={(event) => handleEditChange('status', event.target.value)}
                     className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
-                  />
+                  >
+                    <option value="">Select status...</option>
+                    {STATUS_OPTIONS[editingEntity].map((statusOption) => (
+                      <option key={statusOption} value={statusOption}>
+                        {toLabel(statusOption)}
+                      </option>
+                    ))}
+                  </select>
                 </label>
               )}
 
