@@ -157,6 +157,8 @@ export default function DashboardPage() {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingValues, setEditingValues] = useState<Record<string, string>>({});
   const [savingEdit, setSavingEdit] = useState(false);
+  const [bookingDrafts, setBookingDrafts] = useState<Record<number, Record<string, string>>>({});
+  const [savingBookingId, setSavingBookingId] = useState<number | null>(null);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem('dashboard-theme');
@@ -299,6 +301,71 @@ export default function DashboardPage() {
       status: 'pending',
     });
     setEditingOpen(true);
+  };
+
+  const getBookingDraft = (booking: BookingRow) => {
+    return (
+      bookingDrafts[booking.id] ?? {
+        event_id: String(booking.event_id ?? ''),
+        full_name: String(booking.full_name ?? ''),
+        email: String(booking.email ?? ''),
+        num_participants: String(booking.num_participants ?? 1),
+        status: String(booking.status ?? ''),
+        payment_status: String(booking.payment_status ?? ''),
+      }
+    );
+  };
+
+  const handleBookingDraftChange = (bookingId: number, field: string, value: string) => {
+    setBookingDrafts((prev) => {
+      const base = prev[bookingId] ?? {
+        event_id: '',
+        full_name: '',
+        email: '',
+        num_participants: '1',
+        status: '',
+        payment_status: '',
+      };
+      return {
+        ...prev,
+        [bookingId]: {
+          ...base,
+          [field]: value,
+        },
+      };
+    });
+  };
+
+  const saveBookingInline = async (bookingId: number, fallbackBooking: BookingRow) => {
+    const draft = getBookingDraft(fallbackBooking);
+    setSavingBookingId(bookingId);
+    setError('');
+    try {
+      const response = await fetch('/api/dashboard/records', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          entity: 'booking',
+          mode: 'update',
+          id: bookingId,
+          values: {
+            event_id: draft.event_id,
+            full_name: draft.full_name,
+            email: draft.email,
+            num_participants: draft.num_participants,
+            status: draft.status,
+            payment_status: draft.payment_status,
+          },
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result?.ok) throw new Error(result?.error || 'Could not save booking.');
+      await loadDashboard();
+    } catch (saveError) {
+      setError(saveError instanceof Error ? saveError.message : 'Could not save booking.');
+    } finally {
+      setSavingBookingId(null);
+    }
   };
 
   const openEditRecord = (entity: EditEntity, row: Record<string, unknown>) => {
@@ -531,7 +598,9 @@ export default function DashboardPage() {
                       <tbody>
                     {filteredBookings.map((booking, index) => {
                       const wf = workflowMap.get(booking.id);
-                      const event = booking.event_id ? eventMap.get(booking.event_id) : null;
+                      const draft = getBookingDraft(booking);
+                      const draftEventId = Number(draft.event_id);
+                      const event = Number.isFinite(draftEventId) ? eventMap.get(draftEventId) : null;
                       const eventLabel = event?.name || (booking.event_id ? `#${booking.event_id}` : '—');
 
                       return (
@@ -542,10 +611,29 @@ export default function DashboardPage() {
                           }`}
                         >
                           <td className="px-4 py-3">
-                            <p className="font-semibold">{booking.full_name || '—'}</p>
-                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>{booking.email || '—'}</p>
+                            <input
+                              value={draft.full_name}
+                              onChange={(event) => handleBookingDraftChange(booking.id, 'full_name', event.target.value)}
+                              className={`mb-1 block w-full rounded-lg border px-2 py-1 text-xs font-semibold ${
+                                isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/20 text-white'
+                              }`}
+                            />
+                            <input
+                              value={draft.email}
+                              onChange={(event) => handleBookingDraftChange(booking.id, 'email', event.target.value)}
+                              className={`block w-full rounded-lg border px-2 py-1 text-xs ${
+                                isLight ? 'border-slate-300 bg-white text-slate-700' : 'border-white/20 bg-black/20 text-white/85'
+                              }`}
+                            />
                           </td>
                           <td className="w-[200px] px-4 py-3">
+                            <input
+                              value={draft.event_id}
+                              onChange={(event) => handleBookingDraftChange(booking.id, 'event_id', event.target.value)}
+                              className={`mb-1 block w-full rounded-lg border px-2 py-1 text-xs ${
+                                isLight ? 'border-slate-300 bg-white text-slate-700' : 'border-white/20 bg-black/20 text-white/85'
+                              }`}
+                            />
                             <p className="max-w-[180px] truncate">{eventLabel}</p>
                             <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>
                               {event ? `${formatDate(event.start_date)} - ${formatDate(event.end_date)}` : '—'}
@@ -553,9 +641,23 @@ export default function DashboardPage() {
                           </td>
                           <td className="px-4 py-3">
                             <p>#{booking.id}</p>
-                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>
-                              {booking.num_participants || 1} players · {formatDate(booking.created_at)}
-                            </p>
+                            <div className="mt-1 space-y-1">
+                              <input
+                                value={draft.num_participants}
+                                onChange={(event) => handleBookingDraftChange(booking.id, 'num_participants', event.target.value)}
+                                className={`block w-[90px] rounded-lg border px-2 py-1 text-xs ${
+                                  isLight ? 'border-slate-300 bg-white text-slate-700' : 'border-white/20 bg-black/20 text-white/85'
+                                }`}
+                              />
+                              <input
+                                value={draft.status}
+                                onChange={(event) => handleBookingDraftChange(booking.id, 'status', event.target.value)}
+                                className={`block w-full rounded-lg border px-2 py-1 text-xs ${
+                                  isLight ? 'border-slate-300 bg-white text-slate-700' : 'border-white/20 bg-black/20 text-white/85'
+                                }`}
+                              />
+                              <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>{formatDate(booking.created_at)}</p>
+                            </div>
                           </td>
                           <td className="px-4 py-3">
                             <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent', isLight)}`}>
@@ -563,8 +665,15 @@ export default function DashboardPage() {
                             </span>
                           </td>
                           <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || booking.payment_status || 'pending', isLight)}`}>
-                              {toLabel(wf?.payment_status || booking.payment_status || 'pending')}
+                            <input
+                              value={draft.payment_status}
+                              onChange={(event) => handleBookingDraftChange(booking.id, 'payment_status', event.target.value)}
+                              className={`mb-2 block w-full rounded-lg border px-2 py-1 text-xs ${
+                                isLight ? 'border-slate-300 bg-white text-slate-700' : 'border-white/20 bg-black/20 text-white/85'
+                              }`}
+                            />
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || draft.payment_status || 'pending', isLight)}`}>
+                              {toLabel(wf?.payment_status || draft.payment_status || 'pending')}
                             </span>
                           </td>
                           <td className="px-4 py-3">
@@ -603,12 +712,13 @@ export default function DashboardPage() {
                               </button>
                               <button
                                 type="button"
-                                onClick={() => openEditRecord('booking', booking as unknown as Record<string, unknown>)}
+                                onClick={() => saveBookingInline(booking.id, booking)}
+                                disabled={savingBookingId === booking.id}
                                 className={`rounded-full border border-slate-400/50 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
                                   isLight ? 'text-slate-700 hover:bg-slate-800 hover:text-white' : 'text-white/85 hover:bg-white hover:text-brand-dark'
                                 }`}
                               >
-                                Edit
+                                {savingBookingId === booking.id ? 'Saving...' : 'Save'}
                               </button>
                             </div>
                           </td>
