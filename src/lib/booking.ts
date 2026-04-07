@@ -61,9 +61,6 @@ interface NormalizedBooking {
   participants: NormalizedParticipant[];
 }
 
-const APRIL_VOUCHER_EVENT_ID = 69;
-const APRIL_VOUCHER_CUTOFF_UTC = Date.parse('2026-03-31T23:59:59Z');
-
 export const corsHeaders: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -153,14 +150,8 @@ function escapeHtml(value: string): string {
     .replaceAll("'", '&#39;');
 }
 
-function isAprilVoucherIncluded(booking: NormalizedBooking): boolean {
-  if (booking.event_id !== APRIL_VOUCHER_EVENT_ID) return false;
-  return Date.now() <= APRIL_VOUCHER_CUTOFF_UTC;
-}
-
 function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string {
   const eventLabel = booking.event_name || `Event #${booking.event_id}`;
-  const voucherIncluded = isAprilVoucherIncluded(booking);
 
   return `
 <div style="font-family:sans-serif;max-width:620px;margin:0 auto;">
@@ -172,7 +163,6 @@ function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string
     <table style="width:100%;border-collapse:collapse;margin-bottom:28px;">
       <tr><td style="padding:5px 0;color:#888;width:40%;">Reference</td><td style="padding:5px 0;font-weight:700;">#${quotationId}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Event</td><td style="padding:5px 0;">${escapeHtml(eventLabel)}</td></tr>
-      ${voucherIncluded ? '<tr><td style="padding:5px 0;color:#888;">Voucher</td><td style="padding:5px 0;font-weight:700;color:#c0392b;">Included (£100 off, valid until 31 March 2026)</td></tr>' : ''}
       <tr><td style="padding:5px 0;color:#888;">Lead Booker</td><td style="padding:5px 0;">${escapeHtml(booking.full_name)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Email</td><td style="padding:5px 0;">${escapeHtml(booking.email)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Participants</td><td style="padding:5px 0;">${booking.num_participants}</td></tr>
