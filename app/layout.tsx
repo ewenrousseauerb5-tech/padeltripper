@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { Inter, Montserrat } from 'next/font/google';
+import Script from 'next/script';
 import AppShell from '@/src/components/AppShell';
 import { SITE_URL } from '@/src/lib/seo';
 import './globals.css';
@@ -120,6 +121,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${montserrat.variable}`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17214304135"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17214304135');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
