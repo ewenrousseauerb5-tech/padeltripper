@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { CheckCircle2, ChevronRight, MessageCircle } from 'lucide-react';
 
 export const runtime = 'edge';
@@ -24,6 +25,15 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
 
   return (
     <main className="bg-[#0b0d10] text-white min-h-screen">
+      <Script id="google-ads-request-quote-conversion" strategy="afterInteractive">
+        {`
+          if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('event', 'conversion', {
+              send_to: 'AW-17214304135/kUrOCJ3mrpccEIfftZBA'
+            });
+          }
+        `}
+      </Script>
       <section className="px-4 md:px-6 pt-24 md:pt-28">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[62vh]">
           <img
