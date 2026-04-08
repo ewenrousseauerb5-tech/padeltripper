@@ -203,10 +203,14 @@ export default function HomePage() {
                     </div>
                   </div>
                   <Link
-                    href="/events#booking"
-                    className="block w-full py-3.5 bg-brand-dark text-white text-center font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-brand-red transition-all duration-300 mt-auto"
+                    href={event.status === 'Sold Out' ? '/events' : '/events#booking'}
+                    className={`block w-full py-3.5 text-center font-semibold uppercase tracking-widest text-xs rounded-full transition-all duration-300 mt-auto ${
+                      event.status === 'Sold Out'
+                        ? 'bg-stone-300 text-stone-600 hover:bg-stone-300'
+                        : 'bg-brand-dark text-white hover:bg-brand-red'
+                    }`}
                   >
-                    Book This Trip
+                    {event.status === 'Sold Out' ? 'Sold Out' : 'Book This Trip'}
                   </Link>
                 </div>
               </motion.div>

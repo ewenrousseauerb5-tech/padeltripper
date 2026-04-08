@@ -4,7 +4,7 @@ export interface PadelEvent {
   date: string;
   dateShort: string;
   nights: number;
-  status: 'Filling Fast' | 'Available' | 'Limited Spaces';
+  status: 'Filling Fast' | 'Available' | 'Limited Spaces' | 'Sold Out';
   price: string;
   filled: number;
   max: number;
@@ -71,7 +71,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     date: '5th - 8th May 2026',
     dateShort: 'May 5–8',
     nights: 3,
-    status: 'Filling Fast',
+    status: 'Sold Out',
     price: '£745.00',
     filled: 9,
     max: 16,

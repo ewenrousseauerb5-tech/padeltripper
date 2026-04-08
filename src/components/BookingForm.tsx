@@ -100,6 +100,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   }, []);
 
   const selectedEvent = ALL_EVENTS.find(event => String(event.id) === eventId);
+  const selectableEvents = FUTURE_EVENTS.filter(event => event.status !== 'Sold Out');
   const getDisplayPrice = (event: { id: number; price: string }) => priceOverrides?.[event.id] ?? event.price;
   const requiresEligibilityConfirmation = Boolean(selectedEvent?.eligibilityNote);
   const getNormalizedParticipants = () => {
@@ -189,7 +190,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
                 className={`${inputClass} appearance-none pr-10`}
               >
                 <option value="">Choose a date...</option>
-                {FUTURE_EVENTS.map(event => (
+                {selectableEvents.map(event => (
                   <option key={event.id} value={event.id}>
                     {event.date} - From {toDualCurrencyDisplay(getDisplayPrice(event))}
                     {event.originalPrice
