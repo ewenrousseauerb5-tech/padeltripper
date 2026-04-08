@@ -132,7 +132,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {UPCOMING_EVENTS.map((event, idx) => (
+            {UPCOMING_EVENTS.filter(event => event.status !== 'Sold Out').map((event, idx) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 20 }}
