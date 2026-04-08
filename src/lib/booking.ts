@@ -31,6 +31,12 @@ interface BookingPayload {
   accepted_privacy_terms?: boolean;
   confirmed_participant_consent?: boolean;
   participants?: ParticipantInput[];
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
+  utm_term?: string;
+  gclid?: string;
   // Optional legacy enquiry shape to avoid breaking existing non-booking form.
   name?: string;
   event?: string;
@@ -59,6 +65,12 @@ interface NormalizedBooking {
   accepted_privacy_terms: boolean;
   confirmed_participant_consent: boolean;
   participants: NormalizedParticipant[];
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_content: string;
+  utm_term: string;
+  gclid: string;
 }
 
 export const corsHeaders: Record<string, string> = {
@@ -137,6 +149,12 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
       accepted_privacy_terms: raw.accepted_privacy_terms === true,
       confirmed_participant_consent: raw.confirmed_participant_consent === true,
       participants: normalizedParticipants,
+      utm_source: normalizeString(raw.utm_source),
+      utm_medium: normalizeString(raw.utm_medium),
+      utm_campaign: normalizeString(raw.utm_campaign),
+      utm_content: normalizeString(raw.utm_content),
+      utm_term: normalizeString(raw.utm_term),
+      gclid: normalizeString(raw.gclid),
     },
   };
 }
@@ -330,6 +348,12 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
         special_requests: booking.special_requests,
         status: 'SUBMITTED',
         payment_status: 'pending',
+        utm_source: booking.utm_source || null,
+        utm_medium: booking.utm_medium || null,
+        utm_campaign: booking.utm_campaign || null,
+        utm_content: booking.utm_content || null,
+        utm_term: booking.utm_term || null,
+        gclid: booking.gclid || null,
       })
       .select('id')
       .single();

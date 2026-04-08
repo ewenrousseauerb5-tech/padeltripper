@@ -35,6 +35,21 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const [otherInfo, setOtherInfo] = useState('');
   const [acceptedLegal, setAcceptedLegal] = useState(false);
   const [confirmedEligibility, setConfirmedEligibility] = useState(false);
+  const [attribution, setAttribution] = useState<{
+    utm_source: string;
+    utm_medium: string;
+    utm_campaign: string;
+    utm_content: string;
+    utm_term: string;
+    gclid: string;
+  }>({
+    utm_source: '',
+    utm_medium: '',
+    utm_campaign: '',
+    utm_content: '',
+    utm_term: '',
+    gclid: '',
+  });
 
   useEffect(() => {
     if (selectedEventId) {
@@ -45,6 +60,44 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   useEffect(() => {
     setConfirmedEligibility(false);
   }, [eventId]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromQuery = {
+      utm_source: urlParams.get('utm_source') || '',
+      utm_medium: urlParams.get('utm_medium') || '',
+      utm_campaign: urlParams.get('utm_campaign') || '',
+      utm_content: urlParams.get('utm_content') || '',
+      utm_term: urlParams.get('utm_term') || '',
+      gclid: urlParams.get('gclid') || '',
+    };
+
+    const hasQueryAttribution = Object.values(fromQuery).some(Boolean);
+    if (hasQueryAttribution) {
+      setAttribution(fromQuery);
+      window.sessionStorage.setItem('pt_attribution', JSON.stringify(fromQuery));
+      return;
+    }
+
+    const stored = window.sessionStorage.getItem('pt_attribution');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored) as Record<string, string>;
+        setAttribution({
+          utm_source: parsed.utm_source || '',
+          utm_medium: parsed.utm_medium || '',
+          utm_campaign: parsed.utm_campaign || '',
+          utm_content: parsed.utm_content || '',
+          utm_term: parsed.utm_term || '',
+          gclid: parsed.gclid || '',
+        });
+      } catch {
+        // no-op
+      }
+    }
+  }, []);
 
   const selectedEvent = ALL_EVENTS.find(event => String(event.id) === eventId);
   const getDisplayPrice = (event: { id: number; price: string }) => priceOverrides?.[event.id] ?? event.price;
@@ -85,6 +138,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
         special_requests: otherInfo.trim(),
         accepted_privacy_terms: acceptedLegal,
         eligibility_confirmed: requiresEligibilityConfirmation ? confirmedEligibility : undefined,
+        ...attribution,
       };
 
       const response = await fetch('/api/booking', {
