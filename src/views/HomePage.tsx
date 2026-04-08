@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
-import { UPCOMING_EVENTS } from '../data/events';
+import { FUTURE_EVENTS } from '../data/events';
 import { toDualCurrencyDisplay } from '../lib/pricing';
 
 const TrustpilotReviewHighlights = dynamic(() => import('../components/TrustpilotReviewHighlights'), {
@@ -20,6 +20,7 @@ const TrustpilotReviewHighlights = dynamic(() => import('../components/Trustpilo
 
 export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
+  const homeUpcomingEvents = FUTURE_EVENTS.filter(event => event.status !== 'Sold Out').slice(0, 3);
 
   useEffect(() => {
     if (window.innerWidth < 768) return;
@@ -132,7 +133,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {UPCOMING_EVENTS.filter(event => event.status !== 'Sold Out').map((event, idx) => (
+            {homeUpcomingEvents.map((event, idx) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 20 }}
