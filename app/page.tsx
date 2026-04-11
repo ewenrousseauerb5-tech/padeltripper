@@ -3,18 +3,25 @@ import HomePage from '@/src/views/HomePage';
 import { SITE_URL } from '@/src/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Ultimate Padel Retreats in Alicante',
+  title: 'Padel Holidays in Spain (Alicante)',
   description:
-    'Join ultimate 4-day padel retreats in Alicante with elite coaching, 4-star accommodation, and curated international groups.',
+    'Join premium 4-day padel holidays in Spain, based in Alicante, with elite coaching, 4-star accommodation, and curated international groups.',
   alternates: {
     canonical: '/',
   },
+  keywords: [
+    'padel holidays spain',
+    'padel holidays in spain',
+    'padel holidays alicante',
+    'padel camp spain',
+    'padel retreat alicante',
+  ],
   openGraph: {
     type: 'website',
     url: SITE_URL,
-    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
+    title: 'Padel Tripper | Padel Holidays in Spain (Alicante)',
     description:
-      'Elite coaching, 4-star accommodation, and unforgettable padel retreats in Alicante for international players.',
+      'Elite coaching, 4-star accommodation, and unforgettable padel holidays in Spain from Alicante.',
     images: [
       {
         url: '/images/hero-padel-camp.jpg',
@@ -26,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
+    title: 'Padel Tripper | Padel Holidays in Spain (Alicante)',
     description:
-      'Elite coaching, 4-star accommodation, and unforgettable padel retreats in Alicante for international players.',
+      'Elite coaching, 4-star accommodation, and unforgettable padel holidays in Spain from Alicante.',
     images: ['/images/hero-padel-camp.jpg'],
   },
 };
@@ -41,7 +48,7 @@ export default function Page() {
     url: SITE_URL,
     sport: 'Padel',
     description:
-      'Premium small-group padel retreats in Alicante with professional coaching and 4-star accommodation.',
+      'Premium small-group padel holidays in Spain, based in Alicante, with professional coaching and 4-star accommodation.',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Alicante',

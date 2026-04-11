@@ -21,17 +21,24 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
+    default: 'Padel Tripper | Padel Holidays in Spain (Alicante)',
     template: '%s | Padel Tripper',
   },
   description:
-    'Ultimate padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups for international players.',
+    'Premium padel holidays in Spain, based in Alicante. World-class coaching, 4-star hotel stays, and curated small groups for international players.',
   applicationName: 'Padel Tripper',
   keywords: [
+    'padel holidays spain',
+    'padel holidays in spain',
+    'padel camp spain',
+    'padel retreats spain',
+    'padel trip spain',
+    'padel holiday spain',
     'padel retreat spain',
     'padel holiday alicante',
+    'padel holidays alicante',
+    'padel camps alicante',
     'premium padel camp',
-    'padel trip spain',
     'padel training camp',
     'uk padel holiday',
     'padel holiday netherlands',
@@ -58,9 +65,9 @@ export const metadata: Metadata = {
     type: 'website',
     url: SITE_URL,
     siteName: 'Padel Tripper',
-    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
+    title: 'Padel Tripper | Padel Holidays in Spain (Alicante)',
     description:
-      'Ultimate padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups.',
+      'Premium padel holidays in Spain, based in Alicante, with world-class coaching and curated small groups.',
     images: [
       {
         url: '/images/hero-padel-camp.jpg',
@@ -73,9 +80,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Padel Tripper | Ultimate Padel Retreats in Alicante',
+    title: 'Padel Tripper | Padel Holidays in Spain (Alicante)',
     description:
-      'Ultimate padel retreats in Alicante with world-class coaching, 4-star hotel stays, and curated small groups.',
+      'Premium padel holidays in Spain, based in Alicante, with world-class coaching and curated small groups.',
     images: ['/images/hero-padel-camp.jpg'],
   },
   robots: {
@@ -107,7 +114,7 @@ export default function RootLayout({
     sameAs: ['https://www.instagram.com/padeltripper/'],
     areaServed: ['GB', 'NL', 'DE', 'ES', 'EU'],
     description:
-      'Padel Tripper organizes premium padel retreats in Alicante for international players.',
+      'Padel Tripper organizes premium padel holidays in Spain, based in Alicante, for international players.',
   };
 
   const websiteSchema = {

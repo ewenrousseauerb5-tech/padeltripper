@@ -4,18 +4,24 @@ import { ALL_EVENTS } from '@/src/data/events';
 import { SITE_URL } from '@/src/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Padel Retreat Dates & Prices',
+  title: 'Padel Holidays Spain | Dates & Prices',
   description:
-    'Browse upcoming Padel Tripper retreat dates in Alicante. Premium padel holidays with coaching, 4-star hotel and limited group places.',
+    'Browse upcoming padel holiday dates in Spain (Alicante). Premium coaching trips with 4-star hotel stays and limited group places.',
   alternates: {
     canonical: '/events',
   },
+  keywords: [
+    'padel holidays spain dates',
+    'padel holidays spain prices',
+    'padel holidays alicante dates',
+    'padel retreat dates spain',
+  ],
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/events`,
-    title: 'Padel Retreat Dates & Prices | Padel Tripper',
+    title: 'Padel Holidays Spain | Dates & Prices | Padel Tripper',
     description:
-      'Upcoming premium padel retreat dates in Alicante. Secure your place and request your quotation online.',
+      'Upcoming premium padel holiday dates in Spain (Alicante). Secure your place and request your quotation online.',
     images: [
       {
         url: '/images/post-tournament-celebration.jpg',
@@ -27,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Padel Retreat Dates & Prices | Padel Tripper',
+    title: 'Padel Holidays Spain | Dates & Prices | Padel Tripper',
     description:
-      'Upcoming premium padel retreat dates in Alicante. Secure your place and request your quotation online.',
+      'Upcoming premium padel holiday dates in Spain (Alicante). Secure your place and request your quotation online.',
     images: ['/images/post-tournament-celebration.jpg'],
   },
 };
@@ -45,7 +51,7 @@ export default function Page() {
       item: {
         '@type': 'Product',
         name: event.name || `Padel Retreat Alicante - ${event.date}`,
-        description: `Premium padel retreat in Alicante (${event.nights} nights) with coaching and 4-star accommodation.`,
+        description: `Premium padel holiday in Spain (Alicante) (${event.nights} nights) with coaching and 4-star accommodation.`,
         brand: {
           '@type': 'Brand',
           name: 'Padel Tripper',
@@ -54,7 +60,12 @@ export default function Page() {
           '@type': 'Offer',
           priceCurrency: 'GBP',
           price: event.price.replace(/[^\d.]/g, ''),
-          availability: event.status === 'Available' ? 'https://schema.org/InStock' : 'https://schema.org/LimitedAvailability',
+          availability:
+            event.status === 'Sold Out'
+              ? 'https://schema.org/OutOfStock'
+              : event.status === 'Available'
+                ? 'https://schema.org/InStock'
+                : 'https://schema.org/LimitedAvailability',
           url: `${SITE_URL}/events#booking`,
         },
       },
