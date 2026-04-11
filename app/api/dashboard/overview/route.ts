@@ -33,7 +33,7 @@ export async function GET() {
       .order('created_at', { ascending: false })
       .limit(500);
 
-    const [bookingsRes, participantsWithStatusRes, eventsRes, workflowsRes, partnersRes] = await Promise.all([
+    const [bookingsRes, participantsWithStatusRes, eventsRes, workflowsRes, partnersRes, tailoredRes] = await Promise.all([
       supabase
         .from('quotations')
         .select('id,event_id,full_name,email,num_participants,status,payment_status,created_at')
@@ -51,6 +51,11 @@ export async function GET() {
       supabase
         .from('partner_enquiries')
         .select('id,reference,full_name,email,role,status,created_at')
+        .order('created_at', { ascending: false })
+        .limit(300),
+      supabase
+        .from('tailored_event_requests')
+        .select('id,full_name,email,phone,event_type,group_size,preferred_dates,destination,status,source,created_at')
         .order('created_at', { ascending: false })
         .limit(300),
     ]);
@@ -112,12 +117,14 @@ export async function GET() {
       });
     const workflows = safeArray(workflowsRes.data);
     const partners = safeArray(partnersRes.data);
+    const tailored_requests = safeArray(tailoredRes.data);
 
     // Some optional dashboard tables may not exist yet. Keep dashboard usable.
     const optionalErrors: string[] = [];
     if (participantsWithStatusRes.error) optionalErrors.push(`participants.status unavailable: ${participantsWithStatusRes.error.message}`);
     if (workflowsRes.error) optionalErrors.push(`booking_workflows: ${workflowsRes.error.message}`);
     if (partnersRes.error) optionalErrors.push(`partner_enquiries: ${partnersRes.error.message}`);
+    if (tailoredRes.error) optionalErrors.push(`tailored_event_requests: ${tailoredRes.error.message}`);
 
     return Response.json({
       ok: true,
@@ -127,6 +134,7 @@ export async function GET() {
         events,
         workflows,
         partners,
+        tailored_requests,
       },
       warnings: optionalErrors,
     });

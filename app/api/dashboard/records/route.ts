@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 
 export const runtime = 'edge';
 
-type Entity = 'booking' | 'participant' | 'event' | 'partner';
+type Entity = 'booking' | 'participant' | 'event' | 'partner' | 'tailored_request';
 type Mode = 'create' | 'update';
 
 interface RecordsPayload {
@@ -31,7 +31,7 @@ function pickBoolean(value: unknown): boolean | null {
 }
 
 function parseEntity(value: unknown): Entity | null {
-  if (value === 'booking' || value === 'participant' || value === 'event' || value === 'partner') {
+  if (value === 'booking' || value === 'participant' || value === 'event' || value === 'partner' || value === 'tailored_request') {
     return value;
   }
   return null;
@@ -164,6 +164,28 @@ export async function POST(request: Request) {
         return Response.json({ ok: false, error: 'No fields provided for partner update.' }, { status: 400 });
       }
       const updateRes = await supabase.from('partner_enquiries').update(payload).eq('id', id as number);
+      if (updateRes.error) throw updateRes.error;
+      return Response.json({ ok: true });
+    }
+
+    if (entity === 'tailored_request') {
+      const payload = Object.fromEntries(
+        Object.entries({
+          full_name: pickString(values.full_name),
+          email: pickString(values.email),
+          phone: pickString(values.phone),
+          event_type: pickString(values.event_type),
+          group_size: pickString(values.group_size),
+          preferred_dates: pickString(values.preferred_dates),
+          destination: pickString(values.destination),
+          status: pickString(values.status),
+          source: pickString(values.source),
+        }).filter(([, value]) => value !== null),
+      );
+      if (Object.keys(payload).length === 0) {
+        return Response.json({ ok: false, error: 'No fields provided for tailored request update.' }, { status: 400 });
+      }
+      const updateRes = await supabase.from('tailored_event_requests').update(payload).eq('id', id as number);
       if (updateRes.error) throw updateRes.error;
       return Response.json({ ok: true });
     }

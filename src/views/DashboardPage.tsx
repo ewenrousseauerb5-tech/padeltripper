@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Pencil } from 'lucide-react';
 
-type DashboardTab = 'bookings' | 'participants' | 'partners' | 'events';
+type DashboardTab = 'bookings' | 'participants' | 'partners' | 'events' | 'tailored_requests';
 
 interface BookingRow {
   id: number;
@@ -55,11 +55,26 @@ interface EventRow {
   is_public: boolean | null;
 }
 
+interface TailoredRequestRow {
+  id: number;
+  full_name: string | null;
+  email: string | null;
+  phone: string | null;
+  event_type: string | null;
+  group_size: string | null;
+  preferred_dates: string | null;
+  destination: string | null;
+  status: string | null;
+  source: string | null;
+  created_at: string | null;
+}
+
 interface DashboardData {
   bookings: BookingRow[];
   participants: ParticipantRow[];
   partners: PartnerRow[];
   events: EventRow[];
+  tailored_requests: TailoredRequestRow[];
   workflows: WorkflowRow[];
 }
 
@@ -68,10 +83,11 @@ const initialData: DashboardData = {
   participants: [],
   partners: [],
   events: [],
+  tailored_requests: [],
   workflows: [],
 };
 
-type EditEntity = 'booking' | 'participant' | 'event' | 'partner';
+type EditEntity = 'booking' | 'participant' | 'event' | 'partner' | 'tailored_request';
 type EditMode = 'create' | 'update';
 
 const STATUS_OPTIONS: Record<EditEntity, string[]> = {
@@ -79,6 +95,7 @@ const STATUS_OPTIONS: Record<EditEntity, string[]> = {
   participant: ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'CANCELLED'],
   event: ['AVAILABLE', 'FILLING_FAST', 'LIMITED_SPACES', 'COMPLETED', 'PRIVATE'],
   partner: ['NEW', 'CONTACTED', 'APPROVED', 'ACTIVE', 'REJECTED'],
+  tailored_request: ['SUBMITTED', 'CONTACTED', 'QUALIFIED', 'PROPOSAL_SENT', 'CONFIRMED', 'CANCELLED'],
 };
 
 const PAYMENT_STATUS_OPTIONS = ['pending', 'paid', 'failed', 'refunded'];
@@ -192,6 +209,7 @@ export default function DashboardPage() {
         participants: result.data?.participants || [],
         partners: result.data?.partners || [],
         events: result.data?.events || [],
+        tailored_requests: result.data?.tailored_requests || [],
         workflows: result.data?.workflows || [],
       });
       setWarnings(Array.isArray(result.warnings) ? result.warnings : []);
@@ -344,6 +362,18 @@ export default function DashboardPage() {
         current_participants: String(row.current_participants ?? ''),
         is_public: row.is_public === true ? 'true' : 'false',
       });
+    } else if (entity === 'tailored_request') {
+      setEditingValues({
+        full_name: String(row.full_name ?? ''),
+        email: String(row.email ?? ''),
+        phone: String(row.phone ?? ''),
+        event_type: String(row.event_type ?? ''),
+        group_size: String(row.group_size ?? ''),
+        preferred_dates: String(row.preferred_dates ?? ''),
+        destination: String(row.destination ?? ''),
+        source: String(row.source ?? ''),
+        status: String(row.status ?? ''),
+      });
     } else {
       setEditingValues({
         reference: String(row.reference ?? ''),
@@ -450,7 +480,7 @@ export default function DashboardPage() {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-4 mb-7">
+        <div className="grid md:grid-cols-5 gap-4 mb-7">
           <div className={`rounded-2xl border p-4 ${isLight ? 'border-slate-200 bg-white' : 'border-white/12 bg-white/[0.03]'}`}>
             <p className={`text-[10px] uppercase tracking-[0.2em] mb-1 ${isLight ? 'text-slate-500' : 'text-white/50'}`}>Bookings</p>
             <p className="text-2xl font-serif font-black">{data.bookings.length}</p>
@@ -467,6 +497,10 @@ export default function DashboardPage() {
             <p className={`text-[10px] uppercase tracking-[0.2em] mb-1 ${isLight ? 'text-slate-500' : 'text-white/50'}`}>Events</p>
             <p className="text-2xl font-serif font-black">{data.events.length}</p>
           </div>
+          <div className={`rounded-2xl border p-4 ${isLight ? 'border-slate-200 bg-white' : 'border-white/12 bg-white/[0.03]'}`}>
+            <p className={`text-[10px] uppercase tracking-[0.2em] mb-1 ${isLight ? 'text-slate-500' : 'text-white/50'}`}>Tailored</p>
+            <p className="text-2xl font-serif font-black">{data.tailored_requests.length}</p>
+          </div>
         </div>
 
         <div className="mb-5 flex flex-wrap gap-2">
@@ -475,6 +509,7 @@ export default function DashboardPage() {
             { id: 'participants', label: 'Participants' },
             { id: 'partners', label: 'Partners' },
             { id: 'events', label: 'Events' },
+            { id: 'tailored_requests', label: 'Tailored Requests' },
           ].map(item => (
             <button
               key={item.id}
@@ -775,6 +810,57 @@ export default function DashboardPage() {
                   </table>
                 </div>
               )}
+
+              {tab === 'tailored_requests' && (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full text-sm">
+                    <thead className={isLight ? 'bg-slate-50 text-slate-600' : 'bg-white/[0.02] text-white/60'}>
+                      <tr>
+                        <th className="px-4 py-3 text-left">Lead</th>
+                        <th className="px-4 py-3 text-left">Event Type</th>
+                        <th className="px-4 py-3 text-left">Group</th>
+                        <th className="px-4 py-3 text-left">Preferred Dates</th>
+                        <th className="px-4 py-3 text-left">Destination</th>
+                        <th className="px-4 py-3 text-left">Status</th>
+                        <th className="px-4 py-3 text-left">Created</th>
+                        <th className="px-4 py-3 text-left">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.tailored_requests.map(request => (
+                        <tr key={request.id} className={`border-t ${isLight ? 'border-slate-200' : 'border-white/10'}`}>
+                          <td className="px-4 py-3">
+                            <p className="font-semibold">{request.full_name || '—'}</p>
+                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>{request.email || '—'}</p>
+                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>{request.phone || '—'}</p>
+                          </td>
+                          <td className="px-4 py-3">{request.event_type || '—'}</td>
+                          <td className="px-4 py-3">{request.group_size || '—'}</td>
+                          <td className="px-4 py-3">{request.preferred_dates || '—'}</td>
+                          <td className="px-4 py-3">{request.destination || '—'}</td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(request.status || 'SUBMITTED', isLight)}`}>
+                              {toLabel(request.status || 'SUBMITTED')}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">{formatDate(request.created_at)}</td>
+                          <td className="px-4 py-3">
+                            <button
+                              type="button"
+                              onClick={() => openEditRecord('tailored_request', request as unknown as Record<string, unknown>)}
+                              className={`rounded-full border border-slate-400/50 bg-transparent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
+                                isLight ? 'text-slate-700 hover:bg-slate-800 hover:text-white' : 'text-white/85 hover:bg-white hover:text-brand-dark'
+                              }`}
+                            >
+                              Edit
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </>
           )}
         </div>
@@ -804,7 +890,7 @@ export default function DashboardPage() {
                 </label>
               )}
 
-              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'partner') && (
+              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'partner' || editingEntity === 'tailored_request') && (
                 <label className="block">
                   <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Full Name</span>
                   <input
@@ -815,7 +901,7 @@ export default function DashboardPage() {
                 </label>
               )}
 
-              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'partner') && (
+              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'partner' || editingEntity === 'tailored_request') && (
                 <label className="block md:col-span-2">
                   <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Email</span>
                   <input
@@ -854,7 +940,7 @@ export default function DashboardPage() {
                 </>
               )}
 
-              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'event' || editingEntity === 'partner') && (
+              {(editingEntity === 'booking' || editingEntity === 'participant' || editingEntity === 'event' || editingEntity === 'partner' || editingEntity === 'tailored_request') && (
                 <label className="block">
                   <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Status</span>
                   <select
@@ -870,6 +956,59 @@ export default function DashboardPage() {
                     ))}
                   </select>
                 </label>
+              )}
+
+              {editingEntity === 'tailored_request' && (
+                <>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Phone</span>
+                    <input
+                      value={editingValues.phone ?? ''}
+                      onChange={(event) => handleEditChange('phone', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Event Type</span>
+                    <input
+                      value={editingValues.event_type ?? ''}
+                      onChange={(event) => handleEditChange('event_type', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Group Size</span>
+                    <input
+                      value={editingValues.group_size ?? ''}
+                      onChange={(event) => handleEditChange('group_size', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Preferred Dates</span>
+                    <input
+                      value={editingValues.preferred_dates ?? ''}
+                      onChange={(event) => handleEditChange('preferred_dates', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Destination</span>
+                    <input
+                      value={editingValues.destination ?? ''}
+                      onChange={(event) => handleEditChange('destination', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Source</span>
+                    <input
+                      value={editingValues.source ?? ''}
+                      onChange={(event) => handleEditChange('source', event.target.value)}
+                      className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                    />
+                  </label>
+                </>
               )}
 
               {editingEntity === 'participant' && (
