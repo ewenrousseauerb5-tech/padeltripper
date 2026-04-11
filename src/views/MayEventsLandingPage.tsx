@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Calendar, Check, MapPin, Star } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
@@ -19,22 +20,71 @@ export default function MayEventsLandingPage() {
     [],
   );
   const [selectedEventId, setSelectedEventId] = useState<number>(MAY_EVENT_IDS[0]);
+  const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) return;
+
+    const win = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+    const saveDataEnabled = Boolean(connection?.saveData);
+    const slowNetwork = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveDataEnabled || slowNetwork || prefersReducedMotion) return;
+
+    const onIdle = () => setLoadDesktopVideo(true);
+    if (win.requestIdleCallback && win.cancelIdleCallback) {
+      const idleId = win.requestIdleCallback(() => onIdle(), { timeout: 1200 });
+      return () => win.cancelIdleCallback!(idleId);
+    }
+
+    const timeout = win.setTimeout(onIdle, 400);
+    return () => win.clearTimeout(timeout);
+  }, []);
 
   return (
     <main className="bg-[#0b0d10] text-white">
       <section className="px-4 md:px-6 pt-24 md:pt-28">
-        <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[72vh] md:min-h-[78vh]">
+        <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[66vh] md:min-h-[78vh]">
+          <div className="md:hidden absolute inset-0">
+            <Image
+              src="/images/group-bela-court.jpg"
+              alt="Padel retreat in Alicante"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+          <div className="hidden md:block absolute inset-0">
+            <Image
+              src="/images/group-bela-court.jpg"
+              alt="Padel retreat in Alicante"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
           <video
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className={`hidden md:block absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ${
+              loadDesktopVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             poster="/images/group-bela-court.jpg"
             aria-hidden="true"
           >
-            <source src="/videos/hero-background.m4v" type="video/mp4" />
+            {loadDesktopVideo ? <source src="/videos/hero-background.m4v" type="video/mp4" media="(min-width: 768px)" /> : null}
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/80" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/55" />
