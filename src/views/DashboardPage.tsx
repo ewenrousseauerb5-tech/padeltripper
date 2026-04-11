@@ -279,6 +279,27 @@ export default function DashboardPage() {
     });
   }, [bookingSearch, sortedBookings, eventMap]);
 
+  const bookingStatusSummary = useMemo(() => {
+    const summary = {
+      submitted: 0,
+      confirmed: 0,
+      cancelled: 0,
+    };
+
+    data.bookings.forEach((booking) => {
+      const status = (booking.status || '').toLowerCase();
+      if (status.includes('cancel')) {
+        summary.cancelled += 1;
+      } else if (status.includes('confirm') || status.includes('paid')) {
+        summary.confirmed += 1;
+      } else {
+        summary.submitted += 1;
+      }
+    });
+
+    return summary;
+  }, [data.bookings]);
+
   const activeBooking = useMemo(
     () => data.bookings.find(booking => booking.id === activeBookingId) || null,
     [activeBookingId, data.bookings],
@@ -544,6 +565,21 @@ export default function DashboardPage() {
             <>
               {tab === 'bookings' && (
                 <div className="p-4 md:p-5">
+                  <div className="mb-4 grid gap-2 sm:grid-cols-3">
+                    <div className={`rounded-xl border px-3 py-2 ${isLight ? 'border-slate-200 bg-slate-50' : 'border-white/10 bg-white/[0.03]'}`}>
+                      <p className={`text-[10px] uppercase tracking-[0.2em] ${isLight ? 'text-slate-500' : 'text-white/45'}`}>Submitted</p>
+                      <p className="mt-1 text-lg font-black">{bookingStatusSummary.submitted}</p>
+                    </div>
+                    <div className={`rounded-xl border px-3 py-2 ${isLight ? 'border-emerald-200 bg-emerald-50/70' : 'border-emerald-400/25 bg-emerald-500/10'}`}>
+                      <p className={`text-[10px] uppercase tracking-[0.2em] ${isLight ? 'text-emerald-700' : 'text-emerald-200/80'}`}>Confirmed</p>
+                      <p className="mt-1 text-lg font-black">{bookingStatusSummary.confirmed}</p>
+                    </div>
+                    <div className={`rounded-xl border px-3 py-2 ${isLight ? 'border-rose-200 bg-rose-50/80' : 'border-rose-400/25 bg-rose-500/10'}`}>
+                      <p className={`text-[10px] uppercase tracking-[0.2em] ${isLight ? 'text-rose-700' : 'text-rose-200/80'}`}>Cancelled</p>
+                      <p className="mt-1 text-lg font-black">{bookingStatusSummary.cancelled}</p>
+                    </div>
+                  </div>
+
                   <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                     <p className={`text-xs uppercase tracking-[0.2em] ${isLight ? 'text-slate-500' : 'text-white/45'}`}>
                       {filteredBookings.length} bookings
@@ -567,6 +603,7 @@ export default function DashboardPage() {
                           <th className="px-4 py-3 text-left">Lead</th>
                           <th className="w-[200px] px-4 py-3 text-left">Event</th>
                           <th className="px-4 py-3 text-left">Booking</th>
+                          <th className="px-4 py-3 text-left">Lead Status</th>
                           <th className="px-4 py-3 text-left">Hotel</th>
                           <th className="px-4 py-3 text-left">Payment</th>
                           <th className="px-4 py-3 text-left">Coaches</th>
@@ -578,12 +615,22 @@ export default function DashboardPage() {
                       const wf = workflowMap.get(booking.id);
                       const event = booking.event_id ? eventMap.get(booking.event_id) : null;
                       const eventLabel = event?.name || (booking.event_id ? `#${booking.event_id}` : '—');
+                      const bookingStatus = booking.status || 'SUBMITTED';
+                      const isCancelled = bookingStatus.toLowerCase().includes('cancel');
 
                       return (
                         <tr
                           key={booking.id}
                           className={`border-t ${isLight ? 'border-slate-200' : 'border-white/10'} ${
-                            index % 2 === 0 ? 'bg-transparent' : isLight ? 'bg-slate-50/70' : 'bg-white/[0.015]'
+                            isCancelled
+                              ? isLight
+                                ? 'bg-rose-50/80'
+                                : 'bg-rose-500/8'
+                              : index % 2 === 0
+                                ? 'bg-transparent'
+                                : isLight
+                                  ? 'bg-slate-50/70'
+                                  : 'bg-white/[0.015]'
                           }`}
                         >
                           <td className="px-4 py-3">
@@ -601,6 +648,11 @@ export default function DashboardPage() {
                             <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>
                               {booking.num_participants || 1} players · {formatDate(booking.created_at)}
                             </p>
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(bookingStatus, isLight)}`}>
+                              {toLabel(bookingStatus)}
+                            </span>
                           </td>
                           <td className="px-4 py-3">
                             <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent', isLight)}`}>
