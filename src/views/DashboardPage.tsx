@@ -455,7 +455,7 @@ export default function DashboardPage() {
 
   return (
     <main
-      className={`min-h-screen pt-28 pb-14 px-6 transition-colors ${
+      className={`min-h-screen pt-14 pb-14 px-6 transition-colors ${
         isLight
           ? 'bg-slate-100 text-slate-900 [&_p]:text-slate-700 [&_h1]:text-slate-900 [&_h3]:text-slate-900'
           : 'bg-[#0b0d10] text-white'
