@@ -136,20 +136,32 @@ export default function HomePage() {
             {homeUpcomingEvents.map((event, idx) => (
               <motion.div
                 key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 className="group h-full rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col"
               >
                 {event.image && (
                   <div className="relative h-52 overflow-hidden">
-                    <img
+                    <Image
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
-                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${event.imagePosition === 'center' ? 'object-center' : event.imagePosition === 'bottom' ? 'object-bottom' : event.imagePosition === 'lower' ? 'object-[center_60%]' : event.imagePosition === 'slightLower' ? 'object-[center_22%]' : 'object-top'}`}
-                      loading="lazy"
-                      decoding="async"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading={idx === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={idx === 0 ? 'high' : 'auto'}
+                      className={`object-cover transform-gpu [backface-visibility:hidden] group-hover:scale-105 transition-transform duration-700 ${
+                        event.imagePosition === 'center'
+                          ? 'object-center'
+                          : event.imagePosition === 'bottom'
+                            ? 'object-bottom'
+                            : event.imagePosition === 'lower'
+                              ? 'object-[center_60%]'
+                              : event.imagePosition === 'slightLower'
+                                ? 'object-[center_22%]'
+                                : 'object-top'
+                      }`}
                     />
                     <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full">
                       {event.status}
