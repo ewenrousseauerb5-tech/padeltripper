@@ -20,7 +20,7 @@ const TrustpilotReviewHighlights = dynamic(() => import('../components/Trustpilo
 
 export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
-  const homeUpcomingEvents = FUTURE_EVENTS.filter(event => event.status !== 'Sold Out').slice(0, 3);
+  const homeUpcomingEvents = FUTURE_EVENTS.slice(0, 3);
 
   useEffect(() => {
     if (window.innerWidth < 768) return;
