@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Instagram } from 'lucide-react';
 
 export default function Footer() {
@@ -17,6 +18,18 @@ export default function Footer() {
               />
             </Link>
             <p className="text-white/40 text-sm">UK Company Reg: 15698275</p>
+            <div className="mt-5 inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-3 py-2">
+              <Image
+                src="/images/logos/PTS-Logo.jpg"
+                alt="Protected Trust Services"
+                width={72}
+                height={28}
+                className="h-6 w-auto object-contain"
+              />
+              <p className="text-[11px] leading-tight text-white/60">
+                Protected Trust Services verified
+              </p>
+            </div>
           </div>
 
           {/* Shortcuts */}

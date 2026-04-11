@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { Mail, Phone, Instagram, ArrowRight } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
@@ -88,6 +89,22 @@ export default function EventsPage() {
                     <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
                       @padeltripper
                     </a>
+                  </div>
+                </div>
+
+                <div className="mt-2 rounded-xl border border-white/12 bg-white/[0.03] p-3">
+                  <p className="text-[10px] uppercase tracking-widest text-white/35 font-semibold mb-2">Trust</p>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/images/logos/PTS-Logo.jpg"
+                      alt="Protected Trust Services"
+                      width={88}
+                      height={34}
+                      className="h-7 w-auto object-contain"
+                    />
+                    <p className="text-[12px] text-white/70 leading-relaxed">
+                      Protected Trust Services verified partner.
+                    </p>
                   </div>
                 </div>
               </aside>
