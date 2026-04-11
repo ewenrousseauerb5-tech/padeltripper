@@ -224,12 +224,6 @@ export default function DashboardPage() {
     void loadDashboard();
   }, []);
 
-  const workflowMap = useMemo(() => {
-    const map = new Map<number, WorkflowRow>();
-    data.workflows.forEach(row => map.set(row.quotation_id, row));
-    return map;
-  }, [data.workflows]);
-
   const sortedEvents = useMemo(() => {
     const getTime = (value: string | null): number => {
       if (!value) return Number.POSITIVE_INFINITY;
@@ -604,14 +598,11 @@ export default function DashboardPage() {
                           <th className="w-[200px] px-4 py-3 text-left">Event</th>
                           <th className="px-4 py-3 text-left">Booking</th>
                           <th className="px-4 py-3 text-left">Lead Status</th>
-                          <th className="px-4 py-3 text-left">Hotel</th>
-                          <th className="px-4 py-3 text-left">Payment</th>
                           <th className="px-4 py-3 text-left">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                     {filteredBookings.map((booking, index) => {
-                      const wf = workflowMap.get(booking.id);
                       const event = booking.event_id ? eventMap.get(booking.event_id) : null;
                       const eventLabel = event?.name || (booking.event_id ? `#${booking.event_id}` : '—');
                       const bookingStatus = booking.status || 'SUBMITTED';
@@ -651,16 +642,6 @@ export default function DashboardPage() {
                           <td className="px-4 py-3">
                             <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(bookingStatus, isLight)}`}>
                               {toLabel(bookingStatus)}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.hotel_status || 'not_sent', isLight)}`}>
-                              {toLabel(wf?.hotel_status || 'not_sent')}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3">
-                            <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${statusBadgeClass(wf?.payment_status || booking.payment_status || 'pending', isLight)}`}>
-                              {toLabel(wf?.payment_status || booking.payment_status || 'pending')}
                             </span>
                           </td>
                           <td className="px-4 py-3">
