@@ -134,12 +134,8 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {homeUpcomingEvents.map((event, idx) => (
-              <motion.div
+              <div
                 key={event.id}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
                 className="group h-full rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col"
               >
                 {event.image && (
@@ -226,7 +222,7 @@ export default function HomePage() {
                     {event.status === 'Sold Out' ? 'Sold Out' : 'Book This Trip'}
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
