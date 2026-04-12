@@ -61,6 +61,8 @@ export default function CookieBanner() {
         client_id: clientId,
       }),
     });
+
+    window.dispatchEvent(new Event('cookie-consent-updated'));
     setVisible(false);
   };
 
