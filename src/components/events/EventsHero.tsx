@@ -24,7 +24,8 @@ export default function EventsHero() {
             Padel Camp <span className="text-brand-red">Dates</span>
           </h1>
           <p className="text-white/50 max-w-2xl text-lg font-light">
-            Browse all our upcoming padel coaching holidays in Alicante. Choose your dates and book your spot.
+            Browse our upcoming padel coaching holidays in Alicante. From arrival to departure, our team is on hand
+            24/7 so you can focus on enjoying every moment on and off court.
           </p>
         </motion.div>
       </div>
