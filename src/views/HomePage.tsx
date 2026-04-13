@@ -128,7 +128,9 @@ export default function HomePage() {
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Upcoming Trips</p>
             <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">Next Padel Camps</h2>
             <p className="text-stone-400 leading-relaxed">
-              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel with B&amp;B, plus 6 hours of coaching and 6 hours of social play.
+              Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel
+              with B&amp;B, 6 hours of coaching, 6 hours of social play, welcome gifts and drinks, plus a team on hand
+              24/7 from arrival to departure.
             </p>
           </div>
 
@@ -209,6 +211,10 @@ export default function HomePage() {
                     <div className="flex items-center gap-3 text-stone-400">
                       <Check size={14} className="text-brand-red/70" />
                       <span className="text-sm">6h coaching + 6h social play</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <Check size={14} className="text-brand-red/70" />
+                      <span className="text-sm">Team on hand 24/7</span>
                     </div>
                   </div>
                   <Link

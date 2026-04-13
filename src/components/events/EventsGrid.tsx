@@ -14,17 +14,6 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
   return (
     <section className="py-24 px-6" aria-label="All padel holiday dates and prices">
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-3xl mb-12">
-          <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Next Padel Camps</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark mb-4">
-            Premium Trips, <span className="text-brand-red">Founder-Led Care</span>
-          </h2>
-          <p className="text-stone-500 leading-relaxed">
-            Welcome gifts and arrival drinks are included, and our team is on hand 24/7 from the moment you land
-            until the moment you leave.
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {events.map((event, idx) => (
             // Sold out events remain visible for social proof but cannot be booked.
@@ -100,7 +89,7 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                 </div>
                 <div className="flex items-center gap-3 text-stone-400">
                   <Check size={14} className="shrink-0 text-brand-red/80" />
-                  <span className="text-sm">Welcome gifts + drinks · Team on hand 24/7</span>
+                  <span className="text-sm">Team on hand 24/7</span>
                 </div>
               </div>
 
