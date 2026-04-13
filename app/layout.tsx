@@ -125,6 +125,19 @@ export default function RootLayout({
     inLanguage: 'en',
   };
 
+  const siteNavigationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'SiteNavigationElement', position: 1, name: 'Home', url: `${SITE_URL}/` },
+      { '@type': 'SiteNavigationElement', position: 2, name: 'Events', url: `${SITE_URL}/events` },
+      { '@type': 'SiteNavigationElement', position: 3, name: 'About Us', url: `${SITE_URL}/about` },
+      { '@type': 'SiteNavigationElement', position: 4, name: 'Venues', url: `${SITE_URL}/venues` },
+      { '@type': 'SiteNavigationElement', position: 5, name: 'Tailored Events', url: `${SITE_URL}/tailored-events` },
+      { '@type': 'SiteNavigationElement', position: 6, name: 'Partners', url: `${SITE_URL}/partners` },
+    ],
+  };
+
   return (
     <html lang="en">
       <body className={`${inter.variable} ${montserrat.variable}`}>
@@ -147,6 +160,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
         />
         <AppShell>{children}</AppShell>
       </body>

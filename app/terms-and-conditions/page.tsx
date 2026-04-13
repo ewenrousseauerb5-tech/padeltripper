@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/terms-and-conditions',
   },
+  robots: {
+    index: false,
+    follow: true,
+    googleBot: {
+      index: false,
+      follow: true,
+    },
+  },
 };
 
 export default function TermsAndConditionsPage() {
