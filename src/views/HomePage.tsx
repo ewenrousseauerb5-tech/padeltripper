@@ -247,12 +247,12 @@ export default function HomePage() {
       {/* Full-width social proof banner */}
       <section className="relative h-[50vh] min-h-[350px] flex items-center overflow-hidden" aria-label="Padel Tripper guest experience">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/images/post-tournament-celebration.jpg"
             alt="Padel Tripper group celebrating after a tournament at Club Montemar, Alicante"
+            fill
+            sizes="100vw"
             className="w-full h-full object-cover brightness-[0.3]"
-            loading="lazy"
-            decoding="async"
           />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-center">
@@ -346,21 +346,23 @@ export default function HomePage() {
             >
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
-                  <img
+                  <Image
                     src="/images/bela-center.webp"
                     alt="Social padel match play at Bela Padel Center in Alicante"
+                    width={1600}
+                    height={900}
+                    sizes="(max-width: 1024px) 100vw, 60vw"
                     className="w-full h-[290px] object-cover object-center"
-                    loading="lazy"
-                    decoding="async"
                   />
                 </div>
                 <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm w-[56%] ml-auto -mt-14 relative bg-white">
-                  <img
+                  <Image
                     src="/images/pitu-losada-coach-hd.jpg"
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
+                    width={900}
+                    height={700}
+                    sizes="(max-width: 1024px) 56vw, 28vw"
                     className="w-full h-44 object-cover object-[center_26%]"
-                    loading="lazy"
-                    decoding="async"
                   />
                 </div>
               </div>
@@ -387,12 +389,13 @@ export default function HomePage() {
               className="lg:col-span-5"
             >
               <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
-                <img
+                <Image
                   src="/images/ollie.jpg"
                   alt="Ollie, founder of Padel Tripper, on court in Alicante"
+                  width={900}
+                  height={1200}
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className="w-full h-[520px] object-cover object-[center_34%]"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
             </motion.div>

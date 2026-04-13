@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { ArrowRight, Trophy, Users, Sparkles } from 'lucide-react';
 
@@ -9,13 +10,13 @@ export default function AboutPage() {
     <main>
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/images/group-social-evening.jpg"
             alt="Padel Tripper group in Alicante enjoying the social side of the trip"
+            fill
+            priority
+            sizes="100vw"
             className="w-full h-full object-cover object-top brightness-[0.3]"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         </div>
@@ -45,12 +46,13 @@ export default function AboutPage() {
             className="lg:col-span-5"
           >
             <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
-              <img
+              <Image
                 src="/images/ollie.jpg"
                 alt="Ollie, founder of Padel Tripper"
+                width={900}
+                height={1200}
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="w-full h-[470px] object-cover object-[center_35%]"
-                loading="lazy"
-                decoding="async"
               />
             </div>
           </motion.div>

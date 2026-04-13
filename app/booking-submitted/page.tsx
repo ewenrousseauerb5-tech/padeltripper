@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { CheckCircle2, ChevronRight, MessageCircle } from 'lucide-react';
@@ -38,11 +39,13 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
       </Script>
       <section className="px-4 md:px-6 pt-24 md:pt-28">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[62vh]">
-          <img
+          <Image
             src={confirmationImage}
             alt="Padel Tripper group in Alicante"
+            fill
+            priority
+            sizes="100vw"
             className="absolute inset-0 h-full w-full object-cover object-center"
-            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/80" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/55" />
@@ -112,11 +115,13 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
 
           <aside className="h-full rounded-3xl border border-white/12 bg-white/[0.03] p-5 md:p-6 backdrop-blur-sm">
             <div className="rounded-2xl overflow-hidden border border-white/12 mb-5">
-              <img
+              <Image
                 src={confirmationImage}
                 alt="Padel Tripper players in Alicante"
+                width={900}
+                height={500}
+                sizes="(max-width: 1024px) 100vw, 360px"
                 className="h-44 w-full object-cover"
-                loading="lazy"
               />
             </div>
             <p className="text-brand-red font-semibold uppercase tracking-[0.24em] text-[10px] mb-3">FAQ</p>

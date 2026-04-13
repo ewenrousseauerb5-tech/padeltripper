@@ -1,14 +1,18 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'motion/react';
 
 export default function EventsHero() {
   return (
     <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/images/post-tournament-celebration.jpg"
           alt="Padel Tripper players at Club Montemar, Alicante — Costa Blanca"
+          fill
+          priority
+          sizes="100vw"
           className="w-full h-full object-cover object-top brightness-[0.3]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />

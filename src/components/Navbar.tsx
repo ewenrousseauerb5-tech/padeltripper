@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
@@ -81,9 +82,12 @@ export default function Navbar() {
       )}
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" aria-label="Padel Tripper — Padel holidays Spain">
-          <img
+          <Image
             src={showTransparent ? "/images/logos/logo-white-landscape.png" : "/images/logos/logo-landscape.png"}
             alt="Padel Tripper logo"
+            width={210}
+            height={40}
+            priority
             className={cn(
               "w-auto transition-opacity duration-500",
               showTransparent ? "h-10" : "h-8"
