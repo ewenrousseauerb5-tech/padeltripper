@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
@@ -52,9 +53,12 @@ export default function EventsFaqSection() {
             <p className="text-stone-400 text-sm mb-10 max-w-sm leading-relaxed">
               All the details about your padel holiday in Alicante — from coaching to accommodation.
             </p>
-            <img
+            <Image
               src="/images/pitu-losada-coach.jpg"
               alt="Pitu Losada — 3x World Champion padel coach at Club Atlético Montemar, Alicante"
+              width={1200}
+              height={900}
+              sizes="(max-width: 768px) 100vw, 40vw"
               className="rounded-2xl w-full aspect-[4/3] object-cover shadow-lg hidden md:block"
             />
           </div>

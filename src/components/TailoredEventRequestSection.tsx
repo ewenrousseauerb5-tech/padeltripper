@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { AnimatePresence, motion } from 'motion/react';
 import { CheckCircle2, CalendarDays, Dumbbell, Users } from 'lucide-react';
 
@@ -65,9 +66,12 @@ export default function TailoredEventRequestSection() {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-14 items-center mb-14">
           <div className="relative">
-            <img
+            <Image
               src="/images/padel-coaching-session.jpg"
               alt="Custom padel group event in Alicante — tailored experiences"
+              width={1200}
+              height={900}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="rounded-2xl w-full aspect-[4/3] object-cover shadow-xl"
             />
             <div className="absolute -bottom-6 -right-6 bg-brand-red text-white rounded-2xl p-6 shadow-lg hidden md:block">

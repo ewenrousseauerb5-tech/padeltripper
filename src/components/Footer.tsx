@@ -11,9 +11,11 @@ export default function Footer() {
           {/* Brand column */}
           <div>
             <Link href="/" aria-label="Padel Tripper — Padel holidays Spain">
-              <img
+              <Image
                 src="/images/logos/logo-white-landscape.png"
                 alt="Padel Tripper logo"
+                width={210}
+                height={40}
                 className="h-9 w-auto mb-4"
               />
             </Link>

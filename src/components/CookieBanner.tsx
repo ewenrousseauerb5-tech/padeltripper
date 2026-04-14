@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const consentKey = 'padeltripper_cookie_consent_v1';
@@ -71,7 +72,13 @@ export default function CookieBanner() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[90] border-t border-stone-200 bg-white/98 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-2">
-        <img src="/images/logos/logo-landscape.png" alt="Padel Tripper" className="hidden h-3.5 w-auto sm:block" />
+        <Image
+          src="/images/logos/logo-landscape.png"
+          alt="Padel Tripper"
+          width={140}
+          height={22}
+          className="hidden h-3.5 w-auto sm:block"
+        />
         <p className="min-w-0 flex-1 truncate text-[11px] leading-none text-stone-600">
           We use essential cookies. Optional analytics only with consent.{' '}
           <Link href="/cookie-policy" className="text-brand-red hover:underline">Cookie Policy</Link>

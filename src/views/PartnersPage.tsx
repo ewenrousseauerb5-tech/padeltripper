@@ -76,35 +76,43 @@ export default function PartnersPage() {
 
           <div className="mt-10 grid md:grid-cols-2 gap-4">
             <div className="rounded-2xl overflow-hidden border border-stone-200">
-              <img
+              <Image
                 src="/images/bela-center.webp"
                 alt="Padel partner venue in Alicante"
+                width={1200}
+                height={700}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-52 md:h-56 object-cover object-center"
-                loading="lazy"
               />
             </div>
             <div className="rounded-2xl overflow-hidden border border-stone-200">
-              <img
+              <Image
                 src="/images/group-bela-court.jpg"
                 alt="Padel partner community trip in Alicante"
+                width={1200}
+                height={700}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-52 md:h-56 object-cover object-[center_30%]"
-                loading="lazy"
               />
             </div>
             <div className="rounded-2xl overflow-hidden border border-stone-200">
-              <img
+              <Image
                 src="/images/padel-coaching-session.jpg"
                 alt="Padel partner coaching event in Alicante"
+                width={1200}
+                height={700}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-44 md:h-48 object-cover object-[center_56%]"
-                loading="lazy"
               />
             </div>
             <div className="rounded-2xl overflow-hidden border border-stone-200">
-              <img
+              <Image
                 src="/images/group-social-evening.jpg"
                 alt="Padel social evening for partner communities"
+                width={1200}
+                height={700}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-44 md:h-48 object-cover object-[center_46%]"
-                loading="lazy"
               />
             </div>
             <div className="rounded-xl border border-stone-200 bg-brand-light p-4 md:col-span-2">
