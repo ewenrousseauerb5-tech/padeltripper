@@ -70,10 +70,10 @@ export const metadata: Metadata = {
       'Premium padel holidays in Spain, based in Alicante, with world-class coaching and curated small groups.',
     images: [
       {
-        url: '/images/hero-padel-camp.jpg',
+        url: '/images/post-tournament-celebration.jpg',
         width: 1200,
         height: 630,
-        alt: 'Padel Tripper premium padel retreat in Alicante',
+        alt: 'Padel Tripper group experience in Alicante',
       },
     ],
     locale: 'en_GB',
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     title: 'Padel Tripper | Padel Holidays in Spain (Alicante)',
     description:
       'Premium padel holidays in Spain, based in Alicante, with world-class coaching and curated small groups.',
-    images: ['/images/hero-padel-camp.jpg'],
+    images: ['/images/post-tournament-celebration.jpg'],
   },
   robots: {
     index: true,
