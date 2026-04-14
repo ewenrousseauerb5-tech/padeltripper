@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -20,6 +20,8 @@ const TrustpilotReviewHighlights = dynamic(() => import('../components/Trustpilo
 
 export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
+  const [showTrustpilot, setShowTrustpilot] = useState(false);
+  const trustpilotTriggerRef = useRef<HTMLDivElement | null>(null);
   const homeUpcomingEvents = FUTURE_EVENTS.slice(0, 3);
 
   useEffect(() => {
@@ -48,6 +50,23 @@ export default function HomePage() {
     return () => win.clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+    if (!trustpilotTriggerRef.current || showTrustpilot) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShowTrustpilot(true);
+          observer.disconnect();
+        }
+      },
+      { root: null, rootMargin: '240px 0px', threshold: 0.01 },
+    );
+
+    observer.observe(trustpilotTriggerRef.current);
+    return () => observer.disconnect();
+  }, [showTrustpilot]);
+
   return (
     <main>
       {/* Hero Section */}
@@ -58,6 +77,7 @@ export default function HomePage() {
             alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
             fill
             priority
+            quality={62}
             sizes="100vw"
             className="object-cover brightness-[0.4]"
           />
@@ -134,6 +154,7 @@ export default function HomePage() {
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
                       fill
+                      quality={60}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className={`object-cover transform-gpu [backface-visibility:hidden] group-hover:scale-105 transition-transform duration-700 ${
                         event.imagePosition === 'center'
@@ -237,6 +258,7 @@ export default function HomePage() {
             src="/images/post-tournament-celebration.jpg"
             alt="Padel Tripper group celebrating after a tournament at Club Montemar, Alicante"
             fill
+            quality={58}
             sizes="100vw"
             className="w-full h-full object-cover brightness-[0.3]"
           />
@@ -337,6 +359,7 @@ export default function HomePage() {
                     alt="Social padel match play at Bela Padel Center in Alicante"
                     width={1600}
                     height={900}
+                    quality={60}
                     sizes="(max-width: 1024px) 100vw, 60vw"
                     className="w-full h-[290px] object-cover object-center"
                   />
@@ -347,6 +370,7 @@ export default function HomePage() {
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
                     width={900}
                     height={700}
+                    quality={62}
                     sizes="(max-width: 1024px) 56vw, 28vw"
                     className="w-full h-44 object-cover object-[center_26%]"
                   />
@@ -380,6 +404,7 @@ export default function HomePage() {
                   alt="Ollie, founder of Padel Tripper, on court in Alicante"
                   width={900}
                   height={1200}
+                  quality={62}
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="w-full h-[520px] object-cover object-[center_34%]"
                 />
@@ -426,8 +451,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="pt-6 md:pt-8 bg-white">
-        <TrustpilotReviewHighlights />
+      <div ref={trustpilotTriggerRef} className="pt-6 md:pt-8 bg-white">
+        {showTrustpilot ? (
+          <TrustpilotReviewHighlights />
+        ) : (
+          <section className="pt-16 pb-20 md:pt-28 md:pb-32 px-4 sm:px-6 bg-brand-light">
+            <div className="max-w-7xl mx-auto h-40 rounded-2xl border border-stone-200 bg-white animate-pulse" />
+          </section>
+        )}
       </div>
     </main>
   );
