@@ -248,8 +248,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Full-width social proof banner */}
-      <section className="relative h-[50vh] min-h-[350px] flex items-center overflow-hidden" aria-label="Padel Tripper guest experience">
+      {/* Full-width trust banner */}
+      <section className="relative h-[50vh] min-h-[350px] flex items-center overflow-hidden" aria-label="Padel Tripper trust and protection">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/post-tournament-celebration.jpg"
@@ -266,13 +266,24 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">The Experience</p>
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Trust & Protection</p>
             <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-6">
-              More Than Just <span className="text-brand-red">Padel</span>
+              Book With <span className="text-brand-red">Confidence</span>
             </h2>
-            <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed font-light">
-              From post-tournament celebrations to sunset drinks overlooking the Mediterranean — every trip is packed with unforgettable moments and lifelong friendships.
+            <p className="text-white/75 max-w-2xl mx-auto text-lg leading-relaxed font-light">
+              Padel Tripper is a Protected Trust Services verified partner, giving you added confidence from the moment
+              you book to the moment you return home.
             </p>
+            <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+              <Image
+                src="/images/logos/PTS-Logo.jpg"
+                alt="Protected Trust Services"
+                width={88}
+                height={34}
+                className="h-6 w-auto object-contain"
+              />
+              <span className="text-xs font-semibold uppercase tracking-wider text-white/85">Verified Partner</span>
+            </div>
           </motion.div>
         </div>
       </section>
