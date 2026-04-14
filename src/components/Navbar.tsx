@@ -9,13 +9,11 @@ import { cn } from '../lib/utils';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [showPromo, setShowPromo] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname() ?? '/';
   const isHome = pathname === '/';
   const isMayLanding = pathname === '/may-padel-retreat';
   const isBookingSubmitted = pathname === '/booking-submitted';
-  const hidePromoOnPage = pathname === '/may-padel-retreat' || pathname === '/booking-submitted';
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`));
 
   useEffect(() => {
@@ -41,15 +39,6 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const promoEndsAt = Date.parse('2026-03-31T23:59:59Z');
-    const updatePromoVisibility = () => setShowPromo(Date.now() <= promoEndsAt);
-
-    updatePromoVisibility();
-    const timer = window.setInterval(updatePromoVisibility, 60_000);
-    return () => window.clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
@@ -62,24 +51,6 @@ export default function Navbar() {
         ? "bg-transparent"
         : "bg-white/90 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.06)]"
     )}>
-      {showPromo && !hidePromoOnPage && (
-        <div className="h-8 bg-brand-red text-white overflow-hidden border-b border-black/10">
-          <div className="promo-marquee-inner h-full">
-            <div className="promo-marquee-group h-full">
-              <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
-              <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
-            </div>
-            <div className="promo-marquee-group h-full" aria-hidden="true">
-              <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
-              <span className="mx-8">£100 OFF APRIL 14 EVENT UNTIL 31 MARCH</span>
-              <span className="mx-8">BOOK NOW FROM £645 (WAS £745)</span>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" aria-label="Padel Tripper — Padel holidays Spain">
           <Image
