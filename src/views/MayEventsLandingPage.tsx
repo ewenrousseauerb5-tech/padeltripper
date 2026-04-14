@@ -24,12 +24,6 @@ export default function MayEventsLandingPage() {
 
   useEffect(() => {
     if (window.innerWidth < 768) return;
-
-    const win = window as Window & {
-      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
-      cancelIdleCallback?: (handle: number) => void;
-    };
-
     const connection = (navigator as Navigator & {
       connection?: { saveData?: boolean; effectiveType?: string };
     }).connection;
@@ -38,14 +32,17 @@ export default function MayEventsLandingPage() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (saveDataEnabled || slowNetwork || prefersReducedMotion) return;
 
-    const onIdle = () => setLoadDesktopVideo(true);
-    if (win.requestIdleCallback && win.cancelIdleCallback) {
-      const idleId = win.requestIdleCallback(() => onIdle(), { timeout: 1200 });
-      return () => win.cancelIdleCallback!(idleId);
-    }
+    const enableVideo = () => setLoadDesktopVideo(true);
+    const interactionEvents: Array<keyof WindowEventMap> = ['scroll', 'mousemove', 'pointerdown', 'touchstart', 'keydown'];
+    interactionEvents.forEach((eventName) => {
+      window.addEventListener(eventName, enableVideo, { once: true, passive: true });
+    });
 
-    const timeout = win.setTimeout(onIdle, 400);
-    return () => win.clearTimeout(timeout);
+    return () => {
+      interactionEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, enableVideo as EventListener);
+      });
+    };
   }, []);
 
   return (
