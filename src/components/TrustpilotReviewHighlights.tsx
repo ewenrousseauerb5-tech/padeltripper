@@ -185,12 +185,12 @@ export default function TrustpilotReviewHighlights() {
   }, []);
 
   return (
-    <section className="pt-24 pb-28 md:pt-28 md:pb-32 px-6 bg-brand-light" aria-label="Trustpilot reviews">
+    <section className="pt-16 pb-20 md:pt-28 md:pb-32 px-4 sm:px-6 bg-brand-light" aria-label="Trustpilot reviews">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-7 md:mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="mb-6 md:mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Trustpilot Reviews</p>
-            <h2 className="font-serif text-[30px] md:text-[38px] font-black uppercase leading-tight">
+            <h2 className="font-serif text-[28px] md:text-[38px] font-black uppercase leading-tight">
               What Guests Say About <span className="block text-brand-red">Padel Tripper</span>
             </h2>
             <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white px-4 py-2">
@@ -198,12 +198,12 @@ export default function TrustpilotReviewHighlights() {
               <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">Rating</span>
             </div>
           </div>
-          <div className="md:-translate-y-16 lg:-translate-y-20">
+          <div className="md:-translate-y-16 lg:-translate-y-20 w-full md:w-auto">
             <a
               href={TRUSTPILOT_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-red px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest text-brand-red hover:bg-brand-red hover:text-white transition-colors"
+              className="inline-flex w-full md:w-fit justify-center items-center gap-2 rounded-full border border-brand-red px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest text-brand-red hover:bg-brand-red hover:text-white transition-colors"
             >
               View on Trustpilot
               <ExternalLink size={14} />

@@ -89,7 +89,7 @@ export default function MayEventsLandingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/80" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/55" />
 
-          <div className="relative z-10 p-6 md:p-10 lg:p-12 h-full flex flex-col justify-center">
+          <div className="relative z-10 p-5 sm:p-6 md:p-10 lg:p-12 h-full flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -97,11 +97,11 @@ export default function MayEventsLandingPage() {
               className="max-w-5xl mx-auto text-center md:translate-y-20"
             >
               <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-4">May Padel Voucher</p>
-              <h1 className="font-serif text-4xl md:text-6xl font-black uppercase leading-[0.96] mb-5">
+              <h1 className="font-serif text-[34px] sm:text-4xl md:text-6xl font-black uppercase leading-[0.98] md:leading-[0.96] mb-4 md:mb-5">
                 <span className="md:whitespace-nowrap">Premium Padel Retreats</span>
                 <span className="block text-brand-red">In Alicante</span>
               </h1>
-              <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+              <p className="text-white/85 text-[15px] sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-6 md:mb-8">
                 Two May dates, one premium format. 6h coaching, 6h social play, 4* hotel with B&amp;B, and founder-level hosting throughout the trip.
               </p>
               <div className="mx-auto mb-4 inline-flex items-center rounded-full border border-brand-red/40 bg-black/35 px-5 py-2.5">
@@ -112,7 +112,7 @@ export default function MayEventsLandingPage() {
               </div>
               <a
                 href="#book-now"
-                className="mt-6 flex w-fit mx-auto items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-widest text-brand-dark hover:bg-brand-red hover:text-white transition-colors"
+                className="mt-4 md:mt-6 flex w-full sm:w-fit mx-auto items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-widest text-brand-dark hover:bg-brand-red hover:text-white transition-colors"
               >
                 Reserve My Spot
               </a>
@@ -121,8 +121,8 @@ export default function MayEventsLandingPage() {
         </div>
       </section>
 
-      <section className="py-14 md:py-16 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-4">
+      <section className="py-12 md:py-16 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           <div className="rounded-2xl border border-white/12 bg-white/[0.03] p-5">
             <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">Training</p>
             <p className="font-semibold text-white">6h coaching + 6h social play</p>
@@ -139,14 +139,14 @@ export default function MayEventsLandingPage() {
         </div>
       </section>
 
-      <section className="py-6 md:py-8 px-6">
+      <section className="py-4 md:py-8 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-7 md:mb-8">
             <p className="text-brand-red font-semibold uppercase tracking-[0.28em] text-xs mb-3">Choose Your Date</p>
             <h2 className="font-serif text-3xl md:text-4xl font-black uppercase">May Event Options</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
             {mayEvents.map(event => {
               if (!event) return null;
               const selected = selectedEventId === event.id;
@@ -157,7 +157,7 @@ export default function MayEventsLandingPage() {
                   type="button"
                   onClick={() => setSelectedEventId(event.id)}
                   aria-pressed={selected}
-                  className={`text-left rounded-2xl border p-6 transition-all ${
+                  className={`text-left rounded-2xl border p-5 md:p-6 transition-all ${
                     selected
                       ? 'border-brand-red bg-white/[0.08] ring-2 ring-brand-red/25'
                       : 'border-white/12 bg-white/[0.02] hover:border-white/25'
@@ -165,12 +165,12 @@ export default function MayEventsLandingPage() {
                 >
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-[10px] uppercase tracking-[0.2em] text-white/55">{event.status}</span>
-                    <span className="font-serif text-xl md:text-2xl font-black text-brand-red">
+                    <span className="font-serif text-lg md:text-2xl font-black text-brand-red">
                       <span className="mr-2 text-white/50 line-through text-base md:text-lg">{toDualCurrencyDisplay('£745')}</span>
                       <span>{toDualCurrencyDisplay('£645')}</span>
                     </span>
                   </div>
-                  <h3 className="font-serif text-3xl font-black mb-4">{event.dateShort}</h3>
+                  <h3 className="font-serif text-[28px] md:text-3xl font-black mb-4">{event.dateShort}</h3>
                   <div className="space-y-2.5 text-white/75">
                     <div className="flex items-center gap-3">
                       <Calendar size={15} className="text-brand-red/80" />
@@ -196,7 +196,7 @@ export default function MayEventsLandingPage() {
         </div>
       </section>
 
-      <section id="book-now" className="py-16 md:py-20 px-6">
+      <section id="book-now" className="py-14 md:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="mb-4 rounded-xl border border-brand-red/35 bg-brand-red/10 px-4 py-3 text-center text-xs md:text-sm font-semibold text-white">
             Voucher offer available: £100 off selected dates (limited time).

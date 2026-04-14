@@ -39,21 +39,21 @@ export default function EventsPage() {
       <EventsGrid events={FUTURE_EVENTS} onSelectEvent={setSelectedEventId} />
 
       {/* Booking Form */}
-      <section id="booking" className="py-24 bg-brand-dark px-6" aria-label="Book your padel holiday in Alicante">
+      <section id="booking" className="py-16 md:py-24 bg-brand-dark px-4 sm:px-6" aria-label="Book your padel holiday in Alicante">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-8 md:mb-10 max-w-3xl">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-black text-white uppercase mb-6">
+            <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-5 md:mb-6">
               Book Your <span className="text-brand-red">Trip</span>
             </h2>
-            <p className="text-white/40 leading-relaxed font-light">
+            <p className="text-white/50 leading-relaxed font-light text-[15px] md:text-base">
               Fill in the form and we&apos;ll confirm your spot within 24 hours. Got a question first? Drop us a message on WhatsApp.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-6 lg:gap-8 items-start">
-            <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl">
+          <div className="grid lg:grid-cols-[minmax(0,1.18fr)_340px] gap-5 md:gap-6 lg:gap-8 items-start">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-2xl">
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 

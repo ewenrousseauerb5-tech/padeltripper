@@ -169,7 +169,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-7 pb-3 md:pb-4">
+    <form onSubmit={handleSubmit} className="space-y-6 md:space-y-7 pb-2 md:pb-4">
       <div>
         <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-red mb-5">Quotation Request</p>
         <div className="mb-5 rounded-xl border border-stone-200 bg-stone-50/80 px-4 py-3">
