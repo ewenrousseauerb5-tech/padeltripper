@@ -53,26 +53,14 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden" aria-label="Padel holidays Spain hero">
         <div className="absolute inset-0 z-0">
-          <div className="md:hidden absolute inset-0">
-            <Image
-              src="/images/foto-movil-1.jpeg"
-              alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover brightness-[0.4]"
-            />
-          </div>
-          <div className="hidden md:block absolute inset-0">
-            <Image
-              src="/images/hero-padel-camp.jpg"
-              alt="Padel Tripper guests enjoying a premium retreat in Alicante"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover brightness-[0.4]"
-            />
-          </div>
+          <Image
+            src="/images/foto-movil-1.jpeg"
+            alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover brightness-[0.4]"
+          />
           <video
             className={`hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4] transition-opacity duration-500 ${
               loadDesktopVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -147,8 +135,6 @@ export default function HomePage() {
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      loading={idx === 0 ? 'eager' : 'lazy'}
-                      fetchPriority={idx === 0 ? 'high' : 'auto'}
                       className={`object-cover transform-gpu [backface-visibility:hidden] group-hover:scale-105 transition-transform duration-700 ${
                         event.imagePosition === 'center'
                           ? 'object-center'

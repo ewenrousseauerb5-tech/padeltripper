@@ -52,26 +52,14 @@ export default function MayEventsLandingPage() {
     <main className="bg-[#0b0d10] text-white">
       <section className="px-4 md:px-6 pt-24 md:pt-28">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 relative min-h-[66vh] md:min-h-[78vh]">
-          <div className="md:hidden absolute inset-0">
-            <Image
-              src="/images/group-bela-court.jpg"
-              alt="Padel retreat in Alicante"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-          <div className="hidden md:block absolute inset-0">
-            <Image
-              src="/images/group-bela-court.jpg"
-              alt="Padel retreat in Alicante"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
+          <Image
+            src="/images/group-bela-court.jpg"
+            alt="Padel retreat in Alicante"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
           <video
             className={`hidden md:block absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ${
               loadDesktopVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
