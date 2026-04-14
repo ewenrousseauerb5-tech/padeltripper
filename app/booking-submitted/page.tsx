@@ -28,7 +28,9 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
     <main className="bg-[#0b0d10] text-white min-h-screen">
       <Script id="google-ads-request-quote-conversion" strategy="afterInteractive">
         {`
-          if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          if (typeof window !== 'undefined') {
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
             window.gtag('event', 'conversion', {
               send_to: 'AW-17214304135/t7mZCMe0itwaEIfftZBA',
               value: 1.0,

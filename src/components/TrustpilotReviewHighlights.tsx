@@ -126,8 +126,11 @@ function ReviewerAvatar({
       <img
         src={review.avatarUrl}
         alt={`${review.name} profile`}
+        width={73}
+        height={73}
         className={`${sizeClass} rounded-full border border-stone-200 object-cover`}
         loading="lazy"
+        decoding="async"
         onError={() => setImgError(true)}
       />
     );

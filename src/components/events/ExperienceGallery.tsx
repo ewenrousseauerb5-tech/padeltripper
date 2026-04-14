@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -42,16 +43,22 @@ export default function ExperienceGallery() {
         <div className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-4 md:p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
           <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={currentSlide}
-                src={CAROUSEL_PHOTOS[currentSlide].src}
-                alt={CAROUSEL_PHOTOS[currentSlide].alt}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+                className="absolute inset-0"
+              >
+                <Image
+                  src={CAROUSEL_PHOTOS[currentSlide].src}
+                  alt={CAROUSEL_PHOTOS[currentSlide].alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 900px"
+                  className="object-cover"
+                />
+              </motion.div>
             </AnimatePresence>
           </div>
 

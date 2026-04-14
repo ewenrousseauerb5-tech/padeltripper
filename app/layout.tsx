@@ -143,9 +143,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${montserrat.variable}`}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17214304135"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-ads-gtag-init" strategy="afterInteractive">
+        <Script id="google-ads-gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
