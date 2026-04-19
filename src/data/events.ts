@@ -155,7 +155,6 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
-    eligibilityNote: 'Beginner-friendly: for players new to padel up to 1.0 on Playtomic (or equivalent)',
   },
   {
     id: 94,
