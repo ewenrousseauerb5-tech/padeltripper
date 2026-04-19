@@ -42,16 +42,16 @@ function AccordionItem({ title, children, defaultOpen = false }: { title: string
 
 export default function EventsFaqSection() {
   return (
-    <section className="py-28 bg-brand-light px-6" aria-label="Padel holiday package information">
+    <section id="full-itinerary" className="py-28 bg-brand-light px-6" aria-label="Padel holiday package information">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="md:sticky md:top-28">
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">FAQ</p>
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Full Itinerary & FAQ</p>
             <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-tight mb-4">
-              Everything You<br />Need to <span className="text-brand-red">Know</span>
+              Your <span className="text-brand-red">Full Trip</span><br />Itinerary
             </h2>
             <p className="text-stone-400 text-sm mb-10 max-w-sm leading-relaxed">
-              All the details about your padel holiday in Alicante — from coaching to accommodation.
+              Start with the full day-by-day schedule, then check the key FAQs about coaching, flights and hotel details.
             </p>
             <Image
               src="/images/pitu-losada-coach.jpg"

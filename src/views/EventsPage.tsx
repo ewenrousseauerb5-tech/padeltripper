@@ -57,84 +57,63 @@ export default function EventsPage() {
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            <div className="space-y-3">
-              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5 space-y-3">
-                <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                    <Mail size={18} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
-                    <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
-                  </div>
+            <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5 space-y-3">
+              <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
+                  <Mail size={18} />
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                    <Phone size={18} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
-                    <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                      +44 7939870682
-                    </a>
-                  </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
+                  <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                    <Instagram size={18} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Instagram</p>
-                    <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                      @padeltripper
-                    </a>
-                  </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
+                  <Phone size={18} />
                 </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
+                  <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                    +44 7939870682
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
+                  <Instagram size={18} />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Instagram</p>
+                  <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
+                    @padeltripper
+                  </a>
+                </div>
+              </div>
 
-                <div className="mt-2 rounded-xl border border-white/12 bg-white/[0.03] p-3">
-                  <p className="text-[10px] uppercase tracking-widest text-white/35 font-semibold mb-2">Trust</p>
-                  <div className="flex items-center gap-3">
-                    <Image
-                      src="/images/logos/PTS-Logo.jpg"
-                      alt="Protected Trust Services"
-                      width={88}
-                      height={34}
-                      className="h-7 w-auto object-contain"
-                    />
-                    <p className="text-[12px] text-white/70 leading-relaxed">
-                      Protected Trust Services verified partner.
-                    </p>
-                  </div>
+              <div className="mt-2 rounded-xl border border-white/12 bg-white/[0.03] p-3">
+                <p className="text-[10px] uppercase tracking-widest text-white/35 font-semibold mb-2">Trust</p>
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/images/logos/PTS-Logo.jpg"
+                    alt="Protected Trust Services"
+                    width={88}
+                    height={34}
+                    className="h-7 w-auto object-contain"
+                  />
+                  <p className="text-[12px] text-white/70 leading-relaxed">
+                    Protected Trust Services verified partner.
+                  </p>
                 </div>
-              </aside>
+              </div>
 
-              <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-5 md:p-6">
-                <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-3">Trip At A Glance</p>
-                <h3 className="font-serif text-[26px] font-black text-white uppercase leading-tight mb-3">
-                  Basic <span className="text-brand-red">Itinerary</span>
-                </h3>
-
-                <div className="space-y-2.5">
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Tuesday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">Arrival, hotel check-in and welcome drinks in the evening.</p>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Wednesday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">Morning coaching at Montemar and afternoon social games at Bela.</p>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Thursday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">More coaching + social play, then optional night out in Alicante.</p>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-white text-sm font-semibold mb-1">Friday</p>
-                    <p className="text-white/60 text-[13px] leading-relaxed">Final coaching session, then departures after midday.</p>
-                  </div>
-                </div>
-              </aside>
-            </div>
+              <a
+                href="#full-itinerary"
+                className="block rounded-xl border border-brand-red/60 bg-brand-red/10 px-3 py-2.5 text-[12px] font-semibold uppercase tracking-widest text-white/90 hover:bg-brand-red/20 transition-colors"
+              >
+                View Full Itinerary Below
+              </a>
+            </aside>
           </div>
         </div>
       </section>
