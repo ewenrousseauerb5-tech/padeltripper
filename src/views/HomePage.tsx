@@ -64,7 +64,7 @@ export default function HomePage() {
             alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
             fill
             priority
-            quality={62}
+            quality={46}
             sizes="100vw"
             className="object-cover brightness-[0.4] md:hidden"
           />
@@ -141,7 +141,7 @@ export default function HomePage() {
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
                       fill
-                      quality={60}
+                      quality={46}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className={`object-cover transform-gpu [backface-visibility:hidden] group-hover:scale-105 transition-transform duration-700 ${
                         event.imagePosition === 'center'
@@ -245,7 +245,7 @@ export default function HomePage() {
             src="/images/post-tournament-celebration.jpg"
             alt="Padel Tripper group celebrating after a tournament at Club Montemar, Alicante"
             fill
-            quality={58}
+            quality={44}
             sizes="100vw"
             className="w-full h-full object-cover brightness-[0.3]"
           />
@@ -357,7 +357,7 @@ export default function HomePage() {
                     alt="Social padel match play at Bela Padel Center in Alicante"
                     width={1600}
                     height={900}
-                    quality={60}
+                    quality={48}
                     sizes="(max-width: 1024px) 100vw, 60vw"
                     className="w-full h-[290px] object-cover object-center"
                   />
@@ -368,7 +368,7 @@ export default function HomePage() {
                     alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
                     width={900}
                     height={700}
-                    quality={62}
+                    quality={46}
                     sizes="(max-width: 1024px) 56vw, 28vw"
                     className="w-full h-44 object-cover object-[center_26%]"
                   />
@@ -402,7 +402,7 @@ export default function HomePage() {
                   alt="Ollie, founder of Padel Tripper, on court in Alicante"
                   width={900}
                   height={1200}
-                  quality={62}
+                  quality={48}
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="w-full h-[520px] object-cover object-[center_34%]"
                 />

@@ -46,7 +46,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
-    image: '/images/padel-coaching-session.jpg',
+    image: '/images/padel-coaching-session-optimized.jpg',
     imagePosition: 'center',
     eligibilityNote: 'Only for players rated 3.0+ on Playtomic (or equivalent)',
   },
