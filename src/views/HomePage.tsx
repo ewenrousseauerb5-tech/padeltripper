@@ -34,17 +34,7 @@ export default function HomePage() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (saveDataEnabled || slowNetwork || prefersReducedMotion) return;
 
-    const enableVideo = () => setLoadDesktopVideo(true);
-    const interactionEvents: Array<keyof WindowEventMap> = ['scroll', 'mousemove', 'pointerdown', 'touchstart', 'keydown'];
-    interactionEvents.forEach((eventName) => {
-      window.addEventListener(eventName, enableVideo, { once: true, passive: true });
-    });
-
-    return () => {
-      interactionEvents.forEach((eventName) => {
-        window.removeEventListener(eventName, enableVideo as EventListener);
-      });
-    };
+    setLoadDesktopVideo(true);
   }, []);
 
   useEffect(() => {
@@ -76,17 +66,17 @@ export default function HomePage() {
             priority
             quality={62}
             sizes="100vw"
-            className="object-cover brightness-[0.4]"
+            className="object-cover brightness-[0.4] md:hidden"
           />
           <video
-            className={`hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4] transition-opacity duration-500 ${
+            className={`hidden md:block absolute inset-0 w-full h-full object-cover brightness-[0.4] ${
               loadDesktopVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}
             autoPlay
             muted
             loop
             playsInline
-            preload="none"
+            preload="auto"
             aria-hidden="true"
           >
             {loadDesktopVideo ? <source src="/videos/hero-background.m4v" type="video/mp4" media="(min-width: 768px)" /> : null}
