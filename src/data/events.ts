@@ -110,6 +110,8 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
+    image: '/images/group-photo.jpg',
+    imagePosition: 'lower',
   },
   {
     id: 91,
@@ -125,6 +127,8 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
+    image: '/images/group-bela-court.jpg',
+    imagePosition: 'slightLower',
   },
   {
     id: 92,
@@ -140,6 +144,8 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
+    image: '/images/group-photo.jpg',
+    imagePosition: 'lower',
   },
   {
     id: 93,
@@ -155,6 +161,8 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
+    image: '/images/group-bela-court.jpg',
+    imagePosition: 'slightLower',
   },
   {
     id: 94,
@@ -170,6 +178,8 @@ export const ALL_EVENTS: PadelEvent[] = [
     max: 16,
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
+    image: '/images/group-photo.jpg',
+    imagePosition: 'lower',
   },
 ];
 
