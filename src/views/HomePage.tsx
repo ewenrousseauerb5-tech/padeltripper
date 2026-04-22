@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
-import { FUTURE_EVENTS } from '../data/events';
+import { FUTURE_EVENTS, getVisiblePromoNote } from '../data/events';
 import { toDualCurrencyDisplay } from '../lib/pricing';
 
 const TrustpilotReviewHighlights = dynamic(() => import('../components/TrustpilotReviewHighlights'), {
@@ -180,9 +180,9 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="space-y-2 mb-5 flex-1">
-                    {event.promoNote && (
+                    {getVisiblePromoNote(event) && (
                       <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                        {event.promoNote}
+                        {getVisiblePromoNote(event)}
                       </p>
                     )}
                     {event.eligibilityNote && (

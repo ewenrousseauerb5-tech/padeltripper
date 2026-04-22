@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { Calendar, Check, Clock, MapPin, Star } from 'lucide-react';
-import type { PadelEvent } from '@/src/data/events';
+import { getVisiblePromoNote, type PadelEvent } from '@/src/data/events';
 import { toDualCurrencyDisplay } from '@/src/lib/pricing';
 
 interface EventsGridProps {
@@ -57,9 +57,9 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
               </div>
 
               <div className="relative z-[2] space-y-2 mb-6 md:mb-7 flex-1">
-                {event.promoNote && (
+                {getVisiblePromoNote(event) && (
                   <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                    {event.promoNote}
+                    {getVisiblePromoNote(event)}
                   </p>
                 )}
                 {event.eligibilityNote && (

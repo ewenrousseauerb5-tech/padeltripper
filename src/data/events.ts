@@ -19,6 +19,20 @@ export interface PadelEvent {
   formatNote?: string;
 }
 
+const EARLY_BIRD_HIDE_FROM_UTC = new Date('2026-06-30T00:00:00Z');
+
+export function getVisiblePromoNote(event: PadelEvent): string | undefined {
+  if (!event.promoNote) return undefined;
+
+  const isEarlyBirdCopy = event.promoNote.toLowerCase().includes('book before 30 june');
+  if (!isEarlyBirdCopy) return event.promoNote;
+
+  const now = new Date();
+  if (now >= EARLY_BIRD_HIDE_FROM_UTC) return undefined;
+
+  return event.promoNote;
+}
+
 export const ALL_EVENTS: PadelEvent[] = [
   {
     id: 68,

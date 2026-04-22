@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import { ALL_EVENTS, FUTURE_EVENTS } from '../data/events';
+import { ALL_EVENTS, FUTURE_EVENTS, getVisiblePromoNote } from '../data/events';
 import { toDualCurrencyDisplay } from '../lib/pricing';
 
 interface BookingFormProps {
@@ -196,7 +196,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
                     {event.originalPrice
                       ? ` (was ${toDualCurrencyDisplay(event.originalPrice)})`
                       : (priceOverrides?.[event.id] && priceOverrides[event.id] !== event.price ? ` (was ${toDualCurrencyDisplay(event.price)})` : '')}
-                    {event.promoNote ? ` - ${event.promoNote}` : ''}
+                    {getVisiblePromoNote(event) ? ` - ${getVisiblePromoNote(event)}` : ''}
                     {event.eligibilityNote ? ` (${event.eligibilityNote})` : ''}
                   </option>
                 ))}
