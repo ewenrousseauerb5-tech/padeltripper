@@ -89,7 +89,7 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                 </div>
                 <div className="flex items-center gap-3 text-stone-400">
                   <Check size={14} className="shrink-0 text-brand-red/80" />
-                  <span className="text-[13px] sm:text-sm">Team on hand 24/7</span>
+                  <span className="text-[13px] sm:text-sm">Welcome gifts, team night out &amp; photo album</span>
                 </div>
               </div>
 

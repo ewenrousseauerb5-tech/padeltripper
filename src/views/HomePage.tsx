@@ -124,8 +124,8 @@ export default function HomePage() {
             <h2 className="font-serif text-4xl md:text-5xl font-black uppercase mb-5">Next Padel Camps</h2>
             <p className="text-stone-400 leading-relaxed">
               Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel
-              with B&amp;B, 6 hours of coaching, 6 hours of social play, welcome gifts and drinks, plus a team on hand
-              24/7 from arrival to departure.
+              with B&amp;B, 6 hours of coaching, 6 hours of social play, welcome gifts, a team night out and a trip
+              photo album.
             </p>
           </div>
 
@@ -208,7 +208,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-center gap-3 text-stone-400">
                       <Check size={14} className="text-brand-red/70" />
-                      <span className="text-sm">Team on hand 24/7</span>
+                      <span className="text-sm">Welcome gifts, team night out &amp; photo album</span>
                     </div>
                   </div>
                   <Link
@@ -293,8 +293,8 @@ export default function HomePage() {
                 That&apos;s exactly why Padel Tripper exists.
               </p>
               <p>
-                From the moment you arrive, our team is on hand 24/7 to make sure everything runs seamlessly,
-                giving you a premium experience on and off the court.
+                From the moment you arrive, everything is built to feel premium and personal, including welcome gifts,
+                team evenings and a full trip photo album.
               </p>
             </div>
           </div>
@@ -380,7 +380,7 @@ export default function HomePage() {
           <div className="rounded-2xl border border-stone-800 bg-[#141414] px-6 py-5 md:px-8 md:py-6">
             <p className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-2">The Combination</p>
             <p className="font-serif text-lg md:text-[19px] font-bold leading-snug text-stone-100 max-w-none md:whitespace-nowrap">
-              Elite Coaching (AM) <span className="text-brand-red">+</span> Spanish Club Match Play (PM) <span className="text-brand-red">+</span> 24/7 Team Support <span className="text-brand-red">=</span> A Premium Padel Experience
+              Elite Coaching (AM) <span className="text-brand-red">+</span> Spanish Club Match Play (PM) <span className="text-brand-red">+</span> Welcome Gifts &amp; Team Socials <span className="text-brand-red">=</span> A Premium Padel Experience
             </p>
           </div>
         </div>
