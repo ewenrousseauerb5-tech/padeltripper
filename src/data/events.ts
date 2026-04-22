@@ -16,6 +16,7 @@ export interface PadelEvent {
   eligibilityNote?: string;
   originalPrice?: string;
   promoNote?: string;
+  formatNote?: string;
 }
 
 export const ALL_EVENTS: PadelEvent[] = [
@@ -192,6 +193,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     price: '£545.00',
     originalPrice: '£645.00',
     promoNote: 'Play-only format: 4 hours per day',
+    formatNote: 'Play-only format: 4 hours of padel per day',
     filled: 0,
     max: 16,
     location: 'Alicante, Spain',

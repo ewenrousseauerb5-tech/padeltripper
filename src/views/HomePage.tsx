@@ -204,7 +204,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-center gap-3 text-stone-400">
                       <Check size={14} className="text-brand-red/70" />
-                      <span className="text-sm">6h coaching + 6h social play</span>
+                      <span className="text-sm">{event.formatNote || '6h coaching + 6h social play'}</span>
                     </div>
                     <div className="flex items-center gap-3 text-stone-400">
                       <Check size={14} className="text-brand-red/70" />
