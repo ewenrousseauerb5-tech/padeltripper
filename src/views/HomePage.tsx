@@ -242,7 +242,7 @@ export default function HomePage() {
       <section className="relative h-[50vh] min-h-[350px] flex items-center overflow-hidden" aria-label="Padel Tripper trust and protection">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/post-tournament-celebration.jpg"
+            src="/images/post-tournament-celebration-mobile.jpg"
             alt="Padel Tripper group celebrating after a tournament at Club Montemar, Alicante"
             fill
             quality={44}
