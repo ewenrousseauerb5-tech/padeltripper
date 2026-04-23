@@ -17,29 +17,3 @@
 ::selection {
   background-color: #d9454540;
 }
-
-@keyframes promo-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.promo-marquee-inner {
-  display: flex;
-  width: max-content;
-  animation: promo-marquee-scroll 22s linear infinite;
-}
-
-.promo-marquee-group {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
