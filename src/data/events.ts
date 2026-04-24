@@ -120,7 +120,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     status: 'Available',
     price: '£645.00',
     originalPrice: '£745.00',
-    promoNote: 'Early Bird Offer · Book before 30 June',
+    promoNote: 'Special Offer on this date',
     filled: 5,
     max: 16,
     location: 'Alicante, Spain',
