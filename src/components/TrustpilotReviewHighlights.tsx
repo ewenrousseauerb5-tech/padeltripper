@@ -95,6 +95,15 @@ const reviews: Review[] = [
     excerpt: 'Loved every second. Thank you for making our week so memorable.',
     rating: 5,
   },
+  {
+    name: 'Hannah',
+    country: 'United Kingdom',
+    flag: '🇬🇧',
+    date: '24 Apr 2026',
+    title: 'Great organisation throughout',
+    excerpt: 'Ollie was great throughout, everything ran smoothly and it all felt very relaxed and well organised.',
+    rating: 5,
+  },
 ];
 
 function stars(count: number) {
