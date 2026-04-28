@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 export const runtime = 'edge';
 
 type Entity = 'booking' | 'participant' | 'event' | 'partner' | 'tailored_request';
-type Mode = 'create' | 'update';
+type Mode = 'create' | 'update' | 'delete';
 
 interface RecordsPayload {
   entity?: Entity;
@@ -38,7 +38,7 @@ function parseEntity(value: unknown): Entity | null {
 }
 
 function parseMode(value: unknown): Mode | null {
-  if (value === 'create' || value === 'update') return value;
+  if (value === 'create' || value === 'update' || value === 'delete') return value;
   return null;
 }
 
@@ -60,8 +60,8 @@ export async function POST(request: Request) {
     if (!entity || !mode) {
       return Response.json({ ok: false, error: 'Invalid entity or mode.' }, { status: 400 });
     }
-    if (mode === 'update' && (!id || id <= 0)) {
-      return Response.json({ ok: false, error: 'Valid id required for updates.' }, { status: 400 });
+    if ((mode === 'update' || mode === 'delete') && (!id || id <= 0)) {
+      return Response.json({ ok: false, error: 'Valid id required for updates/deletes.' }, { status: 400 });
     }
 
     const supabase = createClient(supabaseUrl, supabaseKey);
@@ -111,6 +111,14 @@ export async function POST(request: Request) {
     }
 
     if (entity === 'booking') {
+      if (mode === 'delete') {
+        await supabase.from('participants').delete().eq('quotation_id', id as number);
+        await supabase.from('booking_workflows').delete().eq('quotation_id', id as number);
+        const deleteRes = await supabase.from('quotations').delete().eq('id', id as number);
+        if (deleteRes.error) throw deleteRes.error;
+        return Response.json({ ok: true });
+      }
+
       const payload = Object.fromEntries(
         Object.entries({
           event_id: pickNumber(values.event_id),

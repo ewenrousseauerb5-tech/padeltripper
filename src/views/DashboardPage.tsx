@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Pencil } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 
 type DashboardTab = 'bookings' | 'participants' | 'partners' | 'events' | 'tailored_requests';
 
@@ -184,6 +184,7 @@ export default function DashboardPage() {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingValues, setEditingValues] = useState<Record<string, string>>({});
   const [savingEdit, setSavingEdit] = useState(false);
+  const [deletingBookingId, setDeletingBookingId] = useState<number | null>(null);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem('dashboard-theme');
@@ -451,6 +452,33 @@ export default function DashboardPage() {
     window.location.href = '/dashboard/login';
   };
 
+  const deleteBooking = async (booking: BookingRow) => {
+    const leadName = booking.full_name || `Booking #${booking.id}`;
+    const confirmed = window.confirm(`Delete ${leadName}? This will permanently remove the quotation and related workflow/participants.`);
+    if (!confirmed) return;
+
+    setDeletingBookingId(booking.id);
+    setError('');
+    try {
+      const response = await fetch('/api/dashboard/records', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          entity: 'booking',
+          mode: 'delete',
+          id: booking.id,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result?.ok) throw new Error(result?.error || 'Could not delete quotation.');
+      await loadDashboard();
+    } catch (deleteError) {
+      setError(deleteError instanceof Error ? deleteError.message : 'Could not delete quotation.');
+    } finally {
+      setDeletingBookingId(null);
+    }
+  };
+
   const isLight = theme === 'light';
 
   return (
@@ -682,6 +710,17 @@ export default function DashboardPage() {
                                 }`}
                               >
                                 <Pencil size={12} />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => void deleteBooking(booking)}
+                                disabled={deletingBookingId === booking.id}
+                                aria-label={`Delete booking ${booking.id}`}
+                                className={`rounded-full border border-rose-400/55 bg-transparent p-1.5 transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
+                                  isLight ? 'text-rose-700 hover:bg-rose-600 hover:text-white' : 'text-rose-200 hover:bg-rose-500 hover:text-white'
+                                }`}
+                              >
+                                <Trash2 size={12} />
                               </button>
                             </div>
                           </td>
