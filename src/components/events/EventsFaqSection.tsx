@@ -97,6 +97,14 @@ export default function EventsFaqSection() {
               </div>
             </AccordionItem>
 
+            <AccordionItem title="How does payment work?">
+              <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
+                <p>If you&apos;re booking more than 93 days before the event, you can lock in your spot with a small deposit: <strong className="text-brand-dark">&pound;150 or &euro;175</strong>.</p>
+                <p>The remaining balance is then due closer to the trip date, and we&apos;ll confirm the timeline clearly by email.</p>
+                <p>If you&apos;re booking inside 93 days, payment is made in full at the time of booking.</p>
+              </div>
+            </AccordionItem>
+
             <AccordionItem title="How do I get from the airport to the hotel?">
               <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
                 <p>Taxis from Alicante airport are easy to find and reliable — expect to pay around €35–40 and the journey takes roughly 20 minutes.</p>
