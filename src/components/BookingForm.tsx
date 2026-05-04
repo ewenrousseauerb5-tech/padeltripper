@@ -178,21 +178,25 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
         <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-red mb-5">Inquiry Request</p>
         <div className="mb-5 rounded-xl border border-stone-200 bg-stone-50/80 px-4 py-3">
           {selectedEvent ? (
-            <p className="text-xs text-stone-600 leading-relaxed">
-              <span className="font-semibold text-brand-dark">
-                {selectedEventOriginalPrice ? (
-                  <>
-                    <span className="line-through text-stone-400 mr-1">{toDualCurrencyDisplay(selectedEventOriginalPrice)}</span>
-                    {toDualCurrencyDisplay(selectedEventPrice as string)}
-                  </>
-                ) : (
-                  toDualCurrencyDisplay(selectedEventPrice as string)
-                )}{' '}
-                per person
-              </span>{' '}
-              based on 2 sharing {' '}<span className="text-stone-400">|</span>{' '}
-              <span className="font-semibold text-brand-dark">{toDualCurrencyDisplay('£150.00')}</span> single room supplement
-            </p>
+            <div className="text-xs text-stone-600 leading-relaxed space-y-1">
+              <p>
+                <span className="font-semibold text-brand-dark">Trip price:</span>{' '}
+                <span className="font-semibold text-brand-dark">
+                  {selectedEventOriginalPrice ? (
+                    <>
+                      <span className="line-through text-stone-400 mr-1">{toDualCurrencyDisplay(selectedEventOriginalPrice)}</span>
+                      {toDualCurrencyDisplay(selectedEventPrice as string)}
+                    </>
+                  ) : (
+                    toDualCurrencyDisplay(selectedEventPrice as string)
+                  )}
+                </span>
+              </p>
+              <p>
+                <span className="font-semibold text-brand-dark">Single room supplement:</span>{' '}
+                <span className="font-semibold text-brand-dark">{toDualCurrencyDisplay('£150.00')}</span>
+              </p>
+            </div>
           ) : (
             <p className="text-xs text-stone-600 leading-relaxed">
               Select a date to see the exact price for that event.
