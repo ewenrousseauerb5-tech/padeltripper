@@ -171,7 +171,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   return (
     <form onSubmit={handleSubmit} className="space-y-6 md:space-y-7 pb-2 md:pb-4">
       <div>
-        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-red mb-5">Quotation Request</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-red mb-5">Inquiry Request</p>
         <div className="mb-5 rounded-xl border border-stone-200 bg-stone-50/80 px-4 py-3">
           <p className="text-xs text-stone-600 leading-relaxed">
             <span className="font-semibold text-brand-dark">{toDualCurrencyDisplay('£745.00')} per person</span> based on 2 sharing
@@ -306,7 +306,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
         disabled={status === 'loading'}
         className="w-full py-4 rounded-full bg-brand-red text-white font-semibold uppercase tracking-[0.15em] hover:bg-brand-dark disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
-        {status === 'loading' ? 'Submitting...' : 'Submit Quotation Request'}
+        {status === 'loading' ? 'Submitting...' : 'Submit Inquiry Request'}
       </button>
       <p className="text-center text-stone-400 text-sm">We&apos;ll confirm your quotation by email within 24 hours.</p>
     </form>

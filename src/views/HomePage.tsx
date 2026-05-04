@@ -125,7 +125,7 @@ export default function HomePage() {
             <p className="text-stone-400 leading-relaxed">
               Our next padel coaching holidays in Alicante are filling up. Every package includes 4&#8209;star hotel
               with B&amp;B, 6 hours of coaching, 6 hours of social play, welcome gifts, a team night out and a trip
-              photo album.
+              photo album. Flights not included.
             </p>
           </div>
 
@@ -312,11 +312,11 @@ export default function HomePage() {
                   <span className="absolute left-[-11px] top-0 h-6 w-6 rounded-full bg-brand-red text-white text-[10px] font-bold flex items-center justify-center">AM</span>
                   <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-stone-500 mb-2">
                     <Trophy size={13} className="text-brand-red" />
-                    Pitu Losada Academy at Montemar
+                    Elite Coaching Network in Alicante
                   </p>
                   <h3 className="font-serif text-lg md:text-xl font-black text-brand-dark mb-2">World-Class Coaching Environment</h3>
                   <p className="text-stone-600 leading-relaxed">
-                    Morning sessions follow the Pitu Losada Academy methodology at Club Atlético Montemar, focused on real improvement and high-level technical work.
+                    Morning sessions follow proven high-performance methods across our trusted partner clubs in Alicante, always focused on real improvement and high-level technical work.
                   </p>
                 </div>
 
