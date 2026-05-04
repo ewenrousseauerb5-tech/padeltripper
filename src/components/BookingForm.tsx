@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import { ALL_EVENTS, FUTURE_EVENTS, getVisiblePromoNote } from '../data/events';
+import { ALL_EVENTS, FUTURE_EVENTS } from '../data/events';
 import { toDualCurrencyDisplay } from '../lib/pricing';
 
 interface BookingFormProps {
@@ -102,6 +102,10 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const selectedEvent = ALL_EVENTS.find(event => String(event.id) === eventId);
   const selectableEvents = FUTURE_EVENTS.filter(event => event.status !== 'Sold Out');
   const getDisplayPrice = (event: { id: number; price: string }) => priceOverrides?.[event.id] ?? event.price;
+  const selectedEventPrice = selectedEvent ? getDisplayPrice(selectedEvent) : null;
+  const selectedEventOriginalPrice = selectedEvent
+    ? (selectedEvent.originalPrice || (priceOverrides?.[selectedEvent.id] && priceOverrides[selectedEvent.id] !== selectedEvent.price ? selectedEvent.price : null))
+    : null;
   const requiresEligibilityConfirmation = Boolean(selectedEvent?.eligibilityNote);
   const getNormalizedParticipants = () => {
     const parsed = parseInt(numParticipantsInput, 10);
@@ -173,11 +177,27 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
       <div>
         <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-red mb-5">Inquiry Request</p>
         <div className="mb-5 rounded-xl border border-stone-200 bg-stone-50/80 px-4 py-3">
-          <p className="text-xs text-stone-600 leading-relaxed">
-            <span className="font-semibold text-brand-dark">{toDualCurrencyDisplay('£745.00')} per person</span> based on 2 sharing
-            {' '}<span className="text-stone-400">|</span>{' '}
-            <span className="font-semibold text-brand-dark">{toDualCurrencyDisplay('£150.00')}</span> single room supplement
-          </p>
+          {selectedEvent ? (
+            <p className="text-xs text-stone-600 leading-relaxed">
+              <span className="font-semibold text-brand-dark">
+                {selectedEventOriginalPrice ? (
+                  <>
+                    <span className="line-through text-stone-400 mr-1">{toDualCurrencyDisplay(selectedEventOriginalPrice)}</span>
+                    {toDualCurrencyDisplay(selectedEventPrice as string)}
+                  </>
+                ) : (
+                  toDualCurrencyDisplay(selectedEventPrice as string)
+                )}{' '}
+                per person
+              </span>{' '}
+              based on 2 sharing {' '}<span className="text-stone-400">|</span>{' '}
+              <span className="font-semibold text-brand-dark">{toDualCurrencyDisplay('£150.00')}</span> single room supplement
+            </p>
+          ) : (
+            <p className="text-xs text-stone-600 leading-relaxed">
+              Select a date to see the exact price for that event.
+            </p>
+          )}
         </div>
         <div className="grid md:grid-cols-2 gap-5">
           <div className="md:col-span-2">
@@ -192,12 +212,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
                 <option value="">Choose a date...</option>
                 {selectableEvents.map(event => (
                   <option key={event.id} value={event.id}>
-                    {event.date} - From {toDualCurrencyDisplay(getDisplayPrice(event))}
-                    {event.originalPrice
-                      ? ` (was ${toDualCurrencyDisplay(event.originalPrice)})`
-                      : (priceOverrides?.[event.id] && priceOverrides[event.id] !== event.price ? ` (was ${toDualCurrencyDisplay(event.price)})` : '')}
-                    {getVisiblePromoNote(event) ? ` - ${getVisiblePromoNote(event)}` : ''}
-                    {event.eligibilityNote ? ` (${event.eligibilityNote})` : ''}
+                    {event.date}
                   </option>
                 ))}
               </select>
