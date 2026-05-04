@@ -201,8 +201,8 @@ function buildCustomerHtml(booking: NormalizedBooking, paymentFlow: PaymentEmail
       : 'As soon as we receive these details, we&apos;ll send your invoice and next steps to confirm your booking in full.';
 
   return `
-<div style="font-family:Arial,Helvetica,sans-serif;background:#f4f1ec;padding:24px 12px;">
-  <div style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid #ece7df;">
+<div style="font-family:Arial,Helvetica,sans-serif;background:#ffffff;padding:0;">
+  <div style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid #efefef;">
     <div style="background:#111111;padding:22px 28px;border-bottom:4px solid #d64242;">
       <img
         src="https://padeltripper.com/images/logos/logo-landscape.png"
@@ -211,17 +211,17 @@ function buildCustomerHtml(booking: NormalizedBooking, paymentFlow: PaymentEmail
         style="display:block;width:190px;max-width:100%;height:auto;"
       />
     </div>
-    <div style="padding:32px 28px 26px;">
+    <div style="padding:30px 28px 24px;">
       <p style="margin:0 0 8px;color:#d64242;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Trip Enquiry Received</p>
       <h2 style="font-size:32px;line-height:1.15;color:#101218;margin:0 0 14px;font-weight:800;">Thanks, ${escapeHtml(firstName)}!</h2>
       <p style="margin:0 0 18px;color:#4e535b;font-size:18px;line-height:1.55;">Great choice. We&apos;re now checking final availability and preparing everything for your <strong style="color:#101218;">${escapeHtml(eventLabel)}</strong> trip.</p>
-      <div style="background:#fbf8f3;border:1px solid #eee6d9;border-radius:10px;padding:14px 16px;margin:0 0 18px;">
+      <div style="border:1px solid #e9e9e9;border-radius:10px;padding:14px 16px;margin:0 0 18px;">
         <p style="margin:0;color:#3e444d;font-size:14px;line-height:1.55;"><strong style="color:#101218;">What happens next:</strong></p>
         <p style="margin:8px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">1. Reply with your contact number and home address.</p>
         <p style="margin:4px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">2. We send your invoice and booking details.</p>
         <p style="margin:4px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">3. We confirm all final trip information before arrival.</p>
       </div>
-      <div style="background:#f8f5f0;border:1px solid #eee6d9;border-radius:10px;padding:18px 18px;margin:0 0 22px;">
+      <div style="border:1px solid #e9e9e9;border-radius:10px;padding:18px 18px;margin:0 0 22px;">
         <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.6;">${paymentParagraph}</p>
       </div>
       <div style="margin:0 0 20px;">
@@ -235,7 +235,7 @@ function buildCustomerHtml(booking: NormalizedBooking, paymentFlow: PaymentEmail
       <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.7;">If you have any questions in the meantime, reach us at <strong style="color:#101218;">hello@padeltripper.com</strong> or <strong style="color:#101218;">+44 7939870682</strong>.</p>
       <p style="margin:26px 0 0;color:#8a8f97;font-size:15px;">The Padel Tripper Team</p>
     </div>
-    <div style="background:#faf7f2;border-top:1px solid #ece7df;padding:14px 28px;">
+    <div style="background:#ffffff;border-top:1px solid #efefef;padding:14px 28px;">
       <p style="margin:0;color:#9aa0a8;font-size:12px;line-height:1.5;">Padel Tripper · Alicante, Spain</p>
     </div>
   </div>
@@ -416,7 +416,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       }),
       sendResendEmail(env.RESEND_API_KEY, fromEmail, {
         to: booking.email,
-        subject: `Your Padel Tripper quotation request - ${eventLabel}`,
+        subject: `Action needed: reply with your contact details to confirm ${eventLabel}`,
         html: customerHtml,
       }),
     ]);
