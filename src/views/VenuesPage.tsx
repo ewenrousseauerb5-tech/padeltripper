@@ -42,8 +42,8 @@ export default function VenuesPage() {
         <div className="max-w-7xl mx-auto grid sm:grid-cols-3 gap-4">
           <div className="rounded-2xl border border-stone-200 bg-brand-light p-5">
             <p className="text-[10px] uppercase tracking-[0.22em] text-stone-500 mb-2">Coaching Standard</p>
-            <p className="font-serif text-2xl font-black text-brand-dark">Elite Academy</p>
-            <p className="text-sm text-stone-600 mt-2">Sessions led by coaches from Pitu Losada&apos;s high-performance environment.</p>
+            <p className="font-serif text-2xl font-black text-brand-dark">Elite Club Selection</p>
+            <p className="text-sm text-stone-600 mt-2">Sessions delivered across our trusted network of high-performance clubs in Alicante.</p>
           </div>
           <div className="rounded-2xl border border-stone-200 bg-brand-light p-5">
             <p className="text-[10px] uppercase tracking-[0.22em] text-stone-500 mb-2">Social Standard</p>
@@ -63,8 +63,12 @@ export default function VenuesPage() {
           <div className="mb-8">
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-3">Training Environments</p>
             <h2 className="font-serif text-3xl md:text-4xl font-black uppercase text-brand-dark">
-              Montemar & <span className="text-brand-red">Pitu Method</span>
+              Elite <span className="text-brand-red">Partner Clubs</span>
             </h2>
+            <p className="text-stone-600 leading-relaxed mt-4 max-w-3xl">
+              We run a curated selection of clubs within 5 minutes of the hotel, so your schedule stays smooth while
+              training standards remain consistently high.
+            </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 md:gap-10">
@@ -91,7 +95,7 @@ export default function VenuesPage() {
                   </span>
                 </div>
                 <h3 className="font-serif text-3xl md:text-4xl font-black text-brand-dark leading-tight mb-4">
-                  Club <span className="text-brand-red">Montemar</span>
+                  Technical <span className="text-brand-red">Training Clubs</span>
                 </h3>
                 <p className="text-stone-600 leading-relaxed">
                   Focused technical sessions in a proven high-performance setting. This is where tactical clarity, cleaner shot selection and match-ready patterns are built step by step.
@@ -123,10 +127,11 @@ export default function VenuesPage() {
                   </span>
                 </div>
                 <h3 className="font-serif text-3xl md:text-4xl font-black text-brand-dark leading-tight mb-4">
-                  Pitu <span className="text-brand-red">Losada</span>
+                  Proven <span className="text-brand-red">Coaching Methods</span>
                 </h3>
                 <p className="text-stone-600 leading-relaxed">
-                  Coaching led by the academy of 3-time world champion Pitu Losada. Clear structure, practical feedback and measurable improvement from day one.
+                  We use structured, high-performance coaching principles with clear feedback and practical progression,
+                  so players improve from day one in every training block.
                 </p>
               </div>
             </motion.article>
