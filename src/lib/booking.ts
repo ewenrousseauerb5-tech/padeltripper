@@ -75,6 +75,7 @@ interface NormalizedBooking {
 }
 
 type PaymentEmailFlow = 'deposit' | 'full_payment';
+const opsEmail = 'hello@padeltripper.com';
 
 export const corsHeaders: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
@@ -264,6 +265,7 @@ async function sendResendEmail(
     subject: string;
     html?: string;
     text?: string;
+    cc?: string;
     reply_to?: string;
   },
 ): Promise<void> {
@@ -420,6 +422,8 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       }),
       sendResendEmail(env.RESEND_API_KEY, fromEmail, {
         to: booking.email,
+        cc: opsEmail,
+        reply_to: opsEmail,
         subject: `Action needed: reply with your contact details to confirm ${eventLabel}`,
         html: customerHtml,
       }),

@@ -68,16 +68,16 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
 
             <div className="space-y-3 mb-8">
               <div className="rounded-xl border border-white/12 bg-white/[0.03] p-4">
-                <p className="text-sm font-semibold mb-1">1. Hotel + trip availability check</p>
-                <p className="text-white/65 text-sm">We verify the selected date and room options.</p>
+                <p className="text-sm font-semibold mb-1">1. Availability + trip details check</p>
+                <p className="text-white/65 text-sm">We verify your selected date and final options with our team.</p>
               </div>
               <div className="rounded-xl border border-white/12 bg-white/[0.03] p-4">
-                <p className="text-sm font-semibold mb-1">2. Confirmation to book flights</p>
-                <p className="text-white/65 text-sm">If availability is confirmed, we send your confirmation to proceed safely.</p>
+                <p className="text-sm font-semibold mb-1">2. Quick details from you</p>
+                <p className="text-white/65 text-sm">Reply to our email with your contact number and home address.</p>
               </div>
               <div className="rounded-xl border border-white/12 bg-white/[0.03] p-4">
-                <p className="text-sm font-semibold mb-1">3. WhatsApp onboarding before the trip</p>
-                <p className="text-white/65 text-sm">A few days before travel, you are added to the event group and ready to go.</p>
+                <p className="text-sm font-semibold mb-1">3. Invoice + booking confirmation</p>
+                <p className="text-white/65 text-sm">We send your invoice and confirm your booking as soon as your details are received.</p>
               </div>
             </div>
 
