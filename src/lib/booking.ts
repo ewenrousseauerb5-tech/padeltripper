@@ -235,17 +235,17 @@ function buildCustomerHtml(booking: NormalizedBooking, paymentFlow: PaymentEmail
         />
       </div>
       <p style="margin:0;color:#4e535b;font-size:16px;line-height:1.7;">If you have any questions in the meantime, reach us at <strong style="color:#101218;">hello@padeltripper.com</strong> or <strong style="color:#101218;">+44 7939870682</strong>.</p>
-      <div style="margin:24px 0 0;display:flex;align-items:center;gap:12px;">
+      <div style="margin:26px 0 0;display:flex;align-items:center;gap:14px;">
         <img
           src="https://padeltripper.com/images/ollie.jpg"
           alt="Ollie from Padel Tripper"
           width="44"
           height="44"
-          style="display:block;width:44px;height:44px;border-radius:999px;object-fit:cover;border:1px solid #e6e6e6;"
+          style="display:block;width:44px;height:44px;border-radius:999px;object-fit:cover;object-position:center 25%;border:1px solid #e6e6e6;"
         />
         <div>
-          <p style="margin:0;color:#101218;font-size:14px;font-weight:700;">Ollie · Padel Tripper</p>
-          <p style="margin:2px 0 0;color:#8a8f97;font-size:13px;">Founder</p>
+          <p style="margin:0;color:#101218;font-size:14px;font-weight:700;line-height:1.25;">Ollie · Padel Tripper</p>
+          <p style="margin:4px 0 0;color:#8a8f97;font-size:13px;">Founder</p>
         </div>
       </div>
     </div>
