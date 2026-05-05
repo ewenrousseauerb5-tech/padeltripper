@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { ALL_EVENTS } from '../data/events';
 
 export interface BookingEnv {
   NEXT_PUBLIC_SUPABASE_URL?: string;
@@ -242,9 +243,12 @@ function buildCustomerHtml(booking: NormalizedBooking, paymentFlow: PaymentEmail
 </div>`;
 }
 
-function getPaymentEmailFlow(startDateRaw: string | null | undefined): PaymentEmailFlow {
-  if (!startDateRaw) return 'full_payment';
-  const eventDate = new Date(`${startDateRaw}T00:00:00Z`);
+function getPaymentEmailFlow(startDateRaw: string | null | undefined, eventId: number): PaymentEmailFlow {
+  const fallbackStartDate = ALL_EVENTS.find(event => event.id === eventId)?.startDate || null;
+  const effectiveStartDate = startDateRaw || fallbackStartDate;
+  if (!effectiveStartDate) return 'full_payment';
+
+  const eventDate = new Date(`${effectiveStartDate}T00:00:00Z`);
   if (Number.isNaN(eventDate.getTime())) return 'full_payment';
 
   const now = new Date();
@@ -403,7 +407,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     }
 
     const adminHtml = buildAdminHtml(quotation.id, booking);
-    const paymentEmailFlow = getPaymentEmailFlow(eventRow.start_date);
+    const paymentEmailFlow = getPaymentEmailFlow(eventRow.start_date, booking.event_id);
     const customerHtml = buildCustomerHtml(booking, paymentEmailFlow);
     const eventLabel = booking.event_name || `Event #${booking.event_id}`;
 
