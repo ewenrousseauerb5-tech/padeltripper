@@ -109,7 +109,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     location: 'Alicante, Spain',
     hotel: '4* Hotel Alicante Golf',
     image: '/images/group-photo-may-2026.jpg',
-    imagePosition: 'slightLower',
+    imagePosition: 'center',
   },
   {
     id: 70,
