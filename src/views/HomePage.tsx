@@ -364,13 +364,13 @@ export default function HomePage() {
                 </div>
                 <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm w-[56%] ml-auto -mt-14 relative bg-white">
                   <Image
-                    src="/images/pitu-losada-coach-hd.jpg"
-                    alt="Pitu Losada coaching at Club Atletico Montemar in Alicante"
+                    src="/images/coach-training-2026.jpg"
+                    alt="Padel Tripper coach training session in Alicante"
                     width={900}
                     height={700}
                     quality={46}
                     sizes="(max-width: 1024px) 56vw, 28vw"
-                    className="w-full h-44 object-cover object-[center_26%]"
+                    className="w-full h-44 object-cover object-[center_36%]"
                   />
                 </div>
               </div>
