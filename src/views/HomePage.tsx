@@ -112,6 +112,9 @@ export default function HomePage() {
                 Book Now
               </Link>
             </div>
+            <p className="mt-5 text-sm text-white/70 tracking-wide">
+              Excellent on Trustpilot <span aria-hidden="true">·</span> 5.0 <Star size={14} className="inline -mt-0.5 text-brand-red" /> rating
+            </p>
           </motion.div>
         </div>
       </section>
