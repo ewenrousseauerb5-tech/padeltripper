@@ -370,7 +370,7 @@ export default function HomePage() {
                     height={700}
                     quality={46}
                     sizes="(max-width: 1024px) 56vw, 28vw"
-                    className="w-full h-44 object-cover object-[center_36%]"
+                    className="w-full h-44 object-cover object-[center_18%]"
                   />
                 </div>
               </div>
