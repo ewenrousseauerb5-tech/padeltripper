@@ -103,6 +103,10 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const selectableEvents = FUTURE_EVENTS.filter(event => event.status !== 'Sold Out');
   const getDisplayPrice = (event: { id: number; price: string }) => priceOverrides?.[event.id] ?? event.price;
   const selectedEventPrice = selectedEvent ? getDisplayPrice(selectedEvent) : null;
+  const selectedEventBasePriceGbp = selectedEventPrice
+    ? Number(selectedEventPrice.replace(/[^0-9.]/g, ''))
+    : null;
+  const formatGbp = (value: number) => `£${Number.isInteger(value) ? value.toFixed(0) : value.toFixed(2)}`;
   const selectedEventOriginalPrice = selectedEvent
     ? (selectedEvent.originalPrice || (priceOverrides?.[selectedEvent.id] && priceOverrides[selectedEvent.id] !== selectedEvent.price ? selectedEvent.price : null))
     : null;
@@ -179,38 +183,24 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
         <div className="mb-5 rounded-xl border border-stone-200 bg-stone-50/80 px-4 py-3">
           {selectedEvent ? (
             <div className="text-xs text-stone-600 leading-relaxed space-y-1">
-              {selectedEvent.id === 70 ? (
-                <>
-                  <p>
-                    <span className="font-semibold text-brand-dark">Trip price:</span>{' '}
-                    <span className="font-semibold text-brand-dark">£645 based on 2 sharing</span>
-                  </p>
-                  <p>
-                    <span className="font-semibold text-brand-dark">£845</span>{' '}
-                    <span className="text-stone-600">Have a whole room to yourself</span>
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p>
-                    <span className="font-semibold text-brand-dark">Trip price:</span>{' '}
-                    <span className="font-semibold text-brand-dark">
-                      {selectedEventOriginalPrice ? (
-                        <>
-                          <span className="line-through text-stone-400 mr-1">{toDualCurrencyDisplay(selectedEventOriginalPrice)}</span>
-                          {toDualCurrencyDisplay(selectedEventPrice as string)}
-                        </>
-                      ) : (
-                        toDualCurrencyDisplay(selectedEventPrice as string)
-                      )}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="font-semibold text-brand-dark">Single room supplement:</span>{' '}
-                    <span className="font-semibold text-brand-dark">{toDualCurrencyDisplay('£150.00')}</span>
-                  </p>
-                </>
-              )}
+              <p>
+                {selectedEventOriginalPrice && (
+                  <span className="line-through text-stone-400 mr-1">{toDualCurrencyDisplay(selectedEventOriginalPrice)}</span>
+                )}
+                <span className="font-semibold text-brand-dark">
+                  {selectedEventBasePriceGbp && Number.isFinite(selectedEventBasePriceGbp)
+                    ? `${formatGbp(selectedEventBasePriceGbp)} based on 2 sharing`
+                    : `${selectedEventPrice} based on 2 sharing`}
+                </span>
+              </p>
+              <p>
+                <span className="font-semibold text-brand-dark">
+                  {selectedEventBasePriceGbp && Number.isFinite(selectedEventBasePriceGbp)
+                    ? formatGbp(selectedEventBasePriceGbp + 200)
+                    : '£845'}
+                </span>{' '}
+                <span className="text-stone-600">Have a whole room to yourself</span>
+              </p>
             </div>
           ) : (
             <p className="text-xs text-stone-600 leading-relaxed">
