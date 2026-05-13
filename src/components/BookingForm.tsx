@@ -189,8 +189,8 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
                 )}
                 <span className="font-semibold text-brand-dark">
                   {selectedEventBasePriceGbp && Number.isFinite(selectedEventBasePriceGbp)
-                    ? `${formatGbp(selectedEventBasePriceGbp)} based on 2 sharing`
-                    : `${selectedEventPrice} based on 2 sharing`}
+                    ? `${formatGbp(selectedEventBasePriceGbp)} per person based on 2 sharing`
+                    : `${selectedEventPrice} per person based on 2 sharing`}
                 </span>
               </p>
               <p>
