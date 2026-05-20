@@ -22,7 +22,7 @@ export default function TermsAndConditionsPage() {
       <section className="max-w-4xl mx-auto px-6 py-20 md:py-24">
         <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-xs mb-4">Legal</p>
         <h1 className="font-serif text-4xl md:text-5xl font-black text-brand-dark uppercase mb-4">Terms & Conditions</h1>
-        <p className="text-stone-500 text-sm mb-10">Last updated: March 1, 2026</p>
+        <p className="text-stone-500 text-sm mb-10">Last updated: May 20, 2026</p>
 
         <div className="space-y-8 text-stone-600 leading-relaxed">
           <section>
@@ -69,8 +69,10 @@ export default function TermsAndConditionsPage() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-brand-dark mb-3">6. Changes and Cancellations</h2>
             <p>
-              Cancellation and amendment terms depend on the specific trip and third-party suppliers. Applicable terms
-              will be communicated in the quotation or booking confirmation.
+              If you cancel within 30 days of the trip start date, payments are non-refundable. This is because hotel
+              accommodation, coaching services, and related supplier costs are committed and paid at that stage. For
+              cancellations made more than 30 days before departure, any refund or credit (where applicable) will be
+              considered in line with confirmed booking terms and non-recoverable third-party costs.
             </p>
           </section>
 
