@@ -128,13 +128,6 @@ export default function EventsFaqSection() {
               </div>
             </AccordionItem>
 
-            <AccordionItem title="Do I need to bring my own racquet?">
-              <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
-                <p>Not at all — racquet hire is included in the price, so don&apos;t worry if you don&apos;t have your own.</p>
-                <p>Bring comfortable sports kit and proper court shoes. Alicante tends to be warm and sunny even in spring, so pack a cap and sunscreen too.</p>
-              </div>
-            </AccordionItem>
-
             <AccordionItem title="How does the group stay in touch?">
               <div className="text-stone-400 text-sm space-y-3 leading-relaxed">
                 <p>Before the trip you&apos;ll have direct contact details for our team on the ground — someone will always be available if you need anything.</p>
