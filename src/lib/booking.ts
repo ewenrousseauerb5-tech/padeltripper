@@ -318,13 +318,13 @@ async function handleLegacyEnquiry(rawBody: BookingPayload, env: BookingEnv): Pr
     return jsonResponse({ ok: false, error: 'Missing required fields.' }, 400);
   }
 
-  if (!env.RESEND_API_KEY || !env.CONTACT_EMAIL_TO) {
+  if (!env.RESEND_API_KEY) {
     return jsonResponse({ ok: false, error: 'Server is missing email configuration.' }, 500);
   }
 
   const fromEmail = normalizeString(env.RESEND_FROM_EMAIL) || fallbackFromEmail;
   await sendResendEmail(env.RESEND_API_KEY, fromEmail, {
-    to: env.CONTACT_EMAIL_TO,
+    to: opsEmail,
     reply_to: email,
     subject: `New enquiry - ${event} - ${name}`,
     text: [`Name: ${name}`, `Email: ${email}`, `Event: ${event}`, `Message: ${message || '(none)'}`].join('\n'),
@@ -358,7 +358,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     if (!supabaseUrl || !supabaseKey) {
       return jsonResponse({ ok: false, error: 'Server is missing Supabase configuration.' }, 500);
     }
-    if (!env.RESEND_API_KEY || !env.CONTACT_EMAIL_TO) {
+    if (!env.RESEND_API_KEY) {
       return jsonResponse({ ok: false, error: 'Server is missing email configuration.' }, 500);
     }
     const fromEmail = normalizeString(env.RESEND_FROM_EMAIL) || fallbackFromEmail;
@@ -427,7 +427,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
 
     const emailResults = await Promise.allSettled([
       sendResendEmail(env.RESEND_API_KEY, fromEmail, {
-        to: env.CONTACT_EMAIL_TO,
+        to: opsEmail,
         reply_to: booking.email,
         subject: `New quotation request - ${eventLabel} - ${booking.full_name} (x${booking.num_participants})`,
         html: adminHtml,

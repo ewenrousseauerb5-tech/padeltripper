@@ -22,6 +22,7 @@ const corsHeaders: Record<string, string> = {
 
 const resendApiUrl = 'https://api.resend.com/emails';
 const fallbackFromEmail = 'Padel Tripper <[email protected]>';
+const opsEmail = 'hello@padeltripper.com';
 
 function normalize(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
@@ -74,7 +75,6 @@ export async function POST(request: Request) {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
     const resendApiKey = process.env.RESEND_API_KEY;
-    const contactEmailTo = process.env.CONTACT_EMAIL_TO ?? process.env.BOOKING_NOTIFICATION_EMAIL;
     const fromEmail = normalize(process.env.RESEND_FROM_EMAIL) || fallbackFromEmail;
 
     if (!supabaseUrl || !supabaseKey) {
@@ -83,7 +83,7 @@ export async function POST(request: Request) {
         { status: 500, headers: corsHeaders },
       );
     }
-    if (!resendApiKey || !contactEmailTo) {
+    if (!resendApiKey) {
       return Response.json(
         { ok: false, error: 'Server is missing email configuration.' },
         { status: 500, headers: corsHeaders },
@@ -190,7 +190,7 @@ export async function POST(request: Request) {
 
     const emailResults = await Promise.allSettled([
       sendResendEmail(resendApiKey, fromEmail, {
-        to: contactEmailTo,
+        to: opsEmail,
         reply_to: email,
         subject: `New tailored event request - ${eventType} - ${fullName}`,
         html: adminHtml,
