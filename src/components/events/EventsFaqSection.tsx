@@ -71,7 +71,7 @@ export default function EventsFaqSection() {
               <div className="space-y-4">
                 <div>
                   <p className="font-semibold text-brand-dark text-sm mb-1">Tuesday — Arrival</p>
-                  <p className="text-stone-400 text-sm leading-relaxed">Check in, dump your bags, and get into holiday mode. There&apos;s often time for an informal hit if you land early. The trip officially starts with welcome drinks at 7.30pm up on the hotel Mirador — a rooftop terrace with views over the golf course.</p>
+                  <p className="text-stone-400 text-sm leading-relaxed">Check in, drop your bags, and ease into the trip. We usually start with an informal game, followed by a welcome drink at Bela after Tuesday social.</p>
                 </div>
                 <div>
                   <p className="font-semibold text-brand-dark text-sm mb-1">Wednesday</p>
