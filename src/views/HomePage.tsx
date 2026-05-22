@@ -185,11 +185,22 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="space-y-2 mb-5 flex-1">
-                    {getVisiblePromoNote(event) && (
-                      <p className="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                        {getVisiblePromoNote(event)}
-                      </p>
-                    )}
+                    {(() => {
+                      const promoNote = getVisiblePromoNote(event);
+                      if (!promoNote) return null;
+                      const isHostedByBen = promoNote.toLowerCase().includes('hosted by ben kettleborough');
+                      return (
+                        <p
+                          className={`text-[11px] font-semibold rounded-lg px-3 py-2 ${
+                            isHostedByBen
+                              ? 'text-sky-700 bg-sky-50 border border-sky-200'
+                              : 'text-red-700 bg-red-50 border border-red-200'
+                          }`}
+                        >
+                          {promoNote}
+                        </p>
+                      );
+                    })()}
                     {event.eligibilityNote && (
                       <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                         {event.eligibilityNote}
