@@ -155,6 +155,8 @@ export default function HomePage() {
                               ? 'object-[center_60%]'
                               : event.imagePosition === 'slightLower'
                                 ? 'object-[center_22%]'
+                                : event.imagePosition === 'slightTop'
+                                  ? 'object-[center_12%]'
                                 : event.imagePosition === 'midPosition'
                                   ? 'object-[center_36%]'
                                 : 'object-top'
