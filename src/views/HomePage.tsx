@@ -139,7 +139,7 @@ export default function HomePage() {
                 className="group h-full rounded-2xl overflow-hidden border border-stone-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col"
               >
                 {event.image && (
-                  <div className={`relative overflow-hidden ${event.imagePosition === 'slightTop' ? 'h-56' : 'h-52'}`}>
+                  <div className="relative h-52 overflow-hidden">
                     <Image
                       src={event.image}
                       alt={`Padel camp in Alicante — ${event.dateShort}`}
