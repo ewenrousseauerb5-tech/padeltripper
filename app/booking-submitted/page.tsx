@@ -73,7 +73,7 @@ export default async function BookingSubmittedPage({ searchParams }: BookingSubm
               </div>
               <div className="rounded-xl border border-white/12 bg-white/[0.03] p-4">
                 <p className="text-sm font-semibold mb-1">2. Quick details from you</p>
-                <p className="text-white/65 text-sm">Reply to our email with your contact number and home address.</p>
+                <p className="text-white/65 text-sm">Reply to our email with your home address if needed for the invoice.</p>
               </div>
               <div className="rounded-xl border border-white/12 bg-white/[0.03] p-4">
                 <p className="text-sm font-semibold mb-1">3. Invoice + booking confirmation</p>

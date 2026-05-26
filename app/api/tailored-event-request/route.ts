@@ -106,9 +106,9 @@ export async function POST(request: Request) {
     const destination = 'Alicante';
     const message = normalize(body.message);
 
-    if (!fullName || !email || !eventType || !groupSize) {
+    if (!fullName || !email || !phone || !eventType || !groupSize) {
       return Response.json(
-        { ok: false, error: 'full_name, email, event_type and group_size are required.' },
+        { ok: false, error: 'full_name, email, phone, event_type and group_size are required.' },
         { status: 400, headers: corsHeaders },
       );
     }

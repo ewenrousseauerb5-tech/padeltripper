@@ -124,6 +124,7 @@ export async function POST(request: Request) {
           event_id: pickNumber(values.event_id),
           full_name: pickString(values.full_name),
           email: pickString(values.email),
+          phone: pickString(values.phone),
           num_participants: pickNumber(values.num_participants),
           status: pickString(values.status),
           payment_status: pickString(values.payment_status),

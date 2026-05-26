@@ -177,7 +177,10 @@ export default function TailoredEventRequestSection() {
                     <div>
                       <label className="block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2">Phone Number</label>
                       <input
+                        required
                         type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
                         className="w-full px-4 py-3.5 bg-white border border-stone-200 rounded-xl focus:border-brand-red focus:outline-none transition-colors text-sm"
                         placeholder="+44 7700 000000"
                         value={tailorData.phone}

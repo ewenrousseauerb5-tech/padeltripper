@@ -109,6 +109,7 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
   const event_id = Number(raw.event_id);
   const full_name = normalizeString(raw.full_name);
   const email = normalizeString(raw.email);
+  const phone = normalizeString(raw.phone);
   const participants = Array.isArray(raw.participants) ? normalizeParticipants(raw.participants) : [];
   const num_participants = Number(raw.num_participants);
 
@@ -120,6 +121,9 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
   }
   if (!email) {
     return { error: 'email is required.' };
+  }
+  if (!phone) {
+    return { error: 'phone is required.' };
   }
   if (!Number.isFinite(num_participants) || num_participants <= 0) {
     return { error: 'num_participants is required.' };
@@ -145,7 +149,7 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
       event_name: normalizeString(raw.event_name) || undefined,
       full_name,
       email,
-      phone: normalizeString(raw.phone),
+      phone,
       num_participants,
       accommodation_type: normalizeString(raw.accommodation_type),
       dietary_requirements: normalizeString(raw.dietary_requirements),
@@ -187,6 +191,7 @@ function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string
       <tr><td style="padding:5px 0;color:#888;">Event</td><td style="padding:5px 0;">${escapeHtml(eventLabel)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Lead Booker</td><td style="padding:5px 0;">${escapeHtml(booking.full_name)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Email</td><td style="padding:5px 0;">${escapeHtml(booking.email)}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Phone</td><td style="padding:5px 0;">${escapeHtml(booking.phone)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Participants</td><td style="padding:5px 0;">${booking.num_participants}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Other Information</td><td style="padding:5px 0;">${escapeHtml(booking.special_requests || '—')}</td></tr>
     </table>
@@ -219,7 +224,7 @@ function buildCustomerHtml(booking: NormalizedBooking, paymentFlow: PaymentEmail
       <p style="margin:0 0 18px;color:#4e535b;font-size:18px;line-height:1.55;">Great choice. We&apos;re now checking final availability and preparing everything for your <strong style="color:#101218;">${escapeHtml(eventLabel)}</strong> trip.</p>
       <div style="border:1px solid #e9e9e9;border-radius:10px;padding:14px 16px;margin:0 0 18px;">
         <p style="margin:0;color:#3e444d;font-size:14px;line-height:1.55;"><strong style="color:#101218;">What happens next:</strong></p>
-        <p style="margin:8px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">1. Reply with your contact number and home address.</p>
+        <p style="margin:8px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">1. Reply with your home address if needed for the invoice.</p>
         <p style="margin:4px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">2. We send your invoice and booking details.</p>
         <p style="margin:4px 0 0;color:#4e535b;font-size:14px;line-height:1.55;">3. We confirm all final trip information before arrival.</p>
       </div>

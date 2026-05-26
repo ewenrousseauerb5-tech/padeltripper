@@ -31,6 +31,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const [eventId, setEventId] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [numParticipantsInput, setNumParticipantsInput] = useState('1');
   const [otherInfo, setOtherInfo] = useState('');
   const [acceptedLegal, setAcceptedLegal] = useState(false);
@@ -120,6 +121,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const resetForm = () => {
     setFullName('');
     setEmail('');
+    setPhone('');
     setNumParticipantsInput('1');
     setOtherInfo('');
     setAcceptedLegal(false);
@@ -143,6 +145,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
         event_name: selectedEvent ? `${selectedEvent.date} - From ${getDisplayPrice(selectedEvent)}` : undefined,
         full_name: fullName.trim(),
         email: email.trim(),
+        phone: phone.trim(),
         num_participants: getNormalizedParticipants(),
         special_requests: otherInfo.trim(),
         accepted_privacy_terms: acceptedLegal,
@@ -249,6 +252,20 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
               placeholder="email@example.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              className={inputClass}
+            />
+          </div>
+
+          <div>
+            <label className={labelClass}>Phone Number *</label>
+            <input
+              required
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              placeholder="+44 7700 000000"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
               className={inputClass}
             />
           </div>

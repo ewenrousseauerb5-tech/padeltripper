@@ -10,6 +10,7 @@ interface BookingRow {
   event_id: number | null;
   full_name: string | null;
   email: string | null;
+  phone: string | null;
   num_participants: number | null;
   status: string | null;
   payment_status: string | null;
@@ -264,6 +265,7 @@ export default function DashboardPage() {
       const haystack = [
         booking.full_name || '',
         booking.email || '',
+        booking.phone || '',
         String(booking.id),
         String(booking.event_id || ''),
         event?.name || '',
@@ -355,6 +357,7 @@ export default function DashboardPage() {
         event_id: String(row.event_id ?? ''),
         full_name: String(row.full_name ?? ''),
         email: String(row.email ?? ''),
+        phone: String(row.phone ?? ''),
         num_participants: String(row.num_participants ?? ''),
         status: String(row.status ?? ''),
         payment_status: String(row.payment_status ?? ''),
@@ -654,6 +657,7 @@ export default function DashboardPage() {
                           <td className="px-4 py-3">
                             <p className="font-semibold">{booking.full_name || '—'}</p>
                             <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>{booking.email || '—'}</p>
+                            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-white/50'}`}>{booking.phone || '—'}</p>
                           </td>
                           <td className="w-[200px] px-4 py-3">
                             <p className="max-w-[180px] truncate">{eventLabel}</p>
@@ -973,6 +977,17 @@ export default function DashboardPage() {
                   <input
                     value={editingValues.email ?? ''}
                     onChange={(event) => handleEditChange('email', event.target.value)}
+                    className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
+                  />
+                </label>
+              )}
+
+              {editingEntity === 'booking' && (
+                <label className="block">
+                  <span className={`mb-1.5 block text-[11px] font-semibold uppercase tracking-widest ${isLight ? 'text-slate-500' : 'text-white/55'}`}>Phone</span>
+                  <input
+                    value={editingValues.phone ?? ''}
+                    onChange={(event) => handleEditChange('phone', event.target.value)}
                     className={`w-full rounded-xl border px-3 py-2 text-sm ${isLight ? 'border-slate-300 bg-white text-slate-800' : 'border-white/20 bg-black/25 text-white/90'}`}
                   />
                 </label>

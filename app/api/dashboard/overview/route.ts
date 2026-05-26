@@ -36,7 +36,7 @@ export async function GET() {
     const [bookingsRes, participantsWithStatusRes, eventsRes, workflowsRes, partnersRes, tailoredRes] = await Promise.all([
       supabase
         .from('quotations')
-        .select('id,event_id,full_name,email,num_participants,status,payment_status,created_at')
+        .select('id,event_id,full_name,email,phone,num_participants,status,payment_status,created_at')
         .order('created_at', { ascending: false })
         .limit(300),
       participantsWithStatusPromise,

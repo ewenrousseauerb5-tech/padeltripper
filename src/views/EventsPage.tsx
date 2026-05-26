@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { Mail, Phone, Instagram, ArrowRight } from 'lucide-react';
+import { ArrowRight, CalendarDays, Mail, Phone } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import { FUTURE_EVENTS } from '../data/events';
 import EventsHero from '../components/events/EventsHero';
@@ -19,6 +19,29 @@ const ExperienceGallery = dynamic(() => import('../components/events/ExperienceG
   ssr: false,
   loading: () => <section className="py-20 bg-brand-dark px-6" />,
 });
+
+const miniItinerary = [
+  {
+    day: 'Tuesday',
+    title: 'Arrival + welcome',
+    detail: 'Check in, informal games, then a relaxed welcome drink with the group.',
+  },
+  {
+    day: 'Wednesday',
+    title: 'Coaching + social padel',
+    detail: 'Morning coaching at Montemar, afternoon match play at Bela Padel Centre.',
+  },
+  {
+    day: 'Thursday',
+    title: 'Training + Alicante night',
+    detail: 'Another coaching block, more social padel, then optional drinks in the city.',
+  },
+  {
+    day: 'Friday',
+    title: 'Final session + departure',
+    detail: 'Last coaching session, farewells, and extra court time if your flight is later.',
+  },
+];
 
 export default function EventsPage() {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
@@ -57,42 +80,52 @@ export default function EventsPage() {
               <BookingForm selectedEventId={selectedEventId} />
             </div>
 
-            <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5 space-y-3">
-              <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px]">Contact</p>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                  <Mail size={18} />
+            <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5">
+              <div className="mb-5 flex items-start gap-3">
+                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-brand-red">
+                  <CalendarDays size={18} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Email Us</p>
-                  <p className="text-white/80 font-medium text-sm">hello@padeltripper.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                  <Phone size={18} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">WhatsApp Only</p>
-                  <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                    +44 7939870682
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-red shrink-0">
-                  <Instagram size={18} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Instagram</p>
-                  <a href="https://www.instagram.com/padeltripper/" target="_blank" rel="noreferrer" className="text-white/80 font-medium text-sm hover:text-white transition-colors">
-                    @padeltripper
-                  </a>
+                  <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-1">Typical Itinerary</p>
+                  <h3 className="font-serif text-2xl font-black uppercase text-white leading-tight">4 Days In Alicante</h3>
                 </div>
               </div>
 
-              <div className="mt-2 rounded-xl border border-white/12 bg-white/[0.03] p-3">
-                <p className="text-[10px] uppercase tracking-widest text-white/35 font-semibold mb-2">Trust</p>
+              <div className="space-y-4">
+                {miniItinerary.map(item => (
+                  <div key={item.day} className="border-l border-white/15 pl-4">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red font-semibold mb-1">{item.day}</p>
+                    <p className="text-sm font-semibold text-white mb-1">{item.title}</p>
+                    <p className="text-[12px] leading-relaxed text-white/55">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="#full-itinerary"
+                className="mt-5 flex items-center justify-center gap-2 rounded-xl border border-brand-red/60 bg-brand-red/10 px-3 py-2.5 text-[12px] font-semibold uppercase tracking-widest text-white/90 hover:bg-brand-red/20 transition-colors"
+              >
+                Full itinerary
+                <ArrowRight size={13} />
+              </a>
+
+              <div className="mt-5 border-t border-white/10 pt-5">
+                <p className="text-[10px] uppercase tracking-[0.25em] text-white/35 font-semibold mb-3">Questions?</p>
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-3">
+                    <Mail size={15} className="text-brand-red" />
+                    <p className="text-white/75 font-medium text-sm">hello@padeltripper.com</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone size={15} className="text-brand-red" />
+                    <a href="https://wa.me/447939870682" target="_blank" rel="noreferrer" className="text-white/75 font-medium text-sm hover:text-white transition-colors">
+                      +44 7939870682
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 rounded-xl border border-white/12 bg-white/[0.03] p-3">
                 <div className="flex items-center gap-3">
                   <Image
                     src="/images/logos/PTS-Logo.jpg"
@@ -101,18 +134,11 @@ export default function EventsPage() {
                     height={34}
                     className="h-7 w-auto object-contain"
                   />
-                  <p className="text-[12px] text-white/70 leading-relaxed">
+                  <p className="text-[12px] text-white/65 leading-relaxed">
                     Protected Trust Services verified partner.
                   </p>
                 </div>
               </div>
-
-              <a
-                href="#full-itinerary"
-                className="block rounded-xl border border-brand-red/60 bg-brand-red/10 px-3 py-2.5 text-[12px] font-semibold uppercase tracking-widest text-white/90 hover:bg-brand-red/20 transition-colors"
-              >
-                View Full Itinerary Below
-              </a>
             </aside>
           </div>
         </div>

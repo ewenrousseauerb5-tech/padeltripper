@@ -3,7 +3,7 @@ create table if not exists public.tailored_event_requests (
   id bigserial primary key,
   full_name text not null,
   email text not null,
-  phone text,
+  phone text not null,
   event_type text not null,
   group_size text not null,
   preferred_dates text,
