@@ -111,6 +111,9 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const selectedEventOriginalPrice = selectedEvent
     ? (selectedEvent.originalPrice || (priceOverrides?.[selectedEvent.id] && priceOverrides[selectedEvent.id] !== selectedEvent.price ? selectedEvent.price : null))
     : null;
+  const selectedEventOriginalBasePriceGbp = selectedEventOriginalPrice
+    ? Number(selectedEventOriginalPrice.replace(/[^0-9.]/g, ''))
+    : null;
   const requiresEligibilityConfirmation = Boolean(selectedEvent?.eligibilityNote);
   const getNormalizedParticipants = () => {
     const parsed = parseInt(numParticipantsInput, 10);
@@ -197,6 +200,11 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
                 </span>
               </p>
               <p>
+                {selectedEventOriginalBasePriceGbp && Number.isFinite(selectedEventOriginalBasePriceGbp) && (
+                  <span className="line-through text-stone-400 mr-1">
+                    {toDualCurrencyDisplay(formatGbp(selectedEventOriginalBasePriceGbp + 200))}
+                  </span>
+                )}
                 <span className="font-semibold text-brand-dark">
                   {selectedEventBasePriceGbp && Number.isFinite(selectedEventBasePriceGbp)
                     ? formatGbp(selectedEventBasePriceGbp + 200)
@@ -230,6 +238,12 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
               </select>
               <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
             </div>
+            <Link
+              href="/events#full-itinerary"
+              className="mt-2 inline-flex text-xs font-semibold text-brand-red underline decoration-brand-red/35 underline-offset-4 hover:text-brand-dark transition-colors"
+            >
+              View the full 4-day itinerary
+            </Link>
           </div>
 
           <div>

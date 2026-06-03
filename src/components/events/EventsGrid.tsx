@@ -82,6 +82,12 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                   <Calendar size={15} className="text-brand-red shrink-0" />
                   <span className="font-bold text-brand-dark text-[13px] sm:text-sm">{event.date}</span>
                 </div>
+                <a
+                  href="#full-itinerary"
+                  className="ml-7 inline-flex text-[12px] font-semibold text-brand-red underline decoration-brand-red/35 underline-offset-4 hover:text-brand-dark transition-colors"
+                >
+                  View full itinerary
+                </a>
                 <div className="flex items-center gap-3 text-stone-400">
                   <Clock size={14} className="shrink-0" />
                   <span className="text-[13px] sm:text-sm">{event.nights} nights / {event.nights + 1} days</span>
