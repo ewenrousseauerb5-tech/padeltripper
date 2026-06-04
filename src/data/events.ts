@@ -193,7 +193,6 @@ export const ALL_EVENTS: PadelEvent[] = [
     hotel: '4* Hotel Alicante Golf',
     image: '/images/group-bela-court.jpg',
     imagePosition: 'slightLower',
-    eligibilityNote: 'For beginners only',
   },
   {
     id: 94,
