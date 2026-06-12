@@ -210,24 +210,6 @@ export const ALL_EVENTS: PadelEvent[] = [
     image: '/images/group-photo.jpg',
     imagePosition: 'lower',
   },
-  {
-    id: 96,
-    startDate: '2026-11-24',
-    date: '24th - 27th November 2026',
-    dateShort: 'Nov 24–27',
-    nights: 3,
-    status: 'Available',
-    price: '£545.00',
-    originalPrice: '£645.00',
-    promoNote: 'Play-only format: 4 hours per day',
-    formatNote: 'Play-only format: 4 hours of padel per day',
-    filled: 0,
-    max: 16,
-    location: 'Alicante, Spain',
-    hotel: '4* Hotel Alicante Golf',
-    image: '/images/group-bela-court.jpg',
-    imagePosition: 'slightLower',
-  },
 ];
 
 const today = new Date();
