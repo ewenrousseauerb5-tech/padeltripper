@@ -6,9 +6,9 @@ import { padelHolidayFaqs } from '@/src/data/padelHolidaysSpain';
 const pageUrl = `${SITE_URL}/padel-holidays-spain`;
 
 export const metadata: Metadata = {
-  title: 'Padel Holidays in Spain | Coaching Retreats in Alicante',
+  title: 'Padel Holidays Spain | Coaching, Accommodation & Events in Alicante',
   description:
-    'Discover premium padel holidays in Spain with Padel Tripper. Join small-group coaching retreats in Alicante with sunshine, 4-star accommodation and international players.',
+    'Join premium padel holidays in Spain. Coaching, accommodation, sunshine and an international community in Alicante. View upcoming trips.',
   alternates: {
     canonical: '/padel-holidays-spain',
   },
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: pageUrl,
-    title: 'Padel Holidays in Spain | Padel Tripper',
+    title: 'Padel Holidays Spain | Coaching, Accommodation & Events in Alicante',
     description:
-      'World-class padel, coaching, sunshine and international community in Alicante, Spain.',
+      'Join premium padel holidays in Spain. Coaching, accommodation, sunshine and an international community in Alicante. View upcoming trips.',
     images: [
       {
         url: '/images/padel-group-holiday.jpg',
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Padel Holidays in Spain | Padel Tripper',
+    title: 'Padel Holidays Spain | Coaching, Accommodation & Events in Alicante',
     description:
-      'Premium small-group padel coaching holidays in Alicante, Spain.',
+      'Join premium padel holidays in Spain. Coaching, accommodation, sunshine and an international community in Alicante. View upcoming trips.',
     images: ['/images/padel-group-holiday.jpg'],
   },
 };
