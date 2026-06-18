@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 
 export default function EventsHero() {
@@ -29,7 +30,11 @@ export default function EventsHero() {
           </h1>
           <p className="text-white/50 max-w-2xl text-lg font-light">
             Browse our upcoming padel coaching holidays in Alicante. From arrival to departure, our team is on hand
-            24/7 so you can focus on enjoying every moment on and off court.
+            24/7 so you can focus on enjoying every moment on and off court. Learn more about our{' '}
+            <Link href="/padel-holidays-spain" className="text-white/75 underline decoration-white/25 underline-offset-4 hover:text-white transition-colors">
+              padel holidays in Spain
+            </Link>
+            .
           </p>
         </motion.div>
       </div>
