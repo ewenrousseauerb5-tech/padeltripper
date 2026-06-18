@@ -164,7 +164,7 @@ export default function PadelHolidaysSpainPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="max-w-3xl"
+            className="max-w-3xl -translate-y-8 md:-translate-y-12"
           >
             <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-5">Padel Tripper Spain</p>
             <h1 className="font-serif text-5xl md:text-7xl font-black uppercase leading-[0.95] text-white mb-6">
