@@ -42,7 +42,7 @@ function AccordionItem({ title, children, defaultOpen = false }: { title: string
 
 export default function EventsFaqSection() {
   return (
-    <section id="full-itinerary" className="py-28 bg-brand-light px-6" aria-label="Padel holiday package information">
+    <section id="full-itinerary" className="scroll-mt-24 py-28 bg-brand-light px-6" aria-label="Padel holiday package information">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="md:sticky md:top-28">

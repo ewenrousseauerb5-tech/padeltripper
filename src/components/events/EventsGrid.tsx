@@ -83,7 +83,7 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                   <span className="font-bold text-brand-dark text-[13px] sm:text-sm">{event.date}</span>
                 </div>
                 <a
-                  href="#full-itinerary"
+                  href="/events#full-itinerary"
                   className="ml-7 inline-flex text-[12px] font-semibold text-brand-red underline decoration-brand-red/35 underline-offset-4 hover:text-brand-dark transition-colors"
                 >
                   View full itinerary

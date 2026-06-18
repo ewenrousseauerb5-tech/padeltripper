@@ -13,6 +13,7 @@ export default function Navbar() {
   const pathname = usePathname() ?? '/';
   const isHome = pathname === '/';
   const isMayLanding = pathname === '/may-padel-retreat';
+  const isPadelHolidaysLanding = pathname === '/padel-holidays-spain';
   const isBookingSubmitted = pathname === '/booking-submitted';
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`));
 
@@ -42,7 +43,7 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const showTransparent = (isHome || isMayLanding || isBookingSubmitted) && !scrolled;
+  const showTransparent = (isHome || isMayLanding || isPadelHolidaysLanding || isBookingSubmitted) && !scrolled;
 
   return (
     <nav className={cn(

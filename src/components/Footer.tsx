@@ -74,6 +74,12 @@ export default function Footer() {
                   Upcoming Events
                 </Link>
               </li>
+              <li>
+                <Link href="/padel-holidays-spain" className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
+                  Padel Holidays Spain
+                </Link>
+              </li>
             </ul>
           </div>
 
