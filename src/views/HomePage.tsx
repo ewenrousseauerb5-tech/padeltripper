@@ -44,6 +44,7 @@ const confidenceGallery = [
 export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
   const [showTrustpilot, setShowTrustpilot] = useState(false);
+  const [activeConfidencePhoto, setActiveConfidencePhoto] = useState(0);
   const trustpilotTriggerRef = useRef<HTMLDivElement | null>(null);
   const homeUpcomingEvents = FUTURE_EVENTS.slice(0, 3);
 
@@ -76,6 +77,17 @@ export default function HomePage() {
     observer.observe(trustpilotTriggerRef.current);
     return () => observer.disconnect();
   }, [showTrustpilot]);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const timer = window.setInterval(() => {
+      setActiveConfidencePhoto((current) => (current + 1) % confidenceGallery.length);
+    }, 3600);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
     <main>
@@ -323,43 +335,81 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-3 md:gap-4">
-              <div className="relative col-span-4 min-h-[270px] overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-2xl md:col-span-2 md:min-h-[420px]">
-                <Image
-                  src={confidenceGallery[0].src}
-                  alt={confidenceGallery[0].alt}
-                  fill
-                  quality={48}
-                  sizes="(max-width: 768px) 100vw, 42vw"
-                  className="object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                <p className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
-                  {confidenceGallery[0].label}
-                </p>
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/[0.08] p-2 shadow-2xl backdrop-blur-sm md:p-3">
+              <div className="relative h-[390px] overflow-hidden rounded-[1.35rem] bg-black/25 md:h-[500px]">
+                {confidenceGallery.map((photo, index) => (
+                  <motion.div
+                    key={photo.src}
+                    initial={false}
+                    animate={{
+                      opacity: activeConfidencePhoto === index ? 1 : 0,
+                      scale: activeConfidencePhoto === index ? 1 : 1.04,
+                    }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    className="absolute inset-0"
+                    aria-hidden={activeConfidencePhoto !== index}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      quality={50}
+                      sizes="(max-width: 768px) 100vw, 48vw"
+                      className="object-cover object-center"
+                    />
+                  </motion.div>
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                  <p className="mb-4 inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
+                    {confidenceGallery[activeConfidencePhoto].label}
+                  </p>
+                  <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+                    <motion.div
+                      className="flex w-max gap-3"
+                      animate={{ x: ['0%', '-50%'] }}
+                      transition={{ duration: 18, ease: 'linear', repeat: Infinity }}
+                    >
+                      {[...confidenceGallery, ...confidenceGallery].map((photo, index) => (
+                        <button
+                          key={`${photo.src}-${index}`}
+                          type="button"
+                          onClick={() => setActiveConfidencePhoto(index % confidenceGallery.length)}
+                          className={`relative h-20 w-28 shrink-0 overflow-hidden rounded-xl border transition-all duration-300 md:h-24 md:w-36 ${
+                            activeConfidencePhoto === index % confidenceGallery.length
+                              ? 'border-white opacity-100'
+                              : 'border-white/20 opacity-70 hover:opacity-100'
+                          }`}
+                          aria-label={`Show ${photo.label} photo`}
+                        >
+                          <Image
+                            src={photo.src}
+                            alt=""
+                            fill
+                            quality={36}
+                            sizes="144px"
+                            className="object-cover object-center"
+                          />
+                        </button>
+                      ))}
+                    </motion.div>
+                  </div>
+                </div>
               </div>
 
-              {confidenceGallery.slice(1).map((photo, index) => (
-                <div
-                  key={photo.src}
-                  className={`relative min-h-[112px] overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-xl md:min-h-0 ${
-                    index === 0 ? 'col-span-2 md:col-span-2 md:h-[202px]' : 'col-span-1 md:h-[202px]'
-                  }`}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    quality={46}
-                    sizes="(max-width: 768px) 50vw, 20vw"
-                    className="object-cover object-center"
+              <div className="mt-3 grid grid-cols-4 gap-2" aria-hidden="true">
+                {confidenceGallery.map((photo, index) => (
+                  <button
+                    key={photo.src}
+                    type="button"
+                    onClick={() => setActiveConfidencePhoto(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeConfidencePhoto === index ? 'bg-brand-red' : 'bg-white/25'
+                    }`}
+                    tabIndex={-1}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                  <p className="absolute bottom-3 left-3 rounded-full bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
-                    {photo.label}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
