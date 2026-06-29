@@ -845,9 +845,6 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
                 className={`${inputClass} min-w-0 flex-1`}
               />
             </div>
-            <p className="mt-2 text-xs text-stone-400">
-              Include your mobile number without the country prefix. Example: {phoneExample}
-            </p>
           </div>
 
           <div className="md:col-span-2 md:max-w-[220px]">
