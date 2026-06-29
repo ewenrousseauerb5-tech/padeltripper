@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
@@ -515,7 +515,9 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneCountryCode, setPhoneCountryCode] = useState('+44');
+  const [isCountryCodeOpen, setIsCountryCodeOpen] = useState(false);
   const [phone, setPhone] = useState('');
+  const countryCodeDropdownRef = useRef<HTMLDivElement | null>(null);
   const [numParticipantsInput, setNumParticipantsInput] = useState('1');
   const [otherInfo, setOtherInfo] = useState('');
   const [acceptedLegal, setAcceptedLegal] = useState(false);
@@ -545,6 +547,19 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   useEffect(() => {
     setConfirmedEligibility(false);
   }, [eventId]);
+
+  useEffect(() => {
+    if (!isCountryCodeOpen) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!countryCodeDropdownRef.current?.contains(event.target as Node)) {
+        setIsCountryCodeOpen(false);
+      }
+    };
+
+    window.addEventListener('pointerdown', handlePointerDown);
+    return () => window.removeEventListener('pointerdown', handlePointerDown);
+  }, [isCountryCodeOpen]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -600,6 +615,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
     : null;
   const requiresEligibilityConfirmation = Boolean(selectedEvent?.eligibilityNote);
   const phoneExample = phoneExamplesByDialCode[phoneCountryCode] || '612 345 678';
+  const countryCodeWidth = `${Math.max(5.2, phoneCountryCode.length * 0.66 + 3.3)}rem`;
   const getNormalizedParticipants = () => {
     const parsed = parseInt(numParticipantsInput, 10);
     if (!Number.isFinite(parsed)) return 1;
@@ -773,22 +789,47 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
 
           <div>
             <label className={labelClass}>Phone Number *</label>
-            <div className="grid grid-cols-[minmax(136px,0.9fr)_1fr] gap-2">
-              <div className="relative">
-                <select
-                  required
-                  value={phoneCountryCode}
-                  onChange={e => setPhoneCountryCode(e.target.value)}
-                  className={`${inputClass} appearance-none pr-8`}
+            <div className="flex gap-2">
+              <div ref={countryCodeDropdownRef} className="relative shrink-0" style={{ width: countryCodeWidth }}>
+                <button
+                  type="button"
+                  onClick={() => setIsCountryCodeOpen(current => !current)}
+                  className={`${inputClass} flex items-center justify-between gap-2 px-3`}
                   aria-label="Country calling code"
+                  aria-haspopup="listbox"
+                  aria-expanded={isCountryCodeOpen}
                 >
-                  {countryDialCodes.map(country => (
-                    <option key={`${country.label}-${country.code}`} value={country.code}>
-                      {country.label} {country.code}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
+                  <span className="font-semibold text-brand-dark">{phoneCountryCode}</span>
+                  <ChevronDown size={14} className="shrink-0 text-stone-400" />
+                </button>
+                {isCountryCodeOpen && (
+                  <div
+                    role="listbox"
+                    aria-label="Country calling codes"
+                    className="absolute left-0 top-[calc(100%+0.35rem)] z-30 max-h-72 w-[min(82vw,22rem)] overflow-y-auto rounded-xl border border-stone-200 bg-white p-1.5 shadow-2xl"
+                  >
+                    {countryDialCodes.map(country => (
+                      <button
+                        key={`${country.label}-${country.code}`}
+                        type="button"
+                        role="option"
+                        aria-selected={country.code === phoneCountryCode}
+                        onClick={() => {
+                          setPhoneCountryCode(country.code);
+                          setIsCountryCodeOpen(false);
+                        }}
+                        className={`flex w-full items-center justify-between gap-4 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+                          country.code === phoneCountryCode
+                            ? 'bg-brand-red text-white'
+                            : 'text-stone-700 hover:bg-stone-50'
+                        }`}
+                      >
+                        <span className="truncate">{country.label}</span>
+                        <span className="shrink-0 font-semibold">{country.code}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <input
                 required
@@ -801,7 +842,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
                 pattern="[0-9 ()-]{6,18}"
                 minLength={6}
                 maxLength={18}
-                className={inputClass}
+                className={`${inputClass} min-w-0 flex-1`}
               />
             </div>
             <p className="mt-2 text-xs text-stone-400">
