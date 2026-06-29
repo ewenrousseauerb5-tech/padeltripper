@@ -118,8 +118,8 @@ export default function HomePage() {
             alt="Group padel holiday in Alicante, Spain — players enjoying coaching on the Costa Blanca"
             fill
             priority
-            quality={46}
-            sizes="100vw"
+            quality={44}
+            sizes="(max-width: 768px) 100vw, 0px"
             className="object-cover brightness-[0.4] md:hidden"
           />
           <video
@@ -130,7 +130,7 @@ export default function HomePage() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
           >
             {loadDesktopVideo ? <source src="/videos/hero-background.m4v" type="video/mp4" media="(min-width: 768px)" /> : null}

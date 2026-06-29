@@ -59,7 +59,8 @@ export default function Navbar() {
             alt="Padel Tripper logo"
             width={210}
             height={40}
-            priority
+            quality={48}
+            sizes="(max-width: 768px) 150px, 210px"
             className={cn(
               "w-auto transition-opacity duration-500",
               showTransparent ? "h-10" : "h-8"
