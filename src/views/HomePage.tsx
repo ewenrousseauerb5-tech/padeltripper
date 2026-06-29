@@ -18,6 +18,29 @@ const TrustpilotReviewHighlights = dynamic(() => import('../components/Trustpilo
   ),
 });
 
+const confidenceGallery = [
+  {
+    src: '/images/home-gallery-social-dinner.jpg',
+    alt: 'Padel Tripper guests enjoying a group dinner in Alicante',
+    label: 'Team dinner',
+  },
+  {
+    src: '/images/home-gallery-court-selfie.jpg',
+    alt: 'Padel Tripper guests smiling together on court in Alicante',
+    label: 'On court',
+  },
+  {
+    src: '/images/post-tournament-celebration.jpg',
+    alt: 'Padel Tripper guests celebrating after a tournament',
+    label: 'Post tournament',
+  },
+  {
+    src: '/images/home-gallery-alicante-palms.jpg',
+    alt: 'Palm trees and sunshine in Alicante',
+    label: 'Alicante sun',
+  },
+];
+
 export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
   const [showTrustpilot, setShowTrustpilot] = useState(false);
@@ -257,7 +280,7 @@ export default function HomePage() {
       </section>
 
       {/* Full-width trust banner */}
-      <section className="relative h-[50vh] min-h-[350px] flex items-center overflow-hidden" aria-label="Padel Tripper trust and protection">
+      <section className="relative overflow-hidden py-20 md:py-24" aria-label="Padel Tripper trust and protection">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/post-tournament-celebration-mobile.jpg"
@@ -265,32 +288,78 @@ export default function HomePage() {
             fill
             quality={44}
             sizes="100vw"
-            className="w-full h-full object-cover brightness-[0.3]"
+            className="w-full h-full object-cover brightness-[0.22]"
           />
+          <div className="absolute inset-0 bg-black/35" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="grid lg:grid-cols-[0.88fr_1.12fr] gap-10 md:gap-14 items-center"
           >
-            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Trust & Protection</p>
-            <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-6">
-              Book With <span className="text-brand-red">Confidence</span>
-            </h2>
-            <p className="text-white/75 max-w-2xl mx-auto text-lg leading-relaxed font-light">
-              Padel Tripper is a Protected Trust Services verified partner, giving you added confidence from the moment
-              you book to the moment you return home.
-            </p>
-            <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
-              <Image
-                src="/images/logos/PTS-Logo.jpg"
-                alt="Protected Trust Services"
-                width={88}
-                height={34}
-                className="h-6 w-auto object-contain"
-              />
-              <span className="text-xs font-semibold uppercase tracking-wider text-white/85">Verified Partner</span>
+            <div>
+              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Trust & Protection</p>
+              <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-6">
+                Book With <span className="text-brand-red">Confidence</span>
+              </h2>
+              <p className="text-white/75 max-w-xl text-base md:text-lg leading-relaxed font-light">
+                Padel Tripper is a Protected Trust Services verified partner, giving you added confidence from the moment
+                you book to the moment you return home.
+              </p>
+              <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+                <Image
+                  src="/images/logos/PTS-Logo.jpg"
+                  alt="Protected Trust Services"
+                  width={88}
+                  height={34}
+                  className="h-6 w-auto object-contain"
+                />
+                <span className="text-xs font-semibold uppercase tracking-wider text-white/85">Verified Partner</span>
+              </div>
+              <p className="mt-6 max-w-md text-sm leading-relaxed text-white/50">
+                Real guests, real trips and the little moments that make the Alicante experience feel easy to trust.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-4 gap-3 md:gap-4">
+              <div className="relative col-span-4 min-h-[270px] overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-2xl md:col-span-2 md:min-h-[420px]">
+                <Image
+                  src={confidenceGallery[0].src}
+                  alt={confidenceGallery[0].alt}
+                  fill
+                  quality={48}
+                  sizes="(max-width: 768px) 100vw, 42vw"
+                  className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                <p className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
+                  {confidenceGallery[0].label}
+                </p>
+              </div>
+
+              {confidenceGallery.slice(1).map((photo, index) => (
+                <div
+                  key={photo.src}
+                  className={`relative min-h-[112px] overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-xl md:min-h-0 ${
+                    index === 0 ? 'col-span-2 md:col-span-2 md:h-[202px]' : 'col-span-1 md:h-[202px]'
+                  }`}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    quality={46}
+                    sizes="(max-width: 768px) 50vw, 20vw"
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <p className="absolute bottom-3 left-3 rounded-full bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+                    {photo.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
