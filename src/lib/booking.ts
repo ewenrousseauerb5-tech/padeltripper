@@ -274,6 +274,26 @@ function getPaymentEmailFlow(startDateRaw: string | null | undefined, eventId: n
   return daysUntilEvent > 93 ? 'deposit' : 'full_payment';
 }
 
+function isMissingColumnError(error: { code?: string; message?: string } | null | undefined): boolean {
+  const message = error?.message?.toLowerCase() || '';
+  return error?.code === 'PGRST204' || message.includes('could not find') || message.includes('schema cache');
+}
+
+function buildFallbackSpecialRequests(booking: NormalizedBooking): string {
+  const details = [
+    booking.special_requests,
+    `Phone: ${booking.phone}`,
+    booking.utm_source ? `UTM source: ${booking.utm_source}` : '',
+    booking.utm_medium ? `UTM medium: ${booking.utm_medium}` : '',
+    booking.utm_campaign ? `UTM campaign: ${booking.utm_campaign}` : '',
+    booking.utm_content ? `UTM content: ${booking.utm_content}` : '',
+    booking.utm_term ? `UTM term: ${booking.utm_term}` : '',
+    booking.gclid ? `GCLID: ${booking.gclid}` : '',
+  ].filter(Boolean);
+
+  return details.join('\n');
+}
+
 async function sendResendEmail(
   resendApiKey: string,
   fromEmail: string,
@@ -382,28 +402,53 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       return jsonResponse({ ok: false, error: 'Invalid event_id. Selected event does not exist.' }, 400);
     }
 
-    const { data: quotation, error: quotationError } = await supabase
+    const quotationPayload = {
+      event_id: booking.event_id,
+      full_name: booking.full_name,
+      email: booking.email,
+      phone: booking.phone,
+      num_participants: booking.num_participants,
+      accommodation_type: booking.accommodation_type,
+      dietary_requirements: booking.dietary_requirements,
+      special_requests: booking.special_requests,
+      status: 'SUBMITTED',
+      payment_status: 'pending',
+      utm_source: booking.utm_source || null,
+      utm_medium: booking.utm_medium || null,
+      utm_campaign: booking.utm_campaign || null,
+      utm_content: booking.utm_content || null,
+      utm_term: booking.utm_term || null,
+      gclid: booking.gclid || null,
+    };
+
+    let { data: quotation, error: quotationError } = await supabase
       .from('quotations')
-      .insert({
+      .insert(quotationPayload)
+      .select('id')
+      .single();
+
+    if (quotationError && isMissingColumnError(quotationError)) {
+      console.warn('Quotation insert hit a schema mismatch. Retrying with compatibility payload:', quotationError.message);
+      const fallbackQuotationPayload = {
         event_id: booking.event_id,
         full_name: booking.full_name,
         email: booking.email,
-        phone: booking.phone,
         num_participants: booking.num_participants,
         accommodation_type: booking.accommodation_type,
         dietary_requirements: booking.dietary_requirements,
-        special_requests: booking.special_requests,
+        special_requests: buildFallbackSpecialRequests(booking),
         status: 'SUBMITTED',
-        payment_status: 'pending',
-        utm_source: booking.utm_source || null,
-        utm_medium: booking.utm_medium || null,
-        utm_campaign: booking.utm_campaign || null,
-        utm_content: booking.utm_content || null,
-        utm_term: booking.utm_term || null,
-        gclid: booking.gclid || null,
-      })
-      .select('id')
-      .single();
+      };
+
+      const fallbackResult = await supabase
+        .from('quotations')
+        .insert(fallbackQuotationPayload)
+        .select('id')
+        .single();
+
+      quotation = fallbackResult.data;
+      quotationError = fallbackResult.error;
+    }
 
     if (quotationError || !quotation?.id) {
       throw new Error(`Quotation insert failed: ${quotationError?.message || 'No quotation id returned.'}`);
