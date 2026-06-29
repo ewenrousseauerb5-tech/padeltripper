@@ -45,7 +45,9 @@ export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
   const [showTrustpilot, setShowTrustpilot] = useState(false);
   const [activeConfidencePhoto, setActiveConfidencePhoto] = useState(0);
+  const [startConfidenceGallery, setStartConfidenceGallery] = useState(false);
   const trustpilotTriggerRef = useRef<HTMLDivElement | null>(null);
+  const confidenceGalleryRef = useRef<HTMLDivElement | null>(null);
   const homeUpcomingEvents = FUTURE_EVENTS.slice(0, 3);
 
   useEffect(() => {
@@ -80,14 +82,31 @@ export default function HomePage() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || !startConfidenceGallery) return;
 
     const timer = window.setInterval(() => {
       setActiveConfidencePhoto((current) => (current + 1) % confidenceGallery.length);
     }, 3600);
 
     return () => window.clearInterval(timer);
-  }, []);
+  }, [startConfidenceGallery]);
+
+  useEffect(() => {
+    if (!confidenceGalleryRef.current || startConfidenceGallery) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setStartConfidenceGallery(true);
+          observer.disconnect();
+        }
+      },
+      { root: null, rootMargin: '220px 0px', threshold: 0.01 },
+    );
+
+    observer.observe(confidenceGalleryRef.current);
+    return () => observer.disconnect();
+  }, [startConfidenceGallery]);
 
   return (
     <main>
@@ -335,30 +354,27 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/[0.08] p-2 shadow-2xl backdrop-blur-sm md:p-3">
+            <div
+              ref={confidenceGalleryRef}
+              className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/[0.08] p-2 shadow-2xl backdrop-blur-sm md:p-3"
+            >
               <div className="relative h-[390px] overflow-hidden rounded-[1.35rem] bg-black/25 md:h-[500px]">
-                {confidenceGallery.map((photo, index) => (
-                  <motion.div
-                    key={photo.src}
-                    initial={false}
-                    animate={{
-                      opacity: activeConfidencePhoto === index ? 1 : 0,
-                      scale: activeConfidencePhoto === index ? 1 : 1.04,
-                    }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className="absolute inset-0"
-                    aria-hidden={activeConfidencePhoto !== index}
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      quality={50}
-                      sizes="(max-width: 768px) 100vw, 48vw"
-                      className="object-cover object-center"
-                    />
-                  </motion.div>
-                ))}
+                <motion.div
+                  key={confidenceGallery[activeConfidencePhoto].src}
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={confidenceGallery[activeConfidencePhoto].src}
+                    alt={confidenceGallery[activeConfidencePhoto].alt}
+                    fill
+                    quality={50}
+                    sizes="(max-width: 768px) 88vw, 48vw"
+                    className="object-cover object-center"
+                  />
+                </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-6 p-5 md:p-6">
                   <p className="inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
