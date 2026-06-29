@@ -359,56 +359,25 @@ export default function HomePage() {
                     />
                   </motion.div>
                 ))}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
-                  <p className="mb-4 inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-6 p-5 md:p-6">
+                  <p className="inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
                     {confidenceGallery[activeConfidencePhoto].label}
                   </p>
-                  <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-                    <motion.div
-                      className="flex w-max gap-3"
-                      animate={{ x: ['0%', '-50%'] }}
-                      transition={{ duration: 18, ease: 'linear', repeat: Infinity }}
-                    >
-                      {[...confidenceGallery, ...confidenceGallery].map((photo, index) => (
-                        <button
-                          key={`${photo.src}-${index}`}
-                          type="button"
-                          onClick={() => setActiveConfidencePhoto(index % confidenceGallery.length)}
-                          className={`relative h-20 w-28 shrink-0 overflow-hidden rounded-xl border transition-all duration-300 md:h-24 md:w-36 ${
-                            activeConfidencePhoto === index % confidenceGallery.length
-                              ? 'border-white opacity-100'
-                              : 'border-white/20 opacity-70 hover:opacity-100'
-                          }`}
-                          aria-label={`Show ${photo.label} photo`}
-                        >
-                          <Image
-                            src={photo.src}
-                            alt=""
-                            fill
-                            quality={36}
-                            sizes="144px"
-                            className="object-cover object-center"
-                          />
-                        </button>
-                      ))}
-                    </motion.div>
+                  <div className="flex items-center gap-2" aria-label="Gallery photos">
+                    {confidenceGallery.map((photo, index) => (
+                      <button
+                        key={photo.src}
+                        type="button"
+                        onClick={() => setActiveConfidencePhoto(index)}
+                        className={`h-1.5 rounded-full transition-all duration-500 ${
+                          activeConfidencePhoto === index ? 'w-9 bg-white' : 'w-1.5 bg-white/35 hover:bg-white/70'
+                        }`}
+                        aria-label={`Show ${photo.label} photo`}
+                      />
+                    ))}
                   </div>
                 </div>
-              </div>
-
-              <div className="mt-3 grid grid-cols-4 gap-2" aria-hidden="true">
-                {confidenceGallery.map((photo, index) => (
-                  <button
-                    key={photo.src}
-                    type="button"
-                    onClick={() => setActiveConfidencePhoto(index)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      activeConfidencePhoto === index ? 'bg-brand-red' : 'bg-white/25'
-                    }`}
-                    tabIndex={-1}
-                  />
-                ))}
               </div>
             </div>
           </motion.div>
