@@ -451,17 +451,29 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       throw new Error(`Quotation insert failed: ${quotationError?.message || 'No quotation id returned.'}`);
     }
 
-    const { error: participantsError } = await supabase.from('participants').insert(
-      booking.participants.map(participant => ({
+    const participantsPayload = booking.participants.map(participant => ({
+      quotation_id: quotation.id,
+      full_name: participant.full_name,
+      email: participant.email,
+      padel_level: participant.padel_level,
+      trip_goals: participant.trip_goals,
+      special_requirements: participant.special_requirements,
+      equipment_rental: participant.equipment_rental,
+    }));
+
+    let { error: participantsError } = await supabase.from('participants').insert(participantsPayload);
+
+    if (participantsError && isMissingColumnError(participantsError)) {
+      console.warn('Participants insert hit a schema mismatch. Retrying with compatibility payload:', participantsError.message);
+      const fallbackParticipantsPayload = booking.participants.map(participant => ({
         quotation_id: quotation.id,
         full_name: participant.full_name,
         email: participant.email,
-        padel_level: participant.padel_level,
-        trip_goals: participant.trip_goals,
-        special_requirements: participant.special_requirements,
-        equipment_rental: participant.equipment_rental,
-      })),
-    );
+      }));
+
+      const fallbackParticipantsResult = await supabase.from('participants').insert(fallbackParticipantsPayload);
+      participantsError = fallbackParticipantsResult.error;
+    }
 
     if (participantsError) {
       throw new Error(`Participants insert failed: ${participantsError.message}`);
