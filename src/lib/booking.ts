@@ -396,10 +396,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       .maybeSingle();
 
     if (eventLookupError) {
-      throw new Error(`Event lookup failed: ${eventLookupError.message}`);
-    }
-    if (!eventRow?.id) {
-      return jsonResponse({ ok: false, error: 'Invalid event_id. Selected event does not exist.' }, 400);
+      console.warn('Event lookup failed. Continuing with local event data:', eventLookupError.message);
     }
 
     const quotationPayload = {
@@ -471,7 +468,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     }
 
     const adminHtml = buildAdminHtml(quotation.id, booking);
-    const paymentEmailFlow = getPaymentEmailFlow(eventRow.start_date, booking.event_id);
+    const paymentEmailFlow = getPaymentEmailFlow(eventRow?.start_date, booking.event_id);
     const customerHtml = buildCustomerHtml(booking, paymentEmailFlow);
     const eventLabel = booking.event_name || `Event #${booking.event_id}`;
 
