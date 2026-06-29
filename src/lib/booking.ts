@@ -294,6 +294,80 @@ function buildFallbackSpecialRequests(booking: NormalizedBooking): string {
   return details.join('\n');
 }
 
+function csvEscape(value: string | number | boolean | undefined): string {
+  const stringValue = String(value ?? '');
+  return `"${stringValue.replaceAll('"', '""')}"`;
+}
+
+function buildBookingBackupCsv(booking: NormalizedBooking, reason: string): string {
+  const headers = [
+    'created_at',
+    'backup_reason',
+    'event_id',
+    'event_name',
+    'full_name',
+    'email',
+    'phone',
+    'num_participants',
+    'accommodation_type',
+    'dietary_requirements',
+    'special_requests',
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'gclid',
+  ];
+  const row = [
+    new Date().toISOString(),
+    reason,
+    booking.event_id,
+    booking.event_name || '',
+    booking.full_name,
+    booking.email,
+    booking.phone,
+    booking.num_participants,
+    booking.accommodation_type,
+    booking.dietary_requirements,
+    booking.special_requests,
+    booking.utm_source,
+    booking.utm_medium,
+    booking.utm_campaign,
+    booking.utm_content,
+    booking.utm_term,
+    booking.gclid,
+  ];
+
+  return `${headers.map(csvEscape).join(',')}\n${row.map(csvEscape).join(',')}`;
+}
+
+function buildBackupHtml(booking: NormalizedBooking, reason: string, backupCsv: string): string {
+  const eventLabel = booking.event_name || `Event #${booking.event_id}`;
+
+  return `
+<div style="font-family:sans-serif;max-width:720px;margin:0 auto;">
+  <div style="background:#7f1d1d;color:#fff;padding:22px 28px;">
+    <h1 style="font-size:18px;margin:0;font-weight:800;">Emergency Booking Backup</h1>
+    <p style="margin:8px 0 0;font-size:13px;opacity:.88;">Supabase/database storage failed, but this lead was captured by email.</p>
+  </div>
+  <div style="padding:28px;background:#fff;border:1px solid #eee;">
+    <h2 style="color:#c0392b;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin:0 0 14px;">Lead Details</h2>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+      <tr><td style="padding:5px 0;color:#888;width:34%;">Reason</td><td style="padding:5px 0;font-weight:700;">${escapeHtml(reason)}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Event</td><td style="padding:5px 0;">${escapeHtml(eventLabel)}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Lead Booker</td><td style="padding:5px 0;">${escapeHtml(booking.full_name)}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Email</td><td style="padding:5px 0;">${escapeHtml(booking.email)}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Phone</td><td style="padding:5px 0;">${escapeHtml(booking.phone)}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Participants</td><td style="padding:5px 0;">${booking.num_participants}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Other Information</td><td style="padding:5px 0;">${escapeHtml(booking.special_requests || '—')}</td></tr>
+    </table>
+    <p style="margin:0 0 8px;color:#222;font-size:13px;font-weight:700;">CSV backup for Excel / Google Sheets</p>
+    <pre style="white-space:pre-wrap;background:#f7f7f7;border:1px solid #e7e7e7;border-radius:8px;padding:14px;font-size:12px;line-height:1.45;color:#333;">${escapeHtml(backupCsv)}</pre>
+  </div>
+</div>`;
+}
+
 async function sendResendEmail(
   resendApiKey: string,
   fromEmail: string,
@@ -322,6 +396,37 @@ async function sendResendEmail(
     const responseText = await response.text();
     throw new Error(`Resend error (${response.status}): ${responseText}`);
   }
+}
+
+async function sendBookingBackupEmail(
+  resendApiKey: string,
+  fromEmail: string,
+  booking: NormalizedBooking,
+  reason: string,
+): Promise<void> {
+  const eventLabel = booking.event_name || `Event #${booking.event_id}`;
+  const backupCsv = buildBookingBackupCsv(booking, reason);
+
+  await sendResendEmail(resendApiKey, fromEmail, {
+    to: opsEmail,
+    reply_to: booking.email,
+    subject: `URGENT backup lead - ${eventLabel} - ${booking.full_name}`,
+    html: buildBackupHtml(booking, reason, backupCsv),
+    text: [
+      'URGENT: Supabase/database storage failed, but this booking lead was captured by email.',
+      '',
+      `Reason: ${reason}`,
+      `Event: ${eventLabel}`,
+      `Name: ${booking.full_name}`,
+      `Email: ${booking.email}`,
+      `Phone: ${booking.phone}`,
+      `Participants: ${booking.num_participants}`,
+      `Other Information: ${booking.special_requests || '(none)'}`,
+      '',
+      'CSV backup:',
+      backupCsv,
+    ].join('\n'),
+  });
 }
 
 async function handleLegacyEnquiry(rawBody: BookingPayload, env: BookingEnv): Promise<Response | null> {
@@ -380,107 +485,149 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
     const supabaseUrl = env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY || env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    if (!supabaseUrl || !supabaseKey) {
-      return jsonResponse({ ok: false, error: 'Server is missing Supabase configuration.' }, 500);
-    }
     if (!env.RESEND_API_KEY) {
       return jsonResponse({ ok: false, error: 'Server is missing email configuration.' }, 500);
     }
     const fromEmail = normalizeString(env.RESEND_FROM_EMAIL) || fallbackFromEmail;
 
-    const supabase = createClient(supabaseUrl, supabaseKey);
-    const { data: eventRow, error: eventLookupError } = await supabase
-      .from('events')
-      .select('id,start_date')
-      .eq('id', booking.event_id)
-      .maybeSingle();
-
-    if (eventLookupError) {
-      console.warn('Event lookup failed. Continuing with local event data:', eventLookupError.message);
+    if (!supabaseUrl || !supabaseKey) {
+      const reason = 'Server is missing Supabase configuration.';
+      console.error(reason);
+      await sendBookingBackupEmail(env.RESEND_API_KEY, fromEmail, booking, reason);
+      const customerHtml = buildCustomerHtml(booking, getPaymentEmailFlow(null, booking.event_id));
+      const customerEmailResult = await Promise.allSettled([sendResendEmail(env.RESEND_API_KEY, fromEmail, {
+        to: booking.email,
+        cc: opsEmail,
+        reply_to: opsEmail,
+        subject: 'Your Alicante trip is almost ready — just one quick step!',
+        html: customerHtml,
+      })]);
+      if (customerEmailResult[0]?.status === 'rejected') {
+        console.error('Backup flow customer email failed:', customerEmailResult[0].reason);
+      }
+      return jsonResponse({ ok: true, backup_only: true });
     }
 
-    const quotationPayload = {
-      event_id: booking.event_id,
-      full_name: booking.full_name,
-      email: booking.email,
-      phone: booking.phone,
-      num_participants: booking.num_participants,
-      accommodation_type: booking.accommodation_type,
-      dietary_requirements: booking.dietary_requirements,
-      special_requests: booking.special_requests,
-      status: 'SUBMITTED',
-      payment_status: 'pending',
-      utm_source: booking.utm_source || null,
-      utm_medium: booking.utm_medium || null,
-      utm_campaign: booking.utm_campaign || null,
-      utm_content: booking.utm_content || null,
-      utm_term: booking.utm_term || null,
-      gclid: booking.gclid || null,
-    };
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    let eventStartDate: string | null | undefined = null;
+    let quotationId: number | null = null;
 
-    let { data: quotation, error: quotationError } = await supabase
-      .from('quotations')
-      .insert(quotationPayload)
-      .select('id')
-      .single();
+    try {
+      const { data: eventRow, error: eventLookupError } = await supabase
+        .from('events')
+        .select('id,start_date')
+        .eq('id', booking.event_id)
+        .maybeSingle();
 
-    if (quotationError && isMissingColumnError(quotationError)) {
-      console.warn('Quotation insert hit a schema mismatch. Retrying with compatibility payload:', quotationError.message);
-      const fallbackQuotationPayload = {
+      if (eventLookupError) {
+        console.warn('Event lookup failed. Continuing with local event data:', eventLookupError.message);
+      }
+      eventStartDate = eventRow?.start_date;
+
+      const quotationPayload = {
         event_id: booking.event_id,
         full_name: booking.full_name,
         email: booking.email,
+        phone: booking.phone,
         num_participants: booking.num_participants,
         accommodation_type: booking.accommodation_type,
         dietary_requirements: booking.dietary_requirements,
-        special_requests: buildFallbackSpecialRequests(booking),
+        special_requests: booking.special_requests,
         status: 'SUBMITTED',
+        payment_status: 'pending',
+        utm_source: booking.utm_source || null,
+        utm_medium: booking.utm_medium || null,
+        utm_campaign: booking.utm_campaign || null,
+        utm_content: booking.utm_content || null,
+        utm_term: booking.utm_term || null,
+        gclid: booking.gclid || null,
       };
 
-      const fallbackResult = await supabase
+      let { data: quotation, error: quotationError } = await supabase
         .from('quotations')
-        .insert(fallbackQuotationPayload)
+        .insert(quotationPayload)
         .select('id')
         .single();
 
-      quotation = fallbackResult.data;
-      quotationError = fallbackResult.error;
-    }
+      if (quotationError && isMissingColumnError(quotationError)) {
+        console.warn('Quotation insert hit a schema mismatch. Retrying with compatibility payload:', quotationError.message);
+        const fallbackQuotationPayload = {
+          event_id: booking.event_id,
+          full_name: booking.full_name,
+          email: booking.email,
+          num_participants: booking.num_participants,
+          accommodation_type: booking.accommodation_type,
+          dietary_requirements: booking.dietary_requirements,
+          special_requests: buildFallbackSpecialRequests(booking),
+          status: 'SUBMITTED',
+        };
 
-    if (quotationError || !quotation?.id) {
-      throw new Error(`Quotation insert failed: ${quotationError?.message || 'No quotation id returned.'}`);
-    }
+        const fallbackResult = await supabase
+          .from('quotations')
+          .insert(fallbackQuotationPayload)
+          .select('id')
+          .single();
 
-    const participantsPayload = booking.participants.map(participant => ({
-      quotation_id: quotation.id,
-      full_name: participant.full_name,
-      email: participant.email,
-      padel_level: participant.padel_level,
-      trip_goals: participant.trip_goals,
-      special_requirements: participant.special_requirements,
-      equipment_rental: participant.equipment_rental,
-    }));
+        quotation = fallbackResult.data;
+        quotationError = fallbackResult.error;
+      }
 
-    let { error: participantsError } = await supabase.from('participants').insert(participantsPayload);
+      if (quotationError || !quotation?.id) {
+        throw new Error(`Quotation insert failed: ${quotationError?.message || 'No quotation id returned.'}`);
+      }
+      quotationId = quotation.id;
 
-    if (participantsError && isMissingColumnError(participantsError)) {
-      console.warn('Participants insert hit a schema mismatch. Retrying with compatibility payload:', participantsError.message);
-      const fallbackParticipantsPayload = booking.participants.map(participant => ({
+      const participantsPayload = booking.participants.map(participant => ({
         quotation_id: quotation.id,
         full_name: participant.full_name,
         email: participant.email,
+        padel_level: participant.padel_level,
+        trip_goals: participant.trip_goals,
+        special_requirements: participant.special_requirements,
+        equipment_rental: participant.equipment_rental,
       }));
 
-      const fallbackParticipantsResult = await supabase.from('participants').insert(fallbackParticipantsPayload);
-      participantsError = fallbackParticipantsResult.error;
+      let { error: participantsError } = await supabase.from('participants').insert(participantsPayload);
+
+      if (participantsError && isMissingColumnError(participantsError)) {
+        console.warn('Participants insert hit a schema mismatch. Retrying with compatibility payload:', participantsError.message);
+        const fallbackParticipantsPayload = booking.participants.map(participant => ({
+          quotation_id: quotation.id,
+          full_name: participant.full_name,
+          email: participant.email,
+        }));
+
+        const fallbackParticipantsResult = await supabase.from('participants').insert(fallbackParticipantsPayload);
+        participantsError = fallbackParticipantsResult.error;
+      }
+
+      if (participantsError) {
+        throw new Error(`Participants insert failed: ${participantsError.message}`);
+      }
+    } catch (databaseError) {
+      const reason = databaseError instanceof Error ? databaseError.message : 'Unknown Supabase/database error.';
+      console.error('Booking database failed. Sending emergency backup email:', databaseError);
+      await sendBookingBackupEmail(env.RESEND_API_KEY, fromEmail, booking, reason);
+      const customerHtml = buildCustomerHtml(booking, getPaymentEmailFlow(eventStartDate, booking.event_id));
+      const customerEmailResult = await Promise.allSettled([sendResendEmail(env.RESEND_API_KEY, fromEmail, {
+        to: booking.email,
+        cc: opsEmail,
+        reply_to: opsEmail,
+        subject: 'Your Alicante trip is almost ready — just one quick step!',
+        html: customerHtml,
+      })]);
+      if (customerEmailResult[0]?.status === 'rejected') {
+        console.error('Backup flow customer email failed:', customerEmailResult[0].reason);
+      }
+      return jsonResponse({ ok: true, backup_only: true });
     }
 
-    if (participantsError) {
-      throw new Error(`Participants insert failed: ${participantsError.message}`);
+    if (quotationId === null) {
+      throw new Error('No quotation id returned after database insert.');
     }
 
-    const adminHtml = buildAdminHtml(quotation.id, booking);
-    const paymentEmailFlow = getPaymentEmailFlow(eventRow?.start_date, booking.event_id);
+    const adminHtml = buildAdminHtml(quotationId, booking);
+    const paymentEmailFlow = getPaymentEmailFlow(eventStartDate, booking.event_id);
     const customerHtml = buildCustomerHtml(booking, paymentEmailFlow);
     const eventLabel = booking.event_name || `Event #${booking.event_id}`;
 
@@ -507,7 +654,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
       console.error('Booking email to customer failed:', customerEmailResult.reason);
     }
 
-    return jsonResponse({ ok: true, quotation_id: quotation.id });
+    return jsonResponse({ ok: true, quotation_id: quotationId });
   } catch (error) {
     console.error('Booking API error:', error);
     const message = error instanceof Error ? error.message : '';
