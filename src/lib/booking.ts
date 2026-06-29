@@ -94,6 +94,29 @@ function normalizeString(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(value);
+}
+
+function normalizePhone(value: string): string {
+  const trimmed = normalizeString(value);
+  if (!trimmed) return '';
+
+  const startsWithPlus = trimmed.startsWith('+');
+  const digits = trimmed.replace(/[^\d]/g, '');
+  if (!digits) return '';
+
+  return startsWithPlus ? `+${digits}` : digits;
+}
+
+function isValidInternationalPhone(value: string): boolean {
+  const normalized = normalizePhone(value);
+  if (!normalized.startsWith('+')) return false;
+
+  const digits = normalized.slice(1);
+  return digits.length >= 8 && digits.length <= 15;
+}
+
 function normalizeParticipants(raw: ParticipantInput[] = []): NormalizedParticipant[] {
   return raw.map(participant => ({
     full_name: normalizeString(participant.full_name),
@@ -109,7 +132,7 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
   const event_id = Number(raw.event_id);
   const full_name = normalizeString(raw.full_name);
   const email = normalizeString(raw.email);
-  const phone = normalizeString(raw.phone);
+  const phone = normalizePhone(normalizeString(raw.phone));
   const participants = Array.isArray(raw.participants) ? normalizeParticipants(raw.participants) : [];
   const num_participants = Number(raw.num_participants);
 
@@ -122,8 +145,14 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
   if (!email) {
     return { error: 'email is required.' };
   }
+  if (!isValidEmail(email)) {
+    return { error: 'Please enter a valid email address.' };
+  }
   if (!phone) {
     return { error: 'phone is required.' };
+  }
+  if (!isValidInternationalPhone(phone)) {
+    return { error: 'Please enter a valid phone number with country code.' };
   }
   if (!Number.isFinite(num_participants) || num_participants <= 0) {
     return { error: 'num_participants is required.' };

@@ -23,6 +23,40 @@ const inputClass =
 
 const labelClass = 'block text-[11px] font-semibold uppercase tracking-widest text-stone-400 mb-2';
 
+const countryDialCodes = [
+  { code: '+44', label: 'UK' },
+  { code: '+34', label: 'Spain' },
+  { code: '+31', label: 'Netherlands' },
+  { code: '+33', label: 'France' },
+  { code: '+49', label: 'Germany' },
+  { code: '+353', label: 'Ireland' },
+  { code: '+32', label: 'Belgium' },
+  { code: '+41', label: 'Switzerland' },
+  { code: '+46', label: 'Sweden' },
+  { code: '+45', label: 'Denmark' },
+  { code: '+47', label: 'Norway' },
+  { code: '+358', label: 'Finland' },
+  { code: '+39', label: 'Italy' },
+  { code: '+351', label: 'Portugal' },
+  { code: '+1', label: 'US/Canada' },
+  { code: '+61', label: 'Australia' },
+];
+
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(value.trim());
+}
+
+function normalizeLocalPhone(value: string): string {
+  return value.replace(/[^\d]/g, '');
+}
+
+function isValidPhone(countryCode: string, localNumber: string): boolean {
+  const digits = normalizeLocalPhone(localNumber);
+  const countryDigits = countryCode.replace(/[^\d]/g, '');
+  const totalLength = `${countryDigits}${digits}`.length;
+  return /^\+\d{1,4}$/.test(countryCode) && digits.length >= 6 && digits.length <= 14 && totalLength >= 8 && totalLength <= 15;
+}
+
 export default function BookingForm({ selectedEventId, priceOverrides }: BookingFormProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -31,6 +65,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const [eventId, setEventId] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneCountryCode, setPhoneCountryCode] = useState('+44');
   const [phone, setPhone] = useState('');
   const [numParticipantsInput, setNumParticipantsInput] = useState('1');
   const [otherInfo, setOtherInfo] = useState('');
@@ -124,6 +159,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const resetForm = () => {
     setFullName('');
     setEmail('');
+    setPhoneCountryCode('+44');
     setPhone('');
     setNumParticipantsInput('1');
     setOtherInfo('');
@@ -143,12 +179,24 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
     setErrorMsg('');
 
     try {
+      const cleanEmail = email.trim();
+      const cleanPhoneDigits = normalizeLocalPhone(phone);
+      const normalizedPhone = `${phoneCountryCode} ${cleanPhoneDigits}`;
+
+      if (!isValidEmail(cleanEmail)) {
+        throw new Error('Please enter a valid email address.');
+      }
+
+      if (!isValidPhone(phoneCountryCode, phone)) {
+        throw new Error('Please enter a valid phone number with country code.');
+      }
+
       const payload = {
         event_id: Number(eventId),
         event_name: selectedEvent ? `${selectedEvent.date} - From ${getDisplayPrice(selectedEvent)}` : undefined,
         full_name: fullName.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
+        email: cleanEmail,
+        phone: normalizedPhone,
         num_participants: getNormalizedParticipants(),
         special_requests: otherInfo.trim(),
         accepted_privacy_terms: acceptedLegal,
@@ -263,25 +311,50 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
             <input
               required
               type="email"
+              inputMode="email"
+              autoComplete="email"
               placeholder="email@example.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
               className={inputClass}
             />
           </div>
 
           <div>
             <label className={labelClass}>Phone Number *</label>
-            <input
-              required
-              type="tel"
-              inputMode="tel"
-              autoComplete="tel"
-              placeholder="+44 7700 000000"
-              value={phone}
-              onChange={e => setPhone(e.target.value)}
-              className={inputClass}
-            />
+            <div className="grid grid-cols-[116px_1fr] gap-2">
+              <div className="relative">
+                <select
+                  required
+                  value={phoneCountryCode}
+                  onChange={e => setPhoneCountryCode(e.target.value)}
+                  className={`${inputClass} appearance-none pr-8`}
+                  aria-label="Country calling code"
+                >
+                  {countryDialCodes.map(country => (
+                    <option key={`${country.label}-${country.code}`} value={country.code}>
+                      {country.label} {country.code}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
+              </div>
+              <input
+                required
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel-national"
+                placeholder="7700 000000"
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
+                pattern="[0-9 ()-]{6,18}"
+                minLength={6}
+                maxLength={18}
+                className={inputClass}
+              />
+            </div>
+            <p className="mt-2 text-xs text-stone-400">Include your mobile number without the country prefix.</p>
           </div>
 
           <div className="md:col-span-2 md:max-w-[220px]">
