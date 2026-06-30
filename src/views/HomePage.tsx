@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { motion } from 'motion/react';
 import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
 import { FUTURE_EVENTS, getVisiblePromoNote } from '../data/events';
 import { toDualCurrencyDisplay } from '../lib/pricing';
@@ -139,12 +138,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl animate-[fadeUp_700ms_ease-out_both]">
             <h1 className="font-serif text-5xl md:text-7xl font-black text-white uppercase leading-[0.95] mb-8">
               Ultimate padel retreats <br />
               <span className="text-brand-red">in Alicante</span>
@@ -169,7 +163,7 @@ export default function HomePage() {
             <p className="mt-5 text-sm text-white/70 tracking-wide">
               Excellent on Trustpilot <span aria-hidden="true">·</span> 5.0 <Star size={14} className="inline -mt-0.5 text-brand-red" /> rating
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -324,12 +318,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/35" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid lg:grid-cols-[0.88fr_1.12fr] gap-10 md:gap-14 items-center"
-          >
+          <div className="grid lg:grid-cols-[0.88fr_1.12fr] gap-10 md:gap-14 items-center">
             <div>
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Trust & Protection</p>
               <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-6">
@@ -359,12 +348,9 @@ export default function HomePage() {
               className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/[0.08] p-2 shadow-2xl backdrop-blur-sm md:p-3"
             >
               <div className="relative h-[390px] overflow-hidden rounded-[1.35rem] bg-black/25 md:h-[500px]">
-                <motion.div
+                <div
                   key={confidenceGallery[activeConfidencePhoto].src}
-                  initial={{ opacity: 0, scale: 1.03 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="absolute inset-0"
+                  className="absolute inset-0 animate-[softReveal_800ms_ease-out_both]"
                 >
                   <Image
                     src={confidenceGallery[activeConfidencePhoto].src}
@@ -374,7 +360,7 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 88vw, 48vw"
                     className="object-cover object-center"
                   />
-                </motion.div>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-6 p-5 md:p-6">
                   <p className="inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
@@ -396,7 +382,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -422,12 +408,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-9 mb-7">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-5"
-            >
+            <div className="lg:col-span-5">
               <div className="space-y-6">
                 <div className="relative pl-8">
                   <div className="absolute left-0 top-1 h-full w-px bg-stone-300" />
@@ -463,15 +444,9 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="lg:col-span-7"
-            >
+            <div className="lg:col-span-7">
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
                   <Image
@@ -496,7 +471,7 @@ export default function HomePage() {
                   />
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           <div className="rounded-2xl border border-stone-800 bg-[#141414] px-6 py-5 md:px-8 md:py-6">
@@ -512,12 +487,7 @@ export default function HomePage() {
       <section className="py-24 md:py-28 bg-white px-6" aria-label="About Padel Tripper">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-5"
-            >
+            <div className="lg:col-span-5">
               <div className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
                 <Image
                   src="/images/ollie.jpg"
@@ -529,15 +499,9 @@ export default function HomePage() {
                   className="w-full h-[520px] object-cover object-[center_34%]"
                 />
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="lg:col-span-7"
-            >
+            <div className="lg:col-span-7">
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">About Us</p>
               <h2 className="font-serif text-[30px] md:text-5xl font-black uppercase leading-tight mb-6">
                 <span className="block">The Story Behind</span>
@@ -566,7 +530,7 @@ export default function HomePage() {
                   <ArrowRight size={14} />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
