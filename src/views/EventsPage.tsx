@@ -17,19 +17,19 @@ const EventsFaqSection = dynamic(() => import('../components/events/EventsFaqSec
 
 const bookingGallery = [
   {
-    src: '/images/Fotos Nuevas/2E56E2DA-9D2B-4D14-B632-61B778B0C4A3.JPG',
+    src: '/images/booking-gallery/group-selfie.jpg',
     alt: 'Padel Tripper guests smiling together on court in Alicante',
     label: 'Group energy',
     position: 'center 42%',
   },
   {
-    src: '/images/Fotos Nuevas/69E7F840-4C83-44BE-A4E9-39DED1F2320D.JPG',
+    src: '/images/booking-gallery/alicante-palms.jpg',
     alt: 'Palm trees and sunshine in Alicante',
     label: 'Alicante sun',
     position: 'center 48%',
   },
   {
-    src: '/images/Fotos Nuevas/669BC18D-B2F4-4821-A55A-AC041F3B45B9.JPG',
+    src: '/images/booking-gallery/team-dinner.jpg',
     alt: 'Padel Tripper guests enjoying a team dinner in Alicante',
     label: 'Team dinner',
     position: 'center 48%',
@@ -41,7 +41,7 @@ const bookingGallery = [
     position: 'center 52%',
   },
   {
-    src: '/images/Fotos Nuevas/057c8deb-a3d4-4945-845f-9f3495788b7a.jpg',
+    src: '/images/booking-gallery/match-day.jpg',
     alt: 'Padel Tripper guests after a match on a blue padel court',
     label: 'Match day',
     position: 'center 34%',
