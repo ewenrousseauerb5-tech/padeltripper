@@ -342,45 +342,28 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-black/35" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-            <div className="max-w-2xl">
-              <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Trust & Protection</p>
-              <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-6">
-                Book With <span className="text-brand-red">Confidence</span>
-              </h2>
-              <p className="text-white/75 max-w-xl text-base md:text-lg leading-relaxed font-light">
-                Padel Tripper is a Protected Trust Services verified partner, giving you added confidence from the moment
-                you book to the moment you return home.
-              </p>
-              <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
-                <Image
-                  src="/images/logos/PTS-Logo.jpg"
-                  alt="Protected Trust Services"
-                  width={88}
-                  height={34}
-                  className="h-6 w-auto object-contain"
-                />
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/85">Verified Partner</span>
-              </div>
-              <p className="mt-6 max-w-md text-sm leading-relaxed text-white/50">
-                Clear communication, protected bookings and a team on the ground in Alicante from arrival to departure.
-              </p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                ['Protected', 'PTS verified partner'],
-                ['Organised', 'Everything planned'],
-                ['Supported', 'Local Alicante team'],
-              ].map(([title, text]) => (
-                <div key={title} className="rounded-2xl border border-white/15 bg-white/[0.08] p-5 backdrop-blur-sm">
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-red">{title}</p>
-                  <p className="text-sm leading-relaxed text-white/70">{text}</p>
-                </div>
-              ))}
-            </div>
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-brand-red">Trust & Protection</p>
+          <h2 className="mb-6 font-serif text-3xl font-black uppercase text-white md:text-5xl">
+            Book With <span className="text-brand-red">Confidence</span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-base font-light leading-relaxed text-white/75 md:text-lg">
+            Padel Tripper is a Protected Trust Services verified partner, giving you added confidence from the moment
+            you book to the moment you return home.
+          </p>
+          <div className="mt-7 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+            <Image
+              src="/images/logos/PTS-Logo.jpg"
+              alt="Protected Trust Services"
+              width={88}
+              height={34}
+              className="h-6 w-auto object-contain"
+            />
+            <span className="text-xs font-semibold uppercase tracking-wider text-white/85">Verified Partner</span>
           </div>
+          <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed text-white/50">
+            Clear communication, protected bookings and a team on the ground in Alicante from arrival to departure.
+          </p>
         </div>
       </section>
 
