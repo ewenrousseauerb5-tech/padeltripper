@@ -4,9 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check } from 'lucide-react';
+import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check, Play } from 'lucide-react';
 import { FUTURE_EVENTS, getVisiblePromoNote } from '../data/events';
 import { toDualCurrencyDisplay } from '../lib/pricing';
+
+const tripVideoId = 'mNUro3nBPoE';
+const tripVideoTitle = 'Inside a Padel Tripper holiday in Alicante';
 
 const TrustpilotReviewHighlights = dynamic(() => import('../components/TrustpilotReviewHighlights'), {
   ssr: false,
@@ -17,36 +20,11 @@ const TrustpilotReviewHighlights = dynamic(() => import('../components/Trustpilo
   ),
 });
 
-const confidenceGallery = [
-  {
-    src: '/images/home-gallery-social-dinner.jpg',
-    alt: 'Padel Tripper guests enjoying a group dinner in Alicante',
-    label: 'Team dinner',
-  },
-  {
-    src: '/images/home-gallery-court-selfie.jpg',
-    alt: 'Padel Tripper guests smiling together on court in Alicante',
-    label: 'On court',
-  },
-  {
-    src: '/images/post-tournament-celebration.jpg',
-    alt: 'Padel Tripper guests celebrating after a tournament',
-    label: 'Post tournament',
-  },
-  {
-    src: '/images/home-gallery-alicante-palms.jpg',
-    alt: 'Palm trees and sunshine in Alicante',
-    label: 'Alicante sun',
-  },
-];
-
 export default function HomePage() {
   const [loadDesktopVideo, setLoadDesktopVideo] = useState(false);
   const [showTrustpilot, setShowTrustpilot] = useState(false);
-  const [activeConfidencePhoto, setActiveConfidencePhoto] = useState(0);
-  const [startConfidenceGallery, setStartConfidenceGallery] = useState(false);
+  const [playTripVideo, setPlayTripVideo] = useState(false);
   const trustpilotTriggerRef = useRef<HTMLDivElement | null>(null);
-  const confidenceGalleryRef = useRef<HTMLDivElement | null>(null);
   const homeUpcomingEvents = FUTURE_EVENTS.slice(0, 3);
 
   useEffect(() => {
@@ -78,34 +56,6 @@ export default function HomePage() {
     observer.observe(trustpilotTriggerRef.current);
     return () => observer.disconnect();
   }, [showTrustpilot]);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion || !startConfidenceGallery) return;
-
-    const timer = window.setInterval(() => {
-      setActiveConfidencePhoto((current) => (current + 1) % confidenceGallery.length);
-    }, 3600);
-
-    return () => window.clearInterval(timer);
-  }, [startConfidenceGallery]);
-
-  useEffect(() => {
-    if (!confidenceGalleryRef.current || startConfidenceGallery) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setStartConfidenceGallery(true);
-          observer.disconnect();
-        }
-      },
-      { root: null, rootMargin: '220px 0px', threshold: 0.01 },
-    );
-
-    observer.observe(confidenceGalleryRef.current);
-    return () => observer.disconnect();
-  }, [startConfidenceGallery]);
 
   return (
     <main>
@@ -304,6 +254,81 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Trip Video */}
+      <section className="bg-brand-light px-6 pt-20 pb-32 md:pt-24 md:pb-40" aria-label="Watch the Padel Tripper experience">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-brand-red">The Trip Experience</p>
+            <h2 className="mb-5 font-serif text-[34px] font-black uppercase leading-[0.95] text-brand-dark md:text-5xl">
+              See What A Padel Holiday Feels Like
+            </h2>
+            <p className="max-w-md text-[15px] leading-relaxed text-stone-500">
+              A quick look at the coaching, matches, hotel, socials and Alicante atmosphere that make the week feel so easy from day one.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link
+                href="/events"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-3 text-[11px] font-semibold uppercase tracking-widest text-white transition-colors hover:bg-brand-dark"
+              >
+                View Upcoming Trips
+                <ArrowRight size={14} />
+              </Link>
+              <a
+                href={`https://www.youtube.com/watch?v=${tripVideoId}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-6 py-3 text-[11px] font-semibold uppercase tracking-widest text-brand-dark transition-colors hover:border-brand-dark"
+              >
+                Open On YouTube
+              </a>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden rounded-[1.6rem] border border-white/70 bg-black shadow-2xl">
+            <div className="relative aspect-video">
+              {playTripVideo ? (
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src={`https://www.youtube-nocookie.com/embed/${tripVideoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080`}
+                  title={tripVideoTitle}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setPlayTripVideo(true)}
+                  className="group absolute inset-0 overflow-hidden text-left"
+                  aria-label="Play Padel Tripper trip video"
+                >
+                  <img
+                    src={`https://i.ytimg.com/vi_webp/${tripVideoId}/maxresdefault.webp`}
+                    alt={tripVideoTitle}
+                    loading="lazy"
+                    className="h-full w-full object-cover opacity-90 transition duration-700 group-hover:scale-[1.03] group-hover:opacity-100"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/10" />
+                  <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
+                    1 minute watch
+                  </span>
+                  <span className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-5">
+                    <span>
+                      <span className="block text-xs font-semibold uppercase tracking-[0.24em] text-white/55">Watch The Recap</span>
+                      <span className="mt-2 block max-w-lg font-serif text-2xl font-black uppercase leading-none text-white md:text-4xl">
+                        Alicante Padel Holiday
+                      </span>
+                    </span>
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-brand-red text-white shadow-lg shadow-black/20 transition group-hover:scale-105 md:h-16 md:w-16">
+                      <Play size={24} fill="currentColor" className="ml-1" />
+                    </span>
+                  </span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Full-width trust banner */}
       <section className="relative overflow-hidden py-20 md:py-24" aria-label="Padel Tripper trust and protection">
         <div className="absolute inset-0 z-0">
@@ -318,8 +343,8 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/35" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-[0.88fr_1.12fr] gap-10 md:gap-14 items-center">
-            <div>
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+            <div className="max-w-2xl">
               <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-xs mb-4">Trust & Protection</p>
               <h2 className="font-serif text-3xl md:text-5xl font-black text-white uppercase mb-6">
                 Book With <span className="text-brand-red">Confidence</span>
@@ -339,48 +364,21 @@ export default function HomePage() {
                 <span className="text-xs font-semibold uppercase tracking-wider text-white/85">Verified Partner</span>
               </div>
               <p className="mt-6 max-w-md text-sm leading-relaxed text-white/50">
-                Real guests, real trips and the little moments that make the Alicante experience feel easy to trust.
+                Clear communication, protected bookings and a team on the ground in Alicante from arrival to departure.
               </p>
             </div>
 
-            <div
-              ref={confidenceGalleryRef}
-              className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/[0.08] p-2 shadow-2xl backdrop-blur-sm md:p-3"
-            >
-              <div className="relative h-[390px] overflow-hidden rounded-[1.35rem] bg-black/25 md:h-[500px]">
-                <div
-                  key={confidenceGallery[activeConfidencePhoto].src}
-                  className="absolute inset-0 animate-[softReveal_800ms_ease-out_both]"
-                >
-                  <Image
-                    src={confidenceGallery[activeConfidencePhoto].src}
-                    alt={confidenceGallery[activeConfidencePhoto].alt}
-                    fill
-                    quality={50}
-                    sizes="(max-width: 768px) 88vw, 48vw"
-                    className="object-cover object-center"
-                  />
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                ['Protected', 'PTS verified partner'],
+                ['Organised', 'Everything planned'],
+                ['Supported', 'Local Alicante team'],
+              ].map(([title, text]) => (
+                <div key={title} className="rounded-2xl border border-white/15 bg-white/[0.08] p-5 backdrop-blur-sm">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-red">{title}</p>
+                  <p className="text-sm leading-relaxed text-white/70">{text}</p>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-6 p-5 md:p-6">
-                  <p className="inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
-                    {confidenceGallery[activeConfidencePhoto].label}
-                  </p>
-                  <div className="flex items-center gap-2" aria-label="Gallery photos">
-                    {confidenceGallery.map((photo, index) => (
-                      <button
-                        key={photo.src}
-                        type="button"
-                        onClick={() => setActiveConfidencePhoto(index)}
-                        className={`h-1.5 rounded-full transition-all duration-500 ${
-                          activeConfidencePhoto === index ? 'w-9 bg-white' : 'w-1.5 bg-white/35 hover:bg-white/70'
-                        }`}
-                        aria-label={`Show ${photo.label} photo`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
