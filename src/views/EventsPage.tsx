@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { ArrowRight, CalendarDays, Mail, Phone } from 'lucide-react';
+import { ArrowRight, Mail, Phone } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import { FUTURE_EVENTS } from '../data/events';
 import EventsHero from '../components/events/EventsHero';
@@ -15,36 +15,43 @@ const EventsFaqSection = dynamic(() => import('../components/events/EventsFaqSec
   loading: () => <section className="py-20 bg-brand-light px-6" />,
 });
 
-const ExperienceGallery = dynamic(() => import('../components/events/ExperienceGallery'), {
-  ssr: false,
-  loading: () => <section className="py-20 bg-brand-dark px-6" />,
-});
-
-const miniItinerary = [
+const bookingGallery = [
   {
-    day: 'Tuesday',
-    title: 'Arrival + welcome',
-    detail: 'Check in, informal games, then a relaxed welcome drink with the group.',
+    src: '/images/Fotos Nuevas/2E56E2DA-9D2B-4D14-B632-61B778B0C4A3.JPG',
+    alt: 'Padel Tripper guests smiling together on court in Alicante',
+    label: 'Group energy',
+    position: 'center 42%',
   },
   {
-    day: 'Wednesday',
-    title: 'Coaching + social padel',
-    detail: 'Morning coaching at Montemar, afternoon match play at Bela Padel Centre.',
+    src: '/images/Fotos Nuevas/69E7F840-4C83-44BE-A4E9-39DED1F2320D.JPG',
+    alt: 'Palm trees and sunshine in Alicante',
+    label: 'Alicante sun',
+    position: 'center 48%',
   },
   {
-    day: 'Thursday',
-    title: 'Training + Alicante night',
-    detail: 'Another coaching block, more social padel, then optional drinks in the city.',
+    src: '/images/Fotos Nuevas/669BC18D-B2F4-4821-A55A-AC041F3B45B9.JPG',
+    alt: 'Padel Tripper guests enjoying a team dinner in Alicante',
+    label: 'Team dinner',
+    position: 'center 48%',
   },
   {
-    day: 'Friday',
-    title: 'Final session + departure',
-    detail: 'Last coaching session, farewells, and extra court time if your flight is later.',
+    src: '/images/venues/Hotel-piscina.webp',
+    alt: 'Hotel pool at Hotel Alicante Golf for a Padel Tripper holiday',
+    label: 'Hotel base',
+    position: 'center 52%',
+  },
+  {
+    src: '/images/Fotos Nuevas/057c8deb-a3d4-4945-845f-9f3495788b7a.jpg',
+    alt: 'Padel Tripper guests after a match on a blue padel court',
+    label: 'Match day',
+    position: 'center 34%',
   },
 ];
 
 export default function EventsPage() {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
+  const [activeBookingPhoto, setActiveBookingPhoto] = useState(0);
+  const activeGalleryPhoto = bookingGallery[activeBookingPhoto];
 
   useEffect(() => {
     if (window.location.hash === '#booking') {
@@ -54,6 +61,17 @@ export default function EventsPage() {
     } else {
       window.scrollTo(0, 0);
     }
+  }, []);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const timer = window.setInterval(() => {
+      setActiveBookingPhoto(current => (current + 1) % bookingGallery.length);
+    }, 3400);
+
+    return () => window.clearInterval(timer);
   }, []);
 
   return (
@@ -81,33 +99,47 @@ export default function EventsPage() {
             </div>
 
             <aside className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 md:p-5">
-              <div className="mb-5 flex items-start gap-3">
-                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-brand-red">
-                  <CalendarDays size={18} />
-                </div>
-                <div>
-                  <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-1">Typical Itinerary</p>
-                  <h3 className="font-serif text-2xl font-black uppercase text-white leading-tight">4 Days In Alicante</h3>
-                </div>
+              <div className="mb-5">
+                <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-[10px] mb-2">Trip Moments</p>
+                <h3 className="font-serif text-2xl font-black uppercase text-white leading-tight">See Yourself Here</h3>
+                <p className="mt-2 text-[12px] leading-relaxed text-white/50">
+                  Coaching, match play, dinners and the easy group energy that makes the trip feel social from day one.
+                </p>
               </div>
 
-              <div className="space-y-4">
-                {miniItinerary.map(item => (
-                  <div key={item.day} className="border-l border-white/15 pl-4">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-brand-red font-semibold mb-1">{item.day}</p>
-                    <p className="text-sm font-semibold text-white mb-1">{item.title}</p>
-                    <p className="text-[12px] leading-relaxed text-white/55">{item.detail}</p>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                <div className="relative aspect-[1.14] md:aspect-[1.08]">
+                  <Image
+                    key={activeGalleryPhoto.src}
+                    src={activeGalleryPhoto.src}
+                    alt={activeGalleryPhoto.alt}
+                    fill
+                    quality={50}
+                    sizes="(max-width: 1024px) 100vw, 340px"
+                    className="animate-[softReveal_800ms_ease-out_both] object-cover object-center"
+                    style={{ objectPosition: activeGalleryPhoto.position }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="mb-3 inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
+                      {activeGalleryPhoto.label}
+                    </p>
+                    <div className="flex items-center gap-2" aria-label="Trip photo gallery">
+                      {bookingGallery.map((photo, index) => (
+                        <button
+                          key={photo.src}
+                          type="button"
+                          onClick={() => setActiveBookingPhoto(index)}
+                          className={`h-1.5 rounded-full transition-all duration-500 ${
+                            activeBookingPhoto === index ? 'w-9 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/75'
+                          }`}
+                          aria-label={`Show ${photo.label} photo`}
+                        />
+                      ))}
+                    </div>
                   </div>
-                ))}
+                </div>
               </div>
-
-              <a
-                href="#full-itinerary"
-                className="mt-5 flex items-center justify-center gap-2 rounded-xl border border-brand-red/60 bg-brand-red/10 px-3 py-2.5 text-[12px] font-semibold uppercase tracking-widest text-white/90 hover:bg-brand-red/20 transition-colors"
-              >
-                Full itinerary
-                <ArrowRight size={13} />
-              </a>
 
               <div className="mt-5 border-t border-white/10 pt-5">
                 <p className="text-[10px] uppercase tracking-[0.25em] text-white/35 font-semibold mb-3">Questions?</p>
@@ -145,8 +177,6 @@ export default function EventsPage() {
       </section>
 
       <EventsFaqSection />
-
-      <ExperienceGallery />
 
       <section className="py-16 md:py-20 px-6 bg-white border-t border-stone-200/70">
         <div className="max-w-4xl mx-auto rounded-3xl border border-stone-200 bg-brand-light p-8 md:p-10 text-center">
