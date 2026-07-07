@@ -309,7 +309,7 @@ export default function HomePage() {
                   />
                   <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/10" />
                   <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-dark">
-                    1 minute watch
+                    2 minute watch
                   </span>
                   <span className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-5">
                     <span>
