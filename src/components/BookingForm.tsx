@@ -519,6 +519,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
   const [phone, setPhone] = useState('');
   const countryCodeDropdownRef = useRef<HTMLDivElement | null>(null);
   const [numParticipantsInput, setNumParticipantsInput] = useState('1');
+  const [referralCode, setReferralCode] = useState('');
   const [otherInfo, setOtherInfo] = useState('');
   const [acceptedLegal, setAcceptedLegal] = useState(false);
   const [confirmedEligibility, setConfirmedEligibility] = useState(false);
@@ -628,6 +629,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
     setPhoneCountryCode('+44');
     setPhone('');
     setNumParticipantsInput('1');
+    setReferralCode('');
     setOtherInfo('');
     setAcceptedLegal(false);
     setConfirmedEligibility(false);
@@ -664,6 +666,7 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
         email: cleanEmail,
         phone: normalizedPhone,
         num_participants: getNormalizedParticipants(),
+        referral_code: referralCode.trim(),
         special_requests: otherInfo.trim(),
         accepted_privacy_terms: acceptedLegal,
         eligibility_confirmed: requiresEligibilityConfirmation ? confirmedEligibility : undefined,
@@ -858,6 +861,20 @@ export default function BookingForm({ selectedEventId, priceOverrides }: Booking
               onFocus={e => e.currentTarget.select()}
               onChange={e => setNumParticipantsInput(e.target.value)}
               onBlur={() => setNumParticipantsInput(String(getNormalizedParticipants()))}
+              className={inputClass}
+            />
+          </div>
+
+          <div className="md:col-span-2">
+            <label className={labelClass}>Referral Code</label>
+            <input
+              type="text"
+              inputMode="text"
+              autoComplete="off"
+              placeholder="Optional referral code"
+              value={referralCode}
+              onChange={e => setReferralCode(e.target.value)}
+              maxLength={64}
               className={inputClass}
             />
           </div>

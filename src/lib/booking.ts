@@ -28,6 +28,7 @@ interface BookingPayload {
   num_participants?: number;
   accommodation_type?: string;
   dietary_requirements?: string;
+  referral_code?: string;
   special_requests?: string;
   accepted_privacy_terms?: boolean;
   confirmed_participant_consent?: boolean;
@@ -62,6 +63,7 @@ interface NormalizedBooking {
   num_participants: number;
   accommodation_type: string;
   dietary_requirements: string;
+  referral_code: string;
   special_requests: string;
   accepted_privacy_terms: boolean;
   confirmed_participant_consent: boolean;
@@ -182,6 +184,7 @@ function normalizeBookingPayload(raw: BookingPayload): { booking?: NormalizedBoo
       num_participants,
       accommodation_type: normalizeString(raw.accommodation_type),
       dietary_requirements: normalizeString(raw.dietary_requirements),
+      referral_code: normalizeString(raw.referral_code),
       special_requests: normalizeString(raw.special_requests),
       accepted_privacy_terms: raw.accepted_privacy_terms === true,
       confirmed_participant_consent: raw.confirmed_participant_consent === true,
@@ -222,6 +225,7 @@ function buildAdminHtml(quotationId: number, booking: NormalizedBooking): string
       <tr><td style="padding:5px 0;color:#888;">Email</td><td style="padding:5px 0;">${escapeHtml(booking.email)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Phone</td><td style="padding:5px 0;">${escapeHtml(booking.phone)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Participants</td><td style="padding:5px 0;">${booking.num_participants}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Referral Code</td><td style="padding:5px 0;">${escapeHtml(booking.referral_code || '—')}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Other Information</td><td style="padding:5px 0;">${escapeHtml(booking.special_requests || '—')}</td></tr>
     </table>
   </div>
@@ -312,6 +316,7 @@ function buildFallbackSpecialRequests(booking: NormalizedBooking): string {
   const details = [
     booking.special_requests,
     `Phone: ${booking.phone}`,
+    booking.referral_code ? `Referral code: ${booking.referral_code}` : '',
     booking.utm_source ? `UTM source: ${booking.utm_source}` : '',
     booking.utm_medium ? `UTM medium: ${booking.utm_medium}` : '',
     booking.utm_campaign ? `UTM campaign: ${booking.utm_campaign}` : '',
@@ -340,6 +345,7 @@ function buildBookingBackupCsv(booking: NormalizedBooking, reason: string): stri
     'num_participants',
     'accommodation_type',
     'dietary_requirements',
+    'referral_code',
     'special_requests',
     'utm_source',
     'utm_medium',
@@ -359,6 +365,7 @@ function buildBookingBackupCsv(booking: NormalizedBooking, reason: string): stri
     booking.num_participants,
     booking.accommodation_type,
     booking.dietary_requirements,
+    booking.referral_code,
     booking.special_requests,
     booking.utm_source,
     booking.utm_medium,
@@ -389,6 +396,7 @@ function buildBackupHtml(booking: NormalizedBooking, reason: string, backupCsv: 
       <tr><td style="padding:5px 0;color:#888;">Email</td><td style="padding:5px 0;">${escapeHtml(booking.email)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Phone</td><td style="padding:5px 0;">${escapeHtml(booking.phone)}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Participants</td><td style="padding:5px 0;">${booking.num_participants}</td></tr>
+      <tr><td style="padding:5px 0;color:#888;">Referral Code</td><td style="padding:5px 0;">${escapeHtml(booking.referral_code || '—')}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Other Information</td><td style="padding:5px 0;">${escapeHtml(booking.special_requests || '—')}</td></tr>
     </table>
     <p style="margin:0 0 8px;color:#222;font-size:13px;font-weight:700;">CSV backup for Excel / Google Sheets</p>
@@ -449,6 +457,7 @@ async function sendBookingBackupEmail(
       `Name: ${booking.full_name}`,
       `Email: ${booking.email}`,
       `Phone: ${booking.phone}`,
+      booking.referral_code ? `Referral code: ${booking.referral_code}` : '',
       `Participants: ${booking.num_participants}`,
       `Other Information: ${booking.special_requests || '(none)'}`,
       '',
@@ -561,6 +570,7 @@ export async function handleBookingRequest(request: Request, env: BookingEnv): P
         num_participants: booking.num_participants,
         accommodation_type: booking.accommodation_type,
         dietary_requirements: booking.dietary_requirements,
+        referral_code: booking.referral_code || null,
         special_requests: booking.special_requests,
         status: 'SUBMITTED',
         payment_status: 'pending',
