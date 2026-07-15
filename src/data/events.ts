@@ -151,7 +151,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     dateShort: 'Sep 22–25',
     nights: 3,
     status: 'Available',
-    price: '£645.00',
+    price: '£545.00',
     originalPrice: '£745.00',
     filled: 0,
     max: 16,
