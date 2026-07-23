@@ -134,7 +134,7 @@ export const ALL_EVENTS: PadelEvent[] = [
     date: '15th - 18th September 2026',
     dateShort: 'Sep 15–18',
     nights: 3,
-    status: 'Available',
+    status: 'Sold Out',
     price: '£645.00',
     originalPrice: '£745.00',
     filled: 5,
