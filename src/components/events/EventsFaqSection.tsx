@@ -75,11 +75,11 @@ export default function EventsFaqSection() {
                 </div>
                 <div>
                   <p className="font-semibold text-brand-dark text-sm mb-1">Wednesday</p>
-                  <p className="text-stone-400 text-sm leading-relaxed">Meet the coaching team at Club Atlético Montemar at 9.45am. Morning coaching session 10am–12pm. After a break, we head to Bela Padel Centre for a 3–5pm afternoon social — expect competitive games and plenty of laughs.</p>
+                  <p className="text-stone-400 text-sm leading-relaxed">Meet the coaching team at one of our hand-picked clubs at 9.45am. Morning coaching session 10am–12pm. After a break, we head to Bela Padel Centre for a 3–5pm afternoon social — expect competitive games and plenty of laughs.</p>
                 </div>
                 <div>
                   <p className="font-semibold text-brand-dark text-sm mb-1">Thursday</p>
-                  <p className="text-stone-400 text-sm leading-relaxed">Morning coaching at Montemar again (10am–12pm), then back to Bela for the afternoon session (3–5pm). Round the day off with a night out in the city — Plaza del Ayuntamiento is the go-to for a few well-earned drinks.</p>
+                  <p className="text-stone-400 text-sm leading-relaxed">Morning coaching at one of our hand-picked clubs again (10am–12pm), then back to Bela for the afternoon session (3–5pm). Round the day off with a night out in the city — Plaza del Ayuntamiento is the go-to for a few well-earned drinks.</p>
                 </div>
                 <div>
                   <p className="font-semibold text-brand-dark text-sm mb-1">Friday — Departure</p>

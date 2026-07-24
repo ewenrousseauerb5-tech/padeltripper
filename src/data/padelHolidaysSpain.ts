@@ -2,7 +2,7 @@ export const padelHolidayFaqs = [
   {
     question: 'What does a typical itinerary look like?',
     answer:
-      'Tuesday: check in, ease into the trip and usually start with an informal game followed by a welcome drink at Bela. Wednesday: morning coaching at Club Atletico Montemar, then afternoon social games at Bela Padel Centre. Thursday: another morning coaching session, afternoon padel at Bela and a night out in Alicante. Friday: final coaching session, farewells around 12.15pm, with optional extra play if you have a later flight.',
+      'Tuesday: check in, ease into the trip and usually start with an informal game followed by a welcome drink at Bela. Wednesday: morning coaching at one of our hand-picked clubs, then afternoon social games at Bela Padel Centre. Thursday: another morning coaching session, afternoon padel at Bela and a night out in Alicante. Friday: final coaching session, farewells around 12.15pm, with optional extra play if you have a later flight.',
   },
   {
     question: 'Do flights come with the package?',
