@@ -162,10 +162,10 @@ export const ALL_EVENTS: PadelEvent[] = [
   },
   {
     id: 98,
-    startDate: '2026-10-14',
+    startDate: '2026-10-13',
     name: 'Hosted Alicante Padel Experience: Jamie and Matt',
-    date: '14th - 17th October 2026',
-    dateShort: 'Oct 14–17',
+    date: '13th - 16th October 2026',
+    dateShort: 'Oct 13–16',
     nights: 3,
     status: 'Available',
     price: '£645.00',
