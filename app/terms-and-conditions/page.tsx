@@ -22,7 +22,7 @@ export default function TermsAndConditionsPage() {
       <section className="max-w-4xl mx-auto px-6 py-20 md:py-24">
         <p className="text-brand-red font-semibold uppercase tracking-[0.25em] text-xs mb-4">Legal</p>
         <h1 className="font-serif text-4xl md:text-5xl font-black text-brand-dark uppercase mb-4">Terms & Conditions</h1>
-        <p className="text-stone-500 text-sm mb-10">Last updated: May 20, 2026</p>
+        <p className="text-stone-500 text-sm mb-10">Last updated: July 30, 2026</p>
 
         <div className="space-y-8 text-stone-600 leading-relaxed">
           <section>
@@ -63,6 +63,10 @@ export default function TermsAndConditionsPage() {
             <p>
               Where a booking is confirmed, payment conditions (deposit, balance due date, methods, and deadlines) will
               be set out in the quotation or booking confirmation.
+            </p>
+            <p className="mt-3">
+              Please note that all deposits are strictly non-refundable. This policy allows us to plan and run our trips
+              smoothly for all players.
             </p>
           </section>
 

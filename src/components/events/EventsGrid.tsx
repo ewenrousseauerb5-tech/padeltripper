@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Calendar, Check, Clock, MapPin, Star } from 'lucide-react';
+import { Calendar, Check, Clock, Star } from 'lucide-react';
 import { getVisiblePromoNote, type PadelEvent } from '@/src/data/events';
 import { toDualCurrencyDisplay } from '@/src/lib/pricing';
 
@@ -93,10 +93,6 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                   <span className="text-[13px] sm:text-sm">{event.nights} nights / {event.nights + 1} days</span>
                 </div>
                 <div className="flex items-center gap-3 text-stone-400">
-                  <MapPin size={14} className="shrink-0" />
-                  <span className="text-[13px] sm:text-sm">{event.location}</span>
-                </div>
-                <div className="flex items-center gap-3 text-stone-400">
                   <Star size={14} className="shrink-0" />
                   <span className="text-[13px] sm:text-sm">{event.hotel} + B&amp;B</span>
                 </div>
@@ -107,6 +103,14 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                 <div className="flex items-center gap-3 text-stone-400">
                   <Check size={14} className="shrink-0 text-brand-red/80" />
                   <span className="text-[13px] sm:text-sm">Welcome gifts, team night out &amp; photo album</span>
+                </div>
+                <div className="flex items-center gap-3 text-stone-400">
+                  <Check size={14} className="shrink-0 text-brand-red/80" />
+                  <span className="text-[13px] sm:text-sm">Mixed abilities: something for everyone</span>
+                </div>
+                <div className="flex items-center gap-3 text-stone-400">
+                  <Check size={14} className="shrink-0 text-brand-red/80" />
+                  <span className="text-[13px] sm:text-sm">Come alone or in a group: we cater for all</span>
                 </div>
               </div>
 

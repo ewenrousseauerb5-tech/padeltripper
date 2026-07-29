@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { Calendar, Star, ArrowRight, Trophy, Handshake, MapPin, Check, Play } from 'lucide-react';
+import { Calendar, Star, ArrowRight, Trophy, Handshake, Check, Play } from 'lucide-react';
 import { FUTURE_EVENTS, getVisiblePromoNote } from '../data/events';
 import { toDualCurrencyDisplay } from '../lib/pricing';
 
@@ -211,10 +211,6 @@ export default function HomePage() {
                       <span className="text-sm">{event.nights} nights / {event.nights + 1} days</span>
                     </div>
                     <div className="flex items-center gap-3 text-stone-400">
-                      <MapPin size={14} />
-                      <span className="text-sm">{event.location}</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-stone-400">
                       <Star size={14} />
                       <span className="text-sm">{event.hotel} + B&amp;B</span>
                     </div>
@@ -225,6 +221,14 @@ export default function HomePage() {
                     <div className="flex items-center gap-3 text-stone-400">
                       <Check size={14} className="text-brand-red/70" />
                       <span className="text-sm">Welcome gifts, team night out &amp; photo album</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <Check size={14} className="text-brand-red/70" />
+                      <span className="text-sm">Mixed abilities: something for everyone</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-stone-400">
+                      <Check size={14} className="text-brand-red/70" />
+                      <span className="text-sm">Come alone or in a group: we cater for all</span>
                     </div>
                   </div>
                   <Link
