@@ -93,9 +93,19 @@ export default function HomePage() {
               Ultimate padel retreats <br />
               <span className="text-brand-red">in Alicante</span>
             </h1>
-            <p className="text-lg text-white/70 mb-12 max-w-lg leading-relaxed font-light">
+            <p className="text-lg text-white/70 mb-7 max-w-lg leading-relaxed font-light">
               Discover the fastest growing sport in the world in Spain, the home of padel. What&apos;s not to love?
             </p>
+            <div className="mb-9 grid max-w-xl grid-cols-2 gap-3">
+              <div className="rounded-2xl border border-white/15 bg-black/25 px-4 py-3 backdrop-blur-sm">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Shared room</p>
+                <p className="mt-1 font-serif text-2xl font-black text-white">From £545pp</p>
+              </div>
+              <div className="rounded-2xl border border-white/15 bg-black/25 px-4 py-3 backdrop-blur-sm">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Private room</p>
+                <p className="mt-1 font-serif text-2xl font-black text-white">From £745pp</p>
+              </div>
+            </div>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/events"
