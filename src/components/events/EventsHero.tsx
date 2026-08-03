@@ -39,11 +39,11 @@ export default function EventsHero() {
           <div className="mt-7 grid max-w-md grid-cols-2 gap-3">
             <div className="rounded-2xl border border-white/15 bg-black/25 px-4 py-3 backdrop-blur-sm">
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Shared room</p>
-              <p className="mt-1 font-serif text-xl font-black text-white">From £545pp</p>
+              <p className="mt-1 font-serif text-xl font-black text-white">£545-£645pp</p>
             </div>
             <div className="rounded-2xl border border-white/15 bg-black/25 px-4 py-3 backdrop-blur-sm">
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Private room</p>
-              <p className="mt-1 font-serif text-xl font-black text-white">From £745pp</p>
+              <p className="mt-1 font-serif text-xl font-black text-white">£745-£845pp</p>
             </div>
           </div>
         </motion.div>
