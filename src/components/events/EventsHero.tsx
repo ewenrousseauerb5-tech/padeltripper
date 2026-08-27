@@ -6,7 +6,7 @@ import { motion } from 'motion/react';
 
 export default function EventsHero() {
   return (
-    <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
+    <section className="relative min-h-[520px] md:h-[58vh] md:min-h-[520px] flex items-end overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/post-tournament-celebration.jpg"
@@ -18,7 +18,7 @@ export default function EventsHero() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-14 md:pb-[4.5rem]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
