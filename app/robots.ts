@@ -6,8 +6,11 @@ const aiSearchCrawlers = [
   'ChatGPT-User',
   'GPTBot',
   'Claude-SearchBot',
+  'Claude-User',
   'ClaudeBot',
   'PerplexityBot',
+  'Perplexity-User',
+  'CCBot',
 ];
 
 export default function robots(): MetadataRoute.Robots {

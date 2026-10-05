@@ -34,6 +34,25 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Coaches & Venues',
+        item: `${SITE_URL}/venues`,
+      },
+    ],
+  };
+
   const venuesPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -131,6 +150,10 @@ export default function Page() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(venuesPageSchema) }}

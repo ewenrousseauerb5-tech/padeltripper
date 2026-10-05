@@ -34,5 +34,63 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <TailoredEventsPage />;
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Tailored Events',
+        item: `${SITE_URL}/tailored-events`,
+      },
+    ],
+  };
+
+  const tailoredServiceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Tailored padel events in Alicante',
+    serviceType: 'Tailored padel holiday',
+    url: `${SITE_URL}/tailored-events`,
+    provider: {
+      '@type': 'Organization',
+      name: 'Padel Tripper',
+      url: SITE_URL,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Alicante',
+      containedInPlace: {
+        '@type': 'Country',
+        name: 'Spain',
+      },
+    },
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'Private groups, clubs, coaches, celebrations and corporate groups',
+    },
+    description:
+      'Bespoke padel trips in Alicante with coaching, social play, accommodation and group support for private groups and communities.',
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tailoredServiceSchema) }}
+      />
+      <TailoredEventsPage />
+    </>
+  );
 }
