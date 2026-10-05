@@ -1,8 +1,13 @@
 import { SITE_URL } from '@/src/lib/seo';
+import { FUTURE_EVENTS } from '@/src/data/events';
 
 export const dynamic = 'force-static';
 
 export function GET() {
+  const upcomingTrips = FUTURE_EVENTS.slice(0, 8)
+    .map(event => `- ${event.date}: ${event.status}, from ${event.price}, ${event.nights} nights, ${event.location}`)
+    .join('\n');
+
   const body = `
 # Padel Tripper
 
@@ -15,6 +20,12 @@ Padel Tripper offers premium small-group padel holidays, padel camps and coachin
 - Typical guests: solo travellers, couples, friend groups and mixed-ability padel players.
 - Room pricing: shared room trips usually range from GBP 545-645 per person; private room trips usually range from GBP 745-845.
 - Flights are not included. Guests book flights separately after trip confirmation.
+- Trust signals: Protected Trust Services verified partner; 5.0 Trustpilot rating; founded from the Alicante Social Padel community.
+- Local experience: the founder has hosted 700+ local padel events and built a network of 2000 players in Alicante.
+
+## Upcoming Trips Snapshot
+
+${upcomingTrips}
 
 ## Important Pages
 

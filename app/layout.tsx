@@ -109,12 +109,55 @@ export default function RootLayout({
     name: 'Padel Tripper',
     url: SITE_URL,
     logo: `${SITE_URL}/images/logos/logo-landscape.png`,
-    email: '[email protected]',
+    email: 'hello@padeltripper.com',
     telephone: '+44 7939870682',
-    sameAs: ['https://www.instagram.com/padeltripper/'],
+    sameAs: ['https://www.instagram.com/padeltripper/', 'https://www.trustpilot.com/review/padeltripper.com'],
     areaServed: ['GB', 'NL', 'DE', 'ES', 'EU'],
     description:
       'Padel Tripper organizes premium padel holidays in Spain, based in Alicante, for international players.',
+    foundingLocation: {
+      '@type': 'Place',
+      name: 'Alicante, Spain',
+    },
+    identifier: {
+      '@type': 'PropertyValue',
+      name: 'UK Company Registration Number',
+      value: '15698275',
+    },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        telephone: '+44 7939870682',
+        email: 'hello@padeltripper.com',
+        availableLanguage: ['English', 'Spanish'],
+      },
+    ],
+    makesOffer: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Padel holidays in Alicante, Spain',
+          serviceType: 'Padel holiday',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Tailored padel trips and private padel retreats',
+          serviceType: 'Tailored sports travel',
+        },
+      },
+    ],
+    knowsAbout: [
+      'padel holidays in Spain',
+      'padel camps in Alicante',
+      'padel coaching holidays',
+      'small-group sports travel',
+      'Alicante padel clubs',
+    ],
   };
 
   const websiteSchema = {
@@ -123,6 +166,11 @@ export default function RootLayout({
     name: 'Padel Tripper',
     url: SITE_URL,
     inLanguage: 'en',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Padel Tripper',
+      url: SITE_URL,
+    },
   };
 
   const siteNavigationSchema = {
@@ -131,10 +179,11 @@ export default function RootLayout({
     itemListElement: [
       { '@type': 'SiteNavigationElement', position: 1, name: 'Home', url: `${SITE_URL}/` },
       { '@type': 'SiteNavigationElement', position: 2, name: 'Events', url: `${SITE_URL}/events` },
-      { '@type': 'SiteNavigationElement', position: 3, name: 'About Us', url: `${SITE_URL}/about` },
-      { '@type': 'SiteNavigationElement', position: 4, name: 'Venues', url: `${SITE_URL}/venues` },
-      { '@type': 'SiteNavigationElement', position: 5, name: 'Tailored Events', url: `${SITE_URL}/tailored-events` },
-      { '@type': 'SiteNavigationElement', position: 6, name: 'Partners', url: `${SITE_URL}/partners` },
+      { '@type': 'SiteNavigationElement', position: 3, name: 'Padel Holidays Spain', url: `${SITE_URL}/padel-holidays-spain` },
+      { '@type': 'SiteNavigationElement', position: 4, name: 'About Us', url: `${SITE_URL}/about` },
+      { '@type': 'SiteNavigationElement', position: 5, name: 'Venues', url: `${SITE_URL}/venues` },
+      { '@type': 'SiteNavigationElement', position: 6, name: 'Tailored Events', url: `${SITE_URL}/tailored-events` },
+      { '@type': 'SiteNavigationElement', position: 7, name: 'Partners', url: `${SITE_URL}/partners` },
     ],
   };
 

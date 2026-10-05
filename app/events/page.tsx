@@ -41,6 +41,12 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const getEndDate = (startDate: string, nights: number) => {
+    const date = new Date(`${startDate}T00:00:00Z`);
+    date.setUTCDate(date.getUTCDate() + nights);
+    return date.toISOString().slice(0, 10);
+  };
+
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -72,11 +78,62 @@ export default function Page() {
     })),
   };
 
+  const sportsEventSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Upcoming Padel Tripper holidays in Alicante',
+    itemListElement: ALL_EVENTS.map((event, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'SportsEvent',
+        name: event.name || `Padel holiday in Alicante - ${event.date}`,
+        sport: 'Padel',
+        startDate: event.startDate,
+        endDate: getEndDate(event.startDate, event.nights),
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventStatus: 'https://schema.org/EventScheduled',
+        location: {
+          '@type': 'Place',
+          name: event.hotel,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Alicante',
+            addressCountry: 'ES',
+          },
+        },
+        organizer: {
+          '@type': 'Organization',
+          name: 'Padel Tripper',
+          url: SITE_URL,
+        },
+        image: event.image ? `${SITE_URL}${event.image}` : `${SITE_URL}/images/post-tournament-celebration.jpg`,
+        description: `Small-group padel holiday in Alicante, Spain with ${event.formatNote || 'coaching and social play'}, accommodation at ${event.hotel}, and local support from Padel Tripper.`,
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'GBP',
+          price: event.price.replace(/[^\d.]/g, ''),
+          availability:
+            event.status === 'Sold Out'
+              ? 'https://schema.org/SoldOut'
+              : event.status === 'Available'
+                ? 'https://schema.org/InStock'
+                : 'https://schema.org/LimitedAvailability',
+          url: `${SITE_URL}/events#booking`,
+        },
+      },
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sportsEventSchema) }}
       />
       <EventsPage />
     </>
