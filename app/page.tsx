@@ -41,6 +41,19 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+    ],
+  };
+
   const sportsActivityHolidaySchema = {
     '@context': 'https://schema.org',
     '@type': 'SportsActivityLocation',
@@ -56,11 +69,39 @@ export default function Page() {
     },
   };
 
+  const tripVideoSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'Inside a Padel Tripper holiday in Alicante',
+    description:
+      'A short video showing the coaching, match play, hotel, social moments and Alicante atmosphere included in a Padel Tripper holiday in Spain.',
+    thumbnailUrl: ['https://i.ytimg.com/vi_webp/mNUro3nBPoE/maxresdefault.webp'],
+    contentUrl: 'https://www.youtube.com/watch?v=mNUro3nBPoE',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/mNUro3nBPoE',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Padel Tripper',
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/images/logos/logo-landscape.png`,
+      },
+    },
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(sportsActivityHolidaySchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tripVideoSchema) }}
       />
       <HomePage />
     </>
