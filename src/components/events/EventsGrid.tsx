@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { Calendar, Check, Clock, Star } from 'lucide-react';
-import { getVisiblePromoNote, type PadelEvent } from '@/src/data/events';
+import { getEventSlug, getVisiblePromoNote, type PadelEvent } from '@/src/data/events';
 import { toDualCurrencyDisplay } from '@/src/lib/pricing';
 
 interface EventsGridProps {
@@ -83,7 +83,7 @@ export default function EventsGrid({ events, onSelectEvent }: EventsGridProps) {
                   <span className="font-bold text-brand-dark text-[13px] sm:text-sm">{event.date}</span>
                 </div>
                 <a
-                  href="/events#full-itinerary"
+                  href={`/events/${getEventSlug(event)}#itinerary`}
                   className="ml-7 inline-flex text-[12px] font-semibold text-brand-red underline decoration-brand-red/35 underline-offset-4 hover:text-brand-dark transition-colors"
                 >
                   View full itinerary

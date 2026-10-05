@@ -33,6 +33,14 @@ export function getVisiblePromoNote(event: PadelEvent): string | undefined {
   return event.promoNote;
 }
 
+export function getEventSlug(event: PadelEvent): string {
+  return event.date
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 export const ALL_EVENTS: PadelEvent[] = [
   {
     id: 68,
@@ -296,3 +304,7 @@ export const FUTURE_EVENTS = ALL_EVENTS
   .sort((a, b) => a.startDate.localeCompare(b.startDate));
 
 export const UPCOMING_EVENTS = FUTURE_EVENTS.slice(0, 3);
+
+export function getEventBySlug(slug: string): PadelEvent | undefined {
+  return ALL_EVENTS.find(event => getEventSlug(event) === slug);
+}

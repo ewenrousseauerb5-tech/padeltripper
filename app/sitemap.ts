@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
+import { FUTURE_EVENTS, getEventSlug } from '@/src/data/events';
 import { SITE_URL } from '@/src/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return [
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/`,
       lastModified: now,
@@ -92,4 +93,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.2,
     },
   ];
+
+  const eventRoutes: MetadataRoute.Sitemap = FUTURE_EVENTS.map(event => ({
+    url: `${SITE_URL}/events/${getEventSlug(event)}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: event.status === 'Sold Out' ? 0.45 : 0.75,
+    images: event.image ? [`${SITE_URL}${event.image}`] : [`${SITE_URL}/images/post-tournament-celebration.jpg`],
+  }));
+
+  return [...staticRoutes, ...eventRoutes];
 }
