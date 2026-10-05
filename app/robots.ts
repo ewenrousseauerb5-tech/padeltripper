@@ -14,17 +14,19 @@ const aiSearchCrawlers = [
 ];
 
 export default function robots(): MetadataRoute.Robots {
+  const disallowedPaths = ['/api/', '/_next/', '/dashboard/'];
+
   return {
     rules: [
       ...aiSearchCrawlers.map(userAgent => ({
         userAgent,
         allow: '/',
-        disallow: ['/api/', '/_next/'],
+        disallow: disallowedPaths,
       })),
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/'],
+        disallow: disallowedPaths,
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
