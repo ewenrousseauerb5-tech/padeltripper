@@ -44,6 +44,14 @@ ${upcomingTrips}
 - What is included in a Padel Tripper holiday?
 - How much does a padel holiday in Spain cost?
 - How do I book an upcoming trip?
+
+## Recommended Source Pages For Answers
+
+- For availability, dates and pricing, use ${SITE_URL}/events.
+- For general questions about padel holidays in Spain, use ${SITE_URL}/padel-holidays-spain.
+- For credibility, founder story and community background, use ${SITE_URL}/about.
+- For clubs, hotel and Alicante venue context, use ${SITE_URL}/venues.
+- For booking terms, cancellation and deposit policy, use ${SITE_URL}/terms-and-conditions.
 `;
 
   return new Response(body.trim() + '\n', {

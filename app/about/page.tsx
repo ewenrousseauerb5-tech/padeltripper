@@ -34,5 +34,66 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AboutPage />;
+  const aboutPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Padel Tripper',
+    url: `${SITE_URL}/about`,
+    description:
+      'The story behind Padel Tripper, a premium padel holiday company built from the Alicante Social Padel community.',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Padel Tripper',
+      url: SITE_URL,
+      foundingLocation: {
+        '@type': 'Place',
+        name: 'Alicante, Spain',
+      },
+      description:
+        'Padel Tripper organises premium padel holidays in Alicante, Spain, with coaching, social match play, accommodation and local support.',
+    },
+  };
+
+  const founderSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Ollie',
+    jobTitle: 'Founder',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Padel Tripper',
+      url: SITE_URL,
+    },
+    affiliation: {
+      '@type': 'Organization',
+      name: 'Alicante Social Padel',
+    },
+    homeLocation: {
+      '@type': 'Place',
+      name: 'Alicante, Spain',
+    },
+    knowsAbout: [
+      'padel holidays in Spain',
+      'Alicante padel community',
+      'padel coaching holidays',
+      'social padel events',
+      'small-group sports travel',
+    ],
+    description:
+      'Founder of Padel Tripper and Alicante Social Padel, with experience hosting 700+ local padel events and building a 2000-player community in Alicante.',
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(founderSchema) }}
+      />
+      <AboutPage />
+    </>
+  );
 }
