@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import EventsPage from '@/src/views/EventsPage';
 import { ALL_EVENTS } from '@/src/data/events';
+import { padelHolidayFaqs } from '@/src/data/padelHolidaysSpain';
 import { SITE_URL } from '@/src/lib/seo';
 
 export const metadata: Metadata = {
@@ -144,6 +145,19 @@ export default function Page() {
     })),
   };
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: padelHolidayFaqs.slice(0, 7).map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <>
       <script
@@ -157,6 +171,10 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(sportsEventSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <EventsPage />
     </>
