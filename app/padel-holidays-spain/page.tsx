@@ -90,6 +90,18 @@ export default function Page() {
       url: SITE_URL,
     },
     touristType: ['Padel players', 'Sports travellers', 'Active holiday travellers'],
+    areaServed: {
+      '@type': 'Place',
+      name: 'Alicante, Spain',
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'GBP',
+      lowPrice: '545',
+      highPrice: '845',
+      availability: 'https://schema.org/InStock',
+      url: `${SITE_URL}/events`,
+    },
     itinerary: {
       '@type': 'ItemList',
       itemListElement: [
@@ -97,6 +109,60 @@ export default function Page() {
         { '@type': 'ListItem', position: 2, name: 'Padel coaching and social play' },
         { '@type': 'ListItem', position: 3, name: 'Alicante social activities' },
         { '@type': 'ListItem', position: 4, name: 'Final session and departure' },
+      ],
+    },
+  };
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Padel holidays and coaching retreats in Spain',
+    serviceType: 'Padel holiday',
+    provider: {
+      '@type': 'Organization',
+      name: 'Padel Tripper',
+      url: SITE_URL,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Alicante',
+      containedInPlace: {
+        '@type': 'Country',
+        name: 'Spain',
+      },
+    },
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'Padel players, solo travellers, couples and small groups',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Padel Tripper room options',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          name: 'Shared room padel holiday',
+          priceCurrency: 'GBP',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: '545',
+            maxPrice: '645',
+            priceCurrency: 'GBP',
+          },
+          url: `${SITE_URL}/events`,
+        },
+        {
+          '@type': 'Offer',
+          name: 'Private room padel holiday',
+          priceCurrency: 'GBP',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: '745',
+            maxPrice: '845',
+            priceCurrency: 'GBP',
+          },
+          url: `${SITE_URL}/events`,
+        },
       ],
     },
   };
@@ -114,6 +180,10 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(sportsHolidaySchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <PadelHolidaysSpainPage />
     </>

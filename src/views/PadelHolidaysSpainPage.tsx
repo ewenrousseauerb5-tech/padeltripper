@@ -101,6 +101,29 @@ const includedItems = [
   },
 ];
 
+const quickAnswers = [
+  {
+    label: 'Best for',
+    title: 'Solo players, couples and groups',
+    copy: 'Join alone or with friends. The trip is organised around friendly mixed-ability padel, social games and an easy group atmosphere.',
+  },
+  {
+    label: 'Location',
+    title: 'Alicante, Spain',
+    copy: 'Sunshine, strong padel clubs, beach time and simple travel links from major UK and European cities.',
+  },
+  {
+    label: 'Included',
+    title: 'Hotel, coaching and social play',
+    copy: 'Accommodation, daily padel, professional coaching, organised group moments and local support throughout the trip.',
+  },
+  {
+    label: 'Prices',
+    title: 'Shared and private rooms',
+    copy: 'Shared rooms usually range from GBP 545-645pp, with private rooms usually ranging from GBP 745-845 depending on date.',
+  },
+];
+
 export default function PadelHolidaysSpainPage() {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [activeAlicanteIdx, setActiveAlicanteIdx] = useState(0);
@@ -194,6 +217,30 @@ export default function PadelHolidaysSpainPage() {
         <div className="absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 md:block">
           <div className="h-11 w-[1px] overflow-hidden rounded-full bg-white/20">
             <div className="h-5 w-full animate-pulse bg-white/70" />
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-6 py-14 md:py-18 bg-white border-b border-stone-200/70">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-7 max-w-2xl">
+            <p className="text-brand-red font-semibold uppercase tracking-[0.3em] text-[10px] mb-3">At A Glance</p>
+            <h2 className="font-serif text-2xl md:text-[2.25rem] font-black uppercase leading-tight text-brand-dark">
+              A Padel Holiday In Spain, Made Simple
+            </h2>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {quickAnswers.map(item => (
+              <article
+                key={item.title}
+                className="rounded-xl border border-stone-200 bg-brand-light p-5 transition-colors hover:border-brand-red/40 hover:bg-white"
+              >
+                <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-red">{item.label}</p>
+                <h3 className="mb-3 font-serif text-lg font-black uppercase leading-tight text-brand-dark">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-stone-600">{item.copy}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

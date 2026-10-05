@@ -1,9 +1,23 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/src/lib/seo';
 
+const aiSearchCrawlers = [
+  'OAI-SearchBot',
+  'ChatGPT-User',
+  'GPTBot',
+  'Claude-SearchBot',
+  'ClaudeBot',
+  'PerplexityBot',
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
+      ...aiSearchCrawlers.map(userAgent => ({
+        userAgent,
+        allow: '/',
+        disallow: ['/api/', '/_next/'],
+      })),
       {
         userAgent: '*',
         allow: '/',

@@ -34,6 +34,26 @@ export const padelHolidayFaqs = [
     answer:
       'Before the trip you will have direct contact details for our team on the ground, so someone will always be available if you need anything. We set up a WhatsApp group for each trip so everyone can connect ahead of time and during the week. It is optional, but most people find it useful.',
   },
+  {
+    question: 'Can I come alone?',
+    answer:
+      'Yes. Many guests join solo, and the format is built to make that feel easy. We organise the group, rotate games where needed and help everyone connect before and during the trip.',
+  },
+  {
+    question: 'What padel level do I need?',
+    answer:
+      'Most Padel Tripper holidays are designed for mixed abilities, with coaching and social play arranged so there is something for everyone. If a date has a specific level requirement, we make that clear before you book.',
+  },
+  {
+    question: 'Do I need my own partner?',
+    answer:
+      'No. You do not need to bring a padel partner. You can come alone, as a couple or in a group, and we help organise games so everyone gets good court time.',
+  },
+  {
+    question: 'How much does a padel holiday in Spain cost?',
+    answer:
+      'Current Alicante trips usually range from GBP 545-645 per person in a shared room and GBP 745-845 for a private room, depending on date and room type. Exact pricing is shown on the events page and enquiry form.',
+  },
 ];
 
 export const landingTestimonials = [
